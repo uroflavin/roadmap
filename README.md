@@ -43,10 +43,12 @@ The order of the objects of an entity indicates their logical or temporal sequen
 #### release
 - **tag***: mandatory; a short and meaningful tag of your release
 - *description*: Describe in natural words, what should or must be part of this release
+- *reference*: additional information about this release
 
 #### objective
 - **title***: mandatory; a short and meaningful summary of the objective
 - *description*: Describe in natural words, what is to be achieved for whom and why
+- *reference*: additional information about this objective
 - *state*:
     - IDEA
     - PLANNED
@@ -59,6 +61,7 @@ The order of the objects of an entity indicates their logical or temporal sequen
 - **title***: mandatory; a short and meaningful summary of the milestone
 - *description*: describe in natural words, what should be achived to whom
 A milestone act as an indicator of progress for his objective.
+- *reference*: additional information about this milestone
 - *state*:
     - IDEA
     - PLANNED
@@ -81,6 +84,7 @@ A milestone act as an indicator of progress for his objective.
     - MAY
 - *date*: The deliverable should, must or may be available by this date at the latest
 - *release*: The deliverable should, must or may be part of this release
+- *reference*: additional information about this deliverable
 
 #### reference
 - **link***: mandatory; A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket).

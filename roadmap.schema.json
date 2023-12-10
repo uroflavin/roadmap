@@ -112,6 +112,10 @@
                 "state": {
                     "$ref": "#/definitions/ObjectiveState"
                 },
+                "reference": {
+                    "type": "object",
+                    "$ref": "#/definitions/Reference"
+                },
                 "milestones": {
                     "type": "array",
                     "description": "The list of milestones which act as indicators of progress for this road map.",
@@ -131,8 +135,7 @@
             "type": "object",
             "description": "An indicator of progress for this road map. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.",
             "required": [
-                "title",
-                "deliverables"
+                "title"
             ],
             "properties": {
                 "title": {
@@ -145,6 +148,10 @@
                 },
                 "state": {
                     "$ref": "#/definitions/MilestoneState"
+                },
+                "reference": {
+                    "type": "object",
+                    "$ref": "#/definitions/Reference"
                 },
                 "deliverables": {
                     "type": "array",
@@ -191,9 +198,8 @@
                     "description": "A markdown formatted description of what this deliverable entails and why it is necessary for this milestone."
                 },
                 "reference": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket)."
+                    "type": "object",
+                    "$ref": "#/definitions/Reference"
                 },
                 "state": {
                     "$ref": "#/definitions/DeliverableState"
@@ -222,6 +228,27 @@
                     "type": "string",
                     "format": "uri",
                     "description": "A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket)."
+                }
+            }
+        },
+        "Release": {
+            "type": "object",
+            "description": "releases which provide enhancements in the form of deliverables to the stakeholders",
+            "required": [
+                "tag"
+            ],
+            "properties": {
+                "tag": {
+                    "type": "string",
+                    "description": "a short-name for the release"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "a describtion in natural words,what should or must be part of this release"
+                },
+                "reference": {
+                    "type": "object",
+                    "$ref": "#/definitions/Reference"
                 }
             }
         },
