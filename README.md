@@ -12,7 +12,8 @@ I mainly focus on mapping the following structure:
     - An **objective** has any number of milestones
         - A **milestone** has any number of deliverables
             - a **deliverable** can be assigned to a release.
-- **timeline** and the **project metadata** are unchanged
+- A number of **milestones** as an indicator for overall-progress of this roadmap (to be compliant with SierraSoftworks/roadmap)
+- The **timeline** and the **project metadata** are unchanged
 - The whole thing is supplemented by **release** assignments
 
 Objectives, milestones, deliverables and releases can have any number of references.
