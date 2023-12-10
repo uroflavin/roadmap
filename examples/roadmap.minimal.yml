@@ -1,0 +1,14 @@
+title: this is a minimal roadmap
+description: |
+    this roadmap contains a title, a description, some authors and two objective
+    thats all you need for a valid roadmap (to be clear: you just need One Objective)
+
+authors:
+  - name: M.Mustermann
+    contact: "call me at 2023456234"
+  - name: E.Mustermann
+    contact: erika@example.com
+
+objectives:
+  - title: Objective 1
+  - title: Objective 2
