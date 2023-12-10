@@ -44,6 +44,13 @@
             "items": {
                 "$ref": "#/definitions/Objective"
             }
+        },
+        "milestones": {
+            "type": "array",
+            "description": "The list of milestones which act as indicators of progress for this road map.",
+            "items": {
+                "$ref": "#/definitions/Milestone"
+            }
         }
     },
     "definitions": {
@@ -118,7 +125,7 @@
                 },
                 "milestones": {
                     "type": "array",
-                    "description": "The list of milestones which act as indicators of progress for this road map.",
+                    "description": "The list of milestones which act as indicators of progress for this objective.",
                     "items": {
                         "$ref": "#/definitions/Milestone"
                     }
