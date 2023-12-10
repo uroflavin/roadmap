@@ -1,10 +1,12 @@
 # roadmap
-Manage your project and team road maps in YAML
+Manage your project and team roadmaps in YAML
 
+## Inspired by
 This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap, with some key-differences:
  - roadmap is a clone, implemented in python
  - the roadmap-structure is slightly different
 
+## Goals
 My development approach is to implement the main functions of https://github.com/SierraSoftworks/roadmap. This concerns the creation of a view as HTML and PDF.
 
 I mainly focus on mapping the following structure:
