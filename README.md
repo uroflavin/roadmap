@@ -1,13 +1,8 @@
 # roadmap
 Manage your project and team roadmaps in YAML
 
-## Inspired by
-This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap, with some key-differences:
- - roadmap is a clone, implemented in python
- - the roadmap-structure is slightly different
-
 ## Goals
-My development approach is to implement the main functions of https://github.com/SierraSoftworks/roadmap. This concerns the creation of a view as HTML and PDF.
+My development approach is to implement the core functions of https://github.com/SierraSoftworks/roadmap. This concerns the creation of different views (e.g. Markdown, HTML, Graph and PDF).
 
 I mainly focus on mapping the following structure:
  - A **project** has any number of objectives
@@ -17,6 +12,8 @@ I mainly focus on mapping the following structure:
 - A number of **milestones** as an indicator for overall-progress of this roadmap (to be compliant with SierraSoftworks/roadmap)
 - The **timeline** and the **project metadata** are unchanged
 - The whole thing is supplemented by **release** assignments
+
+In advance, i like to support some more planning approaches.
 
 Objectives, milestones, deliverables and releases can have any number of references.
 
@@ -106,3 +103,9 @@ A milestone act as an indicator of progress for his objective.
 - **link***: mandatory; A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket).
 - *name*: a name for your reference
 - *description*: describe in natural words, what someone could expect by using the link of this reference
+
+
+## Inspired by
+This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap, with some key-differences:
+ - roadmap is a clone, implemented in python
+ - the roadmap-structure is slightly different
