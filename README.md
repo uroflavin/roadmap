@@ -27,7 +27,20 @@ The main structure of a roadmap.yaml is as follows:
 - **authors**: A list of authors who were/are involved in the creation of the roadmap
 - **timeline**: A list of important dates which relates to this road map.
 - **releases**: A list of releases which provide enhancements in the form of deliverables to the stakeholders
-- **objectives**: A list of objectives which the team is working towards over the course of this road map.
+
+### Different Planning Approaches
+roadmap.py is able to handle the following planning approaches:
+- **Roadmap only with Objectives**
+    - **objectives**: Is a list of objectives which the team is working towards over the course of this road map.
+- **Roadmap with Objective-Key-Results** (OKRs)
+    - **objectives** is a list of objectives which the team is working towards over the course of this road map.
+    - every objective can have one or as many **keyresults** as needed
+- **Roadmap with Objectives and some Milestones** for each Objective
+    - **objectives** is a list of objectives which the team is working towards over the course of this road map.
+    - **milestones** is a list of milestones to reach the corresponding objective
+- **Roadmap with Objectives and separate Milestones**
+
+A Milestone can have as many Deliverables as needed.
 
 ### Sequence is crucial. 
 The order of the objects of an entity indicates their logical or temporal sequence.
@@ -86,7 +99,7 @@ A milestone act as an indicator of progress for his objective.
     - SHOULD
     - MAY
 - *date*: The deliverable should, must or may be available by this date at the latest
-- *release*: The deliverable should, must or may be part of this release
+- *release*: The deliverable should, must or may be part of this release; to reference one release from *releases* use *release.tag* as reference
 - *reference*: additional information about this deliverable
 
 #### reference
