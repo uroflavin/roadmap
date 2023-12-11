@@ -56,7 +56,7 @@ The order of the objects of an entity indicates their logical or temporal sequen
     - IDEA
     - PLANNED
     - COMMITED
-    - DONE
+    - ACHIEVED
     - SKIP
 - milestones: any number of **milestone** to reach this objective (or none)
 

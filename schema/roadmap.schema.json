@@ -277,7 +277,7 @@
                 "IDEA",
                 "PLANNED",
                 "COMMITED",
-                "DONE",
+                "ACHIEVED",
                 "SKIP"
             ],
             "default": "IDEA"
