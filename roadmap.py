@@ -22,7 +22,7 @@ with open('examples/roadmap.full.yml') as f:
 ## Read Markdown Template
 env = Environment()
 env.loader = FileSystemLoader('templates')
-tmpl = env.get_template('roadmap.template.md')
+tmpl = env.get_template('markdown.roadmap.template.md')
 output_from_parsed_template = tmpl.render(project = project)
 
 ## Render Markdown
