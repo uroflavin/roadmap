@@ -15,7 +15,7 @@ I mainly focus on mapping the following structure:
 
 In advance, i like to support some more planning approaches.
 
-Objectives, milestones, deliverables and releases can have any number of references.
+Objectives, milestones, deliverables and releases can have none or one reference (e.g. to your ticketsystem or document or whatever).
 
 ## roadmap.yaml
 The main structure of a roadmap.yaml is as follows:
