@@ -5,7 +5,7 @@ from dotenv import dotenv_values # Environment
 import os
 import logging
 
-from jinja2 import Template
+from jinja2 import FileSystemLoader, Environment, Template
 
 
 LOGFILE= os. getcwd() + "/roadmap.log"
@@ -20,9 +20,10 @@ with open('examples/roadmap.full.yml') as f:
     logging.debug("%s", project)
 
 ## Read Markdown Template
-with open('roadmap.template.md') as f:
-    tmpl = Template(f.read())
-    output_from_parsed_template = tmpl.render(project = project)
+env = Environment()
+env.loader = FileSystemLoader('templates')
+tmpl = env.get_template('roadmap.template.md')
+output_from_parsed_template = tmpl.render(project = project)
 
 ## Render Markdown
 with open("roadmap.md", "w") as f:
