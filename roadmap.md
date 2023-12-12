@@ -24,6 +24,7 @@ This is the scheduled date for the first demo of this project to a wider audienc
 The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
 
+- [see json-schema.org](https://json-schema.org/)
 ### 🚀 We provide official tooling for most common use cases
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
@@ -37,12 +38,15 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
 ### **▶ Design and Planning**
 The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
 
+- [explaining design and planning principles](https://www.turing.com/blog/principles-of-software-development-guide/)
 #### ~~📦 **MUST::DONE** | README~~
 We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
 
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
 #### ~~📦 **MUST::DONE** | Roadmap~~
 We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
 
+- [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.full.yml)
 ### **▶ Roadmap Schema**
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
