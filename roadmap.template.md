@@ -20,9 +20,9 @@
 {% for deliverable in milestone.deliverables %}
 ##### 📦 **{{deliverable.requirement}}::{{ deliverable.state}}** | {{ deliverable.title}}
 {{ deliverable.description -}}
-{% endfor %}
-{% endfor %}
-{% endfor %}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
 {% if project.milestones %}
 ## Milestones
 {% for milestone in project.milestones %}
@@ -31,6 +31,6 @@
 {% for deliverable in milestone.deliverables %}
 #### {{ "~~" if deliverable.state == "DONE" }}📦 **{{deliverable.requirement}}::{{ deliverable.state}}** | {{ deliverable.title}}{{ "~~" if deliverable.state == "DONE" }}
 {{ deliverable.description -}}
-{% endfor %}
-{% endfor %}
+{% endfor -%}
+{% endfor -%}
 {% endif %}
