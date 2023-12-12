@@ -29,6 +29,9 @@ objectives:
     description: | 
       The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
       The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
+    reference:
+          link: https://json-schema.org/
+          name: see json-schema.org
 
   - title: We provide official tooling for most common use cases
     description: |
@@ -44,6 +47,9 @@ milestones:
   - title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
+    reference:
+          link: https://www.turing.com/blog/principles-of-software-development-guide/
+          name: explaining design and planning principles
     deliverables:
       - title: README
         state: DONE

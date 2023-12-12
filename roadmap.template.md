@@ -14,9 +14,13 @@
 {% for objective in project.objectives %}
 ### 🚀 {{ objective.title}}
 {{ objective.description -}}
+{% if "reference" in objective %}
+- [{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}]({{ objective.reference.link -}}){% endif -%}
 {% for milestone in objective.milestones %}
 #### ***▶ {{ milestone.title}}**
 {{ milestone.description -}}
+{% if "reference" in milestone %}
+- [{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}]({{ milestone.reference.link -}}){% endif -%}
 {% for deliverable in milestone.deliverables %}
 ##### 📦 **{{deliverable.requirement}}::{{ deliverable.state}}** | {{ deliverable.title}}
 {{ deliverable.description -}}
@@ -28,6 +32,8 @@
 {% for milestone in project.milestones %}
 ### **▶ {{ milestone.title}}**
 {{ milestone.description -}}
+{% if "reference" in milestone %}
+- [{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}]({{ milestone.reference.link -}}){% endif -%}
 {% for deliverable in milestone.deliverables %}
 #### {{ "~~" if deliverable.state == "DONE" }}📦 **{{deliverable.requirement}}::{{ deliverable.state}}** | {{ deliverable.title}}{{ "~~" if deliverable.state == "DONE" }}
 {{ deliverable.description -}}
