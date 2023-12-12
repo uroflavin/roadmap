@@ -30,7 +30,6 @@
                 "$ref": "#/definitions/Release"
             }
         },
-        
         "timeline": {
             "type": "array",
             "description": "The list of important dates which relate to this road map.",
@@ -128,6 +127,13 @@
                     "items": {
                         "$ref": "#/definitions/Milestone"
                     }
+                },
+                "keyresults": {
+                    "type": "array",
+                    "description": "The list of key-results which make up this Objective. Key-Results usually map to specific pieces of work which may be delegated to a member of your team.",
+                    "items": {
+                        "$ref": "#/definitions/Keyresult"
+                    }
                 }
             },
             "examples": [
@@ -201,6 +207,32 @@
                 "description": {
                     "type": "string",
                     "description": "A markdown formatted description of what this deliverable entails and why it is necessary for this milestone."
+                },
+                "reference": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "state": {
+                    "$ref": "#/definitions/DeliverableState"
+                },
+                "requirement": {
+                    "$ref": "#/definitions/Requirement"
+                }
+            }
+        },
+        "Keyresult": {
+            "type": "object",
+            "description": "A specific piece of work which may be delegated to a member of the team.",
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "A brief name describing this result."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this result entails and why it is necessary for this objective."
                 },
                 "reference": {
                     "$ref": "#/definitions/Reference"
