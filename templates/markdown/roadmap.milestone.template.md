@@ -1,7 +1,10 @@
-{% for milestone in objective.milestones %}
-#### **▶ {{ milestone.title}}**
+{% if "milestones" in project %}
+## Milestones
+{% for milestone in project.milestones %}
+### **▶ {{ milestone.title}}**
 {{ milestone.description -}}
 {% if "reference" in milestone %}
 - [{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}]({{ milestone.reference.link -}}){% endif -%}
-{% include 'markdown.roadmap.objective.milestone.deliverable.template.md' -%}
+{% include 'roadmap.milestone.deliverable.template.md' -%}
 {% endfor -%}
+{% endif -%}

@@ -17,5 +17,5 @@
 {% if "reference" in objective %}
 - [{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}]({{ objective.reference.link -}}){% endif -%}
 {% endfor -%}
-{% include "markdown.roadmap.milestone.template.md" -%}
+{% include "roadmap.milestone.template.md" -%}
 
