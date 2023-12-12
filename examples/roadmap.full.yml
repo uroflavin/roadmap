@@ -50,11 +50,17 @@ milestones:
         requirement: MUST
         description: |
           We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
+        reference:
+          link: https://github.com/uroflavin/roadmap/blob/main/README.md
+          name: see README
       - title: Roadmap
         state: DONE
         requirement: MUST
         description: |
           We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
+        reference:
+          link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.full.yml
+          name: see roadmap.yml
 
   - title: Roadmap Schema
     description: |

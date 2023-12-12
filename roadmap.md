@@ -44,9 +44,11 @@ The design and planning stage is where we're figuring out how this project shoul
 #### ~~📦 **MUST::DONE** | README~~
 We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
 
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
 #### ~~📦 **MUST::DONE** | Roadmap~~
 We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
 
+- [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.full.yml)
 
 ### **▶ Roadmap Schema**
 Once we know how we want a road map file to look, we should put together a schema for the file. 
