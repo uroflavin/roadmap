@@ -121,7 +121,6 @@
                     "$ref": "#/definitions/ObjectiveState"
                 },
                 "reference": {
-                    "type": "object",
                     "$ref": "#/definitions/Reference"
                 },
                 "keyresults": {
@@ -158,7 +157,6 @@
                     "$ref": "#/definitions/MilestoneState"
                 },
                 "reference": {
-                    "type": "object",
                     "$ref": "#/definitions/Reference"
                 },
                 "deliverables": {
@@ -206,7 +204,6 @@
                     "description": "A markdown formatted description of what this deliverable entails and why it is necessary for this milestone."
                 },
                 "reference": {
-                    "type": "object",
                     "$ref": "#/definitions/Reference"
                 },
                 "state": {
@@ -233,7 +230,6 @@
                     "description": "A markdown formatted description of what this result entails and why it is necessary for this objective."
                 },
                 "reference": {
-                    "type": "object",
                     "$ref": "#/definitions/Reference"
                 },
                 "state": {
@@ -282,7 +278,6 @@
                     "description": "a describtion in natural words,what should or must be part of this release"
                 },
                 "reference": {
-                    "type": "object",
                     "$ref": "#/definitions/Reference"
                 }
             }
