@@ -25,15 +25,15 @@ The main structure of a roadmap.yaml is as follows:
 - **timeline**: A list of important dates which relates to this road map.
 - **releases**: A list of releases which provide enhancements in the form of deliverables to the stakeholders
 
-### Different Planning Approaches
+### Support different planning approaches
 roadmap.py is able to handle the following planning approaches:
 - **Roadmap only with Objectives**
-    - **objectives**: Is a list of objectives which the team is working towards over the course of this road map.
+    - **objectives**: Is a list of objectives which the team is working towards over the course of this roadmap.
 - **Roadmap with Objective-Key-Results** (OKRs)
-    - **objectives** is a list of objectives which the team is working towards over the course of this road map.
-    - every objective can have one or as many **keyresults** as needed
+    - **objectives** is a list of objectives which the team is working towards over the course of this roadmap.
+    - **keyresult** every objective can have one or as many keyresults as needed
 - **Roadmap with Objectives and some Milestones** for each Objective
-    - **objectives** is a list of objectives which the team is working towards over the course of this road map.
+    - **objectives** is a list of objectives which the team is working towards over the course of this roadmap.
     - **milestones** is a list of milestones to reach the corresponding objective
 - **Roadmap with Objectives and separate Milestones**
 
@@ -104,6 +104,13 @@ A milestone act as an indicator of progress for his objective.
 - *name*: a name for your reference
 - *description*: describe in natural words, what someone could expect by using the link of this reference
 
+## Howto Run Example (Work in Progress)
+ - Clone this repository
+ - Install requirements
+ ```pip install -r requirements.txt```
+- run roadmap.py
+```python3 roadmap.py```
+- watch roadmap.md
 
 ## Inspired by
 This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap, with some key-differences:
