@@ -1,4 +1,4 @@
-title: 'Roadmap for roadmap'
+title: 'Roadmap for roadmap.py'
 description: |
   This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
   It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
@@ -9,6 +9,7 @@ description: |
 authors:
   - name: Uroflavin
     contact: uroflavin@gmail.com
+
 
 # The timeline allows us to highlight important dates on our road map. These are intentionally separated
 # from the stages as it is expected that the delivery of stages themselves occur based on their dependencies
@@ -65,7 +66,7 @@ milestones:
         description: |
           We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
         reference:
-          link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.full.yml
+          link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
 
   - title: Roadmap Schema
@@ -78,11 +79,17 @@ milestones:
           Put together a JSONSchema file describing the road map file format.
         state: DONE
         requirement: MUST
+        reference:
+          link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+          name: see roadmap.json
       - title: Publish Schema
         description: |
           Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
         requirement: MUST
         state: DONE
+        reference:
+          link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+          name: see roadmap.json
 
   - title: Markdown Renderer
     description: |
@@ -98,6 +105,36 @@ milestones:
         Develop a jinja2 template for markdown output of the roadmap
       requirement: MUST
       state: DONE
+    - title: markdonw-renderer
+      description: |
+        Put some code in roadmap.py to render roadmap as Markdown
+      requirement: MUST
+      state: DONE
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md
+        name: see Markdown-result of this roadmap.yml
+
+  - title: HTML
+    description: |
+      The Goal is, to implement a html-renderer, which is capable to render this yml as html
+    deliverables:
+    - title: html-template from original source
+      description: |
+        Develop a template for html output of the roadmap
+        Use SierraSoftworks-Go-Template as a starting point
+      requirement: MUST
+      state: DONE
+      reference:
+        link: https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html
+        name: see SierraSoftworks-Go-Template
+    - title: html-renderer
+      description: |
+        Put some code in roadmap.py to render roadmap as HTML
+      requirement: MUST
+      state: DONE
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html
+        name: see HTML-result of this roadmap.yml
 
   - title: Graphviz
     description: |
@@ -108,7 +145,15 @@ milestones:
         Develop a dot-template for graphviz output of the roadmap
       requirement: MUST
       state: TODO
-
+      reference:
+        link: https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot
+        name: see SierraSoftworks-Go-Template
+    - title: dot-renderer
+      description: |
+        Put some code in roadmap.py to render roadmap as dot-file
+      requirement: MUST
+      state: TODO
+      
   - title: Web Renderer
     description: |
       GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
@@ -121,6 +166,11 @@ milestones:
         description: |
           The most important part of this milestone is the development of a web based renderer which can present a road map file. 
           This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
+      - title: Markdown To HTML as JINJA2 Function
+        state: TODO
+        requirement: SHOULD
+        description: |
+          The renderer should support Markdown
       - title: Renderer Package
         state: TODO
         requirement: MAY
