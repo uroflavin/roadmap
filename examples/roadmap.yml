@@ -14,12 +14,12 @@ authors:
 # from the stages as it is expected that the delivery of stages themselves occur based on their dependencies
 # and that the specific delivery dates may shift as a result.
 timeline:
-  - date: 09.12.2023
+  - date: 2023-12-09
     title: Project Start
     description: |
       This is the day that the project was started.
 
-  - date: 17.12.2023
+  - date: 2023-12-17
     title: Demo Day
     description: |
       This is the scheduled date for the first demo of this project to a wider audience.
