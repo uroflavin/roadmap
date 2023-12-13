@@ -1,4 +1,4 @@
-# Roadmap for roadmap
+# Roadmap for roadmap.py
 
 This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
@@ -47,7 +47,7 @@ We need to add a README file explaining the purpose of this project and giving s
 #### ~~📦 **MUST::DONE** | Roadmap~~
 We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
 
-- [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.full.yml)
+- [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
 
 ### **▶ Roadmap Schema**
 Once we know how we want a road map file to look, we should put together a schema for the file. 
@@ -56,8 +56,12 @@ This will allow us to document the file structure and provide a first class edit
 #### ~~📦 **MUST::DONE** | roadmap.schema.json~~
 Put together a JSONSchema file describing the road map file format.
 
+- [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
 #### ~~📦 **MUST::DONE** | Publish Schema~~
 Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
+
+- [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 ### **▶ Markdown Renderer**
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
@@ -68,11 +72,35 @@ Understand the Syntax of the go-template from https://github.com/SierraSoftworks
 #### ~~📦 **MUST::DONE** | jinja2 template~~
 Develop a jinja2 template for markdown output of the roadmap
 
+#### ~~📦 **MUST::DONE** | markdonw-renderer~~
+Put some code in roadmap.py to render roadmap as Markdown
+
+- [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
+
+### **▶ HTML**
+The Goal is, to implement a html-renderer, which is capable to render this yml as html
+
+#### ~~📦 **MUST::DONE** | html-template from original source~~
+Develop a template for html output of the roadmap
+Use SierraSoftworks-Go-Template as a starting point
+
+- [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html)
+
+#### ~~📦 **MUST::DONE** | html-renderer~~
+Put some code in roadmap.py to render roadmap as HTML
+
+- [see HTML-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html)
+
 ### **▶ Graphviz**
-The Goal is, to implement an dot-file, which is capable to render this yml as graphviz.
+The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
 
 #### 📦 **MUST::TODO** | dot-template
 Develop a dot-template for graphviz output of the roadmap
+
+- [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot)
+
+#### 📦 **MUST::TODO** | dot-renderer
+Put some code in roadmap.py to render roadmap as dot-file
 
 ### **▶ Web Renderer**
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
@@ -82,6 +110,9 @@ The goal here is to produce something which is easy and pleasurable to use, whic
 #### 📦 **MUST::TODO** | Web Renderer
 The most important part of this milestone is the development of a web based renderer which can present a road map file. 
 This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
+
+#### 📦 **SHOULD::TODO** | Markdown To HTML as JINJA2 Function
+The renderer should support Markdown
 
 #### 📦 **MAY::TODO** | Renderer Package
 Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer

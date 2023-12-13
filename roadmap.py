@@ -11,7 +11,7 @@ from pathlib import Path
 import logging
 
 from jinja2 import FileSystemLoader, Environment, Template
-
+from jinja_markdown import MarkdownExtension
 # Load Config from .env
 config = dotenv_values("roadmap.env") 
 
@@ -71,7 +71,23 @@ if is_valid_yaml:
     output_file_markdown = config["OUTPUT_PATH"] + output_basename + ".md"
     with open(output_file_markdown, "w") as f:
         f.write(output_from_parsed_markdown_template)
+
+## Read HTML Template
+    env = Environment()
+    env.loader = FileSystemLoader( os.path.dirname(config["TEMPLATE_PATH_HTML"]) )
+    env.add_extension(MarkdownExtension)
+    template_html = env.get_template(os.path.basename(config["TEMPLATE_PATH_HTML"]))
+    output_from_parsed_html_template = template_html.render(project = project)
+
+    ## Render HTML
+    # output-name is derived from roadmap_definition_file
+    output_basename=Path(roadmap_definition_file).stem
+    output_file_html = config["OUTPUT_PATH"] + output_basename + ".html"
+    with open(output_file_html, "w") as f:
+        f.write(output_from_parsed_html_template)
     print("roadmap-conversion successful")
+
+
 else:
     print(roadmap_definition_file + " contains no valid YAML-data")
     print(validation_error)
