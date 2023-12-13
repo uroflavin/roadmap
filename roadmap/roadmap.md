@@ -53,13 +53,13 @@ We need to know what the roadmap file format looks like, so we'll get started wi
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
 
-#### 📦 **MUST::TODO** | roadmap.schema.json
+#### ~~📦 **MUST::DONE** | roadmap.schema.json~~
 Put together a JSONSchema file describing the road map file format.
 
-#### 📦 **MUST::TODO** | Publish Schema
+#### ~~📦 **MUST::DONE** | Publish Schema~~
 Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
 
-### **▶ Markdown Renderere**
+### **▶ Markdown Renderer**
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
 
 #### ~~📦 **MUST::DONE** | Understand SierraWorks Basic Markdown~~
@@ -67,6 +67,12 @@ Understand the Syntax of the go-template from https://github.com/SierraSoftworks
 
 #### ~~📦 **MUST::DONE** | jinja2 template~~
 Develop a jinja2 template for markdown output of the roadmap
+
+### **▶ Graphviz**
+The Goal is, to implement an dot-file, which is capable to render this yml as graphviz.
+
+#### 📦 **MUST::TODO** | dot-template
+Develop a dot-template for graphviz output of the roadmap
 
 ### **▶ Web Renderer**
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
