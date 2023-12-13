@@ -76,15 +76,15 @@ milestones:
       - title: roadmap.schema.json
         description: |
           Put together a JSONSchema file describing the road map file format.
-        state: TODO
+        state: DONE
         requirement: MUST
       - title: Publish Schema
         description: |
           Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
         requirement: MUST
-        state: TODO
+        state: DONE
 
-  - title: Markdown Renderere
+  - title: Markdown Renderer
     description: |
       The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
     deliverables:
@@ -98,6 +98,16 @@ milestones:
         Develop a jinja2 template for markdown output of the roadmap
       requirement: MUST
       state: DONE
+
+  - title: Graphviz
+    description: |
+      The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
+    deliverables:
+    - title: dot-template
+      description: |
+        Develop a dot-template for graphviz output of the roadmap
+      requirement: MUST
+      state: TODO
 
   - title: Web Renderer
     description: |
