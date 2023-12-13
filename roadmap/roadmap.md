@@ -12,10 +12,10 @@ The goal is to make this as easy as possible for humans to read and reason about
 
 ## Important Dates
 
-- **09.12.2023** | Project Start
+- **2023-12-09** | Project Start
 This is the day that the project was started.
 
-- **17.12.2023** | Demo Day
+- **2023-12-17** | Demo Day
 This is the scheduled date for the first demo of this project to a wider audience.
 
 ## Objectives

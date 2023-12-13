@@ -113,6 +113,19 @@ A milestone act as an indicator of progress for his objective.
 - watch roadmap.md
 
 ## Inspired by
-This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap, with some key-differences:
- - roadmap is a clone, implemented in python
- - the roadmap-structure is slightly different
+This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap
+
+### Key differences and how to handle them
+Roadmap is a clone, implemented in python - should be no problem :)
+ 
+Roadmap Structure is slightly different. In particular, **references** are treated differently.
+Instead of:
+```        
+reference: URI_TO_REFERENCE 
+```
+use:
+```        
+    reference: 
+        link: URI_TO_REFERENCE 
+```
+In addition, milestones are also permitted for objectives and objectives can contain key results as well as milestones.
