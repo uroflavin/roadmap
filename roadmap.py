@@ -47,7 +47,12 @@ def validateYaml(roadmapData, jsonSchema):
         logging.debug("%s", instance)
         validate(instance=instance, schema=schema)
     except jsonschema.exceptions.ValidationError as err:
-        logging.debug("%s", err)
+        logging.error("schema")
+        logging.error("%s", schema)
+        logging.error("instance")
+        logging.error("%s", instance)
+        logging.error("ValidationError")
+        logging.error("%s", err)
         return err, False
     return None, True
 
