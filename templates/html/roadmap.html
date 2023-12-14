@@ -16,13 +16,15 @@
 
             <div class="authors">
                 <div class="authors_title">Authored by</div>
+                <ul>
             {% for author in project.authors %}
                 {{ range .Authors }}
-                <div class="author">
+                <li><div class="author">
                     <h5>{{ author.name}}</h5>
                     <p>{{ author.contact}}</p>
-                </div>
+                </div></li>
             {% endfor %}
+                </ul>  
             </div>
             <p class="description">
             {% markdown %}{{ project.description }}{% endmarkdown %}
@@ -55,7 +57,7 @@
             {% for milestone in project.milestones %}
             {% set milestone_id = loop.index %}
                 <div id="milestone-{{ milestone_id }}" class="timeline-item" data-date="M{{ milestone_id }}">
-                    <h3 class="timeline-item__title section-subtitle">{{ milestone.title}}</h3>
+                    <h3 class="timeline-item__title section-subtitle">{{ milestone.title}}<p class="card-state card-state-{{ milestone.state}}">{{ milestone.state}}</p></h3>
                     <div class="timeline-item_description">
                         {% markdown %}{{ milestone.description }}{% endmarkdown %}
                     </div>
@@ -63,8 +65,8 @@
                         {% set deliverable_id = loop.index %}     
                         <div id="milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="card card-{{ deliverable.state}}">
                             <h4 class="card-title">
-                                <p class="card-state">{{ deliverable.state}}</p>
-                                {{ deliverable.title}}
+                                <p class="card-state card-state-{{ deliverable.state}}">{{ deliverable.state}}</p>
+                                {{ deliverable.title }}
                                 {% if "requirement" in deliverable %}<span class="tablet tablet-{{ deliverable.requirement}}">{{ deliverable.requirement}}</span>{% endif -%}
                             </h4>
                             {% markdown %}{{ deliverable.description -}}{% endmarkdown %}
