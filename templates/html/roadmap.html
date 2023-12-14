@@ -49,8 +49,29 @@
         {% for objective in project.objectives %}
             <h3 class="section-subtitle">{{ objective.title -}}</h3>
             {% markdown %}{{ objective.description -}}{% endmarkdown %}
-        {% endfor -%}
+            {% if "keyresults" in objective %}
+            {% set objective_id = loop.index %} 
+            <div class="timeline">
+                {% for keyresult in objective.keyresults %}
+                        {% set keyresult_id = loop.index %}
+                        <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="timeline-item" data-date="R{{ keyresult_id }}">
+                            
+                            <h3 class="timeline-item__title section-keyresult">{{ keyresult.title}}
+                                {% if "requirement" in keyresult %}<span class="tablet tablet-{{ keyresult.requirement}}">{{ keyresult.requirement}}</span>{% endif -%}
+                                <p class="card-state card-state-{{ keyresult.state}}">{{ keyresult.state}}</p></h3>
+                            <div class="timeline-item_description">
+                                {% markdown %}{{ keyresult.description }}{% endmarkdown %}
+                            </div>
 
+                        {% if "reference" in keyresult %}
+                            <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
+                            {% endif -%}
+                        </div>
+                    {% endfor -%}
+            </div>
+            {% endif -%}
+        {% endfor -%}
+        {% if "milestones" in project %}
             <h2 class="section-title">Milestones</h2>
 
             <div class="timeline">
@@ -80,6 +101,7 @@
                 </div>
             {% endfor -%}
             </div>
+        {% endif -%}
         </section>
     </section>
     
