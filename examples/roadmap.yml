@@ -48,6 +48,7 @@ milestones:
   - title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
+    state: REACHED
     reference:
           link: https://www.turing.com/blog/principles-of-software-development-guide/
           name: explaining design and planning principles
@@ -73,6 +74,7 @@ milestones:
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. 
       This will allow us to document the file structure and provide a first class editing experience to people using it.
+    state: REACHED
     deliverables:
       - title: roadmap.schema.json
         description: |
@@ -94,6 +96,7 @@ milestones:
   - title: Markdown Renderer
     description: |
       The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
+    state: REACHED
     deliverables:
     - title: Understand SierraWorks Basic Markdown
       description: |
@@ -117,6 +120,7 @@ milestones:
   - title: HTML
     description: |
       The Goal is, to implement a html-renderer, which is capable to render this yml as html
+    state: COMMITED
     deliverables:
     - title: html-template from original source
       description: |
@@ -139,6 +143,7 @@ milestones:
   - title: Graphviz
     description: |
       The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
+    state: PLANNED
     deliverables:
     - title: dot-template
       description: |
@@ -159,6 +164,7 @@ milestones:
       GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
       Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
       The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.
+    state: IDEA
     deliverables:
       - title: Web Renderer
         state: TODO

@@ -54,6 +54,9 @@ a:hover, a:focus {
     color: #4abf8a;
 }
 
+ul {
+    list-style: none;
+}
 .authors {
     display: flex;
     flex-direction: row;
@@ -177,6 +180,35 @@ a:hover, a:focus {
 .card-state {
     margin: 0;
     float: right;
+    border-radius: 4px;
+    margin-right: 10px;
+    padding: 3px 5px;
+    color: white;
+    font-weight: normal;
+}
+.card-state-IDEA {
+    background-color: #aaa;
+}
+.card-state-TODO {
+    background-color: #aaa;
+}
+.card-state-PLANNED {
+    background-color: #E0AF2F;
+}
+.card-state-COMMITED {
+    background-color: #63B2EB;
+}
+.card-state-DOING {
+    background-color: #63B2EB;
+}
+.card-state-REACHED {
+    background-color: #3EAF7C;
+}
+.card-state-DONE {
+    background-color: #3EAF7C;
+}
+.card-state-SKIP {
+    background-color: #F65BD2;
 }
 
 .card-title {
