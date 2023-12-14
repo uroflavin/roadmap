@@ -33,6 +33,22 @@ objectives:
     reference:
           link: https://json-schema.org/
           name: see json-schema.org
+    keyresults:
+    - title: Provide a schema defintion
+      description: Develop a schema that fulfills the main requirements of the objective
+      state: DONE
+      requirement: MUST
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+        name: see README
+    - title: Complete examples in schema-definition
+      description: Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
+      state: TODO
+      requirement: MAY
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+        name: see README
+
 
   - title: We provide official tooling for most common use cases
     description: |

@@ -25,6 +25,16 @@ The goal of this project is, primarily, to provide a single schema that can be u
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
 
 - [see json-schema.org](https://json-schema.org/)
+ 
+
+
+#### ~~[R1] **MUST::DONE** | Provide a schema defintion~~
+Develop a schema that fulfills the main requirements of the objective
+- [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
+#### [R2] **MAY::TODO** | Complete examples in schema-definition
+Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
+- [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 ### 🚀 We provide official tooling for most common use cases
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
@@ -32,6 +42,7 @@ This includes things like being able to visualize your road map in common format
 ### 🚀 We have exceptional documentation
 Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+
 
 ## Milestones
 

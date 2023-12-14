@@ -32,6 +32,11 @@ h3.section-subtitle {
     font-weight: bold;
 }
 
+h3.section-keyresult {
+    font-size: 16px;
+    font-weight: normal;
+}
+
 h4 {
     font-size: 13px;
 }
