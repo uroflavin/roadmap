@@ -300,7 +300,7 @@
                 "DONE",
                 "SKIP"
             ],
-            "default": "planned"
+            "default": "TODO"
         },
         "ObjectiveState": {
             "type": "string",
