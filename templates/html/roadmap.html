@@ -53,11 +53,13 @@
             <h2 class="section-title">Objectives</h2>
         {% for objective in project.objectives %}
             <h3 class="section-subtitle">{{ objective.title -}}<p class="card-state card-state-{{ objective.state}}">{{ objective.state -}}</p></h3>
-            {% markdown %}{{ objective.description -}}{% endmarkdown %}
-            
-            {% if "reference" in objective %}
-            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
-            {% endif -%}
+            <div class="timeline-item_description">
+                {% markdown %}{{ objective.description -}}{% endmarkdown %}
+                
+                {% if "reference" in objective %}
+                    <p><a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a></p>
+                {% endif -%}
+            </div>
             {% if "keyresults" in objective %}
             {% set objective_id = loop.index %} 
             <div class="timeline">
@@ -77,8 +79,9 @@
                             {% endif -%}
                         </div>
                     {% endfor -%}
-            </div>
+            
             {% endif -%}
+        </div>
         {% endfor -%}
         {% if "milestones" in project %}
             <h2 class="section-title">Milestones</h2>
