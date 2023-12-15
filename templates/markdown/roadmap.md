@@ -12,7 +12,7 @@
 {% endfor %}
 ## Objectives
 {% for objective in project.objectives %}
-### 🚀 {{ objective.title}}
+### 🚀 {{ objective.state}} | {{ objective.title}}
 {{ objective.description -}}
 {% if "reference" in objective %}
 - [{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}]({{ objective.reference.link -}}){% endif -%}

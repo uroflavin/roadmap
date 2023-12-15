@@ -47,8 +47,12 @@
         <section role="main">
             <h2 class="section-title">Objectives</h2>
         {% for objective in project.objectives %}
-            <h3 class="section-subtitle">{{ objective.title -}}</h3>
+            <h3 class="section-subtitle">{{ objective.title -}}<p class="card-state card-state-{{ objective.state}}">{{ objective.state -}}</p></h3>
             {% markdown %}{{ objective.description -}}{% endmarkdown %}
+            
+            {% if "reference" in objective %}
+            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
+            {% endif -%}
             {% if "keyresults" in objective %}
             {% set objective_id = loop.index %} 
             <div class="timeline">
@@ -81,6 +85,9 @@
                     <h3 class="timeline-item__title section-subtitle">{{ milestone.title}}<p class="card-state card-state-{{ milestone.state}}">{{ milestone.state}}</p></h3>
                     <div class="timeline-item_description">
                         {% markdown %}{{ milestone.description }}{% endmarkdown %}
+                        {% if "reference" in milestone %}
+                        <a class="card-link" target="_blank" href="{{ milestone.reference.link -}}">{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}</a>
+                        {% endif -%}
                     </div>
                     {% for deliverable in milestone.deliverables %}
                         {% set deliverable_id = loop.index %}     
