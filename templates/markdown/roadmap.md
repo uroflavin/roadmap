@@ -1,6 +1,11 @@
 # {{ project.title }}
 
 {{ project.description }}
+
+{% if "visionstatement" in project %}
+## Visionstatement
+{{ project.visionstatement -}}
+{% endif -%}
 ## Authors
 {% for author in project.authors %}
 - {{ author.name}} *{{ author.contact}}*

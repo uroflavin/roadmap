@@ -27,8 +27,13 @@
                 </ul>  
             </div>
             <p class="description">
-            {% markdown %}{{ project.description }}{% endmarkdown %}
+                {% markdown %}{{ project.description }}{% endmarkdown %}
             </p>
+            {% if "visionstatement" in project %}
+            <h2 class="section-title">Visionstatement</h2>
+            <p class="description">
+                {% markdown %}{{ project.visionstatement }}{% endmarkdown %}
+            </p>{% endif -%}
         </section>
 
         <section role="doc-notice">
