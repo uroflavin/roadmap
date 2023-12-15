@@ -79,7 +79,7 @@ A milestone act as an indicator of progress for his objective.
     - IDEA
     - PLANNED
     - COMMITED
-    - DONE
+    - REACHED
     - SKIP
 - *deliverables*: any number of deliverable to reach this milestone (or none)
 
