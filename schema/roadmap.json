@@ -16,6 +16,10 @@
             "type": "string",
             "description": "A markdown formatted description of what this road map represents and any additional context which may be useful to a reader."
         },
+        "visionstatement": {
+            "type": "string",
+            "description": "A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs."
+        },
         "authors": {
             "type": "array",
             "description": "A list of authors who were/are involved in the creation of the roadmap",
