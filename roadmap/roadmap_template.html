@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadmap for roadmap.py</title>
     <style>
-        html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
 }
-
+body {
+    width: 95%;
+}
 h1, h2, h3, h4, h5 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 300;
@@ -197,40 +198,41 @@ ul {
     border-radius: 4px;
     margin-right: 10px;
     padding: 3px 5px;
-    font-weight: normal;
+    font-weight: lighter;
 }
-.card-state-IDEA {
-    background-color: #aaa;
-    color: white;
-}
-.card-state-TODO {
+.card-state-TODO, .card-state-IDEA {
+    border: 1px solid #aaa;
     background-color: #aaa;
     color: white;
 }
 .card-state-PLANNED {
+    border: 1px solid #E0AF2F;
     background-color: #E0AF2F;
     color: white;
     color: white;
 }
 .card-state-COMMITED {
+    border: 1px solid #63B2EB;
     background-color: #63B2EB;
     color: white;
 }
 .card-state-DOING {
+    border: 1px solid #63B2EB;
     background-color: #63B2EB;
     color: white;
 }
-.card-state-REACHED {
+.card-state-DOING::before {
     background-color: #3EAF7C;
-    color: white;
 }
-.card-state-DONE {
-    background-color: #3EAF7C;
-    color: white;
+.card-state-REACHED,.card-state-DONE{
+    border: 1px solid #3eaf7c;
+    background-color: white;
+    color: #3eaf7c;
 }
 .card-state-SKIP {
-    background-color: #F65BD2;
-    color: white;
+    border: 1px solid #F65BD2;
+    background-color: white;
+    color: #F65BD2;
 }
 
 .card-title {
@@ -264,6 +266,7 @@ ul {
 
 .requirement-MAY {
     background-color: #3ABDE0;  
+    border: 1px solid #3ABDE0;
     color:white;
 }
 .requirement-MAY-inverted {
@@ -274,6 +277,7 @@ ul {
 
 .requirement-MUST {
     background-color: #E06446;
+    border: 1px solid #E06446;
     color: white;
 }
 .requirement-MUST-inverted {
@@ -284,18 +288,16 @@ ul {
 
 .requirement-SHOULD {
     background-color: #E0AF2F;   
+    border: 1px solid #E0AF2F;
     color: white;
 }
 
 .requirement-SHOULD-inverted {
     background-color: white;   
     color: #E0AF2F;
-    border 1px solid #E0AF2F;
+    border: 1px solid #E0AF2F;
 }
-
-.requirement-MAY {
-    background-color: #3ABDE0;  
-}</style>
+</style>
 </head>
 <body>
     <section role="document">
@@ -341,6 +343,7 @@ The goal is to make this as easy as possible for humans to read and reason about
         </section>
 <style>
 .objective {
+    margin-top: 1rem;
     .header {
         display: flex;
         flex-direction: row;
@@ -348,57 +351,52 @@ The goal is to make this as easy as possible for humans to read and reason about
         justify-content: space-between;
         margin: 0;
         padding:0;
-
-
-    }
-    
-    .body {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
     }
     .footer {
         display: flex;
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
+        padding: 0%;
+        margin: 0px;
+        font-size: 0.8rem;
     }
     .title {
         font-weight: bold;
+        font-size: 0.9rem;
         align-self: flex-start;
         margin: 0px;
         margin-bottom: 0.2rem;
         padding: 0.2rem 0rem 0.2rem 0rem;
     }
     .state {
-        border: 0px solid black;
         align-self: baseline;
         margin: 0;
         float: left;
         border-radius: 0.25rem;
         padding: 0.2rem 0.2rem;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 0.9rem;
         
     }
     .description {
         text-align:justify;
         position: relative;
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
+        padding-bottom: 0rem;
+        margin-bottom: 0.5rem;
         font-size: 0.8rem;
+        
     }
     .keyresults {
         border-left: 4px solid gray;
         border-bottom-right-radius: 4px;
         border-top-right-radius: 4px;
         background: rgba(200,200,200,.1);
-        margin: 2rem auto;
-        margin-left: auto;
-        padding: 1rem 2rem;
+        padding: 1rem 1rem 0.5rem 2rem;
         position: relative;
         text-align: center;
         margin-left: 7rem;
+        margin-top: 0.5rem;
     }
 }
 
@@ -431,8 +429,9 @@ The goal is to make this as easy as possible for humans to read and reason about
     .description {
         text-align:justify;
         position: relative;
-        padding:0.25rem 0rem 1rem 0rem;
         margin:0rem;
+        padding:0.25rem 0rem 1rem 0rem;
+        width: 100%;
         font-size: 0.8rem;
     }
     .footer {
@@ -440,8 +439,8 @@ The goal is to make this as easy as possible for humans to read and reason about
         flex-direction: row;
         flex-wrap: wrap;
         margin: 0;
-        font-size: 0.75rem;
         padding:0;
+        font-size: 0.75rem;
         .left {
             align-self:flex-start;
         }
@@ -456,7 +455,7 @@ The goal is to make this as easy as possible for humans to read and reason about
         margin: 0;
         border-radius: 0.25rem;
         font-weight: normal;
-        font-size: 12px;
+        font-size: 0.75rem;
         padding: 0.25rem 0.25rem;
         margin: 0rem 0rem 0.24rem 0.24rem;
     }
@@ -465,7 +464,7 @@ The goal is to make this as easy as possible for humans to read and reason about
         float: left;
         border-radius: 0.25rem;
         font-weight: normal;
-        font-size: 12px;
+        font-size: 0.75rem;
         padding: 0.25rem 0.25rem;
         margin: 0rem 0rem 0.24rem 0.24rem;
     }
@@ -506,15 +505,18 @@ The goal is to make this as easy as possible for humans to read and reason about
                         <div class="state card-state-PLANNED">PLANNED</div>
                     </div>
                     <p class="description">The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p>
-
+                    <div class="footer">
+                        <div class="left">Footer</div> 
+                        <div class="right"><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></div>
+                    </div>
                     <div class="keyresults">
                         <div id="keyresult-1-keyresult-1" class="keyresult" data-date="R1">
                             <div class="header">
                                 <div class="left"><h4 class="title">Provide a schema defintion</h4></div>
                                 <div class="center"></div>
                                 <div class="right">
-                                    <div class="requirement requirement-MUST-inverted">MUST</div>
-                                    <div class="state card-state-DONE">DONE</div>
+                                    <div class="requirement requirement-MUST">MUST</div>
+                                    <div class="state card-state-DOING">DOING</div>
                             </div>
                                 
                                 
@@ -532,7 +534,7 @@ The goal is to make this as easy as possible for humans to read and reason about
                             <div class="header">
                                 <div class="left"><h4 class="title">Complete examples in schema-definition</h4></div>
                                 <div class="right">
-                                    <div class="requirement requirement-MAY">MAY</div>
+                                    <div class="requirement requirement-SHOULD">SHOULD</div>
                                     <div class="state card-state-TODO">TODO</div>
                                 </div>
                             </div>
@@ -542,23 +544,39 @@ The goal is to make this as easy as possible for humans to read and reason about
                                 <div class="right"><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="footer">objective.footer</div>
+                        <div id="keyresult-1-keyresult-3" class="keyresult" data-date="R3">
+                            <div class="header">
+                                <div class="left"><h4 class="title">Make more examples in schema-definition</h4></div>
+                                <div class="right">
+                                    <div class="requirement requirement-MAY-inverted">MAY</div>
+                                    <div class="state card-state-SKIP">SKIP</div>
+                                </div>
+                            </div>
+                            <p class="description">Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases.</p>
+                            <div class="footer">
+                                <div class="left">#footer4</div>
+                                <div class="right"><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="objective-2" class="objective">
                     <div class="header">
-                        <h3 class="section-subtitle">We provide official tooling for most common use cases</h3>
+                        <h3 class="title">We provide official tooling for most common use cases</h3>
                         <div class="state card-state-IDEA">IDEA</div>
                     </div>
                     <p class="description">While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p>
-                    <div class="footer">footer</div>
+                    <div class="footer">
+                        <div class="left">Footer</div> 
+                        <div class="right"><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></div>
+                    </div>
                </div>
 
                 <div id="objective-3" class="objective">
                     <div class="header">
-                        <h3 class="section-subtitle">We have exceptional documentation</h3>
+                        <h3 class="title">We have exceptional documentation</h3>
                         <div class="state card-state-COMMITED">COMMITED</div>
                     </div>
                     <p class="description">Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p>
