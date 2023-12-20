@@ -124,6 +124,7 @@ ul {
     opacity: .7;
     min-width: 6rem;
     padding-left: 2px;
+    white-space: pre-wrap
 }
 
 .timeline-item::after {

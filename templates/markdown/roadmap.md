@@ -25,7 +25,7 @@
 {% set objective_id = loop.index %} 
 {% for keyresult in objective.keyresults %}
 {% set keyresult_id = loop.index %}
-#### {{ "~~" if keyresult.state == "DONE" }}[R{{ keyresult_id}}] **{{keyresult.requirement}}::{{ keyresult.state}}** | {{ keyresult.title}}{{ "~~" if keyresult.state == "DONE" }}
+#### {{ "~~" if keyresult.state == "DONE" }}[{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}] **{{keyresult.requirement}}::{{ keyresult.state}}** | {{ keyresult.title}}{{ "~~" if keyresult.state == "DONE" }}
 {{ keyresult.description -}}
 {% if "reference" in keyresult %}
 - [{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}]({{ keyresult.reference.link -}}){% endif -%}

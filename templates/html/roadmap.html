@@ -65,7 +65,7 @@
             <div class="timeline">
                 {% for keyresult in objective.keyresults %}
                         {% set keyresult_id = loop.index %}
-                        <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="timeline-item" data-date="R{{ keyresult_id }}">
+                        <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="timeline-item" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
                             
                             <h3 class="timeline-item__title section-keyresult">{{ keyresult.title}}
                                 {% if "requirement" in keyresult %}<span class="tablet tablet-{{ keyresult.requirement}}">{{ keyresult.requirement}}</span>{% endif -%}
