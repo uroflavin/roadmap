@@ -7,12 +7,15 @@
     <title>Roadmap for roadmap.py</title>
     <style>
         html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
 }
-
+body {
+    width: 95%;
+}
 h1, h2, h3, h4, h5 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 300;
+    break-after: avoid;
 }
 
 h1.roadmap-title {
@@ -107,7 +110,7 @@ ul {
     border-top-right-radius: 4px;
     background: rgba(200,200,200,.1);
     margin: 2rem auto;
-        margin-left: auto;
+    margin-left: auto;
     padding: 1rem 2rem;
     position: relative;
     text-align: center;
@@ -175,7 +178,7 @@ ul {
 }
 
 .card-TODO::before {
-    background-color: #aaa;
+    background-color: #888;
 }
 
 .card-DOING::before {
@@ -196,32 +199,46 @@ ul {
     border-radius: 4px;
     margin-right: 10px;
     padding: 3px 5px;
-    color: white;
     font-weight: normal;
 }
-.card-state-IDEA {
-    background-color: #aaa;
+.card-state-TODO, .card-state-IDEA {
+    border: 1px solid #888;
+    background-color: #888;
+    color: white;
 }
-.card-state-TODO {
-    background-color: #aaa;
+.card-state-TODO-inverted, .card-state-IDEA-inverted {
+    border: 1px solid #888;
+    background-color: white;
+    color: #888;
 }
 .card-state-PLANNED {
+    border: 1px solid #E0AF2F;
     background-color: #E0AF2F;
+    color: white;
+    color: white;
 }
 .card-state-COMMITED {
+    border: 1px solid #63B2EB;
     background-color: #63B2EB;
+    color: white;
 }
 .card-state-DOING {
+    border: 1px solid #63B2EB;
     background-color: #63B2EB;
+    color: white;
 }
-.card-state-REACHED {
+.card-state-DOING::before {
     background-color: #3EAF7C;
 }
-.card-state-DONE {
-    background-color: #3EAF7C;
+.card-state-REACHED,.card-state-ACHIEVED,.card-state-DONE{
+    border: 1px solid #3eaf7c;
+    background-color: white;
+    color: #3eaf7c;
 }
 .card-state-SKIP {
-    background-color: #F65BD2;
+    border: 1px solid #F65BD2;
+    background-color: white;
+    color: #F65BD2;
 }
 
 .card-title {
@@ -229,7 +246,7 @@ ul {
 }
 
 .card-link {
-    position: absolute;
+    
     right: 10px;
     bottom: 5px;
     font-size: 70%;
@@ -253,8 +270,197 @@ ul {
     background-color: #E0AF2F;   
 }
 
-.tablet-MAY {
+.requirement-MAY {
     background-color: #3ABDE0;  
+    border: 1px solid #3ABDE0;
+    color:white;
+}
+.requirement-MAY-inverted {
+    background-color: white;
+    border: 1px solid #3ABDE0;
+    color: #3ABDE0
+}
+
+.requirement-MUST {
+    background-color: #E06446;
+    border: 1px solid #E06446;
+    color: white;
+}
+.requirement-MUST-inverted {
+    background-color: white;
+    border: 1px solid #E06446;
+    color: #E06446;
+}
+
+.requirement-SHOULD {
+    background-color: #E0AF2F;   
+    border: 1px solid #E0AF2F;
+    color: white;
+}
+
+.requirement-SHOULD-inverted {
+    background-color: white;   
+    color: #E0AF2F;
+    border: 1px solid #E0AF2F;
+}
+.objective {
+    margin-top: 1rem;
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+        padding:0;
+    }
+    .footer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0%;
+        margin: 0px;
+        font-size: 0.8rem;
+        break-before: avoid;
+        
+    }
+    .title {
+        font-weight: bold;
+        font-size: 0.9rem;
+        align-self: flex-start;
+        margin: 0px;
+        margin-bottom: 0.2rem;
+        padding: 0.2rem 0rem 0.2rem 0rem;
+    }
+    .state {
+        align-self: baseline;
+        margin: 0;
+        float: left;
+        border-radius: 0.25rem;
+        padding: 0.2rem 0.2rem;
+        font-weight: normal;
+        font-size: 0.9rem;
+        
+    }
+    .description {
+        text-align:justify;
+        position: relative;
+        padding-bottom: 0rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
+        break-before: avoid;
+        break-after: avoid;
+        
+    }
+    .keyresults {
+        border-left: 4px solid gray;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgba(200,200,200,.1);
+        padding: 1rem 1rem 0.5rem 2rem;
+        position: relative;
+        text-align: center;
+        margin-left: 7rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.keyresult {
+    text-align: left;
+    position: relative;
+    padding: 0px;
+    margin-bottom: 1.5rem; 
+    break-inside: avoid;
+    page-break-inside: avoid;
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        font-size: 1rem;
+        padding:0;
+        .left {
+            align-self:flex-start;
+        }
+        .center {
+            align-self:center;
+        }
+        .right {
+            display: block;
+            align-self: flex-end;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            
+        }
+    }
+    .description {
+        text-align:justify;
+        position: relative;
+        margin:0rem;
+        padding:0.25rem 0rem 1rem 0rem;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .footer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        padding:0;
+        font-size: 0.75rem;
+        .left {
+            align-self:flex-start;
+        }
+        .right {
+            display: block;
+            align-self: flex-end;
+            flex-wrap: nowrap;
+        }
+    }
+
+    .state {
+        margin: 0;
+        border-radius: 0.25rem;
+        font-weight: normal;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.25rem;
+        margin: 0rem 0rem 0.24rem 0.24rem;
+    }
+    .requirement {
+        margin: 0;
+        float: left;
+        border-radius: 0.25rem;
+        font-weight: normal;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.25rem;
+        margin: 0rem 0rem 0.24rem 0.24rem;
+    }
+}
+
+.keyresult::before {
+    position: absolute;
+    display: block;
+    left: -10rem;
+    content: attr(data-date);
+    text-align: right;
+    font-size: .9rem;
+    font-weight: 700;
+    opacity: .7;
+    min-width: 6rem;
+    padding-left: 2px;
+}
+
+.keyresult::after {
+    position: absolute;
+    display: block;
+    box-shadow: 0 0 0 4px gray;
+    left: -2.5rem;
+    background: #444;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    content: "";
+    top: 5px;
 }</style>
 </head>
 <body>
@@ -275,12 +481,12 @@ ul {
                 </ul>  
             </div>
             <p class="description">
-            <p>This is the planning roadmap for the <a href="https://github.com/uroflavin/roadmap">uroflavin/roadmap</a> project. 
+                <p>This is the planning roadmap for the <a href="https://github.com/uroflavin/roadmap">uroflavin/roadmap</a> project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.</p>
 <p>One of the things you&rsquo;ll immediately notice about this file is that it uses <em>Markdown</em> for formatting of text and is designed around a structured YAML schema. 
 The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.</p>
             </p>
-        </section>
+            </section>
 
         <section role="doc-notice">
             <h2 class="section-title">Important Dates</h2>
@@ -303,47 +509,100 @@ The goal is to make this as easy as possible for humans to read and reason about
         <section role="main">
             <h2 class="section-title">Objectives</h2>
         
-            <h3 class="section-subtitle">We provide a single, universal, schema for high-level planning</h3>
-            <p>The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
-The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p>
             
-             
-            <div class="timeline">
-                
+            <div id="objective-1" class="objective">
+                <div class="header">
+                    <h3 class="title">We provide a single, universal, schema for high-level planning</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"><p>The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
+The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
                         
-                        <div id="keyresult-1-keyresult-1" class="timeline-item" data-date="R1">
-                            
-                            <h3 class="timeline-item__title section-keyresult">Provide a schema defintion
-                                <span class="tablet tablet-MUST">MUST</span><p class="card-state card-state-DONE">DONE</p></h3>
-                            <div class="timeline-item_description">
-                                <p>Develop a schema that fulfills the main requirements of the objective</p>
-                            </div>
-
-                        
-                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
-                            </div>
+                            <a class="card-link" target="_blank" href="https://json-schema.org/">see json-schema.org</a>
+                        </div>
+                </div>
                     
+                
+                    <div class="keyresults">
                         
-                        <div id="keyresult-1-keyresult-2" class="timeline-item" data-date="R2">
-                            
-                            <h3 class="timeline-item__title section-keyresult">Complete examples in schema-definition
-                                <span class="tablet tablet-MAY">MAY</span><p class="card-state card-state-TODO">TODO</p></h3>
-                            <div class="timeline-item_description">
-                                <p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p>
-                            </div>
-
+                                
+                                <div id="objective-1-keyresult-1" class="keyresult" data-date="R1">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Provide a schema defintion</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MUST-inverted">MUST</div>
+                                            <div class="state card-state-DONE">DONE</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>Develop a schema that fulfills the main requirements of the objective</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
+                                            </div>
+                                    </div>
+                                </div>
                         
-                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
-                            </div>
-                    </div>
+                                
+                                <div id="objective-1-keyresult-2" class="keyresult" data-date="R2">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Complete examples in schema-definition</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MAY">MAY</div>
+                                            <div class="state card-state-TODO">TODO</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
             
-            <h3 class="section-subtitle">We provide official tooling for most common use cases</h3>
-            <p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
-This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p>
             
-            <h3 class="section-subtitle">We have exceptional documentation</h3>
-            <p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
-Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p>
+            <div id="objective-2" class="objective">
+                <div class="header">
+                    <h3 class="title">We provide official tooling for most common use cases</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"><p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
+This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                </div>
+            
+            
+            <div id="objective-3" class="objective">
+                <div class="header">
+                    <h3 class="title">We have exceptional documentation</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"><p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                </div>
             
             <h2 class="section-title">Milestones</h2>
 
@@ -354,7 +613,9 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
                     <h3 class="timeline-item__title section-subtitle">Design and Planning<p class="card-state card-state-REACHED">REACHED</p></h3>
                     <div class="timeline-item_description">
                         <p>The design and planning stage is where we&rsquo;re figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.</p>
-                    </div>
+                        
+                        <a class="card-link" target="_blank" href="https://www.turing.com/blog/principles-of-software-development-guide/">explaining design and planning principles</a>
+                        </div>
                     
                              
                         <div id="milestone-1-deliverable-1" class="card card-DONE">
@@ -387,7 +648,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
                     <div class="timeline-item_description">
                         <p>Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.</p>
-                    </div>
+                        </div>
                     
                              
                         <div id="milestone-2-deliverable-1" class="card card-DONE">
@@ -419,7 +680,7 @@ This will allow us to document the file structure and provide a first class edit
                     <h3 class="timeline-item__title section-subtitle">Markdown Renderer<p class="card-state card-state-REACHED">REACHED</p></h3>
                     <div class="timeline-item_description">
                         <p>The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.</p>
-                    </div>
+                        </div>
                     
                              
                         <div id="milestone-3-deliverable-1" class="card card-DONE">
@@ -459,7 +720,7 @@ This will allow us to document the file structure and provide a first class edit
                     <h3 class="timeline-item__title section-subtitle">HTML<p class="card-state card-state-COMMITED">COMMITED</p></h3>
                     <div class="timeline-item_description">
                         <p>The Goal is, to implement a html-renderer, which is capable to render this yml as html</p>
-                    </div>
+                        </div>
                     
                              
                         <div id="milestone-4-deliverable-1" class="card card-DONE">
@@ -492,7 +753,7 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                     <h3 class="timeline-item__title section-subtitle">Graphviz<p class="card-state card-state-PLANNED">PLANNED</p></h3>
                     <div class="timeline-item_description">
                         <p>The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.</p>
-                    </div>
+                        </div>
                     
                              
                         <div id="milestone-5-deliverable-1" class="card card-TODO">
@@ -524,7 +785,7 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                         <p>GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.</p>
-                    </div>
+                        </div>
                     
                              
                         <div id="milestone-6-deliverable-1" class="card card-TODO">
