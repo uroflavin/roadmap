@@ -52,37 +52,53 @@
         <section role="main">
             <h2 class="section-title">Objectives</h2>
         {% for objective in project.objectives %}
-            <h3 class="section-subtitle">{{ objective.title -}}<p class="card-state card-state-{{ objective.state}}">{{ objective.state -}}</p></h3>
-            <div class="timeline-item_description">
-                {% markdown %}{{ objective.description -}}{% endmarkdown %}
-                
-                {% if "reference" in objective %}
-                    <p><a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a></p>
+            {% set objective_id = loop.index %}
+            <div id="objective-{{ objective_id }}" class="objective">
+                <div class="header">
+                    <h3 class="title">{{ objective.title -}}</h3>
+                    <div class="card-state card-state-{{ objective.state}}">{{ objective.state -}}</div>
+                </div>
+                <p class="description">{% markdown %}{{ objective.description -}}{% endmarkdown %}</p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        {% if "reference" in objective %}
+                            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
+                        {% endif -%}
+                    </div>
+                </div>
+                    
+                {% if "keyresults" in objective %}
+                    <div class="keyresults">
+                        {% for keyresult in objective.keyresults %}
+                                {% set keyresult_id = loop.index %}
+                                <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="keyresult" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">{{ keyresult.title}}</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            {% if "requirement" in keyresult %}
+                                                <div class="requirement requirement-{{ keyresult.requirement}}">{{ keyresult.requirement}}</div>
+                                            {% endif -%}
+                                            <div class="state card-state-{{ keyresult.state}}">{{ keyresult.state}}</div>
+                                        </div>
+                                    </div>
+                                    <p class="description">{% markdown %}{{ keyresult.description }}{% endmarkdown %}</p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            {% if "reference" in keyresult %}
+                                                <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
+                                            {% endif -%}
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor -%}
+                    </div>
                 {% endif -%}
-            </div>
-            {% if "keyresults" in objective %}
-            {% set objective_id = loop.index %} 
-            <div class="timeline">
-                {% for keyresult in objective.keyresults %}
-                        {% set keyresult_id = loop.index %}
-                        <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="timeline-item" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
-                            
-                            <h3 class="timeline-item__title section-keyresult">{{ keyresult.title}}
-                                {% if "requirement" in keyresult %}<span class="tablet tablet-{{ keyresult.requirement}}">{{ keyresult.requirement}}</span>{% endif -%}
-                                <p class="card-state card-state-{{ keyresult.state}}">{{ keyresult.state}}</p></h3>
-                            <div class="timeline-item_description">
-                                {% markdown %}{{ keyresult.description }}{% endmarkdown %}
-                            </div>
-
-                        {% if "reference" in keyresult %}
-                            <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
-                            {% endif -%}
-                        </div>
-                    {% endfor -%}
             
-            {% endif -%}
-        </div>
-        {% endfor -%}
+            </div>
+            {% endfor -%}
         {% if "milestones" in project %}
             <h2 class="section-title">Milestones</h2>
 
