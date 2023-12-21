@@ -72,15 +72,15 @@
                     <div class="keyresults">
                         {% for keyresult in objective.keyresults %}
                                 {% set keyresult_id = loop.index %}
-                                <div id="keyresult-{{objective_id }}-keyresult-{{ keyresult_id }}" class="keyresult" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
+                                <div id="objective-{{objective_id }}-keyresult-{{ keyresult_id }}" class="keyresult" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
                                     <div class="header">
                                         <div class="left"><h4 class="title">{{ keyresult.title}}</h4></div>
                                         <div class="center"></div>
                                         <div class="right">
                                             {% if "requirement" in keyresult %}
-                                                <div class="requirement requirement-{{ keyresult.requirement}}">{{ keyresult.requirement}}</div>
+                                                <div class="requirement requirement-{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</div>
                                             {% endif -%}
-                                            <div class="state card-state-{{ keyresult.state}}">{{ keyresult.state}}</div>
+                                            <div class="state card-state-{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</div>
                                         </div>
                                     </div>
                                     <p class="description">{% markdown %}{{ keyresult.description }}{% endmarkdown %}</p>
