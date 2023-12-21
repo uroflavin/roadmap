@@ -6,6 +6,7 @@ It acts as both the plan for implementing this tool as well as a demonstration o
 One of the things you'll immediately notice about this file is that it uses *Markdown* for formatting of text and is designed around a structured YAML schema. 
 The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.
 
+
 ## Authors
 
 - Uroflavin *uroflavin@gmail.com*
@@ -46,7 +47,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
 
 ## Milestones
 
-### **▶ Design and Planning**
+### **▶ REACHED | Design and Planning**
 The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
 
 - [explaining design and planning principles](https://www.turing.com/blog/principles-of-software-development-guide/)
@@ -60,7 +61,7 @@ We need to know what the roadmap file format looks like, so we'll get started wi
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
 
-### **▶ Roadmap Schema**
+### **▶ REACHED | Roadmap Schema**
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
 
@@ -74,7 +75,7 @@ Publish the schema file on [github](https://https://github.com/uroflavin/roadmap
 
 - [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
-### **▶ Markdown Renderer**
+### **▶ REACHED | Markdown Renderer**
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
 
 #### ~~📦 **MUST::DONE** | Understand SierraWorks Basic Markdown~~
@@ -88,7 +89,7 @@ Put some code in roadmap.py to render roadmap as Markdown
 
 - [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
 
-### **▶ HTML**
+### **▶ COMMITED | HTML**
 The Goal is, to implement a html-renderer, which is capable to render this yml as html
 
 #### ~~📦 **MUST::DONE** | html-template from original source~~
@@ -102,7 +103,7 @@ Put some code in roadmap.py to render roadmap as HTML
 
 - [see HTML-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html)
 
-### **▶ Graphviz**
+### **▶ PLANNED | Graphviz**
 The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
 
 #### 📦 **MUST::TODO** | dot-template
@@ -113,7 +114,7 @@ Develop a dot-template for graphviz output of the roadmap
 #### 📦 **MUST::TODO** | dot-renderer
 Put some code in roadmap.py to render roadmap as dot-file
 
-### **▶ Web Renderer**
+### **▶ IDEA | Web Renderer**
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.
