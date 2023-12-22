@@ -13,6 +13,8 @@ import logging
 from jinja2 import FileSystemLoader, Environment, Template
 from jinja_markdown import MarkdownExtension
 
+import argparse
+
 
 def createOutputFolder(path_to_folder: str = ""):
     """
@@ -36,6 +38,7 @@ def createOutputFolder(path_to_folder: str = ""):
             logging.error("some folders for output_folder '%s' did not exist", path_to_folder)
             logging.error(err)
             return False
+        
     
     # write-access?
     if output_folder.stat().st_mode & 0o200:
@@ -162,10 +165,25 @@ LOGFILE= config["LOGFILE"]
 logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.debug("config: %s", config)
 
-if createOutputFolder(config["OUTPUT_PATH"]):
+parser = argparse.ArgumentParser()
+parser.add_argument("--roadmap-file", type=str,
+    help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
+
+parser.add_argument("--output-dir", type=str,
+    help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
+
+args = parser.parse_args()
+
+roadmap_definition_file = args.roadmap_file
+output_folder = args.output_dir
+
+if output_folder[-1] != os.sep:
+    output_folder = output_folder + os.sep
+
+if createOutputFolder(output_folder):
     ## Read Roadmap-Definition
     # TOOD: roadmap definition should be commandline-argument
-    roadmap_definition_file="examples/roadmap.yml"
+    
     project = readRoadmapDefinition(path_to_roadmap_yml=roadmap_definition_file)
 
 
@@ -182,12 +200,16 @@ if createOutputFolder(config["OUTPUT_PATH"]):
         env.add_extension(MarkdownExtension)
         
         for template in templates:
-            processTemplate(environment=env, template=template, roadmap_definition_file=roadmap_definition_file, project=project, output_path=config["OUTPUT_PATH"])
+            print("processing " + template["file"])
+            processTemplate(environment=env, template=template, roadmap_definition_file=roadmap_definition_file, project=project, output_path=output_folder)
     
         print("roadmap-conversion successful")
-
 
     else:
         print(roadmap_definition_file + " contains no valid YAML-data")
         print(validation_error)
         print("See logfile for details")
+else:
+    print("Could not create '" + output_folder + "'")
+    print("See logfile for details")
+    
