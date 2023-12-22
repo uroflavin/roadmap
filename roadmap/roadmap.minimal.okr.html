@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this is a minimal roadmap using objective-key-result-logic</title>
+    <style>
+        html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
+}
+body {
+    width: 95%;
+}
+h1, h2, h3, h4, h5 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 300;
+    break-after: avoid;
+}
+
+h1.roadmap-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h2.section-title {
+    font-size: 28px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 16px;
+}
+h3.section-subtitle {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h3.section-keyresult {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 13px;
+}
+
+h5 {
+    font-size: 11px;
+}
+
+body {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #3eaf7c;
+}
+
+a:hover, a:focus {
+    color: #4abf8a;
+}
+
+ul {
+    list-style: none;
+}
+.authors {
+    display: flex;
+    flex-direction: row;
+    background: rgba(200,200,200,.15);
+    padding: 0rem;
+    padding-top: 0.5rem;
+    margin: 0rem;
+    border-radius: 6px;
+    opacity: .6;
+
+    > .title {
+        vertical-align: middle;
+        font-size: .7rem;
+        padding-left: 0.2rem;
+    }
+   
+    > ul {
+        list-style: none;
+        margin: 0rem;
+        padding: 0rem;
+        margin-left: 2.65rem;
+    
+    }
+}
+.author {
+    margin: 0rem;
+    margin-bottom: 0.3rem;
+    padding: 0rem;
+    border-left: 2px solid rgba(200,200,200,.5);
+
+    .name {
+        font-size: 0.7rem;
+        margin-left:0.2rem;
+    }
+    .contact {
+        font-size: 0.6rem;
+        margin-left:0.4rem;
+    }
+}
+
+
+.timeline {
+    border-left: 4px solid gray;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background: rgba(200,200,200,.1);
+    margin: 2rem auto;
+    margin-left: auto;
+    padding: 1rem 2rem;
+    position: relative;
+    text-align: center;
+    margin-left: 7rem;
+}
+
+.timeline-item {
+    text-align: left;
+    position: relative;
+/*    padding-bottom: 1rem; */
+/*    margin-bottom: 1rem; */
+}
+
+.timeline-item::before {
+    position: absolute;
+    display: block;
+    left: -10rem;
+    content: attr(data-date);
+    text-align: right;
+    font-size: .9rem;
+    font-weight: 700;
+    opacity: .7;
+    min-width: 6rem;
+    padding-left: 2px;
+}
+
+.timeline-item::after {
+    position: absolute;
+    display: block;
+    box-shadow: 0 0 0 4px gray;
+    left: -2.5rem;
+    background: #444;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    content: "";
+    top: 5px;
+}
+.timeline-item_description {
+    text-align: left;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    /* border: 1px solid #ccc; */
+    background-color: white;
+    padding: 10px 20px;
+    margin-bottom: 2rem;
+}
+
+.card::before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    border-radius: 5px 0 0 5px;
+}
+
+.card-TODO::before {
+    background-color: #888;
+}
+
+.card-DOING::before {
+    background-color: #63B2EB;
+}
+
+.card-DONE::before {
+    background-color: #3EAF7C;
+}
+
+.card-SKIP::before {
+    background-color: #F65BD2;
+}
+
+.card-state {
+    margin: 0;
+    float: right;
+    border-radius: 4px;
+    margin-right: 10px;
+    padding: 3px 5px;
+    font-weight: normal;
+}
+.card-state-TODO, .card-state-IDEA {
+    border: 1px solid #888;
+    background-color: #888;
+    color: white;
+}
+.card-state-TODO-inverted, .card-state-IDEA-inverted {
+    border: 1px solid #888;
+    background-color: white;
+    color: #888;
+}
+.card-state-PLANNED {
+    border: 1px solid #E0AF2F;
+    background-color: #E0AF2F;
+    color: white;
+    color: white;
+}
+.card-state-COMMITED {
+    border: 1px solid #63B2EB;
+    background-color: #63B2EB;
+    color: white;
+}
+.card-state-DOING {
+    border: 1px solid #63B2EB;
+    background-color: #63B2EB;
+    color: white;
+}
+.card-state-DOING::before {
+    background-color: #3EAF7C;
+}
+.card-state-REACHED,.card-state-ACHIEVED,.card-state-DONE{
+    border: 1px solid #3eaf7c;
+    background-color: white;
+    color: #3eaf7c;
+}
+.card-state-SKIP {
+    border: 1px solid #F65BD2;
+    background-color: white;
+    color: #F65BD2;
+}
+
+.card-title {
+    margin-top: 0;
+}
+
+.card-link {
+    
+    right: 10px;
+    bottom: 5px;
+    font-size: 70%;
+}
+
+.tablet {
+    display: inline;
+    font-size: 90%;
+    padding: 3px 5px;
+    border-radius: 4px;
+    background-color: #888;
+    color: white; 
+    margin-right: 10px;
+}
+
+.tablet-MUST {
+    background-color: #E06446;
+}
+
+.tablet-SHOULD {
+    background-color: #E0AF2F;   
+}
+
+.requirement-MAY {
+    background-color: #3ABDE0;  
+    border: 1px solid #3ABDE0;
+    color:white;
+}
+.requirement-MAY-inverted {
+    background-color: white;
+    border: 1px solid #3ABDE0;
+    color: #3ABDE0
+}
+
+.requirement-MUST {
+    background-color: #E06446;
+    border: 1px solid #E06446;
+    color: white;
+}
+.requirement-MUST-inverted {
+    background-color: white;
+    border: 1px solid #E06446;
+    color: #E06446;
+}
+
+.requirement-SHOULD {
+    background-color: #E0AF2F;   
+    border: 1px solid #E0AF2F;
+    color: white;
+}
+
+.requirement-SHOULD-inverted {
+    background-color: white;   
+    color: #E0AF2F;
+    border: 1px solid #E0AF2F;
+}
+.objective {
+    margin-top: 1rem;
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+        padding:0;
+    }
+    .footer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0%;
+        margin: 0px;
+        font-size: 0.8rem;
+        break-before: avoid;
+        
+    }
+    .title {
+        font-weight: bold;
+        font-size: 0.9rem;
+        align-self: flex-start;
+        margin: 0px;
+        margin-bottom: 0.2rem;
+        padding: 0.2rem 0rem 0.2rem 0rem;
+    }
+    .state {
+        align-self: baseline;
+        margin: 0;
+        float: left;
+        border-radius: 0.25rem;
+        padding: 0.2rem 0.2rem;
+        font-weight: normal;
+        font-size: 0.9rem;
+        
+    }
+    .description {
+        text-align:justify;
+        position: relative;
+        padding-bottom: 0rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
+        break-before: avoid;
+        break-after: avoid;
+        
+    }
+    .keyresults {
+        border-left: 4px solid gray;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        background: rgba(200,200,200,.1);
+        padding: 1rem 1rem 0.5rem 2rem;
+        position: relative;
+        text-align: center;
+        margin-left: 7rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.keyresult {
+    text-align: left;
+    position: relative;
+    padding: 0px;
+    margin-bottom: 1.5rem; 
+    break-inside: avoid;
+    page-break-inside: avoid;
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        font-size: 1rem;
+        padding:0;
+        .left {
+            align-self:flex-start;
+        }
+        .center {
+            align-self:center;
+        }
+        .right {
+            display: block;
+            align-self: flex-end;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            
+        }
+    }
+    .description {
+        text-align:justify;
+        position: relative;
+        margin:0rem;
+        padding:0.25rem 0rem 1rem 0rem;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .footer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        padding:0;
+        font-size: 0.75rem;
+        .left {
+            align-self:flex-start;
+        }
+        .right {
+            display: block;
+            align-self: flex-end;
+            flex-wrap: nowrap;
+        }
+    }
+
+    .state {
+        margin: 0;
+        border-radius: 0.25rem;
+        font-weight: normal;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.25rem;
+        margin: 0rem 0rem 0.24rem 0.24rem;
+    }
+    .requirement {
+        margin: 0;
+        float: left;
+        border-radius: 0.25rem;
+        font-weight: normal;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.25rem;
+        margin: 0rem 0rem 0.24rem 0.24rem;
+    }
+}
+
+.keyresult::before {
+    position: absolute;
+    display: block;
+    left: -10rem;
+    content: attr(data-date);
+    text-align: right;
+    font-size: .9rem;
+    font-weight: 700;
+    opacity: .7;
+    min-width: 6rem;
+    padding-left: 2px;
+}
+
+.keyresult::after {
+    position: absolute;
+    display: block;
+    box-shadow: 0 0 0 4px gray;
+    left: -2.5rem;
+    background: #444;
+    border-radius: 50%;
+    height: 11px;
+    width: 11px;
+    content: "";
+    top: 5px;
+}</style>
+</head>
+<body>
+    <section role="document">
+        <section role="doc-introduction">
+            <h1 class="roadmap-title">this is a minimal roadmap using objective-key-result-logic</h1>
+
+            <div class="authors">
+                <div class="title">Authored by</div>
+                <ul>
+                
+                    <li class="author">
+                        <div class="name">M.Mustermann</div>
+                        <div class="contact">call me at 2023456234</div>
+                    </li>
+                
+                    <li class="author">
+                        <div class="name">E.Mustermann</div>
+                        <div class="contact">erika@example.com</div>
+                    </li>
+                
+                </ul>  
+            </div>
+            <p class="description">
+                <p>this roadmap contains a title, a description, some authors and two objective
+every objective needs at least one keyresult
+thats all you need for a valid roadmap (to be clear: you just need One Objective)</p>
+            </p>
+            </section>
+        <section role="main">
+            <h2 class="section-title">Objectives</h2>
+        
+            
+            <div id="objective-1" class="objective">
+                <div class="header">
+                    <h3 class="title">Objective 1</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                
+                    <div class="keyresults">
+                        
+                                
+                                <div id="objective-1-keyresult-1" class="keyresult" data-date="R1">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Result 1 for Objective 1</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            <div class="state card-state-"></div>
+                                        </div>
+                                    </div>
+                                    <p class="description"></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            
+            
+            <div id="objective-2" class="objective">
+                <div class="header">
+                    <h3 class="title">Objective 2</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                
+                    <div class="keyresults">
+                        
+                                
+                                <div id="objective-2-keyresult-1" class="keyresult" data-date="R1">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Result 1 for Objective 2</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            <div class="state card-state-"></div>
+                                        </div>
+                                    </div>
+                                    <p class="description"></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </section>
+    </section>
+    
+</body>
+</html>

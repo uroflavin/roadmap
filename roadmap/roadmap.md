@@ -11,6 +11,7 @@ The goal is to make this as easy as possible for humans to read and reason about
 
 - Uroflavin *uroflavin@gmail.com*
 
+
 ## Important Dates
 
 - **2023-12-09** | Project Start
@@ -18,7 +19,6 @@ This is the day that the project was started.
 
 - **2023-12-17** | Demo Day
 This is the scheduled date for the first demo of this project to a wider audience.
-
 ## Objectives
 
 ### 🚀 We provide a single, universal, schema for high-level planning
