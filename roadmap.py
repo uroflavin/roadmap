@@ -17,6 +17,7 @@ config = dotenv_values("roadmap.env")
 
 LOGFILE= config["LOGFILE"]
 logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logging.debug("config: %s", config)
 
 # Init
 try:
@@ -29,7 +30,7 @@ except:
 roadmap_definition_file="examples/roadmap.yml"
 with open(roadmap_definition_file) as f:
     project = yaml.load(f, Loader=yaml.FullLoader)
-    logging.debug("%s", project)
+    logging.debug("project: %s",project)
 
 
 # validate yml
@@ -40,51 +41,58 @@ def validateYaml(roadmapData, jsonSchema):
             schema = f.read()
         # Convert Schema to Python Dict
         schema = json.loads(schema)
-        logging.debug("%s", schema)
+        logging.debug("schema: %s", schema)
 
         # Convert ymlData to Python Dict
         instance = json.loads(json.dumps(roadmapData, indent=4, sort_keys=True, default=str))
-        logging.debug("%s", instance)
+        logging.debug("instance: %s", instance)
         validate(instance=instance, schema=schema)
+        return None, True
     except jsonschema.exceptions.ValidationError as err:
-        logging.error("schema")
-        logging.error("%s", schema)
-        logging.error("instance")
-        logging.error("%s", instance)
-        logging.error("ValidationError")
-        logging.error("%s", err)
+        logging.error("schema: %s", schema)
+        logging.error("instance: %s", instance)
+        logging.error("ValidationError: %s", err)
         return err, False
-    return None, True
 
-validation_error, is_valid_yaml = validateYaml(project, jsonSchema="schema/roadmap.json")
+validation_error, is_valid_yaml = validateYaml(project, jsonSchema=config["SCHEMA"])
 
 if is_valid_yaml:
-    ## Read Markdown Template
-    env = Environment()
-    env.loader = FileSystemLoader( os.path.dirname(config["TEMPLATE_PATH_MARKDOWN"]) )
-    template_markdown = env.get_template(os.path.basename(config["TEMPLATE_PATH_MARKDOWN"]))
-    output_from_parsed_markdown_template = template_markdown.render(project = project)
+    # Find all templates
+    templates = []
+    for dirname, dirnames, filenames in os.walk(config["TEMPLATE_PATH"]):
+        for file in filenames:
+            file_parts = file.split(".")
 
-    ## Render Markdown
-    # output-name is derived from roadmap_definition_file
-    output_basename=Path(roadmap_definition_file).stem
-    output_file_markdown = config["OUTPUT_PATH"] + output_basename + ".md"
-    with open(output_file_markdown, "w") as f:
-        f.write(output_from_parsed_markdown_template)
-
-## Read HTML Template
+            if len(file_parts) == 2 and file_parts[0] == "roadmap":
+                file_suffix = file_parts[1]
+                if file_suffix in config["TEMPLATE_KNOWN_SUFFIXES"]:
+                    templates.append({
+                        "path" : dirname + os.sep, 
+                        "file": file,
+                        "suffix": file_suffix,
+                        "type": dirname.split("/")[1]
+                        })
+    logging.debug("templates: %s", templates)
+    # process templates with jinja
+    # Load Jinja Environment
     env = Environment()
-    env.loader = FileSystemLoader( os.path.dirname(config["TEMPLATE_PATH_HTML"]) )
+    # Add some extensions for jinja
     env.add_extension(MarkdownExtension)
-    template_html = env.get_template(os.path.basename(config["TEMPLATE_PATH_HTML"]))
-    output_from_parsed_html_template = template_html.render(project = project)
+    
+    for template in templates:
+ #       try:
+            env.loader = FileSystemLoader( template["path"]) 
+            template_file = env.get_template(template["file"])   
+            rendered_template = template_file.render(project = project)
 
-    ## Render HTML
-    # output-name is derived from roadmap_definition_file
-    output_basename=Path(roadmap_definition_file).stem
-    output_file_html = config["OUTPUT_PATH"] + output_basename + ".html"
-    with open(output_file_html, "w") as f:
-        f.write(output_from_parsed_html_template)
+            output_basename=Path(roadmap_definition_file).stem
+            output_file = config["OUTPUT_PATH"] + output_basename + "." + template["suffix"]
+            with open(output_file, "w") as f:
+                f.write(rendered_template)
+            logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file, template["path"] + template["file"], output_file)
+ #       except Exception as err:
+ #           logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
+
     print("roadmap-conversion successful")
 
 
