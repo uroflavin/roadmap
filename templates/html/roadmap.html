@@ -34,7 +34,7 @@
                 {% markdown %}{{ project.visionstatement }}{% endmarkdown %}
             </p>{% endif -%}
         </section>
-
+        {% if "timeline" in project %}
         <section role="doc-notice">
             <h2 class="section-title">Important Dates</h2>
 
@@ -47,7 +47,7 @@
             {% endfor %}
             </div>
         </section>
-        
+        {% endif -%}
         <section role="main">
             <h2 class="section-title">Objectives</h2>
         {% for objective in project.objectives %}

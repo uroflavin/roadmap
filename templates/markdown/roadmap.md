@@ -10,11 +10,12 @@
 {% for author in project.authors %}
 - {{ author.name}} *{{ author.contact}}*
 {% endfor %}
+{% if "timeline" in project %}
 ## Important Dates
 {% for timelineentry in project.timeline %}
 - **{{ timelineentry.date }}** | {{ timelineentry.title }}
 {{ timelineentry.description -}}
-{% endfor %}
+{% endfor %}{% endif -%}
 ## Objectives
 {% for objective in project.objectives %}
 ### 🚀 {{ objective.state if "state" in objective }}{{ ' | ' if "state" in objective }}{{ objective.title}}
