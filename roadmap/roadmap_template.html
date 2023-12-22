@@ -15,6 +15,7 @@ body {
 h1, h2, h3, h4, h5 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 300;
+    break-after: avoid;
 }
 
 h1.roadmap-title {
@@ -69,39 +70,46 @@ a:hover, a:focus {
     color: #4abf8a;
 }
 
-ul {
-    list-style: none;
-}
 .authors {
     display: flex;
     flex-direction: row;
     background: rgba(200,200,200,.15);
-    padding: 1rem;
+    padding: 0rem;
+    padding-top: 0.5rem;
+    margin: 0rem;
     border-radius: 6px;
-}
-
-.authors_title {
-    vertical-align: middle;
-    font-size: .7rem;
-    line-height: 1.8rem;
     opacity: .6;
-}
 
+    > .title {
+        vertical-align: middle;
+        font-size: .7rem;
+        padding-left: 0.2rem;
+    }
+   
+    > ul {
+        list-style: none;
+        margin: 0rem;
+        padding: 0rem;
+        margin-left: 2.65rem;
+    
+    }
+}
 .author {
-    margin-left: 1rem;
-    padding-left: 1rem;
-    border-left: 1px solid rgba(200,200,200,.5);
+    margin: 0rem;
+    margin-bottom: 0.3rem;
+    padding: 0rem;
+    border-left: 2px solid rgba(200,200,200,.5);
+
+    .name {
+        font-size: 0.7rem;
+        margin-left:0.2rem;
+    }
+    .contact {
+        font-size: 0.6rem;
+        margin-left:0.4rem;
+    }
 }
 
-.author > h5 {
-    font-size: .8rem;
-    margin: 0;
-}
-
-.author > p {
-    font-size: .6rem;
-    margin: 0;
-}
 
 .timeline {
     border-left: 4px solid gray;
@@ -177,7 +185,7 @@ ul {
 }
 
 .card-TODO::before {
-    background-color: #aaa;
+    background-color: #888;
 }
 
 .card-DOING::before {
@@ -198,12 +206,17 @@ ul {
     border-radius: 4px;
     margin-right: 10px;
     padding: 3px 5px;
-    font-weight: lighter;
+    font-weight: normal;
 }
 .card-state-TODO, .card-state-IDEA {
-    border: 1px solid #aaa;
-    background-color: #aaa;
+    border: 1px solid #888;
+    background-color: #888;
     color: white;
+}
+.card-state-TODO-inverted, .card-state-IDEA-inverted {
+    border: 1px solid #888;
+    background-color: white;
+    color: #888;
 }
 .card-state-PLANNED {
     border: 1px solid #E0AF2F;
@@ -224,7 +237,7 @@ ul {
 .card-state-DOING::before {
     background-color: #3EAF7C;
 }
-.card-state-REACHED,.card-state-DONE{
+.card-state-REACHED,.card-state-ACHIEVED,.card-state-DONE{
     border: 1px solid #3eaf7c;
     background-color: white;
     color: #3eaf7c;
@@ -315,6 +328,8 @@ ul {
         padding: 0%;
         margin: 0px;
         font-size: 0.8rem;
+        break-before: avoid;
+        
     }
     .title {
         font-weight: bold;
@@ -340,6 +355,8 @@ ul {
         padding-bottom: 0rem;
         margin-bottom: 0.5rem;
         font-size: 0.8rem;
+        break-before: avoid;
+        break-after: avoid;
         
     }
     .keyresults {
@@ -359,7 +376,9 @@ ul {
     text-align: left;
     position: relative;
     padding: 0px;
-    margin-bottom: 1.5rem;    
+    margin-bottom: 1.5rem; 
+    break-inside: avoid;
+    page-break-inside: avoid;
     .header {
         display: flex;
         flex-direction: row;
@@ -460,16 +479,17 @@ ul {
             <h1 class="roadmap-title">Roadmap for roadmap.py</h1>
 
             <div class="authors">
-                <div class="authors_title">Authored by</div>
+                <div class="title">Authored by</div>
                 <ul>
-            
-                
-                <li><div class="author">
-                    <h5>Uroflavin</h5>
-                    <p>uroflavin@gmail.com</p>
-                </div></li>
-            
-                </ul>  
+                    <li class="author">
+                        <div class="name">Uroflavin</div>
+                        <div class="contact">uroflavin@gmail.com</div>
+                    </li>
+                    <li class="author">
+                        <div class="name">this is a long name</div>
+                        <div class="contact">this_is_a_ling_mail@gov.uk.example.com</div>
+                    </li>
+                </ul>
             </div>
             <p class="description">
             <p>This is the planning roadmap for the <a href="https://github.com/uroflavin/roadmap">uroflavin/roadmap</a> project. 

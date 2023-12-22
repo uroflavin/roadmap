@@ -15,15 +15,14 @@
             <h1 class="roadmap-title">{{ project.title }}</h1>
 
             <div class="authors">
-                <div class="authors_title">Authored by</div>
+                <div class="title">Authored by</div>
                 <ul>
-            {% for author in project.authors %}
-                {{ range .Authors }}
-                <li><div class="author">
-                    <h5>{{ author.name}}</h5>
-                    <p>{{ author.contact}}</p>
-                </div></li>
-            {% endfor %}
+                {% for author in project.authors %}
+                    <li class="author">
+                        <div class="name">{{ author.name}}</div>
+                        <div class="contact">{{ author.contact}}</div>
+                    </li>
+                {% endfor %}
                 </ul>  
             </div>
             <p class="description">
