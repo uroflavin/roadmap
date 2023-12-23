@@ -5,6 +5,9 @@ description: |
 
   One of the things you'll immediately notice about this file is that it uses *Markdown* for formatting of text and is designed around a structured YAML schema. 
   The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.
+logo:
+  filename: "design-thinking-2.png"
+  copyright_notice: "logo from https://www.streamlinehq.com"
 
 authors:
   - name: Uroflavin

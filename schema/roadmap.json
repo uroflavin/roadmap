@@ -16,6 +16,23 @@
             "type": "string",
             "description": "A markdown formatted description of what this road map represents and any additional context which may be useful to a reader."
         },
+        "logo":  {
+            "type": "object",
+            "description": "A path to your project logo. This might be a good brand for your roadmap.Best fit would be some small-icon",
+            "required": [
+                "filename"           
+            ],
+            "properties": {
+                "filename": {
+                    "type": "string",
+                    "description": "Logo-File must placed where your roadmap.yml lives"
+                },
+                "copyright_notice": {
+                    "type": "string",
+                    "description": "If there is any copyright-notice, this would be rendered as alt-text"
+                }
+            }
+        },
         "visionstatement": {
             "type": "string",
             "description": "A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs."
