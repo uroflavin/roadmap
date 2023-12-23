@@ -1,6 +1,9 @@
 # roadmap
 Manage your project and team roadmaps in YAML
 
+roadmap.py itself has a fancy roadmap as an living-example.
+Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.pys-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
+
 ## Goals
 My development approach is to implement the core functions of https://github.com/SierraSoftworks/roadmap. This concerns the creation of different views (e.g. Markdown, HTML, Graph and PDF).
 
