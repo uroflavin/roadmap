@@ -1,5 +1,8 @@
 # Roadmap for roadmap.py
 
+<img src="design-thinking-2.png" alt="logo from https://www.streamlinehq.com"/>
+
+
 This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
 

@@ -13,5 +13,8 @@
 - [ ] #16 - make a connection between keyresults and milestones
 - [ ] #14 - add a date to keyresults
 - [ ] #13 - add involved teams for keyresults
-- [ ] #4 - Support for project logo
+- [x] #4 - Support for project logo
+    Logo must be placed where roadmap.yml lives
+    it is copied during template processing
+
 

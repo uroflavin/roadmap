@@ -13,7 +13,9 @@
     <section role="document">
         <section role="doc-introduction">
             <h1 class="roadmap-title">{{ project.title }}</h1>
-
+            {% if "logo" in project %}
+                <img src="{{ project.logo.filename }}" alt="{{ project.logo.copyright_notice }}"/>
+            {% endif -%}
             <div class="authors">
                 <div class="title">Authored by</div>
                 <ul>

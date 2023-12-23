@@ -1,4 +1,7 @@
 # {{ project.title }}
+{% if "logo" in project %}
+<img src="{{ project.logo.filename }}" alt="{{ project.logo.copyright_notice }}"/>
+{% endif %}
 
 {{ project.description }}
 

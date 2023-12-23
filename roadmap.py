@@ -14,6 +14,7 @@ from jinja2 import FileSystemLoader, Environment, Template
 from jinja_markdown import MarkdownExtension
 
 import argparse
+import shutil
 
 
 def createOutputFolder(path_to_folder: str = ""):
@@ -152,6 +153,12 @@ def processTemplate(environment: Environment = Environment(), template: dict = {
 
         with open(output_file, "w") as f:
             f.write(rendered_template)
+        
+        # copy logo to output path
+        if "logo" in project:
+            logo_src_path = str(Path(roadmap_definition_file).parent.absolute().resolve()) + "/" + project["logo"]["filename"]
+            shutil.copy(logo_src_path , output_folder)
+        
         logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file, template["path"] + template["file"], output_file)
     except Exception as err:
         logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
