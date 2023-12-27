@@ -6,6 +6,11 @@
 This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
 
+One good example is this roadmap itself. 
+What to-do and what is already done to implement roadmap.py can you see in this picture.
+
+![Roadmap Objectives and Keyresults, rendered from roadmap.yml](roadmap.dot.png)
+
 One of the things you'll immediately notice about this file is that it uses *Markdown* for formatting of text and is designed around a structured YAML schema. 
 The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.
 
@@ -35,18 +40,42 @@ The usefulness and applicability of this schema to real-world problem domains wi
 #### ~~[R1] **MUST::DONE** | Provide a schema defintion~~
 Develop a schema that fulfills the main requirements of the objective
 - [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
-
-#### [R2] **MAY::TODO** | Complete examples in schema-definition
-Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
-- [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 ### 🚀 We provide official tooling for most common use cases
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
 
+ 
+
+
+#### ~~[R1] **MUST::DONE** | Roadmap as Markdown~~
+We should be able to generate some markdown out of roadmap.yml
+
+- [see Markdown-Template](https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md)
+
+#### ~~[R2] **MUST::DONE** | Roadmap as HTML~~
+We should be able to generate some html out of roadmap.yml
+
+- [see HTML-Template](https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html)
+
+#### ~~[R3] **MAY::DONE** | Roadmap as Graph~~
+We should be able to generate some dot out of roadmap.yml
+
+- [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.jsonhttps://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
 ### 🚀 We have exceptional documentation
 Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
 
+ 
+
+
+#### [R1] **MUST::DOING** | Awesome README
+We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
+
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
+
+#### [R2] **MAY::TODO** | Complete examples in schema-definition
+Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
+- [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 ## Milestones
 
@@ -92,7 +121,7 @@ Put some code in roadmap.py to render roadmap as Markdown
 
 - [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
 
-### **▶ COMMITED | HTML**
+### **▶ REACHED | HTML**
 The Goal is, to implement a html-renderer, which is capable to render this yml as html
 
 #### ~~📦 **MUST::DONE** | html-template from original source~~
@@ -106,16 +135,20 @@ Put some code in roadmap.py to render roadmap as HTML
 
 - [see HTML-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html)
 
-### **▶ PLANNED | Graphviz**
+### **▶ REACHED | Graphviz**
 The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
 
-#### 📦 **MUST::TODO** | dot-template
+#### ~~📦 **MUST::DONE** | dot-template~~
 Develop a dot-template for graphviz output of the roadmap
 
 - [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot)
 
-#### 📦 **MUST::TODO** | dot-renderer
+#### ~~📦 **MUST::DONE** | dot-renderer~~
 Put some code in roadmap.py to render roadmap as dot-file
+
+#### ~~📦 **MAY::DONE** | convert dot as png~~
+Put some code in roadmap.py to convert dot-file to png
+e.g. the generated file roadmap.dot.png can be used in your project description.
 
 ### **▶ IDEA | Web Renderer**
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 

@@ -493,6 +493,9 @@ ul {
             <p class="description">
                 <p>This is the planning roadmap for the <a href="https://github.com/uroflavin/roadmap">uroflavin/roadmap</a> project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.</p>
+<p>One good example is this roadmap itself. 
+What to-do and what is already done to implement roadmap.py can you see in this picture.</p>
+<p><img alt="Roadmap Objectives and Keyresults, rendered from roadmap.yml" src="roadmap.dot.png" /></p>
 <p>One of the things you&rsquo;ll immediately notice about this file is that it uses <em>Markdown</em> for formatting of text and is designed around a structured YAML schema. 
 The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.</p>
             </p>
@@ -557,9 +560,131 @@ The usefulness and applicability of this schema to real-world problem domains wi
                                             </div>
                                     </div>
                                 </div>
+                        </div>
+                </div>
+            
+            
+            <div id="objective-2" class="objective">
+                <div class="header">
+                    <h3 class="title">We provide official tooling for most common use cases</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"><p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
+This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                
+                    <div class="keyresults">
                         
                                 
-                                <div id="objective-1-keyresult-2" class="keyresult" data-date="R2">
+                                <div id="objective-2-keyresult-1" class="keyresult" data-date="R1">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Roadmap as Markdown</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MUST-inverted">MUST</div>
+                                            <div class="state card-state-DONE">DONE</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>We should be able to generate some markdown out of roadmap.yml</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md">see Markdown-Template</a>
+                                            </div>
+                                    </div>
+                                </div>
+                        
+                                
+                                <div id="objective-2-keyresult-2" class="keyresult" data-date="R2">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Roadmap as HTML</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MUST-inverted">MUST</div>
+                                            <div class="state card-state-DONE">DONE</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>We should be able to generate some html out of roadmap.yml</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html">see HTML-Template</a>
+                                            </div>
+                                    </div>
+                                </div>
+                        
+                                
+                                <div id="objective-2-keyresult-3" class="keyresult" data-date="R3">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Roadmap as Graph</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MAY-inverted">MAY</div>
+                                            <div class="state card-state-DONE">DONE</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>We should be able to generate some dot out of roadmap.yml</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.jsonhttps://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot">see DOT-Template</a>
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            
+            
+            <div id="objective-3" class="objective">
+                <div class="header">
+                    <h3 class="title">We have exceptional documentation</h3>
+                    <div class="card-state card-state-"></div>
+                </div>
+                <p class="description"><p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p></p>
+                <div class="footer">
+                    <div class="left">&nbsp;</div> 
+                    <div class="right">
+                        </div>
+                </div>
+                    
+                
+                    <div class="keyresults">
+                        
+                                
+                                <div id="objective-3-keyresult-1" class="keyresult" data-date="R1">
+                                    <div class="header">
+                                        <div class="left"><h4 class="title">Awesome README</h4></div>
+                                        <div class="center"></div>
+                                        <div class="right">
+                                            
+                                                <div class="requirement requirement-MUST">MUST</div>
+                                            <div class="state card-state-DOING">DOING</div>
+                                        </div>
+                                    </div>
+                                    <p class="description"><p>We need to complete our README explaining the purpose of this project and giving some basic examples of its use.</p></p>
+                                    <div class="footer">
+                                        <div class="left">&nbsp;</div>
+                                        <div class="right">
+                                            
+                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
+                                            </div>
+                                    </div>
+                                </div>
+                        
+                                
+                                <div id="objective-3-keyresult-2" class="keyresult" data-date="R2">
                                     <div class="header">
                                         <div class="left"><h4 class="title">Complete examples in schema-definition</h4></div>
                                         <div class="center"></div>
@@ -579,38 +704,6 @@ The usefulness and applicability of this schema to real-world problem domains wi
                                     </div>
                                 </div>
                         </div>
-                </div>
-            
-            
-            <div id="objective-2" class="objective">
-                <div class="header">
-                    <h3 class="title">We provide official tooling for most common use cases</h3>
-                    <div class="card-state card-state-"></div>
-                </div>
-                <p class="description"><p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
-This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p></p>
-                <div class="footer">
-                    <div class="left">&nbsp;</div> 
-                    <div class="right">
-                        </div>
-                </div>
-                    
-                </div>
-            
-            
-            <div id="objective-3" class="objective">
-                <div class="header">
-                    <h3 class="title">We have exceptional documentation</h3>
-                    <div class="card-state card-state-"></div>
-                </div>
-                <p class="description"><p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
-Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p></p>
-                <div class="footer">
-                    <div class="left">&nbsp;</div> 
-                    <div class="right">
-                        </div>
-                </div>
-                    
                 </div>
             
             <h2 class="section-title">Milestones</h2>
@@ -726,7 +819,7 @@ This will allow us to document the file structure and provide a first class edit
             
             
                 <div id="milestone-4" class="timeline-item" data-date="M4">
-                    <h3 class="timeline-item__title section-subtitle">HTML<p class="card-state card-state-COMMITED">COMMITED</p></h3>
+                    <h3 class="timeline-item__title section-subtitle">HTML<p class="card-state card-state-REACHED">REACHED</p></h3>
                     <div class="timeline-item_description">
                         <p>The Goal is, to implement a html-renderer, which is capable to render this yml as html</p>
                         </div>
@@ -759,15 +852,15 @@ Use SierraSoftworks-Go-Template as a starting point</p>
             
             
                 <div id="milestone-5" class="timeline-item" data-date="M5">
-                    <h3 class="timeline-item__title section-subtitle">Graphviz<p class="card-state card-state-PLANNED">PLANNED</p></h3>
+                    <h3 class="timeline-item__title section-subtitle">Graphviz<p class="card-state card-state-REACHED">REACHED</p></h3>
                     <div class="timeline-item_description">
                         <p>The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.</p>
                         </div>
                     
                              
-                        <div id="milestone-5-deliverable-1" class="card card-TODO">
+                        <div id="milestone-5-deliverable-1" class="card card-DONE">
                             <h4 class="card-title">
-                                <p class="card-state card-state-TODO">TODO</p>
+                                <p class="card-state card-state-DONE">DONE</p>
                                 dot-template
                                 <span class="tablet tablet-MUST">MUST</span></h4>
                             <p>Develop a dot-template for graphviz output of the roadmap</p>
@@ -777,12 +870,23 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                             </div>
                     
                              
-                        <div id="milestone-5-deliverable-2" class="card card-TODO">
+                        <div id="milestone-5-deliverable-2" class="card card-DONE">
                             <h4 class="card-title">
-                                <p class="card-state card-state-TODO">TODO</p>
+                                <p class="card-state card-state-DONE">DONE</p>
                                 dot-renderer
                                 <span class="tablet tablet-MUST">MUST</span></h4>
                             <p>Put some code in roadmap.py to render roadmap as dot-file</p>
+
+                            </div>
+                    
+                             
+                        <div id="milestone-5-deliverable-3" class="card card-DONE">
+                            <h4 class="card-title">
+                                <p class="card-state card-state-DONE">DONE</p>
+                                convert dot as png
+                                <span class="tablet tablet-MAY">MAY</span></h4>
+                            <p>Put some code in roadmap.py to convert dot-file to png
+e.g. the generated file roadmap.dot.png can be used in your project description.</p>
 
                             </div>
                     </div>
