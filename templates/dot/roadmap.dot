@@ -1,0 +1,67 @@
+digraph Roadmap {
+  rankdir=RL;
+  label="{{ project.title }}"
+  tooltip="{{ project.description }}";
+  fontname="Arial";
+  labelloc="t";
+
+  node[style="filled",shape="rectangle",color="orange",fontname="Arial",fontsize=8];
+  edge[weight=1,group="milestones",arrowhead="none"];
+
+  {
+	rank=same;
+
+	start[label="Start",shape="point",color="",tooltip="This is the start of your roadmap."];
+    end[label="End",shape="point",color="",tooltip="This is the end of your roadmap."];
+    
+    {% for objective in project.objectives %}
+    {% set objective_id = "o" + loop.index|string %}
+    {{objective_id}} [label="{{ objective.title}}",tooltip="{{ objective.description -}}"];
+        {% if loop.index == 1 %}
+            "start" -> {{objective_id}};
+        {% else %}
+            {% set previous_id = "o" + (loop.index - 1)|string %} 
+            {{previous_id}} -> {{objective_id}};
+        {% endif -%} 
+        
+        {% if loop.last %}
+            {{objective_id}} -> "end" ;
+        {% endif -%} 
+    {% endfor -%}
+  }
+  node[color="grey"];
+  edge[weight=5,color="grey",penwidth=0.4,arrowsize=0.4,group="dependencies",arrowhead="diamond"];
+
+  {% for objective in project.objectives %}
+    {% set objective_id = "o" + loop.index|string %}
+    
+    {% if "keyresults" in objective %}     
+        subgraph cluster_{{objective_id}} {
+            label="{{ objective.title}}";
+            tooltip="{{ objective.description -}}";
+            fontsize=8;
+            penwidth=0.6;
+            {% for keyresult in objective.keyresults %}
+                {% set state_color = "grey" %}
+                {% if "TODO" == keyresult.state %}
+                    {% set state_color = "grey" %}
+                {% endif -%} 
+                {% if "DOING" == keyresult.state %}
+                    {% set state_color = "lightblue" %}
+                {% endif -%} 
+                {% if "DONE" == keyresult.state %}
+                    {% set state_color = "palegreen" %}
+                {% endif -%} 
+                {% if "SKIP" == keyresult.state %}
+                    {% set state_color = "pink" %}
+                {% endif -%}        
+                
+                {% set keyresult_id = objective_id + "_r" + loop.index |string  -%}
+                
+                {{keyresult_id}} [label="{{ "✓ " if keyresult.state == "DONE" }}{{ keyresult.title}}",tooltip="{{ keyresult.description -}}",color="{{ state_color}}"];
+                {{keyresult_id}} -> {{objective_id}};
+            {% endfor -%}
+        }
+    {% endif -%} 
+{% endfor -%}
+}

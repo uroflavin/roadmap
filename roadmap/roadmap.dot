@@ -1,0 +1,132 @@
+digraph Roadmap {
+  rankdir=RL;
+  label="Roadmap for roadmap.py"
+  tooltip="This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
+It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
+
+One good example is this roadmap itself. 
+What to-do and what is already done to implement roadmap.py can you see in this picture.
+
+![Roadmap Objectives and Keyresults, rendered from roadmap.yml](roadmap.dot.png)
+
+One of the things you'll immediately notice about this file is that it uses *Markdown* for formatting of text and is designed around a structured YAML schema. 
+The goal is to make this as easy as possible for humans to read and reason about, while also enabling powerful visualizations to be generated based on the content.
+";
+  fontname="Arial";
+  labelloc="t";
+
+  node[style="filled",shape="rectangle",color="orange",fontname="Arial",fontsize=8];
+  edge[weight=1,group="milestones",arrowhead="none"];
+
+  {
+	rank=same;
+
+	start[label="Start",shape="point",color="",tooltip="This is the start of your roadmap."];
+    end[label="End",shape="point",color="",tooltip="This is the end of your roadmap."];
+    
+    
+    
+    o1 [label="We provide a single, universal, schema for high-level planning",tooltip="The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
+The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
+"];
+        
+            "start" -> o1;
+        
+    
+    o2 [label="We provide official tooling for most common use cases",tooltip="While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
+This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
+"];
+        
+             
+            o1 -> o2;
+        
+    
+    o3 [label="We have exceptional documentation",tooltip="Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+"];
+        
+             
+            o2 -> o3;
+        
+            o3 -> "end" ;
+        }
+  node[color="grey"];
+  edge[weight=5,color="grey",penwidth=0.4,arrowsize=0.4,group="dependencies",arrowhead="diamond"];
+
+  
+    
+    
+         
+        subgraph cluster_o1 {
+            label="We provide a single, universal, schema for high-level planning";
+            tooltip="The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
+The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
+";
+            fontsize=8;
+            penwidth=0.6;
+            
+                
+                
+                    
+                o1_r1 [label="✓ Provide a schema defintion",tooltip="Develop a schema that fulfills the main requirements of the objective",color="palegreen"];
+                o1_r1 -> o1;
+            }
+    
+    
+    
+         
+        subgraph cluster_o2 {
+            label="We provide official tooling for most common use cases";
+            tooltip="While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
+This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
+";
+            fontsize=8;
+            penwidth=0.6;
+            
+                
+                
+                    
+                o2_r1 [label="✓ Roadmap as Markdown",tooltip="We should be able to generate some markdown out of roadmap.yml
+",color="palegreen"];
+                o2_r1 -> o2;
+            
+                
+                
+                    
+                o2_r2 [label="✓ Roadmap as HTML",tooltip="We should be able to generate some html out of roadmap.yml
+",color="palegreen"];
+                o2_r2 -> o2;
+            
+                
+                
+                    
+                o2_r3 [label="✓ Roadmap as Graph",tooltip="We should be able to generate some dot out of roadmap.yml
+",color="palegreen"];
+                o2_r3 -> o2;
+            }
+    
+    
+    
+         
+        subgraph cluster_o3 {
+            label="We have exceptional documentation";
+            tooltip="Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+";
+            fontsize=8;
+            penwidth=0.6;
+            
+                
+                
+                    
+                o3_r1 [label="Awesome README",tooltip="We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
+",color="lightblue"];
+                o3_r1 -> o3;
+            
+                
+                
+                    
+                o3_r2 [label="Complete examples in schema-definition",tooltip="Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases",color="grey"];
+                o3_r2 -> o3;
+            }
+    }

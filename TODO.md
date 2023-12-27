@@ -39,3 +39,9 @@
 - [ ] render roadmap as xls
 
 - [ ] add some stylish screen-optimized roadmap layout
+
+- [x] render roadmap as dot, and also as png for later use
+    - make a template for dot
+    - convert template dot to roadmap.dot
+    - convert roadmap.dot to roadmap.dot.png
+    - you can use roadmap.dot.png in your project description to render it as part of your description

@@ -16,6 +16,8 @@ from jinja_markdown import MarkdownExtension
 import argparse
 import shutil
 
+import subprocess
+        
 
 def createOutputFolder(path_to_folder: str = ""):
     """
@@ -158,7 +160,16 @@ def processTemplate(environment: Environment = Environment(), template: dict = {
         if "logo" in project:
             logo_src_path = str(Path(roadmap_definition_file).parent.absolute().resolve()) + "/" + project["logo"]["filename"]
             shutil.copy(logo_src_path , output_folder)
-        
+        # if dot file, try converting it to png, 
+        # log error but continue
+        try:
+            if template["suffix"] == "dot":
+                output_png = output_path + output_basename + ".dot.png"
+                subprocess.check_call(['dot','-Tpng',output_file,'-o',output_png])
+        except Exception as err:
+            logging.error("dot-converting failed '%s'", err)
+            logging.error("make shure to install graphiv properly")    
+
         logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file, template["path"] + template["file"], output_file)
     except Exception as err:
         logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
