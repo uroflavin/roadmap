@@ -77,7 +77,7 @@ objectives:
       state: DONE
       requirement: MAY
       reference:
-        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.jsonhttps://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot
+        link: https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot
         name: see DOT-Template
     
 
@@ -101,7 +101,7 @@ objectives:
       requirement: MAY
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
-        name: see README
+        name: see schema/roadmap.json
 
 
 milestones:

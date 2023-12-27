@@ -60,7 +60,7 @@ We should be able to generate some html out of roadmap.yml
 #### ~~[R3] **MAY::DONE** | Roadmap as Graph~~
 We should be able to generate some dot out of roadmap.yml
 
-- [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.jsonhttps://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
+- [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
 ### 🚀 We have exceptional documentation
 Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
@@ -75,7 +75,7 @@ We need to complete our README explaining the purpose of this project and giving
 
 #### [R2] **MAY::TODO** | Complete examples in schema-definition
 Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
-- [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+- [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 ## Milestones
 
