@@ -4,7 +4,7 @@ Manage your project and team roadmaps in YAML
 roadmap.py itself has a fancy roadmap as an living-example.
 Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.pys-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
 ## State
-You can see the state of our keyresult in our graph
+You can see the state of our current objectives and keyresults in the following graph (rendered directly from [roadmap.yml](examples/roadmap.yml) )
 
 ![roadmap.pys objective + keyresult graph](roadmap/roadmap.dot.png)
 
