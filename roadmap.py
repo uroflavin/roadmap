@@ -3,7 +3,7 @@ import json
 import jsonschema
 from jsonschema import validate
 
-from dotenv import dotenv_values # Environment
+from dotenv import dotenv_values  # Environment
 
 import os
 from pathlib import Path
@@ -17,9 +17,9 @@ import argparse
 import shutil
 
 import subprocess
-        
 
-def createOutputFolder(path_to_folder: str = ""):
+
+def create_output_folder(path_to_folder: str = ""):
     """
     Create Folder for the roadmap.py output
     If path_to_folder exist, nothing happens
@@ -33,7 +33,7 @@ def createOutputFolder(path_to_folder: str = ""):
     """
     # check if path exist
     output_folder = Path(path_to_folder)
-    if( not output_folder.exists() ):
+    if (not output_folder.exists()):
         try:
             output_folder.mkdir(parents=False, exist_ok=True)
         # FileNotFoundError is thrown if some parts of path are not present
@@ -41,8 +41,7 @@ def createOutputFolder(path_to_folder: str = ""):
             logging.error("some folders for output_folder '%s' did not exist", path_to_folder)
             logging.error(err)
             return False
-        
-    
+
     # write-access?
     if output_folder.stat().st_mode & 0o200:
         logging.debug("output_folder '%s' is writeable", path_to_folder)
@@ -52,7 +51,7 @@ def createOutputFolder(path_to_folder: str = ""):
         return False
 
 
-def readRoadmapDefinition(path_to_roadmap_yml: str = ""):
+def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     """
     Read the Roadmap-Defintion-YML
     
@@ -64,15 +63,16 @@ def readRoadmapDefinition(path_to_roadmap_yml: str = ""):
     :rtype: dict
     """
     try:
-        with open(path_to_roadmap_yml,"r") as f:
+        with open(path_to_roadmap_yml, "r") as f:
             project = yaml.load(f, Loader=yaml.FullLoader)
-            logging.debug("project: %s",project)
+            logging.debug("project: %s", project)
             return project
     except OSError as err:
         logging.error("roadmap-definition-file '%s' not readable")
         return None
 
-def validateYaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
+
+def validate_yaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
     """
     Validate roadmap-dictionary under the given jsonSchema
     
@@ -86,7 +86,7 @@ def validateYaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
     """
     try:
         # Read Schema from File
-        with open(path_to_json_schema,"r") as f:
+        with open(path_to_json_schema, "r") as f:
             schema = f.read()
         # Convert Schema to Python Dict
         schema = json.loads(schema)
@@ -103,7 +103,8 @@ def validateYaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
         logging.error("ValidationError: %s", err)
         return err, False
 
-def findTemplates(template_path: str = "", template_known_suffixes: list = [] ):
+
+def find_templates(template_path: str = "", template_known_suffixes: list = []):
     """
     find all templates in given template_path
     
@@ -122,16 +123,19 @@ def findTemplates(template_path: str = "", template_known_suffixes: list = [] ):
                 file_suffix = file_parts[1]
                 if file_suffix in template_known_suffixes:
                     templates.append({
-                        "path" : dirname + os.sep, 
+                        "path": dirname + os.sep,
                         "file": file,
                         "suffix": file_suffix,
                         "type": dirname.split("/")[1]
-                        })
+                    })
     logging.debug("templates: %s", templates)
-    
+
     return templates
 
-def processTemplate(environment: Environment = Environment(), template: dict = {"path": "", "file": "", "suffix": "", "type": ""}, roadmap_definition_file: str = "", project=None, output_path: str = ""):
+
+def process_template(environment: Environment = Environment(),
+                     template: dict = None,
+                     roadmap_definition_file: str = "", project=None, output_path: str = ""):
     """
     process the template and write rendered output-data to filesystem
     
@@ -145,50 +149,56 @@ def processTemplate(environment: Environment = Environment(), template: dict = {
     :return: Nothing
     :rtype: None
     """
-    try:
-        environment.loader = FileSystemLoader( template["path"]) 
-        template_file = environment.get_template(template["file"])   
-        rendered_template = template_file.render(project = project)
+    if template is None:
+        template = {"path": "", "file": "", "suffix": "", "type": ""}
 
-        output_basename=Path(roadmap_definition_file).stem
+    try:
+        environment.loader = FileSystemLoader(template["path"])
+        template_file = environment.get_template(template["file"])
+        rendered_template = template_file.render(project=project)
+
+        output_basename = Path(roadmap_definition_file).stem
         output_file = output_path + output_basename + "." + template["suffix"]
 
         with open(output_file, "w") as f:
             f.write(rendered_template)
-        
+
         # copy logo to output path
         if "logo" in project:
-            logo_src_path = str(Path(roadmap_definition_file).parent.absolute().resolve()) + "/" + project["logo"]["filename"]
-            shutil.copy(logo_src_path , output_folder)
+            logo_src_path = str(Path(roadmap_definition_file).parent.absolute().resolve()) + "/" + project["logo"][
+                "filename"]
+            shutil.copy(logo_src_path, output_folder)
         # if dot file, try converting it to png, 
         # log error but continue
         try:
             if template["suffix"] == "dot":
                 output_png = output_path + output_basename + ".dot.png"
-                subprocess.check_call(['dot','-Tpng',output_file,'-o',output_png])
+                subprocess.check_call(['dot', '-Tpng', output_file, '-o', output_png])
         except Exception as err:
             logging.error("dot-converting failed '%s'", err)
-            logging.error("make shure to install graphiv properly")    
+            logging.error("make shure to install graphiv properly")
 
-        logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file, template["path"] + template["file"], output_file)
+        logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file,
+                     template["path"] + template["file"], output_file)
     except Exception as err:
         logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
 
 
 # Init
 # Load Config from roadmap.env
-config = dotenv_values("roadmap.env") 
+config = dotenv_values("roadmap.env")
 
-LOGFILE= config["LOGFILE"]
-logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+LOGFILE = config["LOGFILE"]
+logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
+                    format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 logging.debug("config: %s", config)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--roadmap-file", type=str,
-    help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
+                    help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
 
 parser.add_argument("--output-dir", type=str,
-    help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
+                    help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
 
 args = parser.parse_args()
 
@@ -198,29 +208,29 @@ output_folder = args.output_dir
 if output_folder[-1] != os.sep:
     output_folder = output_folder + os.sep
 
-if createOutputFolder(output_folder):
+if create_output_folder(output_folder):
     ## Read Roadmap-Definition
     # TOOD: roadmap definition should be commandline-argument
-    
-    project = readRoadmapDefinition(path_to_roadmap_yml=roadmap_definition_file)
 
+    project = read_roadmap_definition(path_to_roadmap_yml=roadmap_definition_file)
 
-    validation_error, is_valid_yaml = validateYaml(roadmap_data=project, path_to_json_schema=config["SCHEMA"])
-
+    validation_error, is_valid_yaml = validate_yaml(roadmap_data=project, path_to_json_schema=config["SCHEMA"])
 
     if is_valid_yaml:
         # Find all templates
-        templates = findTemplates(template_path=config["TEMPLATE_PATH"], template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+        templates = find_templates(template_path=config["TEMPLATE_PATH"],
+                                   template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
         # process templates with jinja
         # Load Jinja Environment
         env = Environment()
         # Add some extensions for jinja
         env.add_extension(MarkdownExtension)
-        
+
         for template in templates:
             print("processing " + template["file"])
-            processTemplate(environment=env, template=template, roadmap_definition_file=roadmap_definition_file, project=project, output_path=output_folder)
-    
+            process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
+                             project=project, output_path=output_folder)
+
         print("roadmap-conversion successful")
 
     else:
@@ -230,4 +240,3 @@ if createOutputFolder(output_folder):
 else:
     print("Could not create '" + output_folder + "'")
     print("See logfile for details")
-    
