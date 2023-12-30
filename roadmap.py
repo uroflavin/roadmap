@@ -10,7 +10,7 @@ from pathlib import Path
 
 import logging
 
-from jinja2 import FileSystemLoader, Environment, Template
+from jinja2 import FileSystemLoader, Environment
 from jinja_markdown import MarkdownExtension
 
 import argparse
@@ -33,7 +33,7 @@ def create_output_folder(path_to_folder: str = ""):
     """
     # check if path exist
     output_folder = Path(path_to_folder)
-    if (not output_folder.exists()):
+    if not output_folder.exists():
         try:
             output_folder.mkdir(parents=False, exist_ok=True)
         # FileNotFoundError is thrown if some parts of path are not present
@@ -69,10 +69,11 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
             return project
     except OSError as err:
         logging.error("roadmap-definition-file '%s' not readable")
+        logging.error("'%s'", err)
         return None
 
 
-def validate_yaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
+def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
     Validate roadmap-dictionary under the given jsonSchema
     
@@ -84,6 +85,9 @@ def validate_yaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
     :return: None/Error, validationResult as boolean
     :rtype: tuple
     """
+    schema = None
+    instance = None
+
     try:
         # Read Schema from File
         with open(path_to_json_schema, "r") as f:
@@ -104,7 +108,7 @@ def validate_yaml(roadmap_data: dict = {}, path_to_json_schema: str = ""):
         return err, False
 
 
-def find_templates(template_path: str = "", template_known_suffixes: list = []):
+def find_templates(template_path: str = "", template_known_suffixes: list = None):
     """
     find all templates in given template_path
     
@@ -208,10 +212,9 @@ output_folder = args.output_dir
 if output_folder[-1] != os.sep:
     output_folder = output_folder + os.sep
 
-if create_output_folder(output_folder):
-    ## Read Roadmap-Definition
-    # TOOD: roadmap definition should be commandline-argument
 
+if create_output_folder(output_folder):
+    # Read Roadmap-Definition
     project = read_roadmap_definition(path_to_roadmap_yml=roadmap_definition_file)
 
     validation_error, is_valid_yaml = validate_yaml(roadmap_data=project, path_to_json_schema=config["SCHEMA"])
