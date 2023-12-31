@@ -10,11 +10,11 @@
     "properties": {
         "title": {
             "type": "string",
-            "description": "A brief title which describes this road map."
+            "description": "A brief title which describes this roadmap."
         },
         "description": {
             "type": "string",
-            "description": "A markdown formatted description of what this road map represents and any additional context which may be useful to a reader."
+            "description": "A markdown formatted description of what this roadmap represents and any additional context which may be useful to a reader."
         },
         "logo":  {
             "type": "object",
@@ -53,21 +53,21 @@
         },
         "timeline": {
             "type": "array",
-            "description": "The list of important dates which relate to this road map.",
+            "description": "The list of important dates which relate to this roadmap.",
             "items": {
                 "$ref": "#/definitions/TimelineMarker"
             }
         },
         "objectives": {
             "type": "array",
-            "description": "The list of objectives which the team is working towards over the course of this road map.",
+            "description": "The list of objectives which the team is working towards over the course of this roadmap.",
             "items": {
                 "$ref": "#/definitions/Objective"
             }
         },
         "milestones": {
             "type": "array",
-            "description": "The list of milestones which act as indicators of progress for this road map.",
+            "description": "The list of milestones which act as indicators of progress for this roadmap.",
             "items": {
                 "$ref": "#/definitions/Milestone"
             }
@@ -76,7 +76,7 @@
     "definitions": {
         "Author": {
             "type": "object",
-            "description": "The details of an author responsible for this road map, in case a reader has questions.",
+            "description": "The details of an author responsible for this roadmap, in case a reader has questions.",
             "required": [
                 "name",
                 "contact"
@@ -100,7 +100,7 @@
         },
         "TimelineMarker": {
             "type": "object",
-            "description": "An important date which relates to this road map.",
+            "description": "An important date which relates to this roadmap.",
             "required": [
                 "date",
                 "title"
@@ -197,7 +197,7 @@
         },
         "Milestone": {
             "type": "object",
-            "description": "An indicator of progress for this road map. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.",
+            "description": "An indicator of progress for this roadmap. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.",
             "required": [
                 "title"
             ],
@@ -345,7 +345,7 @@
         },
         "DeliverableState": {
             "type": "string",
-            "description": "The state of an item on the road map.",
+            "description": "The state of an item on the roadmap.",
             "enum": [
                 "TODO",
                 "DOING",
