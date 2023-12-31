@@ -1,28 +1,28 @@
 # JSON Schema
 
-*A roadmap represents a high-level plan for a project or team.*
+*A roadmap represents a high-level plan for your project or team.*
 
 ## Properties
 
-- **`title`** *(string)*: A brief title which describes this road map.
-- **`description`** *(string)*: A markdown formatted description of what this road map represents and any additional context which may be useful to a reader.
+- **`title`** *(string)*: A brief title which describes this roadmap.
+- **`description`** *(string)*: A markdown formatted description of what this roadmap represents and any additional context which may be useful to a reader.
 - **`logo`** *(object)*: A path to your project logo. This might be a good brand for your roadmap.Best fit would be some small-icon.
-  - **`filename`** *(string, required)*: Logo-File must placed where your roadmap.yml lives.
+  - **`filename`** *(string, required)*: Your logo MUST placed where your roadmap.yml lives.
   - **`copyright_notice`** *(string)*: If there is any copyright-notice, this would be rendered as alt-text.
 - **`visionstatement`** *(string)*: A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs.
 - **`authors`** *(array)*: A list of authors who were/are involved in the creation of the roadmap.
   - **Items**: Refer to *[#/definitions/Author](#definitions/Author)*.
 - **`releases`** *(array)*: A list of releases which provide enhancements in the form of deliverables to the stakeholders.
   - **Items**: Refer to *[#/definitions/Release](#definitions/Release)*.
-- **`timeline`** *(array)*: The list of important dates which relate to this road map.
+- **`timeline`** *(array)*: The list of important dates which relate to this roadmap.
   - **Items**: Refer to *[#/definitions/TimelineMarker](#definitions/TimelineMarker)*.
-- **`objectives`** *(array)*: The list of objectives which the team is working towards over the course of this road map.
+- **`objectives`** *(array)*: The list of objectives which the team is working towards over the course of this roadmap.
   - **Items**: Refer to *[#/definitions/Objective](#definitions/Objective)*.
-- **`milestones`** *(array)*: The list of milestones which act as indicators of progress for this road map.
+- **`milestones`** *(array)*: The list of milestones which act as indicators of progress for this roadmap.
   - **Items**: Refer to *[#/definitions/Milestone](#definitions/Milestone)*.
 ## Definitions
 
-- <a id="definitions/Author"></a>**`Author`** *(object)*: The details of an author responsible for this road map, in case a reader has questions.
+- <a id="definitions/Author"></a>**`Author`** *(object)*: The details of an author responsible for this roadmap, in case a reader has questions.
   - **`name`** *(string, required)*: The full name of the author.
   - **`contact`** *(string, required)*: The contact address for the author - usually their email, but may also be an IM handle or otherwise.
 
@@ -32,7 +32,7 @@
   name: John Doe
   ```
 
-- <a id="definitions/TimelineMarker"></a>**`TimelineMarker`** *(object)*: An important date which relates to this road map.
+- <a id="definitions/TimelineMarker"></a>**`TimelineMarker`** *(object)*: An important date which relates to this roadmap.
   - **`date`** *(string, format: date, required)*: The date that this timeline marker is associated with.
   - **`title`** *(string, required)*: A brief name associated with this timeline marker to describe it.
   - **`description`** *(string)*: A markdown formatted description of what this timeline marker represents, or additional context associated with it.
@@ -87,7 +87,7 @@
   title: We provide a single, universal, schema for high-level planning
   ```
 
-- <a id="definitions/Milestone"></a>**`Milestone`** *(object)*: An indicator of progress for this road map. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.
+- <a id="definitions/Milestone"></a>**`Milestone`** *(object)*: An indicator of progress for this roadmap. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.
   - **`title`** *(string, required)*: A brief name associated with this milestone to describe the value shift.
   - **`description`** *(string)*: A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization.
   - **`state`**: Refer to *[#/definitions/MilestoneState](#definitions/MilestoneState)*.
@@ -133,7 +133,7 @@
   - **`tag`** *(string, required)*: a short-name for the release.
   - **`description`** *(string)*: a describtion in natural words,what should or must be part of this release.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
-- <a id="definitions/DeliverableState"></a>**`DeliverableState`** *(string)*: The state of an item on the road map. Must be one of: `["TODO", "DOING", "DONE", "SKIP"]`. Default: `"TODO"`.
+- <a id="definitions/DeliverableState"></a>**`DeliverableState`** *(string)*: The state of an item on the roadmap. Must be one of: `["TODO", "DOING", "DONE", "SKIP"]`. Default: `"TODO"`.
 - <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/Requirement"></a>**`Requirement`** *(string)*: An RFC2119 verb which describes how a specific requirement should be treated. Must be one of: `["MUST", "SHOULD", "MAY"]`. Default: `"SHOULD"`.
