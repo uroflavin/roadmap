@@ -1,6 +1,6 @@
 # JSON Schema
 
-*A road map represents a high-level plan for a project or team.*
+*A roadmap represents a high-level plan for a project or team.*
 
 ## Properties
 

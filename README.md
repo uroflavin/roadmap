@@ -25,6 +25,8 @@ In advance, i like to support some more planning approaches.
 Objectives, milestones, deliverables and releases can have none or one reference (e.g. to your ticketsystem or document or whatever).
 
 ## roadmap.yaml
+See [schema/roadmap.md](schema/roadmap.md).
+
 The main structure of a roadmap.yaml is as follows:
 - *title*: A brief title which describes this road map.
 - *description*: A markdown formatted description of what this road map represents and any additional context which may be useful to a reader.
