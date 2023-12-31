@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: jsonschema2md
+        name: jsonschema2md
+        language: python
+        entry: jsonschema2md --examples-as-yaml --show-examples all schema/roadmap.json schema/roadmap.md
+        pass_filenames: false

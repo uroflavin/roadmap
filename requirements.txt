@@ -5,3 +5,5 @@ pymdown-extensions==10.5
 jinja_markdown==1.210911
 MarkupSafe>=2.0
 jsonschema~=4.20.0
+pre-commit==3.6.0
+jsonschema2md

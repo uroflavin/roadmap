@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "description": "A road map represents a high-level plan for a project or team.",
+    "description": "A roadmap represents a high-level plan for a project or team.",
     "type": "object",
     "required": [
         "title",
@@ -76,7 +76,7 @@
     "definitions": {
         "Author": {
             "type": "object",
-            "description": "The details of an author responsible for this road map, should a reader have questions.",
+            "description": "The details of an author responsible for this road map, in case a reader has questions.",
             "required": [
                 "name",
                 "contact"
@@ -119,7 +119,14 @@
                     "type": "string",
                     "description": "A markdown formatted description of what this timeline marker represents, or additional context associated with it."
                 }
-            }
+            },
+            "examples": [
+                {
+                    "date": "2023-01-15",
+                    "title": "Something really important happens",
+                    "description": "Something really important happens on this date and we will all become lucky people"
+                }
+            ]
         },
         "Objective": {
             "type": "object",
@@ -160,7 +167,31 @@
             "examples": [
                 {
                     "title": "Our users love the documentation we provide",
-                    "description": "Great documentation is critical to the adoption of our project and is an integral part of everything we introduce."
+                    "description": "Great documentation is critical to the adoption of our project and is an integral part of everything we introduce.",
+                    "state": "IDEA",
+                    "reference": {
+                        "name" : "example.com",
+                        "link" : "https://example.com"
+                    }
+                },
+                {
+                    "title": "We provide a single, universal, schema for high-level planning",
+                    "description": "The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. \n      The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.",
+                    "state": "IDEA",
+                    "reference": {
+                        "name" : "example.com",
+                        "link" : "https://example.com"
+                    },
+                    "keyresults": [{
+                        "title": "Provide a schema defintion",
+                        "description": "Develop a schema that fulfills the main requirements of the objective",
+                        "state": "DONE",
+                        "requirement": "MUST",
+                        "reference": {
+                            "name" : "example.com",
+                            "link" : "https://example.com"
+                        }
+                    }]
                 }
             ]
         },
