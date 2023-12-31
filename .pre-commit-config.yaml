@@ -3,6 +3,6 @@ repos:
     hooks:
       - id: jsonschema2md
         name: jsonschema2md
-        language: python
-        entry: jsonschema2md --examples-as-yaml --show-examples all schema/roadmap.json schema/roadmap.md
+        language: script
+        entry: pre-commit.sh
         pass_filenames: false

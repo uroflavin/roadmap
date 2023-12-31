@@ -7,7 +7,7 @@
 - **`title`** *(string)*: A brief title which describes this roadmap.
 - **`description`** *(string)*: A markdown formatted description of what this roadmap represents and any additional context which may be useful to a reader.
 - **`logo`** *(object)*: A path to your project logo. This might be a good brand for your roadmap.Best fit would be some small-icon.
-  - **`filename`** *(string, required)*: Logo-File must placed where your roadmap.yml lives.
+  - **`filename`** *(string, required)*: Your logo MUST placed where your roadmap.yml lives.
   - **`copyright_notice`** *(string)*: If there is any copyright-notice, this would be rendered as alt-text.
 - **`visionstatement`** *(string)*: A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs.
 - **`authors`** *(array)*: A list of authors who were/are involved in the creation of the roadmap.

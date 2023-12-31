@@ -25,7 +25,7 @@
             "properties": {
                 "filename": {
                     "type": "string",
-                    "description": "Logo-File must placed where your roadmap.yml lives"
+                    "description": "Your logo MUST placed where your roadmap.yml lives"
                 },
                 "copyright_notice": {
                     "type": "string",
