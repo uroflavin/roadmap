@@ -6,7 +6,7 @@ authors = [
 description = "Manage your project and team road maps in YAML"
 readme = "README.md"
 requires-python = ">=3.9"
-keywords = ["roadmap", "json", "schema", "markdown", "graphviz", "two"]
+keywords = ["roadmap", "json", "schema", "markdown", "graphviz"]
 license = {text = "MIT"}
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -18,6 +18,8 @@ dependencies = [
     'pymdown-extensions=="10.5"',
     'jinja_markdown=="1.210911"',
     'MarkupSafe>="2.0"',
-    'jsonschema~="4.20.0"'
+    'jsonschema~="4.20.0"',
+    'pre-commit=="3.6.0"',
+    'jsonschema2md'
 ]
 dynamic = ["version"]
