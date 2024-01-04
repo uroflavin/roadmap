@@ -25,7 +25,7 @@
                
             }
             body {
-                width: 95%;
+                width: 98%;
             }
             h1, h2, h3, h4, h5 {
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -83,7 +83,7 @@
                 margin-top: 1rem; 
                 margin-bottom: 2rem; 
                 margin-left: 0rem; 
-                margin-right: 0rem; 
+                margin-right: 1rem; 
 
                 padding-top: 0.5rem; 
                 padding-bottom: 0.5rem; 
@@ -97,6 +97,12 @@
             }
             keyresult {
                 box-shadow: 1px 2px 2px 2px gray;
+            }
+            deliverable {
+                box-shadow: 1px 2px 2px 2px gray;
+            }
+            milestone {
+                border:1px solid gray;
             }
             keyresults {
                 border-left: 4px solid gray;
@@ -436,72 +442,178 @@
         <!-- milestones > milestone > deliverables > deliverable > state > span -->
         <!-- milestones > milestone > deliverables > deliverable > description > p -->
         <!-- milestones > milestone > deliverables > deliverable > reference > a -->
+        <style>
 
-            <milestones>
-                <milestone class="left">
-                    <header>
-                        <name><h3>Milestone 1</h3></name>
-                        <state><span class="COMMITED">COMMITED</span></state> 
-                    </header>
-                    <description><p>Once we know how we want a road map file to look...</p></description>
-                    <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></reference>
-                    <deliverables>
-                        <deliverable class="TODO">
-                            <header>
-                                <name><h4>Deliverable 1</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone 1 - Deliverable 1.md</a></reference>
-                        </deliverable>
-                        <deliverable class="TODO">
-                            <header>
-                                <name><h4>Deliverable 2</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                        </deliverable>
-                        <deliverable class="TODO">
-                            <header>
-                                <name><h4>Deliverable 3</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                        </deliverable>
-                    </deliverables>
-                
-                </milestone>
+/* The actual timeline (the vertical ruler) */
+milestones {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:0;
+  
+}
 
-                <milestone class="right">
-                    <header>
-                        <name><h3>Milestone 2 with long text</h3></name>
-                        <state><span class="COMMITED">COMMITED</span></state> 
-                    </header>
-                
-                    <description><p>Once we know how we want a road map file to look, we...</p></description>
-                    <deliverables>
-                        <deliverable class="TODO">
-                            <header>
-                                <name><h4>Deliverable 1</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                        </deliverable>
-                    </deliverables>
-                </milestone>
+/* The actual timeline (the vertical ruler) */
+milestones::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: gray;
+  top: 0;
+  bottom: 0;
+  left: 49%;
+  margin: 0 auto;
+  padding:0;
+}
 
-                <milestone>
-                    <header>
-                        <name><h3>Milestone 3 with long text</h3></name>
-                        <state><span class="PLANNED">PLANNED</span></state> 
-                    </header>
-                    <description><p>Once we know how we want a road map file to look, we...</p></description> 
-                    <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
-                </milestone>
-            </milestones>
+/* Place the container to the left */
+milestone:nth-child(odd) {
+  left: 0;
+  margin-right: 54%;
+}
+
+/* Place the container to the right */
+milestone:nth-child(even){
+  left:0;
+  margin-left: 52%;
+  
+}
+
+/* Add arrows to the left container (pointing right) */
+milestone:nth-child(odd)::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  right: -10px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent var(--milestone_background);
+  top: 1rem;
+}
+
+/* Add arrows to the right container (pointing left) */
+milestone:nth-child(even)::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: -10px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent var(--milestone_background) transparent transparent;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+/* Place the timelime to the left */
+milestones::after {
+    display:none;
+  }
+
+/* Full-width containers */
+  milestone {
+    left: 0;
+    display:block;
+    margin-right: 1rem;
+    margin-left:0px;
+    
+  }
+  milestone:nth-child(odd) {
+    margin-right: 1rem;
+    margin-left:0px;
+  }
+  milestone:nth-child(even) {
+    margin-right: 1rem;
+    margin-left:0px;
+  }
+
+/* Make sure that all arrows are pointing leftwards */
+  milestone::before {
+    display:none;
+  }
+
+/* Make sure all circles are at the same spot */
+milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
+    display:none;
+  }
+
+/* Make all right containers behave like the left ones */
+  milestone:nth-child(even) {
+    left: 0%;
+    left:0;
+  margin-left: 0;
+  }
+}
+
+        </style>
+        <milestones >
+            <milestone>
+                <header>
+                    <name><h3>Milestone 1</h3></name>
+                    <state><span class="COMMITED">COMMITED</span></state> 
+                </header>
+                <description><p>Once we know how we want a road map file to look...</p></description>
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></reference>
+                <deliverables>
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable 1</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="IDEA">IDEA</span></state> 
+                        </header>
+                        <description><p>Once we know how we want a road map file to look...</p></description>
+                        <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone 1 - Deliverable 1.md</a></reference>
+                    </deliverable>
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable 2</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="IDEA">IDEA</span></state> 
+                        </header>
+                        <description><p>Once we know how we want a road map file to look...</p></description>
+                    </deliverable>
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable 3</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="IDEA">IDEA</span></state> 
+                        </header>
+                        <description><p>Once we know how we want a road map file to look...</p></description>
+                    </deliverable>
+                </deliverables>
+            
+            </milestone>
+
+            <milestone>
+                <header>
+                    <name><h3>Milestone 2 with long text</h3></name>
+                    <state><span class="COMMITED">COMMITED</span></state> 
+                </header>
+            
+                <description><p>Once we know how we want a road map file to look, we...</p></description>
+                <deliverables>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable 1</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description><p>Once we know how we want a road map file to look...</p></description>
+                    </deliverable>
+                </deliverables>
+            </milestone>
+
+            <milestone>
+                <header>
+                    <name><h3>Milestone 3 with long text</h3></name>
+                    <state><span class="PLANNED">PLANNED</span></state> 
+                </header>
+                <description><p>Once we know how we want a road map file to look, we...</p></description> 
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+            </milestone>
+        </milestones>
+        
     </body>
 </html>

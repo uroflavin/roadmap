@@ -51,7 +51,7 @@
     - [x] layout objectives as a list, this should be done via a class
     - [x] add keyresults to milestones as a timeline
     - [x] add deliverables to milestones as a list
-    - [ ] layout the milestones as a timeline, this should be done via a class
+    - [x] layout the milestones as a timeline, this should be done via a class
     - [ ] make keyresults foldable
     - [ ] make deliverables foldable
 
