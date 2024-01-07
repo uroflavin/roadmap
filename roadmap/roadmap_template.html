@@ -495,17 +495,18 @@
             }
             
             objectives {
+                position: relative;
+                display: block;
                 max-width: 1200px;
                 margin: 0;
                 padding:0;
-                display: block;
-                
             }
 
 
             /* The actual timeline (the vertical ruler) */
             milestones {
-                position: absolute;
+                position: relative;
+                display: block;
                 max-width: 1200px;
                 margin: 0;
                 padding:0;
@@ -518,8 +519,8 @@
                 position: absolute;
                 width: 6px;
                 background-color: gray;
-                top: 1rem;
-                bottom: 2rem;
+                top: 0rem;
+                bottom: 0rem;
                 left: 50%;
                 margin: 0 auto;
                 padding:0;
@@ -860,63 +861,7 @@
                 </description>   
             </item>
         </timeline>
-        <h2>Objectives</h2>
-            <objectives>
-                <objective>
-                    <header>
-                        <name><h3>Objective 1</h3></name>
-                        <state><span class="IDEA">IDEA</span></state> 
-                    </header>
-                    <description><p>Once we know how we want a road map file to look...</p></description>
-                    <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></reference>
-                    <keyresults>
-                        <keyresult data-date="R1">
-                            <header>
-                                <name><h4>Result 1</h4></name>
-                                <requirement><span class="MUST-inverted">MUST</span></requirement> 
-                                <state><span class="DONE">DONE</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Result 1.md</a></reference>
-                        </keyresult>
-                        <keyresult data-date="R2">
-                            <header>
-                                <name><h4>Result 2 with long text</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                        </keyresult>
-                        <keyresult data-date="R3">
-                            <header>
-                                <name><h4>Result 3</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                        </keyresult>
-                    </keyresults>
-                 </objective>
 
-                <objective>
-                    <header>
-                        <name><h3>Objective 2 with a longer text to check breaks</h3></name>
-                        <state><span class="COMMITED">COMMITED</span></state> 
-                    </header>
-                    <description><p>Once we know how we want a road map file to look, we...</p></description> 
-                    <keyresults>
-                        <keyresult>
-                            <header>
-                                <name><h4>Result 1</h4></name>
-                                <requirement><span class="MUST">MUST</span></requirement> 
-                                <state><span class="IDEA">IDEA</span></state> 
-                            </header>
-                            <description><p>Once we know how we want a road map file to look...</p></description>
-                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 2 - Result 1.md</a></reference>
-                        </keyresult>
-                    </keyresults>
-                </objective>
-            </objectives>
         <h2>Milestones</h2>
         <milestones >
             <milestone>
@@ -1674,5 +1619,63 @@
                 </deliverables>
             </milestone>
         </milestones> 
+
+        <h2>Objectives</h2>
+            <objectives>
+                <objective>
+                    <header>
+                        <name><h3>Objective 1</h3></name>
+                        <state><span class="IDEA">IDEA</span></state> 
+                    </header>
+                    <description><p>Once we know how we want a road map file to look...</p></description>
+                    <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></reference>
+                    <keyresults>
+                        <keyresult data-date="R1">
+                            <header>
+                                <name><h4>Result 1</h4></name>
+                                <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                                <state><span class="DONE">DONE</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Result 1.md</a></reference>
+                        </keyresult>
+                        <keyresult data-date="R2">
+                            <header>
+                                <name><h4>Result 2 with long text</h4></name>
+                                <requirement><span class="MUST">MUST</span></requirement> 
+                                <state><span class="IDEA">IDEA</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                        </keyresult>
+                        <keyresult data-date="R3">
+                            <header>
+                                <name><h4>Result 3</h4></name>
+                                <requirement><span class="MUST">MUST</span></requirement> 
+                                <state><span class="IDEA">IDEA</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                        </keyresult>
+                    </keyresults>
+                 </objective>
+
+                <objective>
+                    <header>
+                        <name><h3>Objective 2 with a longer text to check breaks</h3></name>
+                        <state><span class="COMMITED">COMMITED</span></state> 
+                    </header>
+                    <description><p>Once we know how we want a road map file to look, we...</p></description> 
+                    <keyresults>
+                        <keyresult>
+                            <header>
+                                <name><h4>Result 1</h4></name>
+                                <requirement><span class="MUST">MUST</span></requirement> 
+                                <state><span class="IDEA">IDEA</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 2 - Result 1.md</a></reference>
+                        </keyresult>
+                    </keyresults>
+                </objective>
+            </objectives>
     </body>
 </html>

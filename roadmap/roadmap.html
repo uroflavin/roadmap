@@ -495,17 +495,18 @@ deliverable::before {
 }
 
 objectives {
+    position: relative;
+    display: block;
     max-width: 1200px;
     margin: 0;
     padding:0;
-    display: block;
-    
 }
 
 
 /* The actual timeline (the vertical ruler) */
 milestones {
-    position: absolute;
+    position: relative;
+    display: block;
     max-width: 1200px;
     margin: 0;
     padding:0;
@@ -518,8 +519,8 @@ milestones::after {
     position: absolute;
     width: 6px;
     background-color: gray;
-    top: 1rem;
-    bottom: 2rem;
+    top: 0rem;
+    bottom: 0rem;
     left: 50%;
     margin: 0 auto;
     padding:0;
@@ -824,182 +825,6 @@ The goal is to make this as easy as possible for humans to read and reason about
                     </item>
                 
             </timeline>
-    <h2>Objectives</h2>
-        <objectives>
-            
-                
-                <objective id="objective-1">
-                    <header>
-                        <name><h3>We provide a single, universal, schema for high-level planning</h3></name>
-                        </header>
-                    <description>
-                        <p>The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
-The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p>
-                    </description>
-                    
-                        <reference>
-                            <a class="card-link" target="_blank" href="https://json-schema.org/">see json-schema.org</a>
-                        </reference>
-                    
-                        <keyresults>
-                            
-                                
-                                <keyresult id="objective-1-keyresult-1" data-date="R1">
-                                    <header>
-                                        <name><h4>Provide a schema defintion</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MUST-inverted">MUST</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="DONE">DONE</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>Develop a schema that fulfills the main requirements of the objective</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
-                                        </reference>
-                                    </keyresult>
-                            </keyresults>
-                    </objective>
-            
-                
-                <objective id="objective-2">
-                    <header>
-                        <name><h3>We provide official tooling for most common use cases</h3></name>
-                        </header>
-                    <description>
-                        <p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
-This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p>
-                    </description>
-                    
-                        <keyresults>
-                            
-                                
-                                <keyresult id="objective-2-keyresult-1" data-date="R1">
-                                    <header>
-                                        <name><h4>Roadmap as Markdown</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MUST-inverted">MUST</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="DONE">DONE</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>We should be able to generate some markdown out of roadmap.yml</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md">see Markdown-Template</a>
-                                        </reference>
-                                    </keyresult>
-                            
-                                
-                                <keyresult id="objective-2-keyresult-2" data-date="R2">
-                                    <header>
-                                        <name><h4>Roadmap as HTML</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MUST-inverted">MUST</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="DONE">DONE</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>We should be able to generate some html out of roadmap.yml</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html">see HTML-Template</a>
-                                        </reference>
-                                    </keyresult>
-                            
-                                
-                                <keyresult id="objective-2-keyresult-3" data-date="R3">
-                                    <header>
-                                        <name><h4>Roadmap as Graph</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MAY-inverted">MAY</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="DONE">DONE</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>We should be able to generate some dot out of roadmap.yml</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot">see DOT-Template</a>
-                                        </reference>
-                                    </keyresult>
-                            </keyresults>
-                    </objective>
-            
-                
-                <objective id="objective-3">
-                    <header>
-                        <name><h3>We have exceptional documentation</h3></name>
-                        </header>
-                    <description>
-                        <p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
-Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p>
-                    </description>
-                    
-                        <keyresults>
-                            
-                                
-                                <keyresult id="objective-3-keyresult-1" data-date="R1">
-                                    <header>
-                                        <name><h4>Awesome README</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MUST">MUST</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="DOING">DOING</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>We need to complete our README explaining the purpose of this project and giving some basic examples of its use.</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
-                                        </reference>
-                                    </keyresult>
-                            
-                                
-                                <keyresult id="objective-3-keyresult-2" data-date="R2">
-                                    <header>
-                                        <name><h4>Complete examples in schema-definition</h4></name>
-                                        
-                                            <requirement>
-                                                <span class="MAY">MAY</span>
-                                            </requirement> 
-                                        <state>
-                                            <span class="TODO">TODO</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        <p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p>
-                                    </description>
-                                    
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see schema/roadmap.json</a>
-                                        </reference>
-                                    </keyresult>
-                            </keyresults>
-                    </objective>
-            </objectives>
-
     
         <h2>Milestones</h2>
             <milestones >
@@ -1390,7 +1215,7 @@ The goal here is to produce something which is easy and pleasurable to use, whic
                                     
                                     
                                         
-                                    <deliverable id="milestone-6-deliverable-1" class="DONE">
+                                    <deliverable id="milestone-6-deliverable-1" class="TODO">
                                         <header>
                                             <name><h4>Deliverable 1</h4></name>
                                             
@@ -1398,7 +1223,7 @@ The goal here is to produce something which is easy and pleasurable to use, whic
                                                     <span class="MUST">MUST</span>
                                                 </requirement>
                                             <state>
-                                                <span class="DONE">DONE</span>
+                                                <span class="TODO">TODO</span>
                                             </state> 
                                         </header>
                                         <description>
@@ -1449,5 +1274,180 @@ This renderer is going to form the basis for our user flows, including acting as
                                 </deliverables>
                         </milestone>
                 </milestones>
-    </body>
+    <h2>Objectives</h2>
+        <objectives>
+            
+                
+                <objective id="objective-1">
+                    <header>
+                        <name><h3>We provide a single, universal, schema for high-level planning</h3></name>
+                        </header>
+                    <description>
+                        <p>The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
+The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p>
+                    </description>
+                    
+                        <reference>
+                            <a class="card-link" target="_blank" href="https://json-schema.org/">see json-schema.org</a>
+                        </reference>
+                    
+                        <keyresults>
+                            
+                                
+                                <keyresult id="objective-1-keyresult-1" data-date="R1">
+                                    <header>
+                                        <name><h4>Provide a schema defintion</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MUST-inverted">MUST</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="DONE">DONE</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>Develop a schema that fulfills the main requirements of the objective</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
+                                        </reference>
+                                    </keyresult>
+                            </keyresults>
+                    </objective>
+            
+                
+                <objective id="objective-2">
+                    <header>
+                        <name><h3>We provide official tooling for most common use cases</h3></name>
+                        </header>
+                    <description>
+                        <p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
+This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p>
+                    </description>
+                    
+                        <keyresults>
+                            
+                                
+                                <keyresult id="objective-2-keyresult-1" data-date="R1">
+                                    <header>
+                                        <name><h4>Roadmap as Markdown</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MUST-inverted">MUST</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="DONE">DONE</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>We should be able to generate some markdown out of roadmap.yml</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md">see Markdown-Template</a>
+                                        </reference>
+                                    </keyresult>
+                            
+                                
+                                <keyresult id="objective-2-keyresult-2" data-date="R2">
+                                    <header>
+                                        <name><h4>Roadmap as HTML</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MUST-inverted">MUST</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="DONE">DONE</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>We should be able to generate some html out of roadmap.yml</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html">see HTML-Template</a>
+                                        </reference>
+                                    </keyresult>
+                            
+                                
+                                <keyresult id="objective-2-keyresult-3" data-date="R3">
+                                    <header>
+                                        <name><h4>Roadmap as Graph</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MAY-inverted">MAY</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="DONE">DONE</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>We should be able to generate some dot out of roadmap.yml</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot">see DOT-Template</a>
+                                        </reference>
+                                    </keyresult>
+                            </keyresults>
+                    </objective>
+            
+                
+                <objective id="objective-3">
+                    <header>
+                        <name><h3>We have exceptional documentation</h3></name>
+                        </header>
+                    <description>
+                        <p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p>
+                    </description>
+                    
+                        <keyresults>
+                            
+                                
+                                <keyresult id="objective-3-keyresult-1" data-date="R1">
+                                    <header>
+                                        <name><h4>Awesome README</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MUST">MUST</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="DOING">DOING</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>We need to complete our README explaining the purpose of this project and giving some basic examples of its use.</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
+                                        </reference>
+                                    </keyresult>
+                            
+                                
+                                <keyresult id="objective-3-keyresult-2" data-date="R2">
+                                    <header>
+                                        <name><h4>Complete examples in schema-definition</h4></name>
+                                        
+                                            <requirement>
+                                                <span class="MAY">MAY</span>
+                                            </requirement> 
+                                        <state>
+                                            <span class="TODO">TODO</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        <p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p>
+                                    </description>
+                                    
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see schema/roadmap.json</a>
+                                        </reference>
+                                    </keyresult>
+                            </keyresults>
+                    </objective>
+            </objectives>
+</body>
 </html>

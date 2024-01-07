@@ -487,17 +487,18 @@ deliverable::before {
 }
 
 objectives {
+    position: relative;
+    display: block;
     max-width: 1200px;
     margin: 0;
     padding:0;
-    display: block;
-    
 }
 
 
 /* The actual timeline (the vertical ruler) */
 milestones {
-    position: absolute;
+    position: relative;
+    display: block;
     max-width: 1200px;
     margin: 0;
     padding:0;
@@ -510,8 +511,8 @@ milestones::after {
     position: absolute;
     width: 6px;
     background-color: gray;
-    top: 1rem;
-    bottom: 2rem;
+    top: 0rem;
+    bottom: 0rem;
     left: 50%;
     margin: 0 auto;
     padding:0;

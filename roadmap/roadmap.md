@@ -156,7 +156,7 @@ GraphViz is great, but being able to see things like the description of your del
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.
 
-#### ~~📦 **MUST::DONE** | Web Renderer~~
+#### 📦 **MUST::TODO** | Web Renderer
 The most important part of this milestone is the development of a web based renderer which can present a road map file. 
 This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
 
