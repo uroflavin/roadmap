@@ -6,26 +6,70 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Roadmap for roadmap.py</title>
         <style>
+            /* Print Style */
+            @page {
+            size: A4;
+            }
+            /* Color Definitions 
+             * TODO: Add more color definitions to make it themeable
+             */
             :root {
+                
                 --milestone_background: rgb(226, 225, 225);
-                --objective_background: white;
-                --keyresult_background: rgb(226, 225, 225);
-                --keyresults_background: white;
+                --milestone_boxshadow: gray;
+                --milestone_arrow: #CB6262;
+                
+
                 --deliverable_background: white;
-                --link_color: #277585;
+                --deliverable_boxshadow: gray;
+
+                --objective_background: white;
+                --objective_boxshadow: gray;
+
+                --keyresults_background: white;
+                --keyresults_timeline_color: gray;
+                --keyresults_circle_border_color: gray;
+                --keyresults_circle_fill_color: #444;
+
+                --keyresult_background: rgb(226, 225, 225);
+                --keyresult_boxshadow: gray;
+                
+                --keyresult_date_underline: gray;
+                
+                
+                --link_color: #209c41;
                 --link_color_hover: #bf4aaa ;
+                --link_color_visited: #203d9c;
+                
                 --color_todo: #888;
                 --color_doing: #63B2EB; ;
-                --color_done: #3eaf7c;
+                --color_done: #487838;
                 --color_skip: #F65BD2;
+
+                --color_state_todo: var(--color_todo);
+                --color_state_idea: var(--color_todo);
+                --color_state_planned: #E0AF2F;
+                --color_state_commited: #63B2EB;
+                --color_state_doing: var(--color_doing);
+                --color_state_reached: var(--color_done);
+                --color_state_achieved: var(--color_done);
+                --color_state_done: var(--color_done);
+                --color_state_skip: var(--color_skip);
+                --color_state_must: #B81D13;
+                --color_state_should: #EFB700;
+                --color_state_may: #008450;
+                
+                --color_state__text: white;
                 
             }
+            
             html {
                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
                
             }
             body {
-                width: 98%;
+                margin-right: 1rem;
+                margin-left: 1rem;
             }
             h1, h2, h3, h4, h5 {
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -46,6 +90,7 @@
             h2 {
                 font-size: 1.5rem;
                 font-weight: normal;
+                break-before:page;
             }
 
             h3 {
@@ -57,7 +102,23 @@
                 font-size: 0.9rem;
                 font-weight: bold;
             }
+            h5 {
+                font-size: 0.8rem;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            h6 {
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
             
+            p {
+                margin:0;
+                margin-bottom:1rem;
+                padding: 0;
+                font-size: 0.9rem;
+            }
+
             a {
                 text-decoration: none;
                 color: var(--link_color);
@@ -67,14 +128,18 @@
                 color: var(--link_color_hover);
                 text-decoration: underline dotted;
             }
-
-            p {
-                margin:0;
-                margin-bottom:1rem;
-                padding: 0;
-                font-size: 0.9rem;
+            a:visited {
+                color: var(--link_color_visited);
+                text-decoration: underline dotted;
             }
-
+            a:visited:hover {
+                color: var(--link_color_hover);
+            }
+            p > a {
+                text-decoration: underline dotted;
+            }
+            
+            
             objective, milestone { 
                 display: block;
                 border-radius: 5px;
@@ -93,19 +158,19 @@
             }
 
             objective  {
-                box-shadow: 1px 2px 1px 2px gray;
+                box-shadow: 1px 2px 1px 2px var(--objective_boxshadow);
             }
             keyresult {
-                box-shadow: 1px 2px 2px 2px gray;
+                box-shadow: 1px 2px 2px 2px var(--keyresult_boxshadow);
             }
             deliverable {
-                box-shadow: 1px 2px 2px 2px gray;
+                box-shadow: 1px 2px 2px 2px var(--deliverable_boxshadow);
             }
             milestone {
                 border:1px solid gray;
             }
             keyresults {
-                border-left: 4px solid gray;
+                border-left: 4px solid var(--keyresults_circle_border_color);
                 border-bottom-right-radius: 4px;
                 border-top-right-radius: 4px;
                 background: var(--keyresults_background);
@@ -127,15 +192,15 @@
                 font-size: .9rem;
                 font-weight: bold;
                 opacity: .7;
-                border-bottom: 1px solid gray;
+                border-bottom: 1px solid var(--keyresult_date_underline);
             
             }
             keyresult::after {
                 position: absolute;
                 display: block;
-                box-shadow: 0 0 0 0.2rem gray;
+                box-shadow: 0 0 0 0.2rem var(--keyresults_circle_border_color);
                 left: -2.5rem;
-                background: #444;
+                background: var(--keyresults_circle_fill_color);
                 border-radius: 50%;
                 height: 11px;
                 width: 11px;
@@ -154,15 +219,12 @@
                 margin-left: 0rem; 
                 margin-right: 0rem; 
 
-                padding-top: 0.5rem; 
+                padding-top: 1rem; 
                 padding-bottom: 0.2rem; 
                 padding-left: 0.8rem; 
                 padding-right: 0.5rem; 
             }
 
-            
-           
-            
             objective {
                 background: var(--objective_background);
             }
@@ -173,10 +235,12 @@
 
             keyresult {
                 background: var(--keyresult_background);
+                page-break-inside: avoid;
             }
 
             deliverable {
                 background: var(--deliverable_background);
+                page-break-inside: avoid;
             }
 
             objective > header, milestone > header {
@@ -189,19 +253,18 @@
                 justify-content: space-between;
                 padding-top: 0.2rem;
                 padding-bottom: 0.2rem;
-                
-                > name {
-                    order: 1;
-                    display: block;
-                    margin-bottom:0.2rem;
+            }
+            
+            header > name {
+                order: 1;
+                display: block;
+                margin-bottom:0.2rem;
+            }
 
-                }
-
-                > state { 
-                    order: 2;
-                    font-size: 0.9rem;
-                    margin-bottom:0.2rem;
-                }
+            header> state { 
+                order: 2;
+                font-size: 0.9rem;
+                margin-bottom:0.2rem;
             }
             reference {
                 display: block; 
@@ -256,83 +319,158 @@
                     padding-left: 0.2rem;
                     padding-right: 0.2rem;
                     border-radius: 0.25rem;
+                    border: 1px solid var(--color_state_todo);
+                    background-color: var(--color_state_todo);;
+                    color: var(--color_state__text);
                 }
                 
+                
+                .TODO {
+                    border: 1px solid var(--color_state_todo);
+                    background-color: var(--color_state_todo);
+                    color: var(--color_state__text);
+                }
+                .TODO-inverted {
+                    border: 1px solid var(--color_state_todo);;
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_todo);
+                }
 
-                .TODO, .IDEA {
-                    border: 1px solid #888;
-                    background-color: #888;
-                    color: white;
+                .IDEA {
+                    border: 1px solid var(--color_state_idea);
+                    background-color: var(--color_state_idea);
+                    color: var(--color_state__text);
+                }
+                .IDEA-inverted {
+                    border: 1px solid var(--color_state_idea);;
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_idea);
+                }
+
+                .PLANNED {
+                    border: 1px solid var(--color_state_planned);
+                    background-color: var(--color_state_planned);
+                    color: var(--color_state__text);
+                }
+                .PLANNED-inverted {
+                    border: 1px solid var(--color_state_planned);;
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_planned);;
                 }
                 
-                .TODO-inverted, .IDEA-inverted {
-                    border: 1px solid #888;
-                    background-color: white;
-                    color: #888;
-                }
-                .PLANNED {
-                    border: 1px solid #E0AF2F;
-                    background-color: #E0AF2F;
-                    color: white;
-                    color: white;
-                }
                 .COMMITED {
-                    border: 1px solid #63B2EB;
-                    background-color: #63B2EB;
-                    color: white;
+                    border: 1px solid var(--color_state_commited);
+                    background-color: var(--color_state_commited);
+                    color: var(--color_state__text);
                 }
+                .COMMITED-inverted {
+                    border: 1px solid var(--color_state_commited);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_commited);
+                }
+                
                 .DOING {
-                    border: 1px solid #63B2EB;
-                    background-color: #63B2EB;
-                    color: white;
+                    border: 1px solid var(--color_state_doing);
+                    background-color: var(--color_state_doing);
+                    color: var(--color_state__text);
                 }
-                .DOING::before {
-                    background-color: #3EAF7C;
+                .DOING-inverted {
+                    border: 1px solid var(--color_state_doing);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_doing);
                 }
-                .REACHED, .ACHIEVED, .DONE{
-                    border: 1px solid #3eaf7c;
-                    background-color: white;
-                    color: #3eaf7c;
+                
+                .REACHED {
+                    border: 1px solid var(--color_state_reached);
+                    background-color: var(--color_state_reached);
+                    color: var(--color_state__text);
                 }
+                .REACHED-inverted {
+                    border: 1px solid var(--color_state_reached);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_reached);
+                }
+
+                .ACHIEVED {
+                    border: 1px solid var(--color_state_achieved);
+                    background-color: var(--color_state_achieved);
+                    color: var(--color_state__text);
+                }
+                .ACHIEVED-inverted {
+                    border: 1px solid var(--color_state_achieved);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_achieved);
+                }
+
+                .DONE {
+                    border: 1px solid var(--color_state_done);
+                    background-color: var(--color_state_done);
+                    color: var(--color_state__text);
+                }
+                .DONE-inverted {
+                    border: 1px solid var(--color_state_done);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_done);
+                }
+
                 .SKIP {
-                    border: 1px solid #F65BD2;
-                    background-color: white;
-                    color: #F65BD2;
+                    border: 1px solid var(--color_state_skip);
+                    background-color: var(--color_state_skip);
+                    color: var(--color_state__text);
                 }
+                .SKIP-inverted {
+                    border: 1px solid var(--color_state_skip);
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_skip);
+                }
+
                 .MAY {
-                    background-color: #3ABDE0;  
-                    border: 1px solid #3ABDE0;
-                    color:white;
+                    background-color: var(--color_state_may);  
+                    border: 1px solid var(--color_state_may);
+                    color: var(--color_state__text);
                 }
                 .MAY-inverted {
-                    background-color: white;
-                    border: 1px solid #3ABDE0;
-                    color: #3ABDE0
+                    background-color: var(--color_state__text);
+                    border: 1px solid var(--color_state_may);
+                    color: var(--color_state_may);
                 }
 
                 .MUST {
-                    background-color: #E06446;
-                    border: 1px solid #E06446;
-                    color: white;
+                    background-color: var(--color_state_must);
+                    border: 1px solid var(--color_state_must);
+                    color: var(--color_state__text);
                 }
                 .MUST-inverted {
-                    background-color: white;
-                    border: 1px solid #E06446;
-                    color: #E06446;
+                    background-color: var(--color_state__text);
+                    border: 1px solid var(--color_state_must);
+                    color: var(--color_state_must);
                 }
 
                 .SHOULD {
-                    background-color: #E0AF2F;   
-                    border: 1px solid #E0AF2F;
-                    color: white;
+                    background-color: var(--color_state_should);   
+                    border: 1px solid var(--color_state_should);
+                    color: var(--color_state__text);
                 }
 
                 .SHOULD-inverted {
-                    background-color: white;   
-                    color: #E0AF2F;
-                    border: 1px solid #E0AF2F;
+                    background-color: var(--color_state__text);
+                    color: var(--color_state_should);
+                    border: 1px solid var(--color_state_should);
                 }
             }
+            .TODO::before,.TODO-inverted::before {
+                background-color: var(--color_todo);
+            }
+            .DOING::before, .DOING-inverted::before {
+                background-color: var(--color_doing);
+            }
+            .SKIP::before, .SKIP-inverted::before {
+                background-color: var(--color_skip);
+            }
+            .DONE::before, .DONE-inverted::before {
+                background-color: var(--color_done);
+            }
+
             deliverable::before {
                 position: absolute;
                 display: block;
@@ -345,23 +483,163 @@
                 background-color: var(--color_todo);
             }
             
-            /* 
-             *
-             *      IDEA -> TODO -> DOING -> DONE
-             *      **** -> SKIP
-             * 
-             */
-            .DONE::before {
-                background-color: var(--color_done);
+            objectives {
+                max-width: 1200px;
+                margin: 0;
+                padding:0;
+                display: block;
+                margin-right: 1rem;
             }
-            .TODO::before {
-                background-color: var(--color_todo);
+
+
+            /* The actual timeline (the vertical ruler) */
+            milestones {
+                position: absolute;
+                max-width: 1200px;
+                margin: 0;
+                padding:0;
+                display: block;
+                margin-right: 1rem;
+                width: 97%;
             }
-            .DOING::before {
-                background-color: var(--color_doing);
+
+            /* The actual timeline (the vertical ruler) */
+            milestones::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                background-color: gray;
+                top: 1rem;
+                bottom: 2rem;
+                left: 50%;
+                margin: 0 auto;
+                padding:0;
             }
-            .SKIP::before {
-                background-color: var(--color_skip);
+
+            /* Place the container to the left */
+            milestone:nth-child(odd) {
+                left: 0;
+                margin-right: 53%;
+            }
+
+            /* Place the container to the right */
+            milestone:nth-child(even){
+                left:0;
+                margin-left: 54%;
+            
+            }
+
+            /* Add arrows to the left container (pointing right) */
+            milestone:nth-child(odd)::before {
+                content: " ";
+                height: 0;
+                position: absolute;
+                right: -10px;
+                border: medium solid white;
+                border-width: 10px 0 10px 10px;
+                border-color: transparent transparent transparent var(--milestone_arrow);
+                top: 0.5rem;
+            }
+
+            /* Add arrows to the right container (pointing left) */
+            milestone:nth-child(even)::before {
+                content: " ";
+                height: 0;
+                position: absolute;
+                top: 0.5rem;
+                width: 0;
+                z-index: 1;
+                left: -10px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--milestone_arrow) transparent transparent;
+            }
+            /* Media queries - Responsive timeline on screens less than 600px wide */
+            @media screen and (max-width: 600px) {
+            /* Place the timelime to the left */
+            milestones::after {
+                display:none;
+            }
+
+            /* Full-width containers */
+            milestone {
+                left: 0;
+                display:block;
+                margin-right: 1rem;
+                margin-left:0px;
+                width: 90%;
+            }
+            milestone:nth-child(odd) {
+                margin-right: 1rem;
+                margin-left:0px;
+            }
+            milestone:nth-child(even) {
+                margin-right: 1rem;
+                margin-left:0px;
+            }
+
+            /* Make sure that all arrows are pointing leftwards */
+            milestone::before {
+                display:none;
+            }
+
+            /* Make sure all circles are at the same spot */
+            milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
+                display:none;
+            }
+
+            /* Make all right containers behave like the left ones */
+            milestone:nth-child(even) {
+                left: 0%;
+                left:0;
+                margin-left: 0;
+            }
+            }
+            /* Media queries - Responsive timeline on screens less than 600px wide */
+            @media print {
+            /* Place the timelime to the left */
+            milestones::after {
+                display:none;
+            }
+
+            /* Full-width containers */
+            milestone {
+                left: 0;
+                display:block;
+                margin-right: 1rem;
+                margin-left:0px;
+                
+            }
+            milestone:nth-child(odd) {
+                margin-right: 1rem;
+                margin-left:0px;
+            }
+            milestone:nth-child(even) {
+                margin-right: 1rem;
+                margin-left:0px;
+            }
+
+            /* Make sure that all arrows are pointing leftwards */
+            milestone::before {
+                display:none;
+            }
+
+            /* Make sure all circles are at the same spot */
+            milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
+                display:none;
+            }
+
+            /* Make all right containers behave like the left ones */
+            milestone:nth-child(even) {
+                left: 0%;
+                left:0;
+                margin-left: 0;
+            }
+            }
+
+            description > ul {
+                padding-left:1rem;
+                list-style: circle;
             }
         </style>
     </head>
@@ -371,42 +649,40 @@
         <h2>Objectives</h2>
             <objectives>
                 <objective>
-                    <header class="accordion">
+                    <header>
                         <name><h3>Objective 1</h3></name>
                         <state><span class="IDEA">IDEA</span></state> 
                     </header>
-                    <div class="panel">
-                        <description><p>Once we know how we want a road map file to look...</p></description>
-                        <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></reference>
-                        <keyresults>
-                            <keyresult data-date="R1">
-                                <header>
-                                    <name><h4>Result 1</h4></name>
-                                    <requirement><span class="MUST-inverted">MUST</span></requirement> 
-                                    <state><span class="DONE">DONE</span></state> 
-                                </header>
-                                <description><p>Once we know how we want a road map file to look...</p></description>
-                                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Result 1.md</a></reference>
-                            </keyresult>
-                            <keyresult data-date="R2">
-                                <header>
-                                    <name><h4>Result 2 with long text</h4></name>
-                                    <requirement><span class="MUST">MUST</span></requirement> 
-                                    <state><span class="IDEA">IDEA</span></state> 
-                                </header>
-                                <description><p>Once we know how we want a road map file to look...</p></description>
-                            </keyresult>
-                            <keyresult data-date="R3">
-                                <header>
-                                    <name><h4>Result 3</h4></name>
-                                    <requirement><span class="MUST">MUST</span></requirement> 
-                                    <state><span class="IDEA">IDEA</span></state> 
-                                </header>
-                                <description><p>Once we know how we want a road map file to look...</p></description>
-                            </keyresult>
-                        </keyresults>
-                    </div>
-                </objective>
+                    <description><p>Once we know how we want a road map file to look...</p></description>
+                    <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></reference>
+                    <keyresults>
+                        <keyresult data-date="R1">
+                            <header>
+                                <name><h4>Result 1</h4></name>
+                                <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                                <state><span class="DONE">DONE</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                            <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Result 1.md</a></reference>
+                        </keyresult>
+                        <keyresult data-date="R2">
+                            <header>
+                                <name><h4>Result 2 with long text</h4></name>
+                                <requirement><span class="MUST">MUST</span></requirement> 
+                                <state><span class="IDEA">IDEA</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                        </keyresult>
+                        <keyresult data-date="R3">
+                            <header>
+                                <name><h4>Result 3</h4></name>
+                                <requirement><span class="MUST">MUST</span></requirement> 
+                                <state><span class="IDEA">IDEA</span></state> 
+                            </header>
+                            <description><p>Once we know how we want a road map file to look...</p></description>
+                        </keyresult>
+                    </keyresults>
+                 </objective>
 
                 <objective>
                     <header>
@@ -427,127 +703,7 @@
                     </keyresults>
                 </objective>
             </objectives>
-        
         <h2>Milestones</h2>
-
-        <!-- milestones -->
-        <!-- milestones > milestone -->
-        <!-- milestones > milestone > name > h3 -->
-        <!-- milestones > milestone > state > span -->
-        <!-- milestones > milestone > description > p -->
-        <!-- milestones > milestone > reference > a -->
-        <!-- milestones > milestone > deliverables -->
-        <!-- milestones > milestone > deliverables > deliverable > title > h4 -->
-        <!-- milestones > milestone > deliverables > deliverable > requirement > span -->
-        <!-- milestones > milestone > deliverables > deliverable > state > span -->
-        <!-- milestones > milestone > deliverables > deliverable > description > p -->
-        <!-- milestones > milestone > deliverables > deliverable > reference > a -->
-        <style>
-
-/* The actual timeline (the vertical ruler) */
-milestones {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding:0;
-  
-}
-
-/* The actual timeline (the vertical ruler) */
-milestones::after {
-  content: '';
-  position: absolute;
-  width: 6px;
-  background-color: gray;
-  top: 0;
-  bottom: 0;
-  left: 49%;
-  margin: 0 auto;
-  padding:0;
-}
-
-/* Place the container to the left */
-milestone:nth-child(odd) {
-  left: 0;
-  margin-right: 54%;
-}
-
-/* Place the container to the right */
-milestone:nth-child(even){
-  left:0;
-  margin-left: 52%;
-  
-}
-
-/* Add arrows to the left container (pointing right) */
-milestone:nth-child(odd)::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  right: -10px;
-  border: medium solid white;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent var(--milestone_background);
-  top: 1rem;
-}
-
-/* Add arrows to the right container (pointing left) */
-milestone:nth-child(even)::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  left: -10px;
-  border: medium solid white;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent var(--milestone_background) transparent transparent;
-}
-
-/* Media queries - Responsive timeline on screens less than 600px wide */
-@media screen and (max-width: 600px) {
-/* Place the timelime to the left */
-milestones::after {
-    display:none;
-  }
-
-/* Full-width containers */
-  milestone {
-    left: 0;
-    display:block;
-    margin-right: 1rem;
-    margin-left:0px;
-    
-  }
-  milestone:nth-child(odd) {
-    margin-right: 1rem;
-    margin-left:0px;
-  }
-  milestone:nth-child(even) {
-    margin-right: 1rem;
-    margin-left:0px;
-  }
-
-/* Make sure that all arrows are pointing leftwards */
-  milestone::before {
-    display:none;
-  }
-
-/* Make sure all circles are at the same spot */
-milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
-    display:none;
-  }
-
-/* Make all right containers behave like the left ones */
-  milestone:nth-child(even) {
-    left: 0%;
-    left:0;
-  margin-left: 0;
-  }
-}
-
-        </style>
         <milestones >
             <milestone>
                 <header>
@@ -557,13 +713,20 @@ milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
                 <description><p>Once we know how we want a road map file to look...</p></description>
                 <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></reference>
                 <deliverables>
-                    <deliverable class="TODO">
+                    <deliverable class="DOING">
                         <header>
                             <name><h4>Deliverable 1</h4></name>
                             <requirement><span class="MUST">MUST</span></requirement> 
-                            <state><span class="IDEA">IDEA</span></state> 
+                            <state><span class="DOING">DOING</span></state> 
                         </header>
-                        <description><p>Once we know how we want a road map file to look...</p></description>
+                        <description>
+                            <p>Once we know how we want a road map file to look...</p>
+                            <h5>Check it out</h5>
+                            <ul>
+                                <li>Item 1 as a list with some infos</li>
+                                <li>Item 2 as a list with some infos</li>
+                            </ul>
+                        </description>
                         <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone 1 - Deliverable 1.md</a></reference>
                     </deliverable>
                     <deliverable class="TODO">
@@ -592,28 +755,710 @@ milestone:nth-child(odd)::after, milestone:nth-child(even)::after {
                     <state><span class="COMMITED">COMMITED</span></state> 
                 </header>
             
-                <description><p>Once we know how we want a road map file to look, we...</p></description>
+                <description class="foldable">
+                    <p><a href="#lorem">Lorem ipsum</a> dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+                    <p>Duis <a href="#test">autem vel</a> eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
+                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </p>
+                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                    <p>Duis autem vel eum iriure dolor in hendrerit.</p>
+                </description>
                 <deliverables>
                     <deliverable class="DONE">
                         <header>
                             <name><h4>Deliverable 1</h4></name>
                             <requirement><span class="MUST-inverted">MUST</span></requirement> 
-                            <state><span class="DONE">DONE</span></state> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
                         </header>
-                        <description><p>Once we know how we want a road map file to look...</p></description>
+                        <description>
+                            <p>Once we know how we want a road map file to look...</p>
+                            <ul>
+                                <li>Item 1 as a list with some infos</li>
+                                <li>Item 2 as a list with some infos</li>
+                            </ul>
+                        </description>
                     </deliverable>
                 </deliverables>
             </milestone>
 
             <milestone>
                 <header>
-                    <name><h3>Milestone 3 with long text</h3></name>
+                    <name><h3>IDEA with different deliverable states</h3></name>
+                    <state><span class="IDEA">IDEA</span></state> 
+                </header>
+                <description>
+                    <p>Once we know how we want a road map file to look, we...</p>
+                </description> 
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+                <deliverables>
+                    <!-- MUST -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- SHOULD -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- MAY -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                </deliverables>
+            </milestone>
+
+            <milestone>
+                <header>
+                    <name><h3>PLANNED with different deliverable states</h3></name>
                     <state><span class="PLANNED">PLANNED</span></state> 
                 </header>
-                <description><p>Once we know how we want a road map file to look, we...</p></description> 
+                <description>
+                    <p>Once we know how we want a road map file to look, we...</p>
+                </description> 
                 <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+                <deliverables>
+                    <!-- MUST -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- SHOULD -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- MAY -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                </deliverables>
             </milestone>
-        </milestones>
-        
+
+            <milestone>
+                <header>
+                    <name><h3>COMMITED with different deliverable states</h3></name>
+                    <state><span class="COMMITED">COMMITED</span></state> 
+                </header>
+                <description>
+                    <p>Once we know how we want a road map file to look, we...</p>
+                </description> 
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+                <deliverables>
+                    <!-- MUST -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MUST">MUST</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- SHOULD -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="SHOULD">SHOULD</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- MAY -->
+                    <deliverable class="TODO">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="TODO">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DOING">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="SKIP">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MAY">MAY</span></requirement> 
+                            <state><span class="DONE">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                </deliverables>
+            </milestone>
+
+            <milestone>
+                <header>
+                    <name><h3>REACHED with different deliverable states</h3></name>
+                    <state><span class="REACHED">REACHED</span></state> 
+                </header>
+                <description>
+                    <p>Once we know how we want a road map file to look, we...</p>
+                </description> 
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+                <deliverables>
+                    <!-- MUST -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- SHOULD -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- MAY -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                </deliverables>
+            </milestone>
+
+            <milestone>
+                <header>
+                    <name><h3>SKIP with different deliverable states</h3></name>
+                    <state><span class="SKIP">SKIP</span></state> 
+                </header>
+                <description>
+                    <p>Once we know how we want a road map file to look, we...</p>
+                </description> 
+                <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
+                <deliverables>
+                    <!-- MUST -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MUST-inverted">MUST</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- SHOULD -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                    <!-- MAY -->
+                    <deliverable class="TODO-inverted">
+                        <header>
+                            <name><h4>Deliverable TODO</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="TODO-inverted">TODO</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a TODO...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DOING-inverted">
+                        <header>
+                            <name><h4>Deliverable DOING</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="DOING-inverted">DOING</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DOING...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="SKIP-inverted">
+                        <header>
+                            <name><h4>Deliverable SKIP</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="SKIP-inverted">SKIP</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a SKIP...</p>
+                        </description>
+                    </deliverable>
+                    <deliverable class="DONE-inverted">
+                        <header>
+                            <name><h4>Deliverable DONE</h4></name>
+                            <requirement><span class="MAY-inverted">MAY</span></requirement> 
+                            <state><span class="DONE-inverted">DONE</span></state> 
+                        </header>
+                        <description>
+                            <p>This is a description for a DONE...</p>
+                        </description>
+                    </deliverable>
+                </deliverables>
+            </milestone>
+        </milestones> 
     </body>
 </html>

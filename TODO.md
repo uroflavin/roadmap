@@ -52,8 +52,12 @@
     - [x] add keyresults to milestones as a timeline
     - [x] add deliverables to milestones as a list
     - [x] layout the milestones as a timeline, this should be done via a class
-    - [ ] make keyresults foldable
-    - [ ] make deliverables foldable
+    - [x] make colors themeable
+    - [x] Cleanup css and protoype
+
+- [ ] Milestones: make deliverables foldable (SHOULD)
+
+- [ ] Objectives: make keyresults foldable (MAY)
 
 - [x] render roadmap as dot, and also as png for later use
     - make a template for dot
