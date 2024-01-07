@@ -86,7 +86,7 @@
                                     {% endif -%}
                                     <deliverable id="milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="{{ deliverable_state }}">
                                         <header>
-                                            <name><h4>Deliverable 1</h4></name>
+                                            <name><h4>{{ deliverable.title}}</h4></name>
                                             {% if "requirement" in deliverable %}
                                                 <requirement>
                                                     <span class="{{ deliverable.requirement}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.requirement}}</span>
