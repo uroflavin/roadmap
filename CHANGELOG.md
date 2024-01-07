@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.8] - 2024-01-07
+
+### Fix
+- missing title for deliverable in html-template
+
 ## [0.0.7] - 2024-01-07
 
 ### Added
@@ -61,3 +66,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.5]: https://github.com/uroflavin/roadmap/pull/36
 [0.0.6]: https://github.com/uroflavin/roadmap/pull/40
 [0.0.7]: https://github.com/uroflavin/roadmap/pull/41
+[0.0.8]: https://github.com/uroflavin/roadmap/pull/43
