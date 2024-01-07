@@ -108,6 +108,7 @@ milestones:
   - title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
+      We should do something for the [roadmap](https://github.com/uroflavin/roadmap), just to let us know, if the design is broken.
     state: REACHED
     reference:
           link: https://www.turing.com/blog/principles-of-software-development-guide/

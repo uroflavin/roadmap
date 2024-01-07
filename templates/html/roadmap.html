@@ -10,132 +10,160 @@
     </style>
 </head>
 <body>
-    <section role="document">
-        <section role="doc-introduction">
-            <h1 class="roadmap-title">{{ project.title }}</h1>
-            {% if "logo" in project %}
-                <img src="{{ project.logo.filename }}" alt="{{ project.logo.copyright_notice }}"/>
-            {% endif -%}
-            <div class="authors">
-                <div class="title">Authored by</div>
-                <ul>
-                {% for author in project.authors %}
-                    <li class="author">
-                        <div class="name">{{ author.name}}</div>
-                        <div class="contact">{{ author.contact}}</div>
-                    </li>
-                {% endfor %}
-                </ul>  
-            </div>
-            <p class="description">
-                {% markdown %}{{ project.description }}{% endmarkdown %}
-            </p>
-            {% if "visionstatement" in project %}
-            <h2 class="section-title">Visionstatement</h2>
-            <p class="description">
-                {% markdown %}{{ project.visionstatement }}{% endmarkdown %}
-            </p>{% endif -%}
-        </section>
-        {% if "timeline" in project %}
-        <section role="doc-notice">
-            <h2 class="section-title">Important Dates</h2>
-
-            <div class="timeline">
-            {% for timelineentry in project.timeline %}
-                <div class="timeline-item" data-date="{{ timelineentry.date }}">
-                    <h3 class="timeline-item__title">{{ timelineentry.title }}</h3>
-                    <div class="timeline-item__description">{% markdown %}{{ timelineentry.description -}}{% endmarkdown %}</div>
-                </div>
+    <h1>{{ project.title }}</h1>
+    <project>
+        {% if "logo" in project %}
+            <img src="{{ project.logo.filename }}" alt="{{ project.logo.copyright_notice }}"/>
+        {% endif -%}
+        <div class="authors">
+            <div class="title">Authored by</div>
+            <ul>
+            {% for author in project.authors %}
+                <li class="author">
+                    <div class="name">{{ author.name}}</div>
+                    <div class="contact">{{ author.contact}}</div>
+                </li>
             {% endfor %}
-            </div>
-        </section>
+            </ul>  
+        </div>
+        <description>
+            {% markdown %}{{ project.description }}{% endmarkdown %}
+        </description>
+
+        {% if "visionstatement" in project %}
+            <h2>Visionstatement</h2>
+            <description>{% markdown %}{{ project.visionstatement }}{% endmarkdown %}</description>
         {% endif -%}
-        <section role="main">
-            <h2 class="section-title">Objectives</h2>
-        {% for objective in project.objectives %}
-            {% set objective_id = loop.index %}
-            <div id="objective-{{ objective_id }}" class="objective">
-                <div class="header">
-                    <h3 class="title">{{ objective.title -}}</h3>
-                    <div class="card-state card-state-{{ objective.state}}">{{ objective.state -}}</div>
-                </div>
-                <p class="description">{% markdown %}{{ objective.description -}}{% endmarkdown %}</p>
-                <div class="footer">
-                    <div class="left">&nbsp;</div> 
-                    <div class="right">
-                        {% if "reference" in objective %}
-                            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
-                        {% endif -%}
-                    </div>
-                </div>
-                    
-                {% if "keyresults" in objective %}
-                    <div class="keyresults">
-                        {% for keyresult in objective.keyresults %}
-                                {% set keyresult_id = loop.index %}
-                                <div id="objective-{{objective_id }}-keyresult-{{ keyresult_id }}" class="keyresult" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
-                                    <div class="header">
-                                        <div class="left"><h4 class="title">{{ keyresult.title}}</h4></div>
-                                        <div class="center"></div>
-                                        <div class="right">
-                                            {% if "requirement" in keyresult %}
-                                                <div class="requirement requirement-{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</div>
-                                            {% endif -%}
-                                            <div class="state card-state-{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</div>
-                                        </div>
-                                    </div>
-                                    <p class="description">{% markdown %}{{ keyresult.description }}{% endmarkdown %}</p>
-                                    <div class="footer">
-                                        <div class="left">&nbsp;</div>
-                                        <div class="right">
-                                            {% if "reference" in keyresult %}
-                                                <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
-                                            {% endif -%}
-                                        </div>
-                                    </div>
-                                </div>
-                        {% endfor -%}
-                    </div>
-                {% endif -%}
-            
-            </div>
-            {% endfor -%}
-        {% if "milestones" in project %}
-            <h2 class="section-title">Milestones</h2>
+    </project>
+    {% if "timeline" in project %}
+        <h2>Important Dates</h2>
 
-            <div class="timeline">
-            {% for milestone in project.milestones %}
-            {% set milestone_id = loop.index %}
-                <div id="milestone-{{ milestone_id }}" class="timeline-item" data-date="M{{ milestone_id }}">
-                    <h3 class="timeline-item__title section-subtitle">{{ milestone.title}}<p class="card-state card-state-{{ milestone.state}}">{{ milestone.state}}</p></h3>
-                    <div class="timeline-item_description">
-                        {% markdown %}{{ milestone.description }}{% endmarkdown %}
-                        {% if "reference" in milestone %}
-                        <a class="card-link" target="_blank" href="{{ milestone.reference.link -}}">{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}</a>
-                        {% endif -%}
-                    </div>
-                    {% for deliverable in milestone.deliverables %}
-                        {% set deliverable_id = loop.index %}     
-                        <div id="milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="card card-{{ deliverable.state}}">
-                            <h4 class="card-title">
-                                <p class="card-state card-state-{{ deliverable.state}}">{{ deliverable.state}}</p>
-                                {{ deliverable.title }}
-                                {% if "requirement" in deliverable %}<span class="tablet tablet-{{ deliverable.requirement}}">{{ deliverable.requirement}}</span>{% endif -%}
-                            </h4>
-                            {% markdown %}{{ deliverable.description -}}{% endmarkdown %}
-
-                            {% if "reference" in deliverable %}
-                            <a class="card-link" target="_blank" href="{{ deliverable.reference.link -}}">{{ deliverable.reference.name if deliverable.reference.name != "" else deliverable.reference.link }}</a>
+            <timeline>
+                {% for timelineentry in project.timeline %}
+                    <item>
+                        <date>{{ timelineentry.date }}</date>
+                        <name><h3>{{ timelineentry.title }}</h3></name>
+                        <description>
+                            {% markdown %}{{ timelineentry.description -}}{% endmarkdown %}
+                        </description>
+                    </item>
+                {% endfor %}
+            </timeline>
+    {% endif -%}
+    <h2>Objectives</h2>
+        <objectives>
+            {% for objective in project.objectives %}
+                {% set objective_id = loop.index %}
+                <objective id="objective-{{ objective_id }}">
+                    <header>
+                        <name><h3>{{ objective.title -}}</h3></name>
+                        {% if "state" in objective %}    
+                            <state>
+                                <span class="{{ objective.state -}}">{{ objective.state -}}</span>
+                            </state>
                             {% endif -%}
-                        </div>
-                    {% endfor -%}
-                    
-                </div>
+                    </header>
+                    <description>
+                        {% markdown %}{{ objective.description -}}{% endmarkdown %}
+                    </description>
+                    {% if "reference" in objective %}
+                        <reference>
+                            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
+                        </reference>
+                    {% endif -%}
+                    {% if "keyresults" in objective %}
+                        <keyresults>
+                            {% for keyresult in objective.keyresults %}
+                                {% set keyresult_id = loop.index %}
+                                <keyresult id="objective-{{objective_id }}-keyresult-{{ keyresult_id }}" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
+                                    <header>
+                                        <name><h4>{{ keyresult.title}}</h4></name>
+                                        {% if "requirement" in keyresult %}
+                                            <requirement>
+                                                <span class="{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</span>
+                                            </requirement> 
+                                        {% endif -%}
+                                        
+                                        <state>
+                                            <span class="{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        {% markdown %}{{ keyresult.description }}{% endmarkdown %}
+                                    </description>
+                                    {% if "reference" in keyresult %}
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
+                                        </reference>
+                                    {% endif -%}
+                                </keyresult>
+                            {% endfor -%}
+                        </keyresults>
+                    {% endif -%}
+                </objective>
             {% endfor -%}
-            </div>
-        {% endif -%}
-        </section>
-    </section>
-    
+        </objectives>
+
+    {% if "milestones" in project %}
+        <h2>Milestones</h2>
+            <milestones >
+                {% for milestone in project.milestones %}
+                    {% set milestone_id = loop.index %}
+                    <milestone id="milestone-{{ milestone_id }}">
+                        <header>
+                            <name><h3>{{ milestone.title}}</h3></name>
+                            {% if "state" in milestone %}  
+                                <state>
+                                    <span class="{{ milestone.state}}">{{ milestone.state}}</span>
+                                </state> 
+                            {% endif -%}
+                        </header>
+                        <description>
+                            {% markdown %}{{ milestone.description }}{% endmarkdown %}
+                        </description>
+                        {% if "reference" in milestone %}
+                            <reference>
+                                <a class="card-link" target="_blank" href="{{ milestone.reference.link -}}">{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}</a>
+                            </reference>
+                        {% endif -%}
+
+                        {% if "deliverables" in milestone %}
+                            <deliverables>
+                                {% for deliverable in milestone.deliverables %}
+                                    {% set deliverable_id = loop.index %}
+                                    
+                                    {% if "state" in deliverable %}
+                                        {% set deliverable_state = deliverable.state %}
+                                    {% else %}
+                                        {% set deliverable_state = 'TODO' %}
+                                    {% endif -%}
+                                    <deliverable id="milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="{{ deliverable_state }}">
+                                        <header>
+                                            <name><h4>Deliverable 1</h4></name>
+                                            {% if "requirement" in deliverable %}
+                                                <requirement>
+                                                    <span class="{{ deliverable.requirement}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.requirement}}</span>
+                                                </requirement>
+                                            {% endif -%}
+                                            <state>
+                                                <span class="{{ deliverable.state}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.state}}</span>
+                                            </state> 
+                                        </header>
+                                        <description>
+                                            {% markdown %}{{ deliverable.description -}}{% endmarkdown %}
+                                        </description>
+                                        {% if "reference" in deliverable %}
+                                            <reference>
+                                                <a class="card-link" target="_blank" href="{{ deliverable.reference.link -}}">{{ deliverable.reference.name if deliverable.reference.name != "" else deliverable.reference.link }}</a>
+                                            </reference>
+                                        {% endif -%}
+                                    </deliverable>
+                                {% endfor -%}
+                            </deliverables>
+                        {% endif -%}
+                    </milestone>
+                {% endfor -%}
+            </milestones>
+    {% endif -%}    
 </body>
 </html>
