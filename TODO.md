@@ -39,3 +39,7 @@
 - [ ] Milestones: make deliverables foldable (SHOULD)
 
 - [ ] Objectives: make keyresults foldable (MAY)
+
+- [ ] HTML Template: Add Timeline-Ruler if screen < 600px
+    just now, the timeline-ruler is display:none if screensize < 600px
+    it would be nice, if we can see the marker but only leftside...

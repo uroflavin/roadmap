@@ -289,37 +289,38 @@
             keyresult > header, deliverable > header {
                 display: flex;
                 flex-direction: row;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 justify-content: flex-start;
                 align-items: flex-start;
                 justify-content: space-between;
                 padding-top: 0.2rem;
                 padding-bottom: 0.2rem;
-                
-                > name {
-                    order: 1;
-                    display: block;
-                    margin-bottom:0.2rem;
-                    flex: auto;
-                }
-                
-                
-                > requirement { 
-                    order: 2;
-                    font-size: 0.9rem;
-                    margin-bottom:0.2rem;
-                    align-items: flex-end;
-                    flex: initial;
-                }
-
-                > state { 
-                    order: 3;
-                    font-size: 0.9rem;
-                    margin-bottom:0.2rem;
-                    align-items: flex-end;
-                    flex: initial;
-                }
             }
+
+            keyresult > header > name, deliverable > header > name {
+                order: 1;
+                display: block;
+                margin-bottom:0.2rem;
+                flex: auto;
+            }
+                
+                
+            keyresult > header > requirement, deliverable > header > requirement { 
+                order: 2;
+                font-size: 0.9rem;
+                margin-bottom:0.2rem;
+                align-items: flex-end;
+                flex: initial;
+            }
+
+            keyresult > header > state, deliverable > header > state { 
+                order: 3;
+                font-size: 0.9rem;
+                margin-bottom:0.2rem;
+                align-items: flex-end;
+                flex: initial;
+            }
+            
             state, requirement {
                 > span {
                     margin:0rem;
@@ -650,6 +651,7 @@
             description > ul {
                 padding-left:1rem;
                 list-style: circle;
+                font-size: 0.9rem;
             }
 
 
@@ -768,7 +770,7 @@
                 padding-top: 0.5rem;
             }
 
-            timeline > item > description > ul,h4,h5,h6 {
+            timeline > item > description > ul,h5,h6 {
                 margin-top: 0.5rem;
                 margin-bottom: 0rem;
             }
