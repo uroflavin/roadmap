@@ -38,7 +38,7 @@
 
 - [ ] render roadmap as xls
 
-- [ ] add some stylish screen-optimized roadmap layout
+- [x] add some stylish screen-optimized roadmap layout
       prototyping is done in [prototype_roadmap_optimized.html](roadmap/prototype_roadmap_optimized.html)
       milestones follow each other, objectives stand for themselves
       or in other words:
