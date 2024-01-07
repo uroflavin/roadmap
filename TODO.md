@@ -54,6 +54,8 @@
     - [x] layout the milestones as a timeline, this should be done via a class
     - [x] make colors themeable
     - [x] Cleanup css and protoype
+    - [x] add authors to prototype
+    - [x] add timeline to prototype
 
 - [ ] Milestones: make deliverables foldable (SHOULD)
 
