@@ -58,7 +58,9 @@
     - [x] add timeline to prototype
     - [x] refactor html-template to use new layout
     - [x] test new template
-    - [ ] Cleanup: delete all unneccessary files and integrate prototype_roadmap_optimzed.html into roadmap_template.html
+    - [x] Cleanup: delete all unneccessary files and integrate prototype_roadmap_optimzed.html into roadmap_template.html
+
+- [ ] Change Order: Milestones before Objectives
 
 - [ ] add a rendered date in the template results
       this is helpful for readers to know, which roadmap-version they are looking at
