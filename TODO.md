@@ -38,7 +38,36 @@
 
 - [ ] render roadmap as xls
 
-- [ ] add some stylish screen-optimized roadmap layout
+- [x] add some stylish screen-optimized roadmap layout
+      prototyping is done in [prototype_roadmap_optimized.html](roadmap/prototype_roadmap_optimized.html)
+      milestones follow each other, objectives stand for themselves
+      or in other words:
+      - milestones are something like a timeline 
+        the deliverables of a milestone are then something like a list (each item must be done to reach milestone, no matter how)
+      - objectives are something like a list
+        and keyresults of an objective are something like a timeline (order matter: each keyresult follows another)
+    - [x] a first good step would be to structurize milestones and objectives
+    - [x] layout the objects equal (i mean the boxes :-) , no matter if its a objective or milestone
+    - [x] layout objectives as a list, this should be done via a class
+    - [x] add keyresults to milestones as a timeline
+    - [x] add deliverables to milestones as a list
+    - [x] layout the milestones as a timeline, this should be done via a class
+    - [x] make colors themeable
+    - [x] Cleanup css and protoype
+    - [x] add authors to prototype
+    - [x] add timeline to prototype
+    - [x] refactor html-template to use new layout
+    - [x] test new template
+    - [x] Cleanup: delete all unneccessary files and integrate prototype_roadmap_optimzed.html into roadmap_template.html
+
+- [ ] Change Order: Milestones before Objectives
+
+- [ ] add a rendered date in the template results
+      this is helpful for readers to know, which roadmap-version they are looking at
+
+- [ ] Milestones: make deliverables foldable (SHOULD)
+
+- [ ] Objectives: make keyresults foldable (MAY)
 
 - [x] render roadmap as dot, and also as png for later use
     - make a template for dot
