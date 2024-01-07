@@ -60,7 +60,7 @@
     - [x] test new template
     - [x] Cleanup: delete all unneccessary files and integrate prototype_roadmap_optimzed.html into roadmap_template.html
 
-- [ ] Change Order: Milestones before Objectives
+- [x] Change Order: Milestones before Objectives in HTML Template
 
 - [ ] add a rendered date in the template results
       this is helpful for readers to know, which roadmap-version they are looking at

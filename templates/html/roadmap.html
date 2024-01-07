@@ -50,59 +50,6 @@
                 {% endfor %}
             </timeline>
     {% endif -%}
-    <h2>Objectives</h2>
-        <objectives>
-            {% for objective in project.objectives %}
-                {% set objective_id = loop.index %}
-                <objective id="objective-{{ objective_id }}">
-                    <header>
-                        <name><h3>{{ objective.title -}}</h3></name>
-                        {% if "state" in objective %}    
-                            <state>
-                                <span class="{{ objective.state -}}">{{ objective.state -}}</span>
-                            </state>
-                            {% endif -%}
-                    </header>
-                    <description>
-                        {% markdown %}{{ objective.description -}}{% endmarkdown %}
-                    </description>
-                    {% if "reference" in objective %}
-                        <reference>
-                            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
-                        </reference>
-                    {% endif -%}
-                    {% if "keyresults" in objective %}
-                        <keyresults>
-                            {% for keyresult in objective.keyresults %}
-                                {% set keyresult_id = loop.index %}
-                                <keyresult id="objective-{{objective_id }}-keyresult-{{ keyresult_id }}" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
-                                    <header>
-                                        <name><h4>{{ keyresult.title}}</h4></name>
-                                        {% if "requirement" in keyresult %}
-                                            <requirement>
-                                                <span class="{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</span>
-                                            </requirement> 
-                                        {% endif -%}
-                                        
-                                        <state>
-                                            <span class="{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</span>
-                                        </state> 
-                                    </header>
-                                    <description>
-                                        {% markdown %}{{ keyresult.description }}{% endmarkdown %}
-                                    </description>
-                                    {% if "reference" in keyresult %}
-                                        <reference>
-                                            <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
-                                        </reference>
-                                    {% endif -%}
-                                </keyresult>
-                            {% endfor -%}
-                        </keyresults>
-                    {% endif -%}
-                </objective>
-            {% endfor -%}
-        </objectives>
 
     {% if "milestones" in project %}
         <h2>Milestones</h2>
@@ -165,5 +112,59 @@
                 {% endfor -%}
             </milestones>
     {% endif -%}    
+
+    <h2>Objectives</h2>
+        <objectives>
+            {% for objective in project.objectives %}
+                {% set objective_id = loop.index %}
+                <objective id="objective-{{ objective_id }}">
+                    <header>
+                        <name><h3>{{ objective.title -}}</h3></name>
+                        {% if "state" in objective %}    
+                            <state>
+                                <span class="{{ objective.state -}}">{{ objective.state -}}</span>
+                            </state>
+                            {% endif -%}
+                    </header>
+                    <description>
+                        {% markdown %}{{ objective.description -}}{% endmarkdown %}
+                    </description>
+                    {% if "reference" in objective %}
+                        <reference>
+                            <a class="card-link" target="_blank" href="{{ objective.reference.link -}}">{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}</a>
+                        </reference>
+                    {% endif -%}
+                    {% if "keyresults" in objective %}
+                        <keyresults>
+                            {% for keyresult in objective.keyresults %}
+                                {% set keyresult_id = loop.index %}
+                                <keyresult id="objective-{{objective_id }}-keyresult-{{ keyresult_id }}" data-date="{{ 'R' if 'date' not in keyresult  }}{{ keyresult.date if 'date' in keyresult else keyresult_id  }}">
+                                    <header>
+                                        <name><h4>{{ keyresult.title}}</h4></name>
+                                        {% if "requirement" in keyresult %}
+                                            <requirement>
+                                                <span class="{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</span>
+                                            </requirement> 
+                                        {% endif -%}
+                                        
+                                        <state>
+                                            <span class="{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</span>
+                                        </state> 
+                                    </header>
+                                    <description>
+                                        {% markdown %}{{ keyresult.description }}{% endmarkdown %}
+                                    </description>
+                                    {% if "reference" in keyresult %}
+                                        <reference>
+                                            <a class="card-link" target="_blank" href="{{ keyresult.reference.link -}}">{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}</a>
+                                        </reference>
+                                    {% endif -%}
+                                </keyresult>
+                            {% endfor -%}
+                        </keyresults>
+                    {% endif -%}
+                </objective>
+            {% endfor -%}
+        </objectives>
 </body>
 </html>
