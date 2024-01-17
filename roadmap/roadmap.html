@@ -497,6 +497,7 @@ deliverable::before {
     background-color: var(--color_todo);
 }
 
+
 objectives {
     position: relative;
     display: block;
@@ -778,6 +779,29 @@ timeline > item > description > ul,h5,h6 {
 }
 timeline > item > description > ul,p {
     font-size: 0.9rem;
+}
+
+/* default: left block */
+deliverable > date {
+    display: block;
+    position: absolute;
+    bottom: 0rem;
+    right: -11.5rem;
+    width: 9rem;
+    border-bottom: 0.1rem dotted grey;
+    z-index: 1;
+    font-weight: normal;
+    text-align: right;
+    color: gray;
+    font-size: 0.9rem;;
+}
+
+/* right block */
+milestone:nth-child(even)  {
+    deliverable > date {
+        left: -11.5rem;
+        text-align: left;
+    }
 }</style>
 </head>
 <body>
