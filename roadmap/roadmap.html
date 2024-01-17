@@ -187,7 +187,7 @@ keyresults {
     background: var(--keyresults_background);
     padding: 1rem 1rem 0.5rem 2rem;
     position: relative;
-    margin-left: 1rem;
+    margin-left: 7rem;
     margin-top: 0rem;
     margin-bottom: 0rem;
     display: block;
@@ -197,13 +197,15 @@ keyresult::before {
     position: absolute;
     display: block;
     left: -9rem;
-    
-    content: '';
+    top: 0.5rem;
+    content:attr(data-date);
     text-align: right;
     font-size: .9rem;
     font-weight: bold;
     opacity: .7;
     border-bottom: 1px solid var(--keyresult_date_underline);
+    min-width: 5.5rem;
+    max-width: 5.5rem;
 
 }
 keyresult::after {
@@ -320,6 +322,7 @@ keyresult > header > state, deliverable > header > state {
     align-items: flex-end;
     flex: initial;
 }
+
 state, requirement {
     > span {
         margin:0rem;
