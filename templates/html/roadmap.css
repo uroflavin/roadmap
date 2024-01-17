@@ -778,7 +778,7 @@ deliverable > date {
     display: block;
     position: absolute;
     bottom: 0rem;
-    right: -11.5rem;
+    right: -12rem;
     width: 9rem;
     border-bottom: 0.1rem dotted grey;
     z-index: 1;
@@ -791,7 +791,27 @@ deliverable > date {
 /* right block */
 milestone:nth-child(even)  {
     deliverable > date {
-        left: -11.5rem;
+        left: -12.5rem;
         text-align: left;
+    }
+}
+
+deliverable.DOING, deliverable.DOING-inverted {
+    > date {
+        color: black;
+        border-bottom-color: var(--color_doing);
+        border-bottom-style: solid;
+    }
+}
+deliverable.DONE, deliverable.DONE-inverted {
+    > date {
+        color: black;
+        border-bottom-color: var(--color_done);
+        border-bottom-style: solid;
+    }
+}
+deliverable.SKIP, deliverable.SKIP-inverted {
+    > date {
+        font-size: 0.7rem;
     }
 }

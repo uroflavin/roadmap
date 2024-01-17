@@ -786,7 +786,7 @@ deliverable > date {
     display: block;
     position: absolute;
     bottom: 0rem;
-    right: -11.5rem;
+    right: -12rem;
     width: 9rem;
     border-bottom: 0.1rem dotted grey;
     z-index: 1;
@@ -799,10 +799,31 @@ deliverable > date {
 /* right block */
 milestone:nth-child(even)  {
     deliverable > date {
-        left: -11.5rem;
+        left: -12.5rem;
         text-align: left;
     }
 }
+
+deliverable.DOING, deliverable.DOING-inverted {
+    > date {
+        color: black;
+        border-bottom-color: var(--color_doing);
+        border-bottom-style: solid;
+    }
+}
+deliverable.DONE, deliverable.DONE-inverted {
+    > date {
+        color: black;
+        border-bottom-color: var(--color_done);
+        border-bottom-style: solid;
+    }
+}
+deliverable.SKIP, deliverable.SKIP-inverted {
+    > date {
+        font-size: 0.7rem;
+    }
+}
+
         </style>
     </head>
     <body>
@@ -989,6 +1010,9 @@ milestone:nth-child(even)  {
                             <p>This is a description for a TODO...</p>
                         </description>
                     </deliverable>
+                    <style>
+                       
+                    </style>
                     <deliverable class="DOING">
                         <date>Q2/2024</date>
                         <header>
@@ -1001,6 +1025,7 @@ milestone:nth-child(even)  {
                         </description>
                     </deliverable>
                     <deliverable class="SKIP">
+                        <date>Q3/2024</date>
                         <header>
                             <name><h4>Deliverable SKIP</h4></name>
                             <requirement><span class="MUST">MUST</span></requirement> 
@@ -1011,6 +1036,7 @@ milestone:nth-child(even)  {
                         </description>
                     </deliverable>
                     <deliverable class="DONE">
+                        <date>04/2024</date>
                         <header>
                             <name><h4>Deliverable DONE</h4></name>
                             <requirement><span class="MUST">MUST</span></requirement> 
@@ -1390,6 +1416,7 @@ milestone:nth-child(even)  {
                 <deliverables>
                     <!-- MUST -->
                     <deliverable class="TODO-inverted">
+                        <date>01.01.2001</date>
                         <header>
                             <name><h4>Deliverable TODO</h4></name>
                             <requirement><span class="MUST-inverted">MUST</span></requirement> 
@@ -1400,6 +1427,7 @@ milestone:nth-child(even)  {
                         </description>
                     </deliverable>
                     <deliverable class="DOING-inverted">
+                        <date>01.01.2001</date>
                         <header>
                             <name><h4>Deliverable DOING</h4></name>
                             <requirement><span class="MUST-inverted">MUST</span></requirement> 
@@ -1410,6 +1438,7 @@ milestone:nth-child(even)  {
                         </description>
                     </deliverable>
                     <deliverable class="SKIP-inverted">
+                        <date>01.01.2001</date>
                         <header>
                             <name><h4>Deliverable SKIP</h4></name>
                             <requirement><span class="MUST-inverted">MUST</span></requirement> 
@@ -1420,6 +1449,7 @@ milestone:nth-child(even)  {
                         </description>
                     </deliverable>
                     <deliverable class="DONE-inverted">
+                        <date>01.01.2001</date>
                         <header>
                             <name><h4>Deliverable DONE</h4></name>
                             <requirement><span class="MUST-inverted">MUST</span></requirement> 
@@ -1431,6 +1461,7 @@ milestone:nth-child(even)  {
                     </deliverable>
                     <!-- SHOULD -->
                     <deliverable class="TODO-inverted">
+                        <date>01.01.2001</date>
                         <header>
                             <name><h4>Deliverable TODO</h4></name>
                             <requirement><span class="SHOULD-inverted">SHOULD</span></requirement> 
