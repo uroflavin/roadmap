@@ -187,7 +187,7 @@
                 background: var(--keyresults_background);
                 padding: 1rem 1rem 0.5rem 2rem;
                 position: relative;
-                margin-left: 1rem;
+                margin-left: 7rem;
                 margin-top: 0rem;
                 margin-bottom: 0rem;
                 display: block;
@@ -197,13 +197,15 @@
                 position: absolute;
                 display: block;
                 left: -9rem;
-                
-                content: '';
+                top: 0.5rem;
+                content:attr(data-date);
                 text-align: right;
                 font-size: .9rem;
                 font-weight: bold;
                 opacity: .7;
                 border-bottom: 1px solid var(--keyresult_date_underline);
+                min-width: 5.5rem;
+                max-width: 5.5rem;
             
             }
             keyresult::after {
@@ -951,8 +953,27 @@
                 </description> 
                 <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone3 - Deliverable 1.md</a></reference>
                 <deliverables>
+                    <style>
+                        deliverable > date {
+                            display:block;
+                            position: absolute;
+                            top:0.5rem;
+                            right:-40px;
+                            width: auto;
+                            margin-left: 10px;
+                            border-bottom: 5px solid red;
+                            z-index: 1;
+                            font-weight: bold;
+                        }
+                        deliverable > date::before {
+                            content: '';
+                            margin-left:1rem;
+                            padding-left: 1rem
+                        }
+                    </style>
                     <!-- MUST -->
                     <deliverable class="TODO">
+                        <date>Q1/2024</date>
                         <header>
                             <name><h4>Deliverable TODO</h4></name>
                             <requirement><span class="MUST">MUST</span></requirement> 
@@ -1632,7 +1653,7 @@
                     <description><p>Once we know how we want a road map file to look...</p></description>
                     <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></reference>
                     <keyresults>
-                        <keyresult data-date="R1">
+                        <keyresult data-date="1.Quartal 2024">
                             <header>
                                 <name><h4>Result 1</h4></name>
                                 <requirement><span class="MUST-inverted">MUST</span></requirement> 
@@ -1641,7 +1662,7 @@
                             <description><p>Once we know how we want a road map file to look...</p></description>
                             <reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Result 1.md</a></reference>
                         </keyresult>
-                        <keyresult data-date="R2">
+                        <keyresult data-date="01.01.2024 dd">
                             <header>
                                 <name><h4>Result 2 with long text</h4></name>
                                 <requirement><span class="MUST">MUST</span></requirement> 
@@ -1649,7 +1670,7 @@
                             </header>
                             <description><p>Once we know how we want a road map file to look...</p></description>
                         </keyresult>
-                        <keyresult data-date="R3">
+                        <keyresult data-date="Q1/2024">
                             <header>
                                 <name><h4>Result 3</h4></name>
                                 <requirement><span class="MUST">MUST</span></requirement> 
@@ -1667,7 +1688,7 @@
                     </header>
                     <description><p>Once we know how we want a road map file to look, we...</p></description> 
                     <keyresults>
-                        <keyresult>
+                        <keyresult data-date="">
                             <header>
                                 <name><h4>Result 1</h4></name>
                                 <requirement><span class="MUST">MUST</span></requirement> 
