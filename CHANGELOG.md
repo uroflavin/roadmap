@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.10] - 2024-01-27
+### Fix
+- html-template: Add missing objectve/milestones
+
 ## [0.0.9] - 2024-01-27
 BREAKING CHANGE
 ### Fix
@@ -88,3 +92,4 @@ BREAKING CHANGE
 [0.0.7]: https://github.com/uroflavin/roadmap/pull/41
 [0.0.8]: https://github.com/uroflavin/roadmap/pull/43
 [0.0.9]: https://github.com/uroflavin/roadmap/pull/49
+[0.0.10]: https://github.com/uroflavin/roadmap/pull/52

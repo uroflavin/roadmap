@@ -50,6 +50,28 @@ objectives:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
         name: see README
+    milestones:
+    - title: Implement Schema
+      description: Implement a schema that fulfills the main requirements of the objective
+      state: REACHED
+      requirement: MUST
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+        name: see roadmap.json
+    - title: Publish Schema
+      description: Publish a schema that fulfills the main requirements of the objective
+      state: REACHED
+      requirement: MUST
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
+        name: see roadmap.json
+    - title: Publish Schema Documentation
+      description: Publish the schema documentation that fulfills the main requirements of the objective
+      state: REACHED
+      requirement: MUST
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.md
+        name: see roadmap.md
 
   - title: We provide official tooling for most common use cases
     description: |
