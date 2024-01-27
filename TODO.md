@@ -58,4 +58,4 @@
 
 - [ ] html-template: Add missing releases
 
-- [ ] html-template: Add missing objectve/milestones
+- [X] html-template: Add missing objectve/milestones

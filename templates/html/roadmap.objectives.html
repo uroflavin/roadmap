@@ -51,6 +51,9 @@
                             {% endfor -%}
                         </r-keyresults>
                     {% endif -%}
+                    {% if "milestones" in objective %}
+                        {% include "roadmap.objective.milestones.html" -%}
+                    {% endif -%}
                 </r-objective>
             {% endfor -%}
         </r-objectives>
