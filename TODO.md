@@ -6,8 +6,6 @@
 
 - [ ] #16 - allow a connection between keyresults and milestones
 
-- [x] #14 - add a date to keyresults
-
 - [ ] #13 - add involved teams for keyresults
 
 - [ ] #29 - README must explain all structural elements
@@ -33,9 +31,6 @@
 
 - [ ] render roadmap as xls
 
-- [X] add a rendered date in the template results
-      this is helpful for readers to know, which roadmap-version they are looking at
-
 - [ ] Milestones: make deliverables foldable (SHOULD)
 
 - [ ] Objectives: make keyresults foldable (MAY)
@@ -43,12 +38,6 @@
 - [ ] HTML Template: Add Timeline-Ruler if screen < 600px
     just now, the timeline-ruler is display:none if screensize < 600px
     it would be nice, if we can see the marker but only leftside...
-
-- [x] Fix: Render deliverables date
-      Just now, we only have a date for deliverables in the template
-
-- [x] Fix: Milestones need a date
-      Just now, we only have a date for deliverables in the template
 
 - [ ] Group Objectives by Date and Order according date
 
@@ -58,4 +47,3 @@
 
 - [ ] html-template: Add missing releases
 
-- [X] html-template: Add missing objectve/milestones
