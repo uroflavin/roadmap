@@ -48,6 +48,7 @@
 - <a id="definitions/Objective"></a>**`Objective`** *(object)*: An objective describes a high level goal for the team. It is usually something that will be worked towards over several milestones and might not have a clear definition of done.
   - **`title`** *(string, required)*: A brief name associated with this objective which describes the intended outcome.
   - **`description`** *(string)*: A markdown formatted description of what this objective represents and how it influences the direction that the team is moving in.
+  - **`date`** *(string, format: date)*: The date that this objective should or is reached.
   - **`state`**: Refer to *[#/definitions/ObjectiveState](#definitions/ObjectiveState)*.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`milestones`** *(array)*: The list of milestones which act as indicators of progress for this objective.
@@ -90,6 +91,7 @@
 - <a id="definitions/Milestone"></a>**`Milestone`** *(object)*: An indicator of progress for this roadmap. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.
   - **`title`** *(string, required)*: A brief name associated with this milestone to describe the value shift.
   - **`description`** *(string)*: A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization.
+  - **`date`** *(string, format: date)*: The date that this milestone should or is reached.
   - **`state`**: Refer to *[#/definitions/MilestoneState](#definitions/MilestoneState)*.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`deliverables`** *(array)*: The list of deliverables which make up this milestone. Deliverables usually map to specific pieces of work which may be delegated to a member of your team.
@@ -115,6 +117,7 @@
 - <a id="definitions/Deliverable"></a>**`Deliverable`** *(object)*: A specific piece of work which may be delegated to a member of the team.
   - **`title`** *(string, required)*: A brief name describing this deliverable.
   - **`description`** *(string)*: A markdown formatted description of what this deliverable entails and why it is necessary for this milestone.
+  - **`date`** *(string)*: the date (quarter, month, day,...) where the keyresult should be achieved.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`state`**: Refer to *[#/definitions/DeliverableState](#definitions/DeliverableState)*.
   - **`requirement`**: Refer to *[#/definitions/Requirement](#definitions/Requirement)*.
