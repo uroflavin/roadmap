@@ -4,9 +4,9 @@
     Sometimes you have two important activities with the same date
     it would be nicer to read to have them grouped by date
 
-- [ ] #16 - make a connection between keyresults and milestones
+- [ ] #16 - allow a connection between keyresults and milestones
 
-- [ ] #14 - add a date to keyresults
+- [x] #14 - add a date to keyresults
 
 - [ ] #13 - add involved teams for keyresults
 
@@ -33,7 +33,7 @@
 
 - [ ] render roadmap as xls
 
-- [ ] add a rendered date in the template results
+- [X] add a rendered date in the template results
       this is helpful for readers to know, which roadmap-version they are looking at
 
 - [ ] Milestones: make deliverables foldable (SHOULD)
@@ -43,3 +43,19 @@
 - [ ] HTML Template: Add Timeline-Ruler if screen < 600px
     just now, the timeline-ruler is display:none if screensize < 600px
     it would be nice, if we can see the marker but only leftside...
+
+- [x] Fix: Render deliverables date
+      Just now, we only have a date for deliverables in the template
+
+- [x] Fix: Milestones need a date
+      Just now, we only have a date for deliverables in the template
+
+- [ ] Group Objectives by Date and Order according date
+
+- [ ] Allow user-defined templates OR some mechanic to controll the order of Milestone vs Objective, Rendering of some roadmap elements
+
+- [ ] markdown-template: Add missing releases
+
+- [ ] html-template: Add missing releases
+
+- [ ] html-template: Add missing objectve/milestones

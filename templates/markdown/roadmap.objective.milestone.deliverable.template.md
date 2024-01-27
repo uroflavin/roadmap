@@ -1,5 +1,6 @@
 {% for deliverable in milestone.deliverables %}
-##### {{ "~~" if deliverable.state == "DONE" }}📦 **{{deliverable.requirement}}::{{ deliverable.state}}** | {{ deliverable.title}}{{ "~~" if deliverable.state == "DONE" }}
+{% set deliverable_id = loop.index %}
+##### [{{ 'R' if 'date' not in deliverable  }}{{ deliverable.date if 'date' in deliverable else deliverable_id  }}] | {{ deliverable.title}} | {{deliverable.requirement}} {{ deliverable.state}}
 {{ deliverable.description -}}
 {% if "reference" in deliverable %}
 - [{{ deliverable.reference.name if deliverable.reference.name != "" else deliverable.reference.link }}]({{ deliverable.reference.link -}}){% endif -%}

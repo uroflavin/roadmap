@@ -68,7 +68,7 @@ The usefulness and applicability of this schema to real-world problem domains wi
                 
                 
                     
-                o1_r1 [label="✓ Provide a schema defintion",tooltip="Develop a schema that fulfills the main requirements of the objective",color="palegreen"];
+                o1_r1 [label="✓ Provide a schema definition",tooltip="Develop a schema that fulfills the main requirements of the objective",color="palegreen"];
                 o1_r1 -> o1;
             }
     

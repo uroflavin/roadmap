@@ -38,11 +38,12 @@ objectives:
     description: | 
       The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
       The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
+    state: ACHIEVED
     reference:
           link: https://json-schema.org/
           name: see json-schema.org
     keyresults:
-    - title: Provide a schema defintion
+    - title: Provide a schema definition
       description: Develop a schema that fulfills the main requirements of the objective
       state: DONE
       requirement: MUST
@@ -54,6 +55,7 @@ objectives:
     description: |
       While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
       This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
+    state: ACHIEVED
     keyresults:
     - title: Roadmap as Markdown
       description: |
@@ -86,6 +88,7 @@ objectives:
     description: |
       Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
       Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+    state: ACHIEVED
     keyresults:
     - title: Awesome README 
       description: |
@@ -117,6 +120,7 @@ milestones:
       - title: README
         state: DONE
         requirement: MUST
+        date: Q4/2023
         description: |
           We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
         reference:
@@ -125,6 +129,7 @@ milestones:
       - title: Roadmap
         state: DONE
         requirement: MUST
+        date: Q4/2023
         description: |
           We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
         reference:
@@ -142,6 +147,7 @@ milestones:
           Put together a JSONSchema file describing the road map file format.
         state: DONE
         requirement: MUST
+        date: Q1/2024
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
           name: see roadmap.json
@@ -149,6 +155,7 @@ milestones:
         description: |
           Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
         requirement: MUST
+        date: Q1/2024
         state: DONE
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json

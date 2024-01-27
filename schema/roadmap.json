@@ -143,6 +143,11 @@
                     "type": "string",
                     "description": "A markdown formatted description of what this objective represents and how it influences the direction that the team is moving in."
                 },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date that this objective should or is reached."
+                },
                 "state": {
                     "$ref": "#/definitions/ObjectiveState"
                 },
@@ -210,6 +215,11 @@
                     "type": "string",
                     "description": "A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization."
                 },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date that this milestone should or is reached."
+                },
                 "state": {
                     "$ref": "#/definitions/MilestoneState"
                 },
@@ -259,6 +269,10 @@
                 "description": {
                     "type": "string",
                     "description": "A markdown formatted description of what this deliverable entails and why it is necessary for this milestone."
+                },
+                "date": {
+                    "type": "string",
+                    "description": "the date (quarter, month, day,...) where the keyresult should be achieved"
                 },
                 "reference": {
                     "$ref": "#/definitions/Reference"

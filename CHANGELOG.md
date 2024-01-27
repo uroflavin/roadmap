@@ -8,6 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.9] - 2024-01-27
+BREAKING CHANGE
+### Fix
+- Fix: Milestones need a date
+- Fix: #14 - add a date to keyresults
+- Fix: Render deliverables date
+
+### Added
+- roadmap.json
+  - add date for objectives
+  - add date for milestones
+- re-engineered markdown template
+  - add a rendered date in the template results
+  - removed shitty layout ideas
+- re-engineered html template
+  - make html and css W3C Konform
+  - add a rendered date in the template results
+
+
+
 ## [0.0.8] - 2024-01-07
 
 ### Fix
@@ -67,3 +87,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.6]: https://github.com/uroflavin/roadmap/pull/40
 [0.0.7]: https://github.com/uroflavin/roadmap/pull/41
 [0.0.8]: https://github.com/uroflavin/roadmap/pull/43
+[0.0.9]: https://github.com/uroflavin/roadmap/pull/
