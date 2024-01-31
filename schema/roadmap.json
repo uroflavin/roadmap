@@ -207,6 +207,10 @@
                 "title"
             ],
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier for this milestone"
+                },
                 "title": {
                     "type": "string",
                     "description": "A brief name associated with this milestone to describe the value shift."

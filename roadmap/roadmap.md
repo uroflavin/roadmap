@@ -20,36 +20,64 @@ The goal is to make this as easy as possible for humans to read and reason about
 - Uroflavin *uroflavin@gmail.com*
 
 
-## Important Dates
+## Importand Dates
 
-- **2023-12-09** | Project Start
-This is the day that the project was started.
+- **2023-12-09**
+    - <u>Project Start</u>
+      This is the day that the project was started.
 
-- **2023-12-17** | Demo Day
-This is the scheduled date for the first demo of this project to a wider audience.
+    - <u>Add a Test</u>
+      We just add some test
+
+- **2023-12-17**
+    - <u>Demo Day</u>
+      This is the scheduled date for the first demo of this project to a wider audience.
+
+    - <u>Publish</u>
+      This is the Date, we published this project
 ## Objectives
 
-### We provide a single, universal, schema for high-level planning | ACHIEVED
+
+### Q1/2024
+
+#### We provide a single, universal, schema for high-level planning | ACHIEVED
 The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
 
 - [see json-schema.org](https://json-schema.org/)
-#### Keyresults
-##### [R1] | Provide a schema definition | MUST DONE
+
+##### Keyresults
+###### [R1] | Provide a schema definition | MUST DONE
 Develop a schema that fulfills the main requirements of the objective
 - [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
-#### Milestones
 
-##### Implement Schema | REACHED
-Implement a schema that fulfills the main requirements of the objective
-- [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
-##### Publish Schema | REACHED
-Publish a schema that fulfills the main requirements of the objective
-- [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
-##### Publish Schema Documentation | REACHED
-Publish the schema documentation that fulfills the main requirements of the objective
-- [see roadmap.md](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.md)
+
+
+
+
+### Q2/2024
+
+#### We have exceptional documentation | ACHIEVED
+Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+
+##### Keyresults
+###### [R1] | Awesome README | MUST DOING
+We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
+
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
+
+###### [R2] | Complete examples in schema-definition | MAY TODO
+Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
+- [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
+
+
+
+
+
+
 
 ### We provide official tooling for most common use cases | ACHIEVED
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
@@ -60,34 +88,26 @@ This includes things like being able to visualize your road map in common format
 We should be able to generate some markdown out of roadmap.yml
 
 - [see Markdown-Template](https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md)
+
 ##### [R2] | Roadmap as HTML | MUST DONE
 We should be able to generate some html out of roadmap.yml
 
 - [see HTML-Template](https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html)
+
 ##### [R3] | Roadmap as Graph | MAY DONE
 We should be able to generate some dot out of roadmap.yml
 
 - [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
 
 
-### We have exceptional documentation | ACHIEVED
-Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
-Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
 
-#### Keyresults
-##### [R1] | Awesome README | MUST DOING
-We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
 
-- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
-##### [R2] | Complete examples in schema-definition | MAY TODO
-Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
-- [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 
 
 ## Milestones
 
-### Design and Planning | REACHED
+### #Meilenstein 1 | Design and Planning | REACHED
 The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
 We should do something for the [roadmap](https://github.com/uroflavin/roadmap), just to let us know, if the design is broken.
 
@@ -104,7 +124,7 @@ We need to know what the roadmap file format looks like, so we'll get started wi
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
 
-### Roadmap Schema | REACHED
+### #Meilenstein 2 | Roadmap Schema | REACHED
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
 
@@ -120,7 +140,7 @@ Publish the schema file on [github](https://https://github.com/uroflavin/roadmap
 
 - [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
-### Markdown Renderer | REACHED
+### #M3 | Markdown Renderer | REACHED
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
 
 
@@ -137,7 +157,7 @@ Put some code in roadmap.py to render roadmap as Markdown
 
 - [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
 
-### HTML | REACHED
+### #M4 | HTML | REACHED
 The Goal is, to implement a html-renderer, which is capable to render this yml as html
 
 
@@ -153,7 +173,7 @@ Put some code in roadmap.py to render roadmap as HTML
 
 - [see HTML-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html)
 
-### Graphviz | REACHED
+### #M5 | Graphviz | REACHED
 The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
 
 
@@ -171,7 +191,7 @@ Put some code in roadmap.py to render roadmap as dot-file
 Put some code in roadmap.py to convert dot-file to png
 e.g. the generated file roadmap.dot.png can be used in your project description.
 
-### Web Renderer | IDEA
+### #M6 | Web Renderer | IDEA
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.

@@ -1,13 +1,17 @@
         <h2>Important Dates</h2>
 
             <r-timeline>
-                {% for timelineentry in project.timeline %}
+                {% for date, timelineentries in project.group.timeline_by.date.items() %}
                     <r-timeline-item>
-                        <r-date>{{ timelineentry.date }}</r-date>
-                        <r-name><h3>{{ timelineentry.title }}</h3></r-name>
-                        <r-description>
-                            {% markdown %}{{ timelineentry.description -}}{% endmarkdown %}
-                        </r-description>
+                        <r-date>{{ date }}</r-date>
+                        <r-name>
+                            {% for timelineentry in timelineentries %}
+                                <r-timelelin-item>
+                                    <r-name><h3>{{ timelineentry.title }}</h3></r-name>
+                                    <r-description>{% markdown %}{{ timelineentry.description -}}{% endmarkdown %}</r-description>
+                                </r-timelelin-item>
+                            {% endfor %}                
+                        </r-name>
                     </r-timeline-item>
                 {% endfor %}
             </r-timeline>

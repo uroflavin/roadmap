@@ -187,6 +187,31 @@ def process_template(environment: Environment = Environment(),
     except Exception as err:
         logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
 
+def get_items_grouped_by_date(elements=None):
+    """
+    group timeline by similar dates, keeps order from original
+    if element-item has no date attribute, we use "None" to get a group
+    :param dict element: roadmap element data as dict, e.g. timeline, objectives...
+    :return: dict project with added ["group"]["timeline_by"]["date"] 
+    """
+    
+    grouped_items = {}
+    if len(elements) > 0:
+        for item in elements:
+            # make shure we have a date
+            if "date" in item:
+                # deside to init or append group
+                if item["date"] in grouped_items:
+                    grouped_items[item["date"]].append(item.copy())
+                else:
+                    grouped_items[item["date"]] = [item.copy()]
+            # if we have no date, we use "None" for this group
+            else:
+                if "None" in grouped_items:
+                    grouped_items["None"].append(item.copy())
+                else:
+                    grouped_items["None"] = [item.copy()]
+    return grouped_items.copy()
 
 # Init
 # Load Config from roadmap.env
@@ -223,6 +248,15 @@ if create_output_folder(output_folder):
         # Find all templates
         templates = find_templates(template_path=config["TEMPLATE_PATH"],
                                    template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+        # Calculate some information to project
+        project["group"] = {
+            "timeline_by" : {
+                "date": get_items_grouped_by_date(project["timeline"])
+            },
+            "objectives_by" : {
+                "date": get_items_grouped_by_date(project["objectives"])
+            }
+        }
         # process templates with jinja
         # Load Jinja Environment
         env = Environment()
