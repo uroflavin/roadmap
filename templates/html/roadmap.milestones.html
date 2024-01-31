@@ -1,8 +1,15 @@
         <h2>Milestones</h2>
             <r-milestones >
                 {% for milestone in project.milestones %}
-                    {% set milestone_id = loop.index %}
-                    <r-milestone id="milestone-{{ milestone_id }}" class="{{ milestone.state}}">
+                    {% if "id" in milestone  %}
+                        {% set milestone_id = milestone.id | lower | replace(" ","_") %}
+                        {% set milestone_id_display = milestone.id %}
+                    {% else %}
+                        {% set milestone_id = "m" + loop.index | string %}
+                        {% set milestone_id_display = "M" + loop.index | string %}
+                    {% endif -%}
+                    <r-milestone id="{{ milestone_id }}" class="{{ milestone.state}}">
+                        <r-milestone-id>{{ milestone_id_display}}</r-milestone-id>
                         {% if "date" in milestone %}
                         <r-date>{{ milestone.date}}</r-date>
                         {% endif -%}
@@ -33,7 +40,7 @@
                                     {% else %}
                                         {% set deliverable_state = 'TODO' %}
                                     {% endif -%}
-                                    <r-deliverable id="milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="{{ deliverable_state }}">
+                                    <r-deliverable id="{{milestone_id }}-deliverable-{{ deliverable_id }}" class="{{ deliverable_state }}">
                                         {% if "date" in deliverable %}
                                         <r-date>{{ deliverable.date}}</r-date>
                                         {% endif -%}

@@ -32,9 +32,20 @@ timeline:
     title: Demo Day
     description: |
       This is the scheduled date for the first demo of this project to a wider audience.
+  - date: 2023-12-17
+    title: Publish
+    description: |
+      This is the Date, we published this project
+  - date: 2023-12-09
+    title: Add a Test
+    description: |
+      We just add some test
+
+  
   
 objectives:
   - title: We provide a single, universal, schema for high-level planning
+    date: "Q1/2024"
     description: | 
       The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
       The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
@@ -50,28 +61,6 @@ objectives:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
         name: see README
-    milestones:
-    - title: Implement Schema
-      description: Implement a schema that fulfills the main requirements of the objective
-      state: REACHED
-      requirement: MUST
-      reference:
-        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
-        name: see roadmap.json
-    - title: Publish Schema
-      description: Publish a schema that fulfills the main requirements of the objective
-      state: REACHED
-      requirement: MUST
-      reference:
-        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
-        name: see roadmap.json
-    - title: Publish Schema Documentation
-      description: Publish the schema documentation that fulfills the main requirements of the objective
-      state: REACHED
-      requirement: MUST
-      reference:
-        link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.md
-        name: see roadmap.md
 
   - title: We provide official tooling for most common use cases
     description: |
@@ -107,6 +96,7 @@ objectives:
 
 
   - title: We have exceptional documentation
+    date: "Q2/2024"
     description: |
       Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
       Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
@@ -130,7 +120,8 @@ objectives:
 
 
 milestones:
-  - title: Design and Planning
+  - id: Meilenstein 1
+    title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
       We should do something for the [roadmap](https://github.com/uroflavin/roadmap), just to let us know, if the design is broken.
@@ -158,7 +149,8 @@ milestones:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
 
-  - title: Roadmap Schema
+  - id: Meilenstein 2
+    title: Roadmap Schema
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. 
       This will allow us to document the file structure and provide a first class editing experience to people using it.
