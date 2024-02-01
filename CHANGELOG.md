@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.11] - 2024-02-02
+### Added
+- Add TODO
+A Todo is something which could be used to clarify a roadmap item, e.g. a open point to discuss a milestone.
+The intend of the todo is something around the roadmap process, not to do something to achieve an roadmap item
+Todo is possible for objectives, milestones, deliverables and keyresults 
+it is rendered in html and markdown templates
+
 ## [0.0.10] - 2024-01-27
 ### Fix
 - html-template: Add missing objectve/milestones
@@ -93,3 +101,4 @@ BREAKING CHANGE
 [0.0.8]: https://github.com/uroflavin/roadmap/pull/43
 [0.0.9]: https://github.com/uroflavin/roadmap/pull/49
 [0.0.10]: https://github.com/uroflavin/roadmap/pull/52
+[0.0.11]: https://github.com/uroflavin/roadmap/pull/

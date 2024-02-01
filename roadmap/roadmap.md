@@ -46,6 +46,26 @@ The usefulness and applicability of this schema to real-world problem domains wi
 
 - [see json-schema.org](https://json-schema.org/)
 
+
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
+
 ##### Keyresults
 ###### [R1] | Provide a schema definition | MUST DONE
 Develop a schema that fulfills the main requirements of the objective
@@ -100,6 +120,27 @@ We should be able to generate some dot out of roadmap.yml
 - [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
 
 
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
+
+
 
 
 
@@ -113,6 +154,27 @@ We should do something for the [roadmap](https://github.com/uroflavin/roadmap), 
 
 - [explaining design and planning principles](https://www.turing.com/blog/principles-of-software-development-guide/)
 
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
+
+
 #### [Q4/2023] | README | MUST DONE
 We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
 
@@ -123,6 +185,27 @@ We need to add a README file explaining the purpose of this project and giving s
 We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
+
+
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
 
 ### #Meilenstein 2 | Roadmap Schema | REACHED
 Once we know how we want a road map file to look, we should put together a schema for the file. 
@@ -139,6 +222,27 @@ Put together a JSONSchema file describing the road map file format.
 Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
 
 - [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
+
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
 
 ### #M3 | Markdown Renderer | REACHED
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
@@ -197,6 +301,26 @@ Pair that with a need to make tinkering and experimentation easy and there are f
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.
 
 
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2
+
+
 #### [R1] | Web Renderer | MUST TODO
 The most important part of this milestone is the development of a web based renderer which can present a road map file. 
 This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
@@ -208,3 +332,23 @@ The renderer should support Markdown
 
 #### [R3] | Renderer Package | MAY TODO
 Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer
+
+
+##### TODO
+
+
+- [ ] Check ABC
+Hier muss noch was geprüft werden
+- [ ] Klärung: Was soll das?
+Mit Max arbeiten
+
+- [ ] Beschreibung ergänzen
+Es braucht eine Aussagekräftige Beschreibung
+
+- [ ] Keine Beschreibung1
+
+- [X] Budgetklärung
+Es ist das Budget zu klären
+da ging was schief siehe [hier](https://example.com)
+
+- [X] Keine Beschreibung2

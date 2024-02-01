@@ -1,9 +1,5 @@
 # This is a list of todos and ideas
 
-- [ ] #18 - timeline: group by same dates
-    Sometimes you have two important activities with the same date
-    it would be nicer to read to have them grouped by date
-
 - [ ] #16 - allow a connection between keyresults and milestones
 
 - [ ] #13 - add involved teams for keyresults

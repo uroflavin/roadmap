@@ -32,6 +32,10 @@
 {% if "reference" in objective %}
 - [{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}]({{ objective.reference.link -}})
 {% endif -%}
+{% if "todos" in objective %}
+{% set todos = objective.todos %}
+{% include "roadmap.todos.md" -%}
+{% endif -%}
 {% if "keyresults" in objective %}
 ##### Keyresults
 {%- set objective_id = loop.index -%} 
@@ -41,6 +45,10 @@
 {{ keyresult.description -}}
 {% if "reference" in keyresult %}
 - [{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}]({{ keyresult.reference.link -}})
+{% endif -%}
+{% if "todos" in keyresult %}
+{% set todos = keyresult.todos %}
+{% include "roadmap.todos.md" -%}
 {% endif -%}
 {% endfor -%}
 {% endif %}
@@ -58,6 +66,10 @@
 {% if "reference" in objective %}
 - [{{ objective.reference.name if objective.reference.name != "" else objective.reference.link }}]({{ objective.reference.link -}})
 {% endif -%}
+{% if "todos" in objective %}
+{% set todos = objective.todos %}
+{% include "roadmap.todos.md" -%}
+{% endif -%}
 {% if "keyresults" in objective %}
 #### Keyresults
 {%- set objective_id = loop.index -%} 
@@ -67,6 +79,10 @@
 {{ keyresult.description -}}
 {% if "reference" in keyresult %}
 - [{{ keyresult.reference.name if keyresult.reference.name != "" else keyresult.reference.link }}]({{ keyresult.reference.link -}})
+{% endif -%}
+{% if "todos" in keyresult %}
+{% set todos = keyresult.todos %}
+{% include "roadmap.todos.md" -%}
 {% endif -%}
 {% endfor -%}
 {% endif %}

@@ -55,6 +55,8 @@
     - **Items**: Refer to *[#/definitions/Milestone](#definitions/Milestone)*.
   - **`keyresults`** *(array)*: The list of key-results which make up this Objective. Key-Results usually map to specific pieces of work which may be delegated to a member of your team.
     - **Items**: Refer to *[#/definitions/Keyresult](#definitions/Keyresult)*.
+  - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the objective, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
+    - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
 
   Examples:
   ```yaml
@@ -97,6 +99,8 @@
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`deliverables`** *(array)*: The list of deliverables which make up this milestone. Deliverables usually map to specific pieces of work which may be delegated to a member of your team.
     - **Items**: Refer to *[#/definitions/Deliverable](#definitions/Deliverable)*.
+  - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the milestone, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
+    - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
 
   Examples:
   ```yaml
@@ -122,6 +126,8 @@
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`state`**: Refer to *[#/definitions/DeliverableState](#definitions/DeliverableState)*.
   - **`requirement`**: Refer to *[#/definitions/Requirement](#definitions/Requirement)*.
+  - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the deliverable, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
+    - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
 - <a id="definitions/Keyresult"></a>**`Keyresult`** *(object)*: A specific piece of work which may be delegated to a member of the team.
   - **`title`** *(string, required)*: A brief name describing this result.
   - **`description`** *(string)*: A markdown formatted description of what this result entails and why it is necessary for this objective.
@@ -129,6 +135,12 @@
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
   - **`state`**: Refer to *[#/definitions/DeliverableState](#definitions/DeliverableState)*.
   - **`requirement`**: Refer to *[#/definitions/Requirement](#definitions/Requirement)*.
+  - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the keyresult, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
+    - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
+- <a id="definitions/Todo"></a>**`Todo`** *(object)*: A Todo which is necessary to clarify a roadmap item, e.g. a open point to clarify a milestone. The intend of the todo is something around the roadmap creation, not to do something to achieve an roadmap item.
+  - **`title`** *(string, required)*: A brief title describing the todo.
+  - **`description`** *(string)*: A markdown formatted description of what this todo entails and what to do.
+  - **`state`**: Refer to *[#/definitions/TodoState](#definitions/TodoState)*.
 - <a id="definitions/Reference"></a>**`Reference`** *(object)*: A reference to a file or url with additional context which may be useful to a reader.
   - **`name`** *(string)*: a short-name for the uri.
   - **`description`** *(string)*: a describtion in natural words, what someone could expect by using the link of this reference.
@@ -141,3 +153,4 @@
 - <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/Requirement"></a>**`Requirement`** *(string)*: An RFC2119 verb which describes how a specific requirement should be treated. Must be one of: `["MUST", "SHOULD", "MAY"]`. Default: `"SHOULD"`.
+- <a id="definitions/TodoState"></a>**`TodoState`** *(string)*: The state of an item on a todo-list. Must be one of: `["OPEN", "DOING", "CLOSED"]`. Default: `"OPEN"`.
