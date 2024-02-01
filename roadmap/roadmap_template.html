@@ -927,7 +927,53 @@ r-objective > r-date {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
+r-todos > h4, h5, h6 {
+    border-top: 1px dashed gray;
+    padding-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    text-decoration: none;
+    
+}
+r-todos {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 
+}
+r-todo {
+    display: block;
+    margin: 0rem;
+    padding: 0rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.3rem;
+    font-size: 0.8rem !important;
+}
+r-todo.OPEN::before {
+    content: "☐";
+}
+r-todo.DOING::before {
+    content: "⏲";
+    background-color: transparent;
+}
+r-todo.CLOSED::before {
+    content: "☑";
+}
+r-todo.CLOSED, r-todo.CLOSED > r-title {
+    font-weight: lighter;
+}
+r-todo > r-title {
+    font-weight: bold;
+}
+r-todo > r-description {
+    display: block;
+    padding-left: 0.9rem;
+}
+r-todo > r-description > p {
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+    font-size: 0.8rem !important;
+}
         </style>
     </head>
     <body>
@@ -1024,7 +1070,7 @@ r-objective > r-date {
         <h2>Milestones</h2>
         <r-milestones>
             <r-milestone class="PLANNED">
-                <r_milestone_id>M1</r_milestone_id>
+                <r-milestone_id>M1</r-milestone_id>
                 <r-date>01.01.2001</r-date>
                 <r-header>
                     <r-name><h3>Milestone 1</h3></r-name>
@@ -1033,9 +1079,29 @@ r-objective > r-date {
                 
                 <r-description><p>Once we know how we want a road map file to look...</p></r-description>
                 <r-reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></r-reference>
+                <r-todos>
+                    <h4>TODO</h4>
+                    <r-todo id="m1-todo1" class="OPEN">
+                        <r-title>Check ABC</r-title>
+                        <r-description>Hier muss noch was geprüft werden</r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo2" class="OPEN">
+                        <r-title>Klärung: Was soll das?</r-title>
+                        <r-description>Mit Max arbeiten</r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo3" class="DOING">
+                        <r-title>Beschreibung ergänzen</r-title>
+                        <r-description>Es braucht eine Aussagekräftige <a target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">Beschreibung</a></r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo4" class="CLOSED">
+                        <r-title>Budgetklärung</r-title>
+                        <r-description>Es ist das Budget zu klären</r-description>
+                    </r-todo>
+                </r-todos>
             </r-milestone>
 
             <r-milestone class="REACHED">
+                <r-milestone_id>M2</r-milestone_id>
                 <r-date>01.01.2001</r-date>
                 <r-header>
                     <r-name><h3>Milestone 1</h3></r-name>
@@ -1061,6 +1127,25 @@ r-objective > r-date {
                             </ul>
                         </r-description>
                         <r-reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Milestone 1 - Deliverable 1.md</a></r-reference>
+                        <r-todos>
+                            <h4>TODO</h4>
+                            <r-todo id="m1-todo1" class="OPEN">
+                                <r-title>Check ABC</r-title>
+                                <r-description>Hier muss noch was geprüft werden</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo2" class="OPEN">
+                                <r-title>Klärung: Was soll das?</r-title>
+                                <r-description>Mit Max arbeiten</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo3" class="DOING">
+                                <r-title>Beschreibung ergänzen</r-title>
+                                <r-description>Es braucht eine Aussagekräftige Beschreibung</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo4" class="CLOSED">
+                                <r-title>Budgetklärung</r-title>
+                                <r-description>Es ist das Budget zu klären</r-description>
+                            </r-todo>
+                        </r-todos>
                     </r-deliverable>
                     <r-deliverable class="TODO">
                         <r-header>
@@ -1097,6 +1182,25 @@ r-objective > r-date {
                     <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
                     <p>Duis autem vel eum iriure dolor in hendrerit.</p>
                 </r-description>
+                <r-todos>
+                    <h4>TODO</h4>
+                    <r-todo id="m1-todo1" class="OPEN">
+                        <r-title>Check ABC</r-title>
+                        <r-description>Hier muss noch was geprüft werden</r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo2" class="OPEN">
+                        <r-title>Klärung: Was soll das?</r-title>
+                        <r-description>Mit Max arbeiten</r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo3" class="DOING">
+                        <r-title>Beschreibung ergänzen</r-title>
+                        <r-description>Es braucht eine Aussagekräftige Beschreibung</r-description>
+                    </r-todo>
+                    <r-todo id="m1-todo4" class="CLOSED">
+                        <r-title>Budgetklärung</r-title>
+                        <r-description>Es ist das Budget zu klären</r-description>
+                    </r-todo>
+                </r-todos>
                 <r-deliverables>
                     <r-deliverable class="DONE">
                         <r-date>01.01.2023</r-date>
@@ -1112,6 +1216,26 @@ r-objective > r-date {
                                 <li>Item 2 as a list with some infos</li>
                             </ul>
                         </r-description>
+                        
+                        <r-todos>
+                            <h4>TODO</h4>
+                            <r-todo id="m1-todo1" class="OPEN">
+                                <r-title>Check ABC</r-title>
+                                <r-description>Hier muss noch was geprüft werden</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo2" class="OPEN">
+                                <r-title>Klärung: Was soll das?</r-title>
+                                <r-description>Mit Max arbeiten</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo3" class="DOING">
+                                <r-title>Beschreibung ergänzen</r-title>
+                                <r-description>Es braucht eine Aussagekräftige Beschreibung</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo4" class="CLOSED">
+                                <r-title>Budgetklärung</r-title>
+                                <r-description>Es ist das Budget zu klären</r-description>
+                            </r-todo>
+                        </r-todos>
                     </r-deliverable>
                 </r-deliverables>
             </r-milestone>
@@ -1823,6 +1947,25 @@ r-objective > r-date {
                     </r-header>
                     <r-description><p>Once we know how we want a road map file to look...</p></r-description>
                     <r-reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see Objective 1</a></r-reference>
+                    <r-todos>
+                        <h4>TODO</h4>
+                        <r-todo id="m1-todo1" class="OPEN">
+                            <r-title>Check ABC</r-title>
+                            <r-description>Hier muss noch was geprüft werden</r-description>
+                        </r-todo>
+                        <r-todo id="m1-todo2" class="OPEN">
+                            <r-title>Klärung: Was soll das?</r-title>
+                            <r-description>Mit Max arbeiten</r-description>
+                        </r-todo>
+                        <r-todo id="m1-todo3" class="DOING">
+                            <r-title>Beschreibung ergänzen</r-title>
+                            <r-description>Es braucht eine Aussagekräftige Beschreibung</r-description>
+                        </r-todo>
+                        <r-todo id="m1-todo4" class="CLOSED">
+                            <r-title>Budgetklärung</r-title>
+                            <r-description>Es ist das Budget zu klären</r-description>
+                        </r-todo>
+                    </r-todos>
                     <r-keyresults>
                         <r-keyresult data-date="1.Quarter 2024">
                             <r-header>
@@ -1840,6 +1983,25 @@ r-objective > r-date {
                                 <r-state><span class="IDEA">IDEA</span></r-state> 
                             </r-header>
                             <r-description><p>Once we know how we want a road map file to look...</p></r-description>
+                            <r-todos>
+                                <h4>TODO</h4>
+                                <r-todo id="m1-todo1" class="OPEN">
+                                    <r-title>Check ABC</r-title>
+                                    <r-description>Hier muss noch was geprüft werden</r-description>
+                                </r-todo>
+                                <r-todo id="m1-todo2" class="OPEN">
+                                    <r-title>Klärung: Was soll das?</r-title>
+                                    <r-description>Mit Max arbeiten</r-description>
+                                </r-todo>
+                                <r-todo id="m1-todo3" class="DOING">
+                                    <r-title>Beschreibung ergänzen</r-title>
+                                    <r-description>Es braucht eine Aussagekräftige Beschreibung</r-description>
+                                </r-todo>
+                                <r-todo id="m1-todo4" class="CLOSED">
+                                    <r-title>Budgetklärung</r-title>
+                                    <r-description>Es ist das Budget zu klären</r-description>
+                                </r-todo>
+                            </r-todos>
                         </r-keyresult>
                         <r-keyresult data-date="Q1/2024">
                             <r-header>

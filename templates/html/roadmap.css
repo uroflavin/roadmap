@@ -919,3 +919,50 @@ r-objective > r-date {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
+r-todos >  h5 {
+    border-top: 1px dashed gray;
+    padding-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    text-decoration: none;
+    
+}
+r-todos {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+}
+r-todo {
+    display: block;
+    margin: 0rem;
+    padding: 0rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.3rem;
+    font-size: 0.8rem !important;
+}
+r-todo.OPEN::before {
+    content: "☐";
+}
+r-todo.DOING::before {
+    content: "⏲";
+    background-color: transparent;
+}
+r-todo.CLOSED::before {
+    content: "☑";
+}
+r-todo.CLOSED, r-todo.CLOSED > r-title {
+    font-weight: lighter;
+}
+r-todo > r-title {
+    font-weight: bold;
+}
+r-todo > r-description {
+    display: block;
+    padding-left: 0.9rem;
+}
+r-todo > r-description > p {
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+    font-size: 0.8rem !important;
+}

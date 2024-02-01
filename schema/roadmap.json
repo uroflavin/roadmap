@@ -167,6 +167,13 @@
                     "items": {
                         "$ref": "#/definitions/Keyresult"
                     }
+                },
+                "todos": {
+                    "type": "array",
+                    "description": "A List of Todos, which are necessary to clarify the objective, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective",
+                    "items": {
+                        "$ref": "#/definitions/Todo"
+                    }
                 }
             },
             "examples": [
@@ -236,6 +243,13 @@
                     "items": {
                         "$ref": "#/definitions/Deliverable"
                     }
+                },
+                "todos": {
+                    "type": "array",
+                    "description": "A List of Todos, which are necessary to clarify the milestone, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective",
+                    "items": {
+                        "$ref": "#/definitions/Todo"
+                    }
                 }
             },
             "examples": [
@@ -286,6 +300,13 @@
                 },
                 "requirement": {
                     "$ref": "#/definitions/Requirement"
+                },
+                "todos": {
+                    "type": "array",
+                    "description": "A List of Todos, which are necessary to clarify the deliverable, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective",
+                    "items": {
+                        "$ref": "#/definitions/Todo"
+                    }
                 }
             }
         },
@@ -316,6 +337,34 @@
                 },
                 "requirement": {
                     "$ref": "#/definitions/Requirement"
+                },
+                "todos": {
+                    "type": "array",
+                    "description": "A List of Todos, which are necessary to clarify the keyresult, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective",
+                    "items": {
+                        "$ref": "#/definitions/Todo"
+                    }
+                }
+            }
+        },
+        "Todo": {
+            "type": "object",
+            "description": "A Todo which is necessary to clarify a roadmap item, e.g. a open point to clarify a milestone. The intend of the todo is something around the roadmap creation, not to do something to achieve an roadmap item",
+            "required": [
+                "title",
+                "state"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "A brief title describing the todo."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A markdown formatted description of what this todo entails and what to do."
+                },
+                "state": {
+                    "$ref": "#/definitions/TodoState"
                 }
             }
         },
@@ -405,6 +454,16 @@
                 "MAY"
             ],
             "default": "SHOULD"
+        },
+        "TodoState": {
+            "type": "string",
+            "description": "The state of an item on a todo-list",
+            "enum": [
+                "OPEN",
+                "DOING",
+                "CLOSED"
+            ],
+            "default": "OPEN"
         }
     }
 }
