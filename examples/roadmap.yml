@@ -53,27 +53,6 @@ objectives:
     reference:
           link: https://json-schema.org/
           name: see json-schema.org
-    todos:
-    - title: Check ABC
-      description: Hier muss noch was geprüft werden
-      state: OPEN
-    - title: "Klärung: Was soll das?"
-      description: |
-        Mit Max arbeiten
-      state: OPEN
-    - title: Beschreibung ergänzen
-      description: |
-        Es braucht eine Aussagekräftige Beschreibung
-      state: DOING
-    - title: "Keine Beschreibung1"
-      state: DOING
-    - title: "Budgetklärung"
-      description: |
-        Es ist das Budget zu klären
-        da ging was schief siehe [hier](https://example.com)
-      state: CLOSED
-    - title: "Keine Beschreibung2"
-      state: CLOSED    
     keyresults:
     - title: Provide a schema definition
       description: Develop a schema that fulfills the main requirements of the objective
@@ -113,30 +92,6 @@ objectives:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot
         name: see DOT-Template
-      todos:
-      - title: Check ABC
-        description: Hier muss noch was geprüft werden
-        state: OPEN
-      - title: "Klärung: Was soll das?"
-        description: |
-          Mit Max arbeiten
-        state: OPEN
-      - title: Beschreibung ergänzen
-        description: |
-          Es braucht eine Aussagekräftige Beschreibung
-        state: DOING
-      - title: "Keine Beschreibung1"
-        state: DOING
-      - title: "Budgetklärung"
-        description: |
-          Es ist das Budget zu klären
-
-          da ging was schief siehe [hier](https://example.com)
-        state: CLOSED
-      - title: "Keine Beschreibung2"
-        state: CLOSED
-    
-
 
   - title: We have exceptional documentation
     date: "Q2/2024"
@@ -168,28 +123,6 @@ milestones:
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
       We should do something for the [roadmap](https://github.com/uroflavin/roadmap), just to let us know, if the design is broken.
-    todos:
-    - title: Check ABC
-      description: Hier muss noch was geprüft werden
-      state: OPEN
-    - title: "Klärung: Was soll das?"
-      description: |
-        Mit Max arbeiten
-      state: OPEN
-    - title: Beschreibung ergänzen
-      description: |
-        Es braucht eine Aussagekräftige Beschreibung
-      state: DOING
-    - title: "Keine Beschreibung1"
-      state: DOING
-    - title: "Budgetklärung"
-      description: |
-        Es ist das Budget zu klären
-
-        da ging was schief siehe [hier](https://example.com)
-      state: CLOSED
-    - title: "Keine Beschreibung2"
-      state: CLOSED
     state: REACHED
     reference:
           link: https://www.turing.com/blog/principles-of-software-development-guide/
@@ -213,28 +146,6 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
-        todos:
-        - title: Check ABC
-          description: Hier muss noch was geprüft werden
-          state: OPEN
-        - title: "Klärung: Was soll das?"
-          description: |
-            Mit Max arbeiten
-          state: OPEN
-        - title: Beschreibung ergänzen
-          description: |
-            Es braucht eine Aussagekräftige Beschreibung
-          state: DOING
-        - title: "Keine Beschreibung1"
-          state: DOING
-        - title: "Budgetklärung"
-          description: |
-            Es ist das Budget zu klären
-
-            da ging was schief siehe [hier](https://example.com)
-          state: CLOSED
-        - title: "Keine Beschreibung2"
-          state: CLOSED
 
   - id: Meilenstein 2
     title: Roadmap Schema
@@ -261,28 +172,6 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
           name: see roadmap.json
-        todos:
-        - title: Check ABC
-          description: Hier muss noch was geprüft werden
-          state: OPEN
-        - title: "Klärung: Was soll das?"
-          description: |
-            Mit Max arbeiten
-          state: OPEN
-        - title: Beschreibung ergänzen
-          description: |
-            Es braucht eine Aussagekräftige Beschreibung
-          state: DOING
-        - title: "Keine Beschreibung1"
-          state: DOING
-        - title: "Budgetklärung"
-          description: |
-            Es ist das Budget zu klären
-
-            da ging was schief siehe [hier](https://example.com)
-          state: CLOSED
-        - title: "Keine Beschreibung2"
-          state: CLOSED
 
   - title: Markdown Renderer
     description: |
@@ -401,24 +290,3 @@ milestones:
         requirement: MAY
         description: |
           Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer
-        todos:
-        - title: Check ABC
-          description: Hier muss noch was geprüft werden
-          state: OPEN
-        - title: "Klärung: Was soll das?"
-          description: |
-            Mit Max arbeiten
-          state: OPEN
-        - title: Beschreibung ergänzen
-          description: |
-            Es braucht eine Aussagekräftige Beschreibung
-          state: DOING
-        - title: "Keine Beschreibung1"
-          state: DOING
-        - title: "Budgetklärung"
-          description: |
-            Es ist das Budget zu klären
-            da ging was schief siehe [hier](https://example.com)
-          state: CLOSED
-        - title: "Keine Beschreibung2"
-          state: CLOSED
