@@ -253,25 +253,13 @@ milestones:
       The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.
     state: IDEA
     todos:
-    - title: Check ABC
-      description: Hier muss noch was geprüft werden
+    - title: Carry out WSJF
+      description: We need more information about the size
       state: OPEN
-    - title: "Klärung: Was soll das?"
+    - title: Find out the dependencies of the Graphviz Library
       description: |
-        Mit Max arbeiten
-      state: OPEN
-    - title: Beschreibung ergänzen
-      description: |
-        Es braucht eine Aussagekräftige Beschreibung
-      state: DOING
-    - title: "Keine Beschreibung1"
-      state: DOING
-    - title: "Budgetklärung"
-      description: |
-        Es ist das Budget zu klären
-        da ging was schief siehe [hier](https://example.com)
-      state: CLOSED
-    - title: "Keine Beschreibung2"
+        What requirements does Graphviz have and what are the hurdles?
+        See [graphviz.org](https://graphviz.org/)
       state: CLOSED
     deliverables:
       - title: Web Renderer

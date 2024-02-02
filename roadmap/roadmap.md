@@ -200,21 +200,11 @@ The goal here is to produce something which is easy and pleasurable to use, whic
 ##### TODO
 
 
-- [ ] Check ABC
-Hier muss noch was geprüft werden
-- [ ] Klärung: Was soll das?
-Mit Max arbeiten
-
-- [ ] Beschreibung ergänzen
-Es braucht eine Aussagekräftige Beschreibung
-
-- [ ] Keine Beschreibung1
-
-- [X] Budgetklärung
-Es ist das Budget zu klären
-da ging was schief siehe [hier](https://example.com)
-
-- [X] Keine Beschreibung2
+- [ ] Carry out WSJF
+We need more information about the size
+- [X] Find out the dependencies of the Graphviz Library
+What requirements does Graphviz have and what are the hurdles?
+See [graphviz.org](https://graphviz.org/)
 
 
 #### [R1] | Web Renderer | MUST TODO
