@@ -312,80 +312,84 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
 
     return elements.copy()
 
-# Init
-# Load Config from roadmap.env
-config = dotenv_values("roadmap.env")
+def main():
+    # Init
+    # Load Config from roadmap.env
+    config = dotenv_values("roadmap.env")
 
-LOGFILE = config["LOGFILE"]
-logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
-                    format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-logging.debug("config: %s", config)
+    LOGFILE = config["LOGFILE"]
+    logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
+                        format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+    logging.debug("config: %s", config)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--roadmap-file", type=str,
-                    help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--roadmap-file", type=str,
+                        help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
 
-parser.add_argument("--output-dir", type=str,
-                    help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
+    parser.add_argument("--output-dir", type=str,
+                        help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-roadmap_definition_file = args.roadmap_file
-output_folder = args.output_dir
+    roadmap_definition_file = args.roadmap_file
+    output_folder = args.output_dir
 
-if output_folder[-1] != os.sep:
-    output_folder = output_folder + os.sep
+    if output_folder[-1] != os.sep:
+        output_folder = output_folder + os.sep
 
 
-if create_output_folder(output_folder):
-    # Read Roadmap-Definition
-    project = read_roadmap_definition(
-        path_to_roadmap_yml=roadmap_definition_file)
+    if create_output_folder(output_folder):
+        # Read Roadmap-Definition
+        project = read_roadmap_definition(
+            path_to_roadmap_yml=roadmap_definition_file)
 
-    validation_error, is_valid_yaml = validate_yaml(
-        roadmap_data=project, path_to_json_schema=config["SCHEMA"])
+        validation_error, is_valid_yaml = validate_yaml(
+            roadmap_data=project, path_to_json_schema=config["SCHEMA"])
 
-    if is_valid_yaml:
-        # Find all templates
-        templates = find_templates(template_path=config["TEMPLATE_PATH"],
-                                   template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
-        # Calculate some information to project
-        # add _id, id, _parent_id and _previous_id
-        if "timeline" in project:
-            project['timeline'] = calculate_ids_for_element_items(project['timeline'], prefix="Timeline")
-        if "objectives" in project:
-            project['objectives'] = calculate_ids_for_element_items(project['objectives'], prefix="O")
-        if "milestones" in project:
-            project['milestones'] = calculate_ids_for_element_items(project['milestones'], prefix="M")
-        if "releases" in project:
-            project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
-        
-        # get items groupedy by date
-        project["group"] = {
-            "timeline_by": {
-                "date": get_items_grouped_by_date(project["timeline"])
-            },
-            "objectives_by": {
-                "date": get_items_grouped_by_date(project["objectives"])
+        if is_valid_yaml:
+            # Find all templates
+            templates = find_templates(template_path=config["TEMPLATE_PATH"],
+                                    template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+            # Calculate some information to project
+            # add _id, id, _parent_id and _previous_id
+            if "timeline" in project:
+                project['timeline'] = calculate_ids_for_element_items(project['timeline'], prefix="Timeline")
+            if "objectives" in project:
+                project['objectives'] = calculate_ids_for_element_items(project['objectives'], prefix="O")
+            if "milestones" in project:
+                project['milestones'] = calculate_ids_for_element_items(project['milestones'], prefix="M")
+            if "releases" in project:
+                project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
+            
+            # get items groupedy by date
+            project["group"] = {
+                "timeline_by": {
+                    "date": get_items_grouped_by_date(project["timeline"])
+                },
+                "objectives_by": {
+                    "date": get_items_grouped_by_date(project["objectives"])
+                }
             }
-        }
-        # process templates with jinja
-        # Load Jinja Environment
-        env = Environment()
-        # Add some extensions for jinja
-        env.add_extension(MarkdownExtension)
+            # process templates with jinja
+            # Load Jinja Environment
+            env = Environment()
+            # Add some extensions for jinja
+            env.add_extension(MarkdownExtension)
 
-        for template in templates:
-            print("processing " + template["file"])
-            process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
-                             project=project, output_path=output_folder)
+            for template in templates:
+                print("processing " + template["file"])
+                process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
+                                project=project, output_path=output_folder)
 
-        print("roadmap-conversion successful")
+            print("roadmap-conversion successful")
 
+        else:
+            print(roadmap_definition_file + " contains no valid YAML-data")
+            print(validation_error)
+            print("See logfile for details")
     else:
-        print(roadmap_definition_file + " contains no valid YAML-data")
-        print(validation_error)
+        print("Could not create '" + output_folder + "'")
         print("See logfile for details")
-else:
-    print("Could not create '" + output_folder + "'")
-    print("See logfile for details")
+
+if __name__ == "__main__":
+    main()
