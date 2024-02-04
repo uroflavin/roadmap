@@ -44,3 +44,64 @@ python script.py --roadmap-file path/to/roadmap.yml --output-dir path/to/output/
 ```
 
 Please replace path/to/roadmap.yml with the path to your roadmap YAML file and path/to/output/folder with the path to your output folder.
+
+## Docker Image for the script
+
+docker build -t roadmap .
+docker run -it roadmap "roger"
+
+### Dockerfile
+
+* Create a text file named `Dockerfile` (no extension) in the same directory as your script.
+* Define the image:
+
+```dockerfile
+FROM cgr.dev/chainguard/python:latest-dev as builder
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt --user
+
+FROM cgr.dev/chainguard/python:latest
+
+WORKDIR /app
+
+# Make sure you update Python version in path
+COPY --from=builder /home/nonroot/.local/lib/python3.12/site-packages /home/nonroot/.local/lib/python3.12/site-packages
+
+COPY helloworld.py .
+
+ENTRYPOINT [ "python", "/app/helloworld.py" ]
+```
+
+### Build Docker Image
+
+Utilize the docker build command to construct the image:
+```Bash
+docker build -t roadmap_img .
+```
+
+Save the docker image to the 'dist' folder:
+```Bash
+docker save roadmap_img > dist/roadmap_img.tar
+```
+
+### Execute Docker Image
+
+Run the created image using docker run:
+
+```Bash
+docker run -v .:/app/working --rm roadmap_img
+```
+
+```powershell
+docker run -v $PWD/.:/app/working --rm roadmap_img --roadmap-file /app/working/examples/roadmap.yml  --output-dir /app/working/dist
+```
+
+* -v $PWD/.:/app/working: This mounts a volume, making a local directory accessible within the container.
+* --rm: Automatically removes the container once it exits, keeping your system clean.
+* roadmap_img: Specifies the image to use for creating the container. In this case, it's assumed that an image named "roadmap_img" exists locally.
+* --roadmap-file /app/working/examples/roadmap.yml: This passes a command-line argument to the application within the container, indicating the path to the "roadmap.yml" file to be processed. The path is relative to the container's filesystem.
+* --output-dir /app/working/dist: This provides another argument to the application, specifying the output directory where generated files or results should be placed. Again, the path is relative to the container's filesystem.
