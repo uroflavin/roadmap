@@ -4,13 +4,6 @@
 
 - [ ] #13 - add involved teams for keyresults
 
-- [ ] #29 - README must explain all structural elements
-    - [ ] first step is to check and add roadmap.json for any missing description and example
-    - [ ] second is to find something which is capable to render some nice documentation out of the json-schema
-    - [ ] then produce a separate file (e.g. DOCUMENTATION.md), which holds the rendered documentation
-    - [ ] improve README for better access for newbies, e.g. some pictures and better newbie-explanation
-    - [ ] lastly find a way to render the documentation automatically for each commit
-
 - [ ] add missing parts to the templates
     - involved teams
     - releases
@@ -18,10 +11,6 @@
 
 - [ ] use gitpages for demonstration of roadmap.py capabilities
     - use roadmap.html and maybe the readme or some more stuff
-
-- [ ] write a documentation on howto install roadmap.py
-    - check requirements.txt for completenes
-    - maybe use some cr/cd pipeline magic to test all the stuff and to make shure no parts are missing during further development
 
 - [ ] render roadmap as pdf
 

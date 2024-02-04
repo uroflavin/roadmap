@@ -1,140 +1,109 @@
 # roadmap
-Manage your project and team roadmaps in YAML
+Manage your project and team roadmaps in YAML.
 
 roadmap.py itself has a fancy roadmap as an living-example.
-Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.pys-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
-## State
-You can see the state of our current objectives and keyresults in the following graph (rendered directly from [roadmap.yml](examples/roadmap.yml) )
+Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.py's-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
+
+## Goals
+My development approach is to enable teams or projects to structurize their development approaches in a structural and hopefull natural way.
+
+Developing a roadmap is often a challenge: different user and stakeholder needs as well as technical dependencies, business goals and people-, time or budget-constrains must be harmonized in a meaningful way.  
+
+The main work lies in describing and coordinating the content to be delivered and the order in which certain milestones or goals should or can be achieved.
+
+In addition, most stakeholders have very different needs regarding the communication of roadmap content and the reporting of progress and achievements.
+
+With roadmap.yml, it is possible to focus on the process of creation your roadmap.
+Different communication needs can be addressed via the implemented views as HTML, dot or Markdown.
+You are free, to implement your own views to fullfill your special stakeholder needs (and dont forget to make a merge-request ;-) ).
+
+My experience with all the project management tools around is, that they are either heavily focused on progress tracking or collaboration. As a a dumb rule, they are mostly self-contained. 
+
+What they are also usually very bad at, is the ability to focus on the content and support the process of creating a roadmap in the best possible way.
+
+For me, a roadmap is a "living" document that should represent the thoughts and development steps of the roadmap itself in a versioned and structured way and offer the opportunity to derive the communication requirements from its structure.
+
+If you are happy with your roadmap, just build some little piece of software to export your roadmap.yml into your prefered projectmanagement-tool.
+
+## State of development
+You can see the state of roadmap.pys objectives and keyresults in the following graph (rendered directly from [roadmap.yml](examples/roadmap.yml) )
 
 ![roadmap.pys objective + keyresult graph](roadmap/roadmap.dot.png)
 
-## Goals
-My development approach is to implement the core functions of https://github.com/SierraSoftworks/roadmap. This concerns the creation of different views (e.g. Markdown, HTML, Graph and PDF).
-
+## Whats inside the box?
 I mainly focus on mapping the following structure:
- - A **project** has any number of objectives
-    - An **objective** has any number of milestones
-        - A **milestone** has any number of deliverables
-            - a **deliverable** can be assigned to a release.
-- A number of **milestones** as an indicator for overall-progress of this roadmap (to be compliant with SierraSoftworks/roadmap)
-- The **timeline** and the **project metadata** are unchanged
-- The whole thing is supplemented by **release** assignments
+ - Everything under **project** holds your project information, like your [vision](https://en.wikipedia.org/wiki/Vision_statement), important dates for your project, your objectives and your milesstones
+- **Objectives** descripe central goals you might have to achieve. Objectives could be breaked down into **keyresults** - usefull if your team use [OKRs](https://en.wikipedia.org/wiki/Objectives_and_key_results). 
+- **Milestones** are used as an indicator for overall-progress of certain features or capabilities. They could be used either on *project* or *objective* level. To break down a milestone into smaller pieces of work use **deliverables**. A deliverable could be a feature or capability or some work, you have to achieve before reaching the milestone.
 
-In advance, i like to support some more planning approaches.
+Every objective, milestone, deliverable or keyresult can have a **reference** e.g. to your ticketsystem or detaildocument or whatsoever.
 
-Objectives, milestones, deliverables and releases can have none or one reference (e.g. to your ticketsystem or document or whatever).
+They also might have some **todos**, which are necessary to clarify the item, e.g. a open point or something to validate, some research work... 
+The intend of the todos is around the roadmap creation process, not to do something to achieve an roadmap objective. 
+But you are free to do it in your way.
 
-## roadmap.yaml
-See [schema/roadmap.md](schema/roadmap.md).
+The items have different **status** to describe commitment and achievments of the item.
 
-The main structure of a roadmap.yaml is as follows:
-- *title*: A brief title which describes this road map.
-- *description*: A markdown formatted description of what this road map represents and any additional context which may be useful to a reader.
-- **authors**: A list of authors who were/are involved in the creation of the roadmap
-- **timeline**: A list of important dates which relates to this road map.
-- **releases**: A list of releases which provide enhancements in the form of deliverables to the stakeholders
+Be aware: **Sequence is crucial**
+The order of each item in your roadmap.yml indicates their logical or temporal sequence and will always take precedence over calculated or grouped order.
 
-### Support different planning approaches
-roadmap.py is able to handle the following planning approaches:
-- **Roadmap only with Objectives**
-    - **objectives**: Is a list of objectives which the team is working towards over the course of this roadmap.
-- **Roadmap with Objective-Key-Results** (OKRs)
-    - **objectives** is a list of objectives which the team is working towards over the course of this roadmap.
-    - **keyresult** every objective can have one or as many keyresults as needed
-- **Roadmap with Objectives and some Milestones** for each Objective
-    - **objectives** is a list of objectives which the team is working towards over the course of this roadmap.
-    - **milestones** is a list of milestones to reach the corresponding objective
-- **Roadmap with Objectives and separate Milestones**
+To understand all the different item attributes and status take a detailed look into **[schema/roadmap.md](schema/roadmap.md)**.
 
-A Milestone can have as many Deliverables as needed.
+## Howto Use 
 
-### Sequence is crucial. 
-The order of the objects of an entity indicates their logical or temporal sequence.
-
-### roadmap entities and attributes
-
-#### author
-- **name***: mandatory; Name of the author
-- *contact*: Some kind of contact informatione to contact the author (email, phone, adress)
-
-#### timeline
-- **date***: mandatory
-- **title***: mandatory
-- *description*: A markdown formatted description of what this timeline marker represents, or additional context associated with it.
-
-#### release
-- **tag***: mandatory; a short and meaningful tag of your release
-- *description*: Describe in natural words, what should or must be part of this release
-- *reference*: additional information about this release
-
-#### objective
-- **title***: mandatory; a short and meaningful summary of the objective
-- *description*: Describe in natural words, what is to be achieved for whom and why
-- *reference*: additional information about this objective
-- *state*:
-    - IDEA
-    - PLANNED
-    - COMMITED
-    - ACHIEVED
-    - SKIP
-- milestones: any number of **milestone** to reach this objective (or none)
-
-#### milestone
-- **title***: mandatory; a short and meaningful summary of the milestone
-- *description*: describe in natural words, what should be achived to whom
-A milestone act as an indicator of progress for his objective.
-- *reference*: additional information about this milestone
-- *state*:
-    - IDEA
-    - PLANNED
-    - COMMITED
-    - REACHED
-    - SKIP
-- *deliverables*: any number of deliverable to reach this milestone (or none)
-
-#### deliverable
-- **title***: mandatory; a short and meaningful summary of the deliverable
-- *description*: describe in natural words, what should be delivered to whom
-- *state*
-    - TODO
-    - DOING
-    - DONE
-    - SKIP
-- *requirement*: An [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119) verb which describes how a specific requirement should be treated.
-    - MUST
-    - SHOULD
-    - MAY
-- *date*: The deliverable should, must or may be available by this date at the latest
-- *release*: The deliverable should, must or may be part of this release; to reference one release from *releases* use *release.tag* as reference
-- *reference*: additional information about this deliverable
-
-#### reference
-- **link***: mandatory; A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket).
-- *name*: a name for your reference
-- *description*: describe in natural words, what someone could expect by using the link of this reference
-
-## Howto Run Example (Work in Progress)
- - Clone this repository
- - Install requirements
+### Render Example
+To render roadmap.py roadmap as an example: 
+ - clone this repository
+ - change to cloned directory
+ - install requirements
  ```pip install -r requirements.txt```
-- run roadmap.py
+- use roadmap.py to render the templates
 ```python3 roadmap.py```
-- watch roadmap.md
+- the rendered roadmap-files are located under **roadmap/** directory
+- ```open roadmap/roadmap.md```in your prefered markdown editor
+- ```open roadmap/roadmap.html```in your prefered browser
+- ```open roadmap/roadmap.dot```in your prefered graphviz-engine
 
-## Inspired by
+All the data for roadmap example is located under **examples/roadmap.yml**
+
+### Adapt roadmap for your own needs
+
+As a default, the roadmap data is located under **examples/roadmap.yml**.
+
+You can modifiy this file according to your team or project needs inside this file.
+
+A better way to do this is to use a separate folder outside the checked out repository for your team or project roadmap. 
+
+If you use your own versioning-system like git, you are able to track all your changes on your own roadmap, make branches and publish in a consistent and open way. Use roadmap.py only for rendering and linting.
+
+Create your own project folder, copy roadmap.yml as a starting point into your newly created directory. 
+
+Next, create a folder for the rendered output your own directory, e.g. named *roadmap* .
+
+There you have a good starting point for your own project.
+
+#### Commandline Options
+To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
+
+There are 2 Options:
+- ```--roadmap-file```
+    this is the path to your roadmap.yml
+    default="examples/roadmap.yml
+- ```--output-dir```
+    this is the path to the rendered roadmap outputs
+    default=OUTPUT_PATH from roadmap.env
+
+e.g. if **your own directory** is located under */home/example/my_own_roadmap* and **roadmap.py** is located under */home/example/roadmap/* run : 
+```
+python3 /home/example/roadmap/roadmap.py --roadmap-file=/home/example/my_own_roadmap/roadmap.yml --output-dir=/home/example/my_own_roadmap/roadmap/
+```
+
+#### Use roadmap.json for linter support
+To modify your roadmap you just need a text-editor. 
+There are a bunch of editors out there. Some might have the ability to make auto-linting or support you with code-completion. 
+
+To enable this, you might link **schema/roadmap.json** into your prefered text-editor.
+
+## Credits
 This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap
 
-### Key differences and how to handle them
-Roadmap is a clone, implemented in python - should be no problem :)
- 
-Roadmap Structure is slightly different. In particular, **references** are treated differently.
-Instead of:
-```        
-reference: URI_TO_REFERENCE 
-```
-use:
-```        
-    reference: 
-        link: URI_TO_REFERENCE 
-```
-In addition, milestones are also permitted for objectives and objectives can contain key results as well as milestones.
