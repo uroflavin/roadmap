@@ -45,7 +45,6 @@ timeline:
   
 objectives:
   - title: We provide a single, universal, schema for high-level planning
-    date: "Q1/2024"
     description: | 
       The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
       The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
@@ -66,7 +65,7 @@ objectives:
     description: |
       While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
       This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
-    state: ACHIEVED
+    state: COMMITED
     keyresults:
     - title: Roadmap as Markdown
       description: |
@@ -92,18 +91,29 @@ objectives:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot
         name: see DOT-Template
+    - title: Roadmap Milestones as CSV-File
+      description: |
+        Excel is THE projectmanagement tool. 
+        To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
+        CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
+      state: DOING
+      requirement: MAY
+    - title: Roadmap as XLS-File
+      description: |
+        We should be able to generate some xls out of roadmap.yml
+      state: TODO
+      requirement: MAY
 
   - title: We have exceptional documentation
-    date: "Q2/2024"
     description: |
       Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
       Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
-    state: ACHIEVED
+    state: COMMITED
     keyresults:
     - title: Awesome README 
       description: |
         We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
-      state: DOING
+      state: DONE
       requirement: MUST
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/README.md
@@ -147,7 +157,7 @@ milestones:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
 
-  - id: Möllenstein 2
+  - id: Meilenstein 2
     title: Roadmap Schema
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. 
