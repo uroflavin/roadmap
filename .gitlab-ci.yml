@@ -1,0 +1,19 @@
+image: python:3.9
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  script:
+    - pip install -r requirements.txt
+
+test:
+  script:
+    - python -m unittest test_helloworld.py
+    - python -m unittest test_roadmap.py
+
+deploy:
+  script:
+    - python helloworld.py
