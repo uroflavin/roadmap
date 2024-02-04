@@ -2,14 +2,15 @@
 
             <r-timeline>
                 {% for date, timelineentries in project.group.timeline_by.date.items() %}
-                    <r-timeline-item>
+                {% set id = "timeline_grouped_" + loop.index | string %}
+                    <r-timeline-item id="{{ id }}">
                         <r-date>{{ date }}</r-date>
                         <r-name>
                             {% for timelineentry in timelineentries %}
-                                <r-timelelin-item>
+                                <r-timeline-item id="{{ timelineentry._id }}">
                                     <r-name><h3>{{ timelineentry.title }}</h3></r-name>
                                     <r-description>{% markdown %}{{ timelineentry.description -}}{% endmarkdown %}</r-description>
-                                </r-timelelin-item>
+                                </r-timeline-item>
                             {% endfor %}                
                         </r-name>
                     </r-timeline-item>

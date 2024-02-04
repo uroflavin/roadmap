@@ -147,7 +147,7 @@ milestones:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
 
-  - id: Meilenstein 2
+  - id: Möllenstein 2
     title: Roadmap Schema
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. 

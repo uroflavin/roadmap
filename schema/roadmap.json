@@ -216,7 +216,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique identifier for this milestone"
+                    "description": "A human-readable unique identifier for this milestone"
+                },
+                "_id": {
+                    "type": "string",
+                    "description": "unique identifier for this milestone, derived from milestone.id - if unset calculated based on milestone order"
                 },
                 "title": {
                     "type": "string",

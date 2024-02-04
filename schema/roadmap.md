@@ -91,7 +91,8 @@
   ```
 
 - <a id="definitions/Milestone"></a>**`Milestone`** *(object)*: An indicator of progress for this roadmap. Usually milestones are collections of deliverables which, when considered together, represent a shift in the value delivered by a team or project.
-  - **`id`** *(string)*: A unique identifier for this milestone.
+  - **`id`** *(string)*: A human-readable unique identifier for this milestone.
+  - **`_id`** *(string)*: unique identifier for this milestone, derived from milestone.id - if unset calculated based on milestone order.
   - **`title`** *(string, required)*: A brief name associated with this milestone to describe the value shift.
   - **`description`** *(string)*: A markdown formatted description of what this milestone represents and, if appropriate, the justification for its presence and prioritization.
   - **`date`** *(string, format: date)*: The date that this milestone should or is reached.

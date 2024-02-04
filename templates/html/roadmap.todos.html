@@ -1,8 +1,7 @@
         <r-todos>
             <h5>TODO</h5>
             {% for todo in todos %}
-                {% set todo_id = parent_id + "_todo_" + loop.index | string %}
-                <r-todo id="{{ todo_id}}" class="{{ todo.state }}">
+                <r-todo id="{{ todo._id}}" class="{{ todo.state }}">
                     <r-title>{{ todo.title }}</r-title>
                     <r-description>{% markdown %}{{ todo.description }}{% endmarkdown %}</r-description>
                 </r-todo>

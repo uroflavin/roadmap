@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.12] - 2024-02-04
+### Added
+- slightly modified css color of done, may and should
+- #61: calculate id's: _id, id and _previous_id
+- #62: add _parent_id
+### Fix
+- removed testing data
+
 ## [0.0.11] - 2024-02-02
 ### Added
 - Add TODO
@@ -102,3 +110,4 @@ BREAKING CHANGE
 [0.0.9]: https://github.com/uroflavin/roadmap/pull/49
 [0.0.10]: https://github.com/uroflavin/roadmap/pull/52
 [0.0.11]: https://github.com/uroflavin/roadmap/pull/57
+[0.0.12]: https://github.com/uroflavin/roadmap/pull/

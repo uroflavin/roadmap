@@ -25,27 +25,22 @@ The goal is to make this as easy as possible for humans to read and reason about
     end[label="End",shape="point",color="",tooltip="This is the end of your roadmap."];
     
     
-    
     o1 [label="We provide a single, universal, schema for high-level planning",tooltip="The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
 "];
         
             "start" -> o1;
         
-    
     o2 [label="We provide official tooling for most common use cases",tooltip="While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
 "];
         
-             
             o1 -> o2;
         
-    
     o3 [label="We have exceptional documentation",tooltip="Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
 "];
         
-             
             o2 -> o3;
         
             o3 -> "end" ;
@@ -54,9 +49,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
   edge[weight=5,color="grey",penwidth=0.4,arrowsize=0.4,group="dependencies",arrowhead="diamond"];
 
   
-    
-    
-         
+        
         subgraph cluster_o1 {
             label="We provide a single, universal, schema for high-level planning";
             tooltip="The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
@@ -72,9 +65,7 @@ The usefulness and applicability of this schema to real-world problem domains wi
                 o1_r1 -> o1;
             }
     
-    
-    
-         
+        
         subgraph cluster_o2 {
             label="We provide official tooling for most common use cases";
             tooltip="While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
@@ -105,9 +96,7 @@ This includes things like being able to visualize your road map in common format
                 o2_r3 -> o2;
             }
     
-    
-    
-         
+        
         subgraph cluster_o3 {
             label="We have exceptional documentation";
             tooltip="Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 

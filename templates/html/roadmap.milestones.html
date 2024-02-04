@@ -1,15 +1,8 @@
         <h2>Milestones</h2>
             <r-milestones >
                 {% for milestone in project.milestones %}
-                    {% if "id" in milestone  %}
-                        {% set milestone_id = milestone.id | lower | replace(" ","_") %}
-                        {% set milestone_id_display = milestone.id %}
-                    {% else %}
-                        {% set milestone_id = "m" + loop.index | string %}
-                        {% set milestone_id_display = "M" + loop.index | string %}
-                    {% endif -%}
-                    <r-milestone id="{{ milestone_id }}" class="{{ milestone.state}}">
-                        <r-milestone-id>{{ milestone_id_display}}</r-milestone-id>
+                    <r-milestone id="{{ milestone._id  }}" class="{{ milestone.state}}">
+                        <r-milestone-id>{{ milestone.id }}</r-milestone-id>
                         {% if "date" in milestone %}
                         <r-date>{{ milestone.date}}</r-date>
                         {% endif -%}
@@ -31,19 +24,17 @@
                         {% endif -%}
                         {% if "todos" in milestone %}
                             {% set todos = milestone.todos %}
-                            {% set parent_id = milestone_id %}
                             {% include "roadmap.todos.html" -%}
                         {% endif -%}
                         {% if "deliverables" in milestone %}
                             <r-deliverables>
                                 {% for deliverable in milestone.deliverables %}
-                                    {% set deliverable_id = milestone_id + "_d" + loop.index | string %}
                                     {% if "state" in deliverable %}
                                         {% set deliverable_state = deliverable.state %}
                                     {% else %}
                                         {% set deliverable_state = 'TODO' %}
                                     {% endif -%}
-                                    <r-deliverable id="{{ deliverable_id }}" class="{{ deliverable_state }}">
+                                    <r-deliverable id="{{ deliverable._id }}" class="{{ deliverable_state }}">
                                         {% if "date" in deliverable %}
                                         <r-date>{{ deliverable.date}}</r-date>
                                         {% endif -%}
@@ -68,7 +59,6 @@
                                         {% endif -%}
                                         {% if "todos" in deliverable %}
                                             {% set todos = deliverable.todos %}
-                                            {% set parent_id = deliverable_id %}
                                             {% include "roadmap.todos.html" -%}
                                         {% endif -%}
                                     </r-deliverable>

@@ -35,8 +35,6 @@
     just now, the timeline-ruler is display:none if screensize < 600px
     it would be nice, if we can see the marker but only leftside...
 
-- [ ] Group Objectives by Date and Order according date
-
 - [ ] Allow user-defined templates OR some mechanic to controll the order of Milestone vs Objective, Rendering of some roadmap elements
 
 - [ ] markdown-template: Add missing releases
