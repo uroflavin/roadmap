@@ -15,17 +15,15 @@ digraph Roadmap {
     end[label="End",shape="point",color="",tooltip="This is the end of your roadmap."];
     
     {% for objective in project.objectives %}
-    {% set objective_id = "o" + loop.index|string %}
-    {{objective_id}} [label="{{ objective.title}}",tooltip="{{ objective.description -}}"];
+    {{objective._id}} [label="{{ objective.title}}",tooltip="{{ objective.description -}}"];
         {% if loop.index == 1 %}
-            "start" -> {{objective_id}};
+            "start" -> {{objective._id}};
         {% else %}
-            {% set previous_id = "o" + (loop.index - 1)|string %} 
-            {{previous_id}} -> {{objective_id}};
+            {{objective._previous_id}} -> {{objective._id}};
         {% endif -%} 
         
         {% if loop.last %}
-            {{objective_id}} -> "end" ;
+            {{objective._id}} -> "end" ;
         {% endif -%} 
     {% endfor -%}
   }
@@ -33,10 +31,8 @@ digraph Roadmap {
   edge[weight=5,color="grey",penwidth=0.4,arrowsize=0.4,group="dependencies",arrowhead="diamond"];
 
   {% for objective in project.objectives %}
-    {% set objective_id = "o" + loop.index|string %}
-    
-    {% if "keyresults" in objective %}     
-        subgraph cluster_{{objective_id}} {
+   {% if "keyresults" in objective %}     
+        subgraph cluster_{{objective._id}} {
             label="{{ objective.title}}";
             tooltip="{{ objective.description -}}";
             fontsize=8;
@@ -56,10 +52,8 @@ digraph Roadmap {
                     {% set state_color = "pink" %}
                 {% endif -%}        
                 
-                {% set keyresult_id = objective_id + "_r" + loop.index |string  -%}
-                
-                {{keyresult_id}} [label="{{ "✓ " if keyresult.state == "DONE" }}{{ keyresult.title}}",tooltip="{{ keyresult.description -}}",color="{{ state_color}}"];
-                {{keyresult_id}} -> {{objective_id}};
+                {{keyresult._id}} [label="{{ "✓ " if keyresult.state == "DONE" }}{{ keyresult.title}}",tooltip="{{ keyresult.description -}}",color="{{ state_color}}"];
+                {{keyresult._id}} -> {{keyresult._parent_id}};
             {% endfor -%}
         }
     {% endif -%} 

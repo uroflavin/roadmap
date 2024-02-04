@@ -1,9 +1,7 @@
         <h3>Milestones</h3>
             <r-milestones >
-                {% set objective_id = loop.index %}
                 {% for milestone in objective.milestones %}
-                    {% set milestone_id = loop.index %}
-                    <r-milestone id="objective-{ objective_id }}-milestone-{{ milestone_id }}" class="{{ milestone.state}}">
+                    <r-milestone id="{{ milestone._id }}" class="{{ milestone.state}}">
                         {% if "date" in milestone %}
                         <r-date>{{ milestone.date}}</r-date>
                         {% endif -%}
@@ -23,18 +21,19 @@
                                 <a class="card-link" target="_blank" href="{{ milestone.reference.link -}}">{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}</a>
                             </r-reference>
                         {% endif -%}
-
+                        {% if "todos" in milestone %}
+                            {% set todos = milestone.todos %}
+                            {% include "roadmap.todos.html" -%}
+                        {% endif -%}
                         {% if "deliverables" in milestone %}
                             <r-deliverables>
                                 {% for deliverable in milestone.deliverables %}
-                                    {% set deliverable_id = loop.index %}
-                                    
                                     {% if "state" in deliverable %}
                                         {% set deliverable_state = deliverable.state %}
                                     {% else %}
                                         {% set deliverable_state = 'TODO' %}
                                     {% endif -%}
-                                    <r-deliverable id="objective-{ objective_id }}-milestone-{{milestone_id }}-deliverable-{{ deliverable_id }}" class="{{ deliverable_state }}">
+                                    <r-deliverable id="{{ deliverable._id }}" class="{{ deliverable_state }}">
                                         {% if "date" in deliverable %}
                                         <r-date>{{ deliverable.date}}</r-date>
                                         {% endif -%}
@@ -56,6 +55,10 @@
                                             <r-reference>
                                                 <a class="card-link" target="_blank" href="{{ deliverable.reference.link -}}">{{ deliverable.reference.name if deliverable.reference.name != "" else deliverable.reference.link }}</a>
                                             </r-reference>
+                                        {% endif -%}
+                                        {% if "todos" in deliverable %}
+                                            {% set todos = deliverable.todos %}
+                                            {% include "roadmap.todos.html" -%}
                                         {% endif -%}
                                     </r-deliverable>
                                 {% endfor -%}

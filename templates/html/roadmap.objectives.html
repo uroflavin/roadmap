@@ -4,8 +4,7 @@
             <h3>{{ date }}</h3>
             <r-objectives>
                 {% for objective in objectives %}
-                    {% set objective_id = "o_withdate_" + loop.index | string %}
-                    <r-objective id="objective-{{ objective_id }}">
+                    <r-objective id="{{ objective._id }}">
                         <r-header>
                             {% if "date" in objective %}
                             <r-date>{{ objective.date}}</r-date>
@@ -27,19 +26,17 @@
                         {% endif -%}
                         {% if "todos" in objective %}
                             {% set todos = objective.todos %}
-                            {% set parent_id = objective_id %}
                             {% include "roadmap.todos.html" -%}
                         {% endif -%}
                         {% if "keyresults" in objective %}
                             <r-keyresults>
                                 {% for keyresult in objective.keyresults %}
-                                    {% set keyresult_id = objective_id + "_k" + loop.index | string %}
-                                    {% if "date" not in keyresult %}
-                                        {% set keyresult_id_display = "R" + loop.index | string %}
+                                   {% if "date" not in keyresult %}
+                                        {% set keyresult_id_display = keyresult.id %}
                                     {% else %}
                                         {% set keyresult_id_display = keyresult.date %}
                                     {% endif -%}
-                                    <r-keyresult id="{{ keyresult_id }}" data-date="{{ keyresult_id_display }}">
+                                    <r-keyresult id="{{ keyresult._id }}" data-date="{{ keyresult_id_display }}">
                                         <r-header>
                                             <r-name><h5>{{ keyresult.title}}</h5></r-name>
                                             {% if "requirement" in keyresult %}
@@ -62,7 +59,6 @@
                                         {% endif -%}
                                         {% if "todos" in keyresult %}
                                             {% set todos = keyresult.todos %}
-                                            {% set parent_id = keyresult_id %}
                                             {% include "roadmap.todos.html" -%}
                                         {% endif -%}
                                     </r-keyresult>
@@ -82,11 +78,10 @@
             <h3>Objectives without date set</h3>    
             <r-objectives>
                 {% for objective in objectives %}
-                    {% set objective_id = "o_withoutdate_" + loop.index | string %}
-                    <r-objective id="{{ objective_id }}">
+                    <r-objective id="{{ objective._id }}">
                         <r-header>
                             {% if "date" in objective %}
-                            <r-date>{{ objective.date}}</r-date>
+                                <r-date>{{ objective.date}}</r-date>
                             {% endif -%}
                             <r-name><h4>{{ objective.title -}}</h4></r-name>
                             {% if "state" in objective %}    
@@ -105,19 +100,12 @@
                         {% endif -%}
                         {% if "todos" in objective %}
                             {% set todos = objective.todos %}
-                            {% set parent_id = objective_id %}
                             {% include "roadmap.todos.html" -%}
                         {% endif -%}
                         {% if "keyresults" in objective %}
                             <r-keyresults>
                                 {% for keyresult in objective.keyresults %}
-                                    {% set keyresult_id = objective_id + "_k" + loop.index | string %}
-                                    {% if "date" not in keyresult %}
-                                        {% set keyresult_id_display = "R" + loop.index | string %}
-                                    {% else %}
-                                        {% set keyresult_id_display = keyresult.date %}
-                                    {% endif -%}
-                                    <r-keyresult id="{{ keyresult_id }}" data-date="{{ keyresult_id_display  }}">
+                                    <r-keyresult id="{{ keyresult._id }}" data-date="{{ keyresult.date if 'date' in keyresult else keyresult.id  }}">
                                         <r-header>
                                             <r-name><h5>{{ keyresult.title}}</h5></r-name>
                                             {% if "requirement" in keyresult %}
@@ -140,7 +128,6 @@
                                         {% endif -%}
                                         {% if "todos" in keyresult %}
                                             {% set todos = keyresult.todos %}
-                                            {% set parent_id = keyresult_id %}
                                             {% include "roadmap.todos.html" -%}
                                         {% endif -%}
                                     </r-keyresult>
