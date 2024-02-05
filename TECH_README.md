@@ -41,14 +41,12 @@ You can run the script from the command line as follows:
 
 ```bash
 python script.py --roadmap-file path/to/roadmap.yml --output-dir path/to/output/folder
+python roadmap.py --roadmap-file examples/roadmap.yml --output-dir dist
 ```
 
 Please replace path/to/roadmap.yml with the path to your roadmap YAML file and path/to/output/folder with the path to your output folder.
 
 ## Docker Image for the script
-
-docker build -t roadmap .
-docker run -it roadmap "roger"
 
 ### Dockerfile
 
@@ -93,10 +91,6 @@ docker save roadmap_img > dist/roadmap_img.tar
 Run the created image using docker run:
 
 ```Bash
-docker run -v .:/app/working --rm roadmap_img
-```
-
-```powershell
 docker run -v $PWD/.:/app/working --rm roadmap_img --roadmap-file /app/working/examples/roadmap.yml  --output-dir /app/working/dist
 ```
 
