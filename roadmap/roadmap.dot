@@ -94,6 +94,22 @@ This includes things like being able to visualize your road map in common format
                 o2_r3 [label="✓ Roadmap as Graph",tooltip="We should be able to generate some dot out of roadmap.yml
 ",color="palegreen"];
                 o2_r3 -> o2;
+            
+                
+                
+                    
+                o2_r4 [label="Roadmap Milestones as CSV-File",tooltip="Excel is THE projectmanagement tool. 
+To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
+CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
+",color="lightblue"];
+                o2_r4 -> o2;
+            
+                
+                
+                    
+                o2_r5 [label="Roadmap as XLS-File",tooltip="We should be able to generate some xls out of roadmap.yml
+",color="grey"];
+                o2_r5 -> o2;
             }
     
         
@@ -108,8 +124,8 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
                 
                 
                     
-                o3_r1 [label="Awesome README",tooltip="We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
-",color="lightblue"];
+                o3_r1 [label="✓ Awesome README",tooltip="We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
+",color="palegreen"];
                 o3_r1 -> o3;
             
                 

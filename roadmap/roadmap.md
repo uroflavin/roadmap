@@ -38,45 +38,22 @@ The goal is to make this as easy as possible for humans to read and reason about
 ## Objectives
 
 
-### Q1/2024
 
-#### We provide a single, universal, schema for high-level planning | ACHIEVED
+
+
+### We provide a single, universal, schema for high-level planning | ACHIEVED
 The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.
 
 - [see json-schema.org](https://json-schema.org/)
 
-##### Keyresults###### [R1] | Provide a schema definition | MUST DONE
+#### Keyresults##### [R1] | Provide a schema definition | MUST DONE
 Develop a schema that fulfills the main requirements of the objective
 - [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 
 
-
-
-
-### Q2/2024
-
-#### We have exceptional documentation | ACHIEVED
-Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
-Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
-
-##### Keyresults###### [R1] | Awesome README | MUST DOING
-We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
-
-- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
-###### [R2] | Complete examples in schema-definition | MAY TODO
-Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
-- [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
-
-
-
-
-
-
-
-
-### We provide official tooling for most common use cases | ACHIEVED
+### We provide official tooling for most common use cases | COMMITED
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
 
@@ -92,7 +69,26 @@ We should be able to generate some html out of roadmap.yml
 We should be able to generate some dot out of roadmap.yml
 
 - [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
+##### [R4] | Roadmap Milestones as CSV-File | MAY DOING
+Excel is THE projectmanagement tool. 
+To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
+CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
+##### [R5] | Roadmap as XLS-File | MAY TODO
+We should be able to generate some xls out of roadmap.yml
 
+
+
+### We have exceptional documentation | COMMITED
+Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
+Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
+
+#### Keyresults##### [R1] | Awesome README | MUST DONE
+We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
+
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
+##### [R2] | Complete examples in schema-definition | MAY TODO
+Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
+- [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
 
 
@@ -116,7 +112,7 @@ We need to know what the roadmap file format looks like, so we'll get started wi
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
 
-### #Möllenstein 2 | Roadmap Schema | REACHED
+### #Meilenstein 2 | Roadmap Schema | REACHED
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
 

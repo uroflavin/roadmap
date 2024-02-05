@@ -1,0 +1,44 @@
+{% set g = namespace( comma = '') -%}
+milestone._id, milestone.id, milestone.state, milestone.title, milestone.date, milestone.description, milestone.reference.name, milestone.reference.link, milestone._has_todos, deliverable._id, deliverable.id, deliverable.state, deliverable.requirement, deliverable.date, deliverable.description, deliverable.reference.name, deliverable.reference.link, deliverable._has_todos
+{%- for milestone in project.milestones %}
+{%- for deliverable in milestone.deliverables %}
+{{ milestone._id -}}
+    {%- set g.comma = ', ' -%}
+    {{- g.comma -}}
+    {{- milestone.id -}}
+    {{- g.comma -}}
+    {{- milestone.state if "state" in milestone else " " -}}
+    {{- g.comma -}}
+    "{{- milestone.title if "title" in milestone else " " -}}"
+    {{- g.comma -}}
+    "{{- milestone.date if "date" in milestone else " " -}}"
+    {{- g.comma -}}
+    "{{ (milestone.description | replace('\n', '\\n') ) if "description" in milestone else " " -}}"
+    {{- g.comma -}}
+    "{{- milestone.reference.name if "reference" in milestone else " " -}}"
+    {{- g.comma -}}
+    "{{- milestone.reference.link if "reference" in milestone else " " -}}"
+    {{- g.comma -}}
+    "{{- milestone.todos| length if "todos" in milestone else 0 -}}"
+    {{- g.comma -}}
+    {{- deliverable._id if "_id" in deliverable else " " -}}
+    {{- g.comma -}}
+    {{- deliverable.id if "id" in deliverable else " " -}}
+    {{- g.comma -}}
+    {{- deliverable.state if "state" in deliverable else " " -}}
+    {{- g.comma -}}
+    {{- deliverable.requirement if "requirement" in deliverable else " " -}}
+    {{- g.comma -}}
+    "{{- deliverable.date if "date" in deliverable else " " -}}"
+    {{- g.comma -}}
+    "{{ (deliverable.description | replace('\n', '\\n') ) if "description" in deliverable else " " -}}"
+    {{- g.comma -}}
+    "{{- deliverable.reference.name if "reference" in deliverable else " " -}}"
+    {{- g.comma -}}
+    "{{- deliverable.reference.link if "reference" in deliverable else " " -}}"
+    {{- g.comma -}}
+    "{{- deliverable.todos| length if "todos" in deliverable else 0 -}}"
+    {%- set g.comma = '' -%}
+    {{ g.comma }}
+{%- endfor %}
+{%- endfor %}
