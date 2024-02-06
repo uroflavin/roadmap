@@ -1,22 +1,33 @@
-import yaml
-import json
-import jsonschema
-from jsonschema import validate
+import yaml  # Used for reading and writing YAML files.
+import json  # Used for reading and writing JSON files.
+import jsonschema  # Used for validating JSON data against a schema.
+import os  # Provides functions for interacting with the operating system.
+import argparse  # Used for writing user-friendly command-line interfaces.
+import shutil  # Used for high-level file operations.
 
-from dotenv import dotenv_values  # Environment
+# Used for running new applications or commands in new processes.
+import subprocess
 
-import os
-from pathlib import Path
-
+# Used for logging events that happen while the application is running.
 import logging
 
+# Used for loading templates from the file system and creating a Jinja2 environment.
 from jinja2 import FileSystemLoader, Environment
+
+# A function to validate a given JSON data with a given JSON schema.
+from jsonschema import validate
+
+# Used for reading key-value pairs from a .env file and returning them as a dictionary.
+from dotenv import dotenv_values
+
+# Provides various classes representing file system paths with semantics appropriate for different operating systems.
+from pathlib import Path
+
+# A Jinja2 extension to add Markdown support to Jinja2 templates.
 from jinja_markdown import MarkdownExtension
 
-import argparse
-import shutil
-
-import subprocess
+# A dictionary subclass that calls a factory function to supply missing values.
+from collections import defaultdict
 
 from pprint import pprint
 
@@ -39,7 +50,8 @@ def create_output_folder(path_to_folder: str = ""):
             output_folder.mkdir(parents=False, exist_ok=True)
         # FileNotFoundError is thrown if some parts of path are not present
         except FileNotFoundError as err:
-            logging.error("some folders for output_folder '%s' did not exist", path_to_folder)
+            logging.error(
+                "some folders for output_folder '%s' did not exist", path_to_folder)
             logging.error(err)
             return False
 
@@ -55,7 +67,7 @@ def create_output_folder(path_to_folder: str = ""):
 def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     """
     Read the Roadmap-Defintion-YML
-    
+
     Return Dict: if conversion to dict was successfull
     Return None: if conversion failed
 
@@ -69,15 +81,16 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
             logging.debug("project: %s", project)
             return project
     except OSError as err:
-        logging.error("roadmap-definition-file '%s' not readable")
-        logging.error("'%s'", err)
+        # in case of an error log file name and error message 
+        logging.error("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
+        logging.error("Error: %s", err.strerror)
         return None
 
 
 def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
     Validate roadmap-dictionary under the given jsonSchema
-    
+
     Return tuple, True: if conversion to dict was successfull
     Return None, False: if conversion failed
 
@@ -98,7 +111,8 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
         logging.debug("schema: %s", schema)
 
         # Convert ymlData to Python Dict
-        instance = json.loads(json.dumps(roadmap_data, indent=4, sort_keys=True, default=str))
+        instance = json.loads(json.dumps(
+            roadmap_data, indent=4, sort_keys=True, default=str))
         logging.debug("instance: %s", instance)
         validate(instance=instance, schema=schema)
         return None, True
@@ -112,7 +126,7 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
 def find_templates(template_path: str = "", template_known_suffixes: list = None):
     """
     find all templates in given template_path
-    
+
     Return list of templates
     :param str template_path: directory containing templates 
     :param list template_known_suffixes: list of know-suffixes for templates, e.g. html, md, txt
@@ -138,81 +152,89 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
     return templates
 
 
-def process_template(environment: Environment = Environment(),
-                     template: dict = None,
-                     roadmap_definition_file: str = "", project=None, output_path: str = ""):
+def process_template(
+    environment: Environment = None,
+    template: dict = None,
+    roadmap_definition_file: str = "",
+    project=None,
+    output_path: str = ""
+):
     """
-    process the template and write rendered output-data to filesystem
-    
-    filename of roadmap.yml without suffix is used as output name
-    
-    :param Environment environment: this is the jinja-template-environment
-    :param dict template: contain the template data
-    :param str roadmap_definition_file: filename of roadmap.yml
-    :param dict project: roadmap data as dict
-    :param str output_path: path for the rendered templates
-    :return: Nothing
-    :rtype: None
+    Process the template and write rendered output-data to filesystem.
+
+    :param environment: Jinja2 Environment object for template rendering.
+    :type environment: Environment, optional
+    :param template: Dictionary containing the template data.
+    :type template: dict, optional
+    :param roadmap_definition_file: Filename of the roadmap.yml file.
+    :type roadmap_definition_file: str, optional
+    :param project: Roadmap data as a dictionary.
+    :type project: dict, optional
+    :param output_path: Path for the rendered templates.
+    :type output_path: str, optional
+    :return: None
     """
+
+    # Set default template and environment if not provided
+    if environment is None:
+        environment = Environment()
     if template is None:
         template = {"path": "", "file": "", "suffix": "", "type": ""}
 
     try:
+        # Render the template and write the output file.
         environment.loader = FileSystemLoader(template["path"])
         template_file = environment.get_template(template["file"])
         rendered_template = template_file.render(project=project)
-
         output_basename = Path(roadmap_definition_file).stem
-        output_file = output_path + output_basename + "." + template["suffix"]
-
+        output_file = os.path.join(
+            output_path, f"{output_basename}.{template['suffix']}")
         with open(output_file, "w") as f:
             f.write(rendered_template)
 
-        # copy logo to output path
+        # Copy logo to output path if it exists in the project
         if "logo" in project:
-            logo_src_path = str(Path(roadmap_definition_file).parent.absolute().resolve()) + "/" + project["logo"][
-                "filename"]
-            shutil.copy(logo_src_path, output_folder)
-        # if dot file, try converting it to png, 
-        # log error but continue
-        try:
-            if template["suffix"] == "dot":
-                output_png = output_path + output_basename + ".dot.png"
-                subprocess.check_call(['dot', '-Tpng', output_file, '-o', output_png])
-        except Exception as err:
-            logging.error("dot-converting failed '%s'", err)
-            logging.error("make shure to install graphiv properly")
+            logo_src_path = os.path.join(Path(roadmap_definition_file).parent.absolute(
+            ).resolve(), project["logo"]["filename"])
+            shutil.copy(logo_src_path, output_path)
 
-        logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file,
-                     template["path"] + template["file"], output_file)
+        # If the template is a dot file, try converting it to png
+        if template["suffix"] == "dot":
+            output_png = os.path.join(
+                output_path, f"{output_basename}.dot.png")
+            subprocess.check_call(
+                ['dot', '-Tpng', output_file, '-o', output_png])
+
+        logging.info("Processed '%s' with template '%s' to '%s'", roadmap_definition_file,
+                     os.path.join(template["path"], template["file"]), output_file)
+
     except Exception as err:
-        logging.error("processing template %s failed with error %s", template["path"] + "/" + template["file"], err)
+        logging.error("Processing template %s failed with error %s",
+                      os.path.join(template["path"], template["file"]), err)
+
 
 def get_items_grouped_by_date(elements=None):
     """
-    group timeline by similar dates, keeps order from original
-    if element-item has no date attribute, we use "None" to get a group
-    :param dict element: roadmap element data as dict, e.g. timeline, objectives...
-    :return: dict project with added ["group"]["timeline_by"]["date"] 
+    Groups items by similar dates, maintaining the original order. If an item has no date attribute, 
+    it is grouped under "None".
+
+    :param elements: List of items where each item is a dictionary that may contain a "date" key.
+    :type elements: list, optional
+    :return: A dictionary where keys are dates (or "None") and values are lists of items with those dates.
+    :rtype: dict
     """
-    
-    grouped_items = {}
-    if len(elements) > 0:
+
+    # Use defaultdict to automatically handle the case where a key is not already in the dictionary
+    grouped_items = defaultdict(list)
+
+    if elements:
         for item in elements:
-            # make shure we have a date
-            if "date" in item:
-                # deside to init or append group
-                if item["date"] in grouped_items:
-                    grouped_items[item["date"]].append(item.copy())
-                else:
-                    grouped_items[item["date"]] = [item.copy()]
-            # if we have no date, we use "None" for this group
-            else:
-                if "None" in grouped_items:
-                    grouped_items["None"].append(item.copy())
-                else:
-                    grouped_items["None"] = [item.copy()]
-    return grouped_items.copy()
+            # Use the item's date if it exists, otherwise use "None" and add it to the group
+            date = item.get("date", "None")
+            grouped_items[date].append(item.copy())
+
+    return dict(grouped_items)
+
 
 def make_id_from(input: str = ""):
     """
@@ -290,78 +312,84 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
 
     return elements.copy()
 
-# Init
-# Load Config from roadmap.env
-config = dotenv_values("roadmap.env")
+def main():
+    # Init
+    # Load Config from roadmap.env
+    config = dotenv_values("roadmap.env")
 
-LOGFILE = config["LOGFILE"]
-logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
-                    format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-logging.debug("config: %s", config)
+    LOGFILE = config["LOGFILE"]
+    logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
+                        format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+    logging.debug("config: %s", config)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--roadmap-file", type=str,
-                    help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--roadmap-file", type=str,
+                        help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
 
-parser.add_argument("--output-dir", type=str,
-                    help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
+    parser.add_argument("--output-dir", type=str,
+                        help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-roadmap_definition_file = args.roadmap_file
-output_folder = args.output_dir
+    roadmap_definition_file = args.roadmap_file
+    output_folder = args.output_dir
 
-if output_folder[-1] != os.sep:
-    output_folder = output_folder + os.sep
+    if output_folder[-1] != os.sep:
+        output_folder = output_folder + os.sep
 
 
-if create_output_folder(output_folder):
-    # Read Roadmap-Definition
-    project = read_roadmap_definition(path_to_roadmap_yml=roadmap_definition_file)
+    if create_output_folder(output_folder):
+        # Read Roadmap-Definition
+        project = read_roadmap_definition(
+            path_to_roadmap_yml=roadmap_definition_file)
 
-    validation_error, is_valid_yaml = validate_yaml(roadmap_data=project, path_to_json_schema=config["SCHEMA"])
+        validation_error, is_valid_yaml = validate_yaml(
+            roadmap_data=project, path_to_json_schema=config["SCHEMA"])
 
-    if is_valid_yaml:
-        # Find all templates
-        templates = find_templates(template_path=config["TEMPLATE_PATH"],
-                                   template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
-        # Calculate some information to project
-        # add _id, id, _parent_id and _previous_id
-        if "timeline" in project:
-            project['timeline'] = calculate_ids_for_element_items(project['timeline'], prefix="Timeline")
-        if "objectives" in project:
-            project['objectives'] = calculate_ids_for_element_items(project['objectives'], prefix="O")
-        if "milestones" in project:
-            project['milestones'] = calculate_ids_for_element_items(project['milestones'], prefix="M")
-        if "releases" in project:
-            project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
-        
-        # get items groupedy by date
-        project["group"] = {
-            "timeline_by" : {
-                "date": get_items_grouped_by_date(project["timeline"])
-            },
-            "objectives_by" : {
-                "date": get_items_grouped_by_date(project["objectives"])
+        if is_valid_yaml:
+            # Find all templates
+            templates = find_templates(template_path=config["TEMPLATE_PATH"],
+                                    template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+            # Calculate some information to project
+            # add _id, id, _parent_id and _previous_id
+            if "timeline" in project:
+                project['timeline'] = calculate_ids_for_element_items(project['timeline'], prefix="Timeline")
+            if "objectives" in project:
+                project['objectives'] = calculate_ids_for_element_items(project['objectives'], prefix="O")
+            if "milestones" in project:
+                project['milestones'] = calculate_ids_for_element_items(project['milestones'], prefix="M")
+            if "releases" in project:
+                project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
+            
+            # get items groupedy by date
+            project["group"] = {
+                "timeline_by": {
+                    "date": get_items_grouped_by_date(project["timeline"])
+                },
+                "objectives_by": {
+                    "date": get_items_grouped_by_date(project["objectives"])
+                }
             }
-        }
-        # process templates with jinja
-        # Load Jinja Environment
-        env = Environment()
-        # Add some extensions for jinja
-        env.add_extension(MarkdownExtension)
+            # process templates with jinja
+            # Load Jinja Environment
+            env = Environment()
+            # Add some extensions for jinja
+            env.add_extension(MarkdownExtension)
 
-        for template in templates:
-            print("processing " + template["file"])
-            process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
-                             project=project, output_path=output_folder)
+            for template in templates:
+                print("processing " + template["file"])
+                process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
+                                project=project, output_path=output_folder)
 
-        print("roadmap-conversion successful")
+            print("roadmap-conversion successful")
 
+        else:
+            print(roadmap_definition_file + " contains no valid YAML-data")
+            print(validation_error)
+            print("See logfile for details")
     else:
-        print(roadmap_definition_file + " contains no valid YAML-data")
-        print(validation_error)
+        print("Could not create '" + output_folder + "'")
         print("See logfile for details")
-else:
-    print("Could not create '" + output_folder + "'")
-    print("See logfile for details")
+
+if __name__ == "__main__":
+    main()
