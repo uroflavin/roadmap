@@ -1,44 +1,93 @@
-{% set g = namespace( comma = '') -%}
-milestone._id, milestone.id, milestone.state, milestone.title, milestone.date, milestone.description, milestone.reference.name, milestone.reference.link, milestone._has_todos, deliverable._id, deliverable.id, deliverable.state, deliverable.requirement, deliverable.date, deliverable.description, deliverable.reference.name, deliverable.reference.link, deliverable._has_todos
-{%- for milestone in project.milestones %}
-{%- for deliverable in milestone.deliverables %}
-{{ milestone._id -}}
+{% set g = namespace( comma = '', roadmap_items = ['milestones','deliverables','objectives','keyresults','todos']) -%}
+type, _id, id, requirement, state, title, date, description, reference.name, reference.link, _has_todos
+{#- we have 3 levels and have to iterate 3 times -#}
+{%- for object_identifier in g.roadmap_items %}
+{%- if object_identifier in project -%}
+{%- for item in project[object_identifier] %}
+{{ object_identifier -}}
     {%- set g.comma = ', ' -%}
     {{- g.comma -}}
-    {{- milestone.id -}}
+    {{- item._id -}}
     {{- g.comma -}}
-    {{- milestone.state if "state" in milestone else " " -}}
+    {{- item.id -}}
     {{- g.comma -}}
-    "{{- milestone.title if "title" in milestone else " " -}}"
+    {{- item.requirement if "requirement" in item else " " -}}
     {{- g.comma -}}
-    "{{- milestone.date if "date" in milestone else " " -}}"
+    {{- item.state if "state" in item else " " -}}
     {{- g.comma -}}
-    "{{ (milestone.description | replace('\n', '\\n') ) if "description" in milestone else " " -}}"
+    "{{- item.title if "title" in item else " " -}}"
     {{- g.comma -}}
-    "{{- milestone.reference.name if "reference" in milestone else " " -}}"
+    "{{- item.date if "date" in item else " " -}}"
     {{- g.comma -}}
-    "{{- milestone.reference.link if "reference" in milestone else " " -}}"
+    "{{ (item.description | replace('\n', '\\n') ) if "description" in item else " " -}}"
     {{- g.comma -}}
-    "{{- milestone.todos| length if "todos" in milestone else 0 -}}"
+    "{{- item.reference.name if "reference" in item else " " -}}"
     {{- g.comma -}}
-    {{- deliverable._id if "_id" in deliverable else " " -}}
+    "{{- item.reference.link if "reference" in item else " " -}}"
     {{- g.comma -}}
-    {{- deliverable.id if "id" in deliverable else " " -}}
+    "{{- item.todos| length if "todos" in item else 0 -}}"
+    {%- set g.comma = '' -%}
+    {{ g.comma }}
+{%- for subobject_identifier in g.roadmap_items %}
+{%- if subobject_identifier in item -%}
+{%- for subitem in item[subobject_identifier] %}
+{{ object_identifier }}.{{ subobject_identifier -}}
+    {%- set g.comma = ', ' -%}
     {{- g.comma -}}
-    {{- deliverable.state if "state" in deliverable else " " -}}
+    {{- subitem._id -}}
     {{- g.comma -}}
-    {{- deliverable.requirement if "requirement" in deliverable else " " -}}
+    {{- subitem.id -}}
     {{- g.comma -}}
-    "{{- deliverable.date if "date" in deliverable else " " -}}"
+    {{- subitem.requirement if "requirement" in subitem else " " -}}
     {{- g.comma -}}
-    "{{ (deliverable.description | replace('\n', '\\n') ) if "description" in deliverable else " " -}}"
+    {{- subitem.state if "state" in subitem else " " -}}
     {{- g.comma -}}
-    "{{- deliverable.reference.name if "reference" in deliverable else " " -}}"
+    "{{- subitem.title if "title" in subitem else " " -}}"
     {{- g.comma -}}
-    "{{- deliverable.reference.link if "reference" in deliverable else " " -}}"
+    "{{- subitem.date if "date" in subitem else " " -}}"
     {{- g.comma -}}
-    "{{- deliverable.todos| length if "todos" in deliverable else 0 -}}"
+    "{{ (subitem.description | replace('\n', '\\n') ) if "description" in subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- subitem.reference.name if "reference" in subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- subitem.reference.link if "reference" in subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- subitem.todos| length if "todos" in subitem else 0 -}}"
+    {%- set g.comma = '' -%}
+    {{ g.comma }}
+{%- for sub_subobject_identifier in g.roadmap_items %}
+{%- if sub_subobject_identifier in subitem -%}
+{%- for sub_subitem in subitem[sub_subobject_identifier] %}
+{{ object_identifier }}.{{ subobject_identifier }}.{{ sub_subobject_identifier -}}
+    {%- set g.comma = ', ' -%}
+    {{- g.comma -}}
+    {{- sub_subitem._id -}}
+    {{- g.comma -}}
+    {{- sub_subitem.id -}}
+    {{- g.comma -}}
+    {{- sub_subitem.requirement if "requirement" in sub_subitem else " " -}}
+    {{- g.comma -}}
+    {{- sub_subitem.state if "state" in sub_subitem else " " -}}
+    {{- g.comma -}}
+    "{{- sub_subitem.title if "title" in sub_subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- sub_subitem.date if "date" in sub_subitem else " " -}}"
+    {{- g.comma -}}
+    "{{ (sub_subitem.description | replace('\n', '\\n') ) if "description" in sub_subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- sub_subitem.reference.name if "reference" in sub_subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- sub_subitem.reference.link if "reference" in sub_subitem else " " -}}"
+    {{- g.comma -}}
+    "{{- sub_subitem.todos| length if "todos" in sub_subitem else 0 -}}"
     {%- set g.comma = '' -%}
     {{ g.comma }}
 {%- endfor %}
+{%- endif %}
+{%- endfor %}
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
+{%- endfor %}
+{%- endif %}
 {%- endfor %}

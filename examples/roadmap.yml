@@ -27,7 +27,6 @@ timeline:
     title: Project Start
     description: |
       This is the day that the project was started.
-
   - date: 2023-12-17
     title: Demo Day
     description: |
@@ -41,8 +40,6 @@ timeline:
     description: |
       We just add some test
 
-  
-  
 objectives:
   - title: We provide a single, universal, schema for high-level planning
     description: | 
@@ -126,9 +123,8 @@ objectives:
         link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
         name: see schema/roadmap.json
 
-
 milestones:
-  - id: Meilenstein 1
+  - id: Design and Planning
     title: Design and Planning
     description: |
       The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
@@ -156,8 +152,7 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
-
-  - id: Meilenstein 2
+  - id: Roadmap Schema
     title: Roadmap Schema
     description: |
       Once we know how we want a road map file to look, we should put together a schema for the file. 
@@ -229,7 +224,7 @@ milestones:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html
         name: see HTML-result of this roadmap.yml
-
+      
   - title: Graphviz
     description: |
       The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
@@ -254,7 +249,49 @@ milestones:
         e.g. the generated file roadmap.dot.png can be used in your project description.
       requirement: MAY
       state: DONE
-    
+
+  - title: XLS-File
+    description: |
+      The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
+    state: COMMITED
+    deliverables:
+    - title: csv-template
+      description: |
+        Develop a template for csv output of the roadmap
+        csv output should contain all roadmap items, without the meta-information regarding your project.
+
+        The following Roadmap Items will be exported:
+
+        - milestones
+        - deliverables
+        - objectives
+        - keyresults
+        - todos
+        
+        for each object item the following attributes will be rendered:
+
+        - type: will be concatenated form the roadmap-object-name
+        - _id: internal id
+        - id
+        - requirement
+        - state
+        - title
+        - date
+        - description
+        - reference.name
+        - reference.link
+        - _has_todos: calculated if item it has any todos
+
+      requirement: MUST
+      state: DOING
+      reference:
+        link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv
+        name: see roadmap.csv
+    - title: xls-renderer
+      description: |
+        Put some code in roadmap.py to render roadmap as XLS File
+      requirement: MUST
+      state: TODO    
       
   - title: Web Renderer
     description: |
