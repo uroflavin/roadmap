@@ -97,7 +97,7 @@ Complete the examples so that every user of the schema is able to find suitable 
 
 ## Milestones
 
-### #Meilenstein 1 | Design and Planning | REACHED
+### #Design and Planning | Design and Planning | REACHED
 The design and planning stage is where we're figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
 We should do something for the [roadmap](https://github.com/uroflavin/roadmap), just to let us know, if the design is broken.
 
@@ -112,7 +112,7 @@ We need to know what the roadmap file format looks like, so we'll get started wi
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
 
-### #Meilenstein 2 | Roadmap Schema | REACHED
+### #Roadmap Schema | Roadmap Schema | REACHED
 Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.
 
@@ -169,7 +169,41 @@ Put some code in roadmap.py to render roadmap as dot-file
 Put some code in roadmap.py to convert dot-file to png
 e.g. the generated file roadmap.dot.png can be used in your project description.
 
-### #M6 | Web Renderer | IDEA
+### #M6 | XLS-File | COMMITED
+The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
+
+#### [D1] | csv-template | MUST DOING
+Develop a template for csv output of the roadmap
+csv output should contain all roadmap items, without the meta-information regarding your project.
+
+The following Roadmap Items will be exported:
+
+- milestones
+- deliverables
+- objectives
+- keyresults
+- todos
+
+for each object item the following attributes will be rendered:
+
+- type: will be concatenated form the roadmap-object-name
+- _id: internal id
+- id
+- requirement
+- state
+- title
+- date
+- description
+- reference.name
+- reference.link
+- _has_todos: calculated if item it has any todos
+
+- [see roadmap.csv](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv)
+
+#### [D2] | xls-renderer | MUST TODO
+Put some code in roadmap.py to render roadmap as XLS File
+
+### #M7 | Web Renderer | IDEA
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.

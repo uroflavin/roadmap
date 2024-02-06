@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.15] - 2024-02-06
+### Added
+- csv-template for roadmap milestones, deliverables, objectives, keyresults and todos
+
 ## [0.0.14] - 2024-02-04
 ### Added
 - csv-template for roadmap milestones and deliverables
@@ -121,3 +125,4 @@ BREAKING CHANGE
 [0.0.12]: https://github.com/uroflavin/roadmap/pull/63
 [0.0.13]: https://github.com/uroflavin/roadmap/pull/65
 [0.0.14]: https://github.com/uroflavin/roadmap/pull/66
+[0.0.15]: https://github.com/uroflavin/roadmap/pull/
