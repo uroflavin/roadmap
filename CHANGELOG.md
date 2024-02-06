@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
+## [0.0.16] - 2024-02-06
+integrated from https://github.com/rogerbackes/roadmap
+
+### Added
+minor enhancements and simply test whether it works
+feat: added Dockerfile to create images
+feat: added main function main function
+
+This conditional statement if name == "main": ensures that the main function is only called when the script is executed directly, not when it's imported as a module elsewhere (e.g. in unit tests).
+
+
+### Fix
+fixed(requirements.txt): regenerated file
 
 ## [0.0.15] - 2024-02-06
 ### Added
@@ -126,3 +139,4 @@ BREAKING CHANGE
 [0.0.13]: https://github.com/uroflavin/roadmap/pull/65
 [0.0.14]: https://github.com/uroflavin/roadmap/pull/66
 [0.0.15]: https://github.com/uroflavin/roadmap/pull/67
+[0.0.15]: https://github.com/uroflavin/roadmap/pull/68
