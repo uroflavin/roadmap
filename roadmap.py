@@ -1,9 +1,20 @@
-import yaml  # Used for reading and writing YAML files.
-import json  # Used for reading and writing JSON files.
-import jsonschema  # Used for validating JSON data against a schema.
-import os  # Provides functions for interacting with the operating system.
-import argparse  # Used for writing user-friendly command-line interfaces.
-import shutil  # Used for high-level file operations.
+# Used for reading and writing YAML files.
+import yaml
+
+# Used for reading and writing JSON files.
+import json
+
+# Used for validating JSON data against a schema.
+import jsonschema
+
+# Provides functions for interacting with the operating system.
+import os
+
+# Used for writing user-friendly command-line interfaces.
+import argparse
+
+# Used for high-level file operations.
+import shutil
 
 # Used for running new applications or commands in new processes.
 import subprocess
@@ -28,8 +39,6 @@ from jinja_markdown import MarkdownExtension
 
 # A dictionary subclass that calls a factory function to supply missing values.
 from collections import defaultdict
-
-from pprint import pprint
 
 def create_output_folder(path_to_folder: str = ""):
     """
@@ -252,7 +261,12 @@ def make_id_from(input: str = ""):
     for char in non_valid_id_characters:
         _id = _id.replace(char, replacement_character)
     # replace umlaute
-    special_char_map = {ord('ä'):'ae', ord('ü'):'ue', ord('ö'):'oe', ord('ß'):'ss'}
+    special_char_map = {
+        ord('ä'):'ae', 
+        ord('ü'):'ue', 
+        ord('ö'):'oe', 
+        ord('ß'):'ss'
+        }
     _id = _id.translate(special_char_map)
     return _id
 
@@ -265,11 +279,15 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
     :param str prefix: prefix for id, used only if id is not set
     :return: dict new project with added ["_id"] and ["id] 
     """
+
+    # this is the id of the element before current element in a list - already used during dot-processing
+    _previous_id = ""
+
+    # this should be the id of the element after current element in a list - it is not used nor calculated
+    #_next_id = ""
+    
     # lets iterate over each element and add "id", "_id" and "_parent_id"
     # because we like to have a human-readable id, we start at 1
-    _previous_id = ""
-    _next_id = ""
-
     for count, item in enumerate(elements, start=1):
         # item.id will get prefix and count, if unset
         if "id" not in item or item["id"] == "":
