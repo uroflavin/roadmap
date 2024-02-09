@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 from unittest.mock import patch
 from io import StringIO
-from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, calculate_ids_for_element_items
+from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, calculate_ids_for_element_items, is_graphviz_installed
 import os
 
 class TestRoadmapFunctions(unittest.TestCase):
@@ -37,6 +37,10 @@ class TestRoadmapFunctions(unittest.TestCase):
         # Clean up after testing
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
+    
+    def test_is_graphviz_installed(self):
+        # test if graphviz is installed
+        self.assertTrue(is_graphviz_installed())
 
 if __name__ == '__main__':
     unittest.main()
