@@ -40,6 +40,9 @@ from jinja_markdown import MarkdownExtension
 # A dictionary subclass that calls a factory function to supply missing values.
 from collections import defaultdict
 
+# need sys.stdout as logging handler for stdout
+import sys
+
 def create_output_folder(path_to_folder: str = ""):
     """
     Create Folder for the roadmap.py output
@@ -183,7 +186,6 @@ def process_template(
     :type output_path: str, optional
     :return: None
     """
-
     # Set default template and environment if not provided
     if environment is None:
         environment = Environment()
@@ -202,6 +204,7 @@ def process_template(
             f.write(rendered_template)
 
         # Copy logo to output path if it exists in the project
+        # TODO: Move logo process out of template processing 
         if "logo" in project:
             logo_src_path = os.path.join(Path(roadmap_definition_file).parent.absolute(
             ).resolve(), project["logo"]["filename"])
@@ -209,16 +212,22 @@ def process_template(
 
         # If the template is a dot file, try converting it to png
         if template["suffix"] == "dot":
-            output_png = os.path.join(
-                output_path, f"{output_basename}.dot.png")
-            subprocess.check_call(
-                ['dot', '-Tpng', output_file, '-o', output_png])
+            # first check if we have graphviz installed
+            graphviz_version = subprocess.check_output(['dot','-V'], stderr=subprocess.STDOUT)
+            if "graphviz_version" in str(graphviz_version):
+                output_png = os.path.join(
+                    output_path, f"{output_basename}.dot.png")
+                subprocess.check_call(
+                    ['dot', '-Tpng', output_file, '-o', output_png])
+            # if 'dot -V' failed, we assume that graphviz is not installed
+            else:
+                raise EnvironmentError("graphviz not installed \n   dot-template processed\n   png rendering skipped \n   follow https://www.graphviz.org/ for install instructions")
 
-        logging.info("Processed '%s' with template '%s' to '%s'", roadmap_definition_file,
+        logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file,
                      os.path.join(template["path"], template["file"]), output_file)
 
     except Exception as err:
-        logging.error("Processing template %s failed with error %s",
+        logging.error("processing template '%s' failed: %s",
                       os.path.join(template["path"], template["file"]), err)
 
 
@@ -336,8 +345,20 @@ def main():
     config = dotenv_values("roadmap.env")
 
     LOGFILE = config["LOGFILE"]
+    # basic logging is filebases with level DEBUG and above and with timestamp
     logging.basicConfig(filename=LOGFILE, encoding='utf-8', level=logging.DEBUG,
                         format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+    
+    # handler for stdout
+    console_log_handler = logging.StreamHandler(sys.stdout)
+    # console format
+    console_log_format = logging.Formatter('%(levelname)s: %(message)s')
+    console_log_handler.setFormatter((console_log_format))
+    # stdout logging is level INFO or above, without timestamp
+    console_log_handler.setLevel(logging.INFO)
+    logging.getLogger().addHandler(console_log_handler)
+    
+    # write debug
     logging.debug("config: %s", config)
 
     parser = argparse.ArgumentParser()
@@ -395,19 +416,16 @@ def main():
             env.add_extension(MarkdownExtension)
 
             for template in templates:
-                print("processing " + template["file"])
+                logging.info("processing " + os.path.join(template["path"], template["file"]) + " ...")
                 process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
                                 project=project, output_path=output_folder)
 
-            print("roadmap-conversion successful")
+            logging.info("roadmap-conversion successful")
 
         else:
-            print(roadmap_definition_file + " contains no valid YAML-data")
-            print(validation_error)
-            print("See logfile for details")
+            logging.error(roadmap_definition_file + " contains no valid YAML-data - see logfile for details")
     else:
-        print("Could not create '" + output_folder + "'")
-        print("See logfile for details")
+        logging.error("could not create '" + output_folder + "' - see logfile for details")
 
 if __name__ == "__main__":
     main()
