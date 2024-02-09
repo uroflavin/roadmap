@@ -214,7 +214,7 @@ def process_template(
         if template["suffix"] == "dot":
             # first check if we have graphviz installed
             graphviz_version = subprocess.check_output(['dot','-V'], stderr=subprocess.STDOUT)
-            if "graphviz_version" in str(graphviz_version):
+            if "graphviz version" in str(graphviz_version):
                 output_png = os.path.join(
                     output_path, f"{output_basename}.dot.png")
                 subprocess.check_call(
