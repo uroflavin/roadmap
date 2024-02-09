@@ -39,8 +39,6 @@ class TestRoadmapFunctions(unittest.TestCase):
             os.remove(self.test_file)
            
     def test_is_graphviz_installed(self):
-#       disabled test
-#       TODO: find a way to install graphviz plattform independent and automatically and enable test afterwards
         # test if graphviz is installed
         self.assertTrue(is_graphviz_installed())
 
