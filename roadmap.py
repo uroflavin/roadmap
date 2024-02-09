@@ -203,13 +203,6 @@ def process_template(
         with open(output_file, "w") as f:
             f.write(rendered_template)
 
-        # Copy logo to output path if it exists in the project
-        # TODO: Move logo process out of template processing 
-        if "logo" in project:
-            logo_src_path = os.path.join(Path(roadmap_definition_file).parent.absolute(
-            ).resolve(), project["logo"]["filename"])
-            shutil.copy(logo_src_path, output_path)
-
         # If the template is a dot file, try converting it to png
         if template["suffix"] == "dot":
             # first check if we have graphviz installed
@@ -419,8 +412,23 @@ def main():
                 logging.info("processing " + os.path.join(template["path"], template["file"]) + " ...")
                 process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
                                 project=project, output_path=output_folder)
-
-            logging.info("roadmap-conversion successful")
+            
+            try:
+                # Copy logo to output path if it exists in the project
+                if "logo" in project:
+                    # create path
+                    logo_src_path = os.path.join(Path(roadmap_definition_file).parent.absolute(
+                    ).resolve(), project["logo"]["filename"])
+                    # loginfo
+                    logging.info("copy project.logo '%s' to '%s'", logo_src_path, output_folder)
+                    # copy
+                    shutil.copy(logo_src_path, output_folder)
+            except Exception as err:
+                logging.error("copy logo file '%s' failed: %s",
+                      logo_src_path, 
+                      err)
+                
+            logging.info("roadmap conversion finished")
 
         else:
             logging.error(roadmap_definition_file + " contains no valid YAML-data - see logfile for details")
