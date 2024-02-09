@@ -163,6 +163,20 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
 
     return templates
 
+def is_graphviz_installed():
+    """
+    Check if graphviz is installed in current environment
+
+    uses 'dot -V' and check for 'graphviz version' string in output
+
+    :return: True if dot is installed, False if dot is not installed
+    :rtype: bool
+    """
+    graphviz_version = subprocess.check_output(['dot','-V'], stderr=subprocess.STDOUT)
+    if "graphviz version" in str(graphviz_version):
+        return True
+            
+    return False
 
 def process_template(
     environment: Environment = None,
@@ -206,8 +220,7 @@ def process_template(
         # If the template is a dot file, try converting it to png
         if template["suffix"] == "dot":
             # first check if we have graphviz installed
-            graphviz_version = subprocess.check_output(['dot','-V'], stderr=subprocess.STDOUT)
-            if "graphviz version" in str(graphviz_version):
+            if is_graphviz_installed():
                 output_png = os.path.join(
                     output_path, f"{output_basename}.dot.png")
                 # log info about converting
