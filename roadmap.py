@@ -210,6 +210,8 @@ def process_template(
             if "graphviz version" in str(graphviz_version):
                 output_png = os.path.join(
                     output_path, f"{output_basename}.dot.png")
+                # log info about converting
+                logging.info("rendering '%s' to '%s'", output_file, output_png)
                 subprocess.check_call(
                     ['dot', '-Tpng', output_file, '-o', output_png])
             # if 'dot -V' failed, we assume that graphviz is not installed
@@ -351,7 +353,7 @@ def main():
     console_log_handler.setLevel(logging.INFO)
     logging.getLogger().addHandler(console_log_handler)
     
-    # write debug
+    # log config
     logging.debug("config: %s", config)
 
     parser = argparse.ArgumentParser()
@@ -409,7 +411,7 @@ def main():
             env.add_extension(MarkdownExtension)
 
             for template in templates:
-                logging.info("processing " + os.path.join(template["path"], template["file"]) + " ...")
+                logging.info("processing '%s'", os.path.join(template["path"], template["file"]))
                 process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
                                 project=project, output_path=output_folder)
             
