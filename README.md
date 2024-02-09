@@ -95,7 +95,7 @@ There are 2 Options:
 
 e.g. if **your own directory** is located under */home/example/my_own_roadmap* and **roadmap.py** is located under */home/example/roadmap/* run : 
 ```
-python3 /home/example/roadmap/roadmap.py --roadmap-file=/home/example/my_own_roadmap/roadmap.yml --output-dir=/home/example/my_own_roadmap/roadmap/
+python3 /home/example/roadmap/roadmap.py --roadmap-file /home/example/my_own_roadmap/roadmap.yml --output-dir /home/example/my_own_roadmap/roadmap/
 ```
 
 #### Use roadmap.json for linter support
