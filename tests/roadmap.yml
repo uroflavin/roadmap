@@ -59,8 +59,10 @@ objectives:
         name: example.com/o1/k1.html
       todos:
         - title: Objective 1 - keyresult 1 - Todo 1 - title
+          description: Objective 1 - keyresult 1 - Todo 1 - description
           state: OPEN
         - title: Objective 1 - keyresult 1 - Todo 2 - title
+          description: Objective 1 - keyresult 1 - Todo 2 - description
           state: OPEN
         - title: Objective 1 - keyresult 1 - Todo 3 - title
           state: OPEN
@@ -75,6 +77,7 @@ objectives:
         name: example.com/o1/k2.html
       todos:
         - title: Objective 1 - keyresult 2 - Todo 1 - title
+          description: Objective 1 - keyresult 2 - Todo 2 - description
           state: OPEN
         - title: Objective 1 - keyresult 2 - Todo 2 - title
           state: DOING
@@ -180,8 +183,10 @@ milestones:
           name: example.com/m1/d1.html
         todos:
           - title: Milestone 1 - Deliverable 1 - Todo 1
+            description: Milestone 1 - Deliverable 1 - Todo 1 - description
             state: CLOSED
           - title: Milestone 1 - Deliverable 1 - Todo 2
+            description: Milestone 1 - Deliverable 1 - Todo 2 - description
             state: DOING
           - title: Milestone 1 - Deliverable 1 - Todo 3
             state: OPEN
@@ -258,6 +263,7 @@ milestones:
           name: example.com/M2/d1.html
         todos:
           - title: Milestone 2 - Deliverable 2 - Todo 1
+            description: Milestone 2 - Deliverable 1 - Todo 1 - description
             state: CLOSED
           - title: Milestone 2 - Deliverable 2 - Todo 2
             state: DOING
