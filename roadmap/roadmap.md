@@ -2,7 +2,6 @@
 
 <img src="design-thinking-2.png" alt="logo from https://www.streamlinehq.com"/>
 
-
 This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
 It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
 
@@ -18,7 +17,6 @@ The goal is to make this as easy as possible for humans to read and reason about
 ## Authors
 
 - Uroflavin *uroflavin@gmail.com*
-
 
 ## Importand Dates
 
@@ -89,7 +87,6 @@ We need to complete our README explaining the purpose of this project and giving
 ##### [R2] | Complete examples in schema-definition | MAY TODO
 Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
 - [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
-
 
 
 

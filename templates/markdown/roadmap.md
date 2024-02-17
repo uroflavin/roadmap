@@ -1,19 +1,21 @@
 # {{ project.title }}
 {% if "logo" in project %}
 <img src="{{ project.logo.filename }}" alt="{{ project.logo.copyright_notice }}"/>
-{% endif %}
-
+{% endif -%}
+{% if "description" in project %}
 {{ project.description }}
-
+{% endif -%}
 {% if "visionstatement" in project %}
 ## Visionstatement
 {{ project.visionstatement -}}
 {% endif -%}
+{% if "authors" in project %}
 ## Authors
 {% for author in project.authors %}
 - {{ author.name}} *{{ author.contact}}*
 {% endfor %}
-{% if "timeline" in project %}
+{% endif -%}
+{%- if "timeline" in project -%}
 ## Importand Dates
 {% for date, timelineentries in project.group.timeline_by.date.items() %}
 - **{{ date }}**{% for timelineentry in timelineentries %}
@@ -21,7 +23,7 @@
       {{ timelineentry.description -}}
 {% endfor -%}
 {% endfor -%}{% endif -%}
-
+{%- if "objectives" in project -%}
 ## Objectives
 {% for date, objectives in project.group.objectives_by.date.items() %}
 {% if date != "None" %}
@@ -88,7 +90,7 @@
 {% endfor %}
 {% endif -%}
 {% endfor %}
-
+{% endif -%}
 {% if "milestones" in project %}
 {% include "roadmap.milestone.template.md" -%}
 {% endif -%}
