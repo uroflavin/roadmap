@@ -75,7 +75,6 @@ def create_output_folder(path_to_folder: str = ""):
         logging.error("output_folder '%s' is not writeable", path_to_folder)
         return False
 
-
 def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     """
     Read the Roadmap-Defintion-YML
@@ -97,7 +96,6 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
         logging.error("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
         logging.error("Error: %s", err.strerror)
         return None
-
 
 def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
@@ -133,7 +131,6 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
         logging.error("instance: %s", instance)
         logging.error("ValidationError: %s", err)
         return err, False
-
 
 def find_templates(template_path: str = "", template_known_suffixes: list = None):
     """
@@ -238,7 +235,6 @@ def process_template(
         logging.error("processing template '%s' failed: %s",
                       os.path.join(template["path"], template["file"]), err)
 
-
 def get_items_grouped_by_date(elements=None):
     """
     Groups items by similar dates, maintaining the original order. If an item has no date attribute, 
@@ -260,7 +256,6 @@ def get_items_grouped_by_date(elements=None):
             grouped_items[date].append(item.copy())
 
     return dict(grouped_items)
-
 
 def make_id_from(input: str = ""):
     """
@@ -347,26 +342,23 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
 
     return elements.copy()
 
-from boltons.iterutils import remap
-from pprint import pprint
-def visit(path, key, value):
-    logging.info("key '%s' with path: %s", key, path)
-    pprint(path)
-    #logging.info("value %s", value)
-    #logging.info("path %s", path)
-    
-    #if key == 'state':
-    #    logging.info("FOUND STATE")
-        
-    return key, value
-
 def remove_element(element_name: str = "", project: dict = None):
     """
-    Remove given element from project
-    Working with project by reference
-    we support 5 levels, which is the maximum number in our supported schema
+    Remove given element from project - we are working with project by reference
+    
+    TODO: this function is working but need refactoring - is way to much redundancy in the code base
+
+    element can be any kind of object or attribute 
+
+    support 5 levels, which is the maximum number in our supported schema
+
     the deepest level is e.g. 'objectives.milestones.deliverables.todos.description'
-    return: nothing
+
+    :param str element_name: roadmap element name as dotted path, e.g. 'objectives.milestones.deliverables.todos.description'
+    
+    :param project dict: reference of project
+
+    :return: Nothing
     """
     # first, we remove whitespaces and make everything lowercase
     element_name = element_name.replace(" ", "").lower()
@@ -438,6 +430,7 @@ def remove_element(element_name: str = "", project: dict = None):
             logging.warning("skip level %s (project.%s) is not supported", remove_level, element_name)
     else:
         logging.error("element_name '%s' is to short for removing", element_name)
+
 def main():
     # Init
     # Load Config from roadmap.env
