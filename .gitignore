@@ -162,3 +162,4 @@ cython_debug/
 
 /venv
 /.idea
+/tests/results/*

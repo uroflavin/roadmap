@@ -75,7 +75,6 @@ def create_output_folder(path_to_folder: str = ""):
         logging.error("output_folder '%s' is not writeable", path_to_folder)
         return False
 
-
 def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     """
     Read the Roadmap-Defintion-YML
@@ -97,7 +96,6 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
         logging.error("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
         logging.error("Error: %s", err.strerror)
         return None
-
 
 def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
@@ -133,7 +131,6 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
         logging.error("instance: %s", instance)
         logging.error("ValidationError: %s", err)
         return err, False
-
 
 def find_templates(template_path: str = "", template_known_suffixes: list = None):
     """
@@ -238,7 +235,6 @@ def process_template(
         logging.error("processing template '%s' failed: %s",
                       os.path.join(template["path"], template["file"]), err)
 
-
 def get_items_grouped_by_date(elements=None):
     """
     Groups items by similar dates, maintaining the original order. If an item has no date attribute, 
@@ -260,7 +256,6 @@ def get_items_grouped_by_date(elements=None):
             grouped_items[date].append(item.copy())
 
     return dict(grouped_items)
-
 
 def make_id_from(input: str = ""):
     """
@@ -347,6 +342,95 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
 
     return elements.copy()
 
+def remove_element(element_name: str = "", project: dict = None):
+    """
+    Remove given element from project - we are working with project by reference
+    
+    TODO: this function is working but need refactoring - is way to much redundancy in the code base
+
+    element can be any kind of object or attribute 
+
+    support 5 levels, which is the maximum number in our supported schema
+
+    the deepest level is e.g. 'objectives.milestones.deliverables.todos.description'
+
+    :param str element_name: roadmap element name as dotted path, e.g. 'objectives.milestones.deliverables.todos.description'
+    
+    :param project dict: reference of project
+
+    :return: Nothing
+    """
+    # first, we remove whitespaces and make everything lowercase
+    element_name = element_name.replace(" ", "").lower()
+    # element_name has to contain a minimum of xx characters / based on elements of roadmap.schema 'logo' is minimum
+    if len(element_name) >= 4:
+        # level is the number of dots as indicator for skipping based on roadmap.schema hierarchy
+        remove_level = element_name.count(".") - 0
+        if remove_level == 0:
+            # example element_name is: milestones
+            level0_element = element_name
+            if level0_element in project:
+                logging.info("skip level %s (project.%s)", remove_level, element_name)
+                del project[level0_element]
+        elif remove_level == 1:
+            # example element_name is: milestones.deliverables
+            level0_element = element_name.split(".")[0]
+            level1_element = element_name.split(".")[1]
+            logging.info("skip level %s (project.%s)", remove_level, element_name)
+            for project_level0_element in project[level0_element]:
+                if level1_element in project_level0_element:
+                    del project_level0_element[level1_element]
+        elif remove_level == 2:
+            # example element_name is: milestones.deliverables.todos
+            level0_element = element_name.split(".")[0]
+            level1_element = element_name.split(".")[1]
+            level2_element = element_name.split(".")[2]
+            
+            for project_level0_element in project[level0_element]:
+                if level1_element in project_level0_element:
+                    for project_level1_element in project_level0_element[level1_element]:
+                        if level2_element in project_level1_element:
+                            logging.info("skip level %s (project.%s)", remove_level, element_name)
+                            del project_level1_element[level2_element]
+        elif remove_level == 3:
+            # example element_name is: milestones.deliverables.todos.description
+            level0_element = element_name.split(".")[0]
+            level1_element = element_name.split(".")[1]
+            level2_element = element_name.split(".")[2]
+            level3_element = element_name.split(".")[3]
+            
+            for project_level0_element in project[level0_element]:
+                if level1_element in project_level0_element:
+                    for project_level1_element in project_level0_element[level1_element]:
+                        if level2_element in project_level1_element:
+                            for project_level2_element in project_level1_element[level2_element]:
+                                if level3_element in project_level2_element:
+                                    logging.info("skip level %s (project.%s)", remove_level, element_name)
+                                    del project_level2_element[level3_element]
+        elif remove_level == 4:
+            # example element_name is: objectives.milestones.deliverables.todos.description
+            level0_element = element_name.split(".")[0]
+            level1_element = element_name.split(".")[1]
+            level2_element = element_name.split(".")[2]
+            level3_element = element_name.split(".")[3]
+            level4_element = element_name.split(".")[4]
+            
+            for project_level0_element in project[level0_element]:
+                if level1_element in project_level0_element:
+                    for project_level1_element in project_level0_element[level1_element]:
+                        if level2_element in project_level1_element:
+                            for project_level2_element in project_level1_element[level2_element]:
+                                if level3_element in project_level2_element:
+                                    for project_level3_element in project_level2_element[level3_element]:
+                                        if level4_element in project_level3_element:
+                                            logging.info("skip level %s (project.%s)", remove_level, element_name)
+                                            del project_level3_element[level4_element]
+        
+        else:
+            logging.warning("skip level %s (project.%s) is not supported", remove_level, element_name)
+    else:
+        logging.error("element_name '%s' is to short for removing", element_name)
+
 def main():
     # Init
     # Load Config from roadmap.env
@@ -375,11 +459,18 @@ def main():
 
     parser.add_argument("--output-dir", type=str,
                         help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
+    
+    parser.add_argument("--skip-items", 
+                        type=str,
+                        help="object path of roadmap-elements which should be skipped for rendering - separated by comma e.g.: milestones.todos,milestones.deliverables.todos ", 
+                        nargs="?", 
+                        default=None)
 
     args = parser.parse_args()
 
     roadmap_definition_file = args.roadmap_file
     output_folder = args.output_dir
+    skip_items = args.skip_items
 
     if output_folder[-1] != os.sep:
         output_folder = output_folder + os.sep
@@ -397,26 +488,44 @@ def main():
             # Find all templates
             templates = find_templates(template_path=config["TEMPLATE_PATH"],
                                     template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+            # do some preprocessing
+            if skip_items != None:
+                for skip in skip_items.replace(" ","").split(","):
+                    remove_element(skip, project=project)
+            
+            # add same placeholder for grouping - will be removed if not needed
+            project["group"] = {
+                    "timeline_by": {
+                        "date": None
+                    },
+                    "objectives_by": {
+                        "date": None
+                }
+            }
             # Calculate some information to project
             # add _id, id, _parent_id and _previous_id
             if "timeline" in project:
                 project['timeline'] = calculate_ids_for_element_items(project['timeline'], prefix="Timeline")
+                # add items groupedy by date
+                project["group"]['timeline_by']['date'] = get_items_grouped_by_date(project["timeline"])
+            # remove placeholder for grouping
+            else:
+                del project["group"]['timeline_by']
+
             if "objectives" in project:
                 project['objectives'] = calculate_ids_for_element_items(project['objectives'], prefix="O")
+                # add items groupedy by date
+                project["group"]['objectives_by']['date'] = get_items_grouped_by_date(project["objectives"])
+            # remove placeholder for grouping
+            else:
+                del project["group"]['objectives_by']
+
             if "milestones" in project:
                 project['milestones'] = calculate_ids_for_element_items(project['milestones'], prefix="M")
             if "releases" in project:
                 project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
             
-            # get items groupedy by date
-            project["group"] = {
-                "timeline_by": {
-                    "date": get_items_grouped_by_date(project["timeline"])
-                },
-                "objectives_by": {
-                    "date": get_items_grouped_by_date(project["objectives"])
-                }
-            }
+            
             # process templates with jinja
             # Load Jinja Environment
             env = Environment()

@@ -85,18 +85,63 @@ There you have a good starting point for your own project.
 #### Commandline Options
 To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
 
-There are 2 Options:
+There are 3 Options:
 - ```--roadmap-file```
     this is the path to your roadmap.yml
     default="examples/roadmap.yml
 - ```--output-dir```
     this is the path to the rendered roadmap outputs
     default=OUTPUT_PATH from roadmap.env
+- ```--skip-items```
+    object path of roadmap-elements which should be skipped for rendering
+    path elements are separated by comma 
+    e.g.: milestones.todos,milestones.deliverables.todos 
+    default=Nothing is skipped
 
 e.g. if **your own directory** is located under */home/example/my_own_roadmap* and **roadmap.py** is located under */home/example/roadmap/* run : 
 ```
 python3 /home/example/roadmap/roadmap.py --roadmap-file /home/example/my_own_roadmap/roadmap.yml --output-dir /home/example/my_own_roadmap/roadmap/
 ```
+
+#### Stakholder specific view
+To render your roadmap without all the details you need during creation, use commandline option ```--skip-items```
+You can add as many elements you like, just separate these by comma (,)
+
+##### Some examples
+**if you want to skip all your todos**:
+- skip all todos for milestones,deliverables, objectives,keyresults
+```
+--skip-items milestones.todos,milestones.deliverables.todos,objectives.todos,objectives.keyresults.todos,objectives.milestones.todos,objectives.milestones.deliverables.todos
+```
+
+**if you want to skip all your references**:
+- skip all references from milestones,deliverables,objectives, keyresults
+
+```
+--skip-items milestones.reference,milestones.deliverables.reference,objectives.reference,objectives.keyresults.reference,objectives.milestones.reference,objectives.milestones.deliverables.reference
+```
+
+**if you want to skip all deliverables and keyresults details**:
+- skip all deliverables
+- skip all keyresults
+
+```
+--skip-items milestones.deliverables,objectives.keyresults,objectives.milestones.deliverables
+```
+
+**if you want a quick highlevel view**
+- skip all todos
+- skip all references
+- skip description for deliverables and keyresults
+- skip project description
+- skip project timeline
+- skip project authors
+- skip project logo
+
+```
+--skip-items milestones.todos,milestones.deliverables.todos,objectives.todos,objectives.keyresults.todos,objectives.milestones.todos,objectives.milestones.deliverables.todos,milestones.reference,milestones.deliverables.reference,objectives.reference,objectives.keyresults.reference,objectives.milestones.reference,objectives.milestones.deliverables.reference,milestones.deliverables.description,objectives.keyresults.description,objectives.milestones.deliverables.description,description,logo,timeline,authors
+```
+
 
 #### Use roadmap.json for linter support
 To modify your roadmap you just need a text-editor. 
