@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.18] - 2024-02-17
+### Added
+Allow project-controlled templates #79
+
+- fixes Allow project-controlled templates #79
+- feat (core): skip elements for rendering
+- fix (markdown): add conditional templating for skip mechanism
+- feat (tests): added roadmap.yml to tests
+- feat (tests): testcoverage for remove_element()
+- doc: documentation for skip mechanism
+- ref+doc: some more refactorings and documentation
+
 ## [0.0.17] - 2024-02-09
 ### Added
 
@@ -155,3 +167,4 @@ BREAKING CHANGE
 [0.0.15]: https://github.com/uroflavin/roadmap/pull/67
 [0.0.16]: https://github.com/uroflavin/roadmap/pull/69
 [0.0.17]: https://github.com/uroflavin/roadmap/pull/81
+[0.0.18]: https://github.com/uroflavin/roadmap/pull/83
