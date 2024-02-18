@@ -129,6 +129,7 @@
   - **`requirement`**: Refer to *[#/definitions/Requirement](#definitions/Requirement)*.
   - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the deliverable, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
     - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
+  - **`wsjf`**: Refer to *[#/definitions/WSJF](#definitions/WSJF)*.
 - <a id="definitions/Keyresult"></a>**`Keyresult`** *(object)*: A specific piece of work which may be delegated to a member of the team.
   - **`title`** *(string, required)*: A brief name describing this result.
   - **`description`** *(string)*: A markdown formatted description of what this result entails and why it is necessary for this objective.
@@ -138,10 +139,45 @@
   - **`requirement`**: Refer to *[#/definitions/Requirement](#definitions/Requirement)*.
   - **`todos`** *(array)*: A List of Todos, which are necessary to clarify the keyresult, e.g. a open point. The intend of the todos is something around the roadmap creation, not to do something to achieve an roadmap objective.
     - **Items**: Refer to *[#/definitions/Todo](#definitions/Todo)*.
+  - **`wsjf`**: Refer to *[#/definitions/WSJF](#definitions/WSJF)*.
 - <a id="definitions/Todo"></a>**`Todo`** *(object)*: A Todo which is necessary to clarify a roadmap item, e.g. a open point to clarify a milestone. The intend of the todo is something around the roadmap creation, not to do something to achieve an roadmap item.
   - **`title`** *(string, required)*: A brief title describing the todo.
   - **`description`** *(string)*: A markdown formatted description of what this todo entails and what to do.
   - **`state`**: Refer to *[#/definitions/TodoState](#definitions/TodoState)*.
+- <a id="definitions/WSJF"></a>**`WSJF`** *(object)*: WSJF is a prioritization method that helps to identify the greatest possible value of a planned result in relation to its effort.
+WSJF = CoD(Cost of Delay) / Job Size
+CoD is: (user_business_value + time_criticality +  opportunity_or_risk)
+In Order to calculate, we need .
+  - **`user_business_value`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result. Minimum: `0`. Maximum: `10`. Default: `0`.
+  - **`time_criticality`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today? Minimum: `0`. Maximum: `10`. Default: `0`.
+  - **`opportunity_and_risk`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement oder risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `0`.
+  - **`jobsize`** *(integer)*: A value between 0 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result. Minimum: `0`. Maximum: `10`. Default: `0`.
+
+  Examples:
+  ```yaml
+  $comment: 'Item with a wsjf of 3: ((1 + 1+ 1) / 1) - mid ranked'
+  jobsize: 1
+  opportunity_and_risk: 1
+  time_criticality: 1
+  user_business_value: 1
+  ```
+
+  ```yaml
+  $comment: 'Item with a wsjf of 12: ((10 + 1+ 1) / 1) - ranked high'
+  jobsize: 1
+  opportunity_and_risk: 1
+  time_criticality: 1
+  user_business_value: 10
+  ```
+
+  ```yaml
+  $comment: 'Item with a wsjf of 1.2: ((10 + 1+ 1) / 10) -> ranked low'
+  jobsize: 10
+  opportunity_and_risk: 1
+  time_criticality: 1
+  user_business_value: 10
+  ```
+
 - <a id="definitions/Reference"></a>**`Reference`** *(object)*: A reference to a file or url with additional context which may be useful to a reader.
   - **`name`** *(string)*: a short-name for the uri.
   - **`description`** *(string)*: a describtion in natural words, what someone could expect by using the link of this reference.

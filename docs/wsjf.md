@@ -26,7 +26,7 @@ A statement on how much the customer (user value) or the company (business value
 Are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met?
 Will a possible completion in a few months still have the same value as today?
 
-### Opportunity enablement and risk reduction
+### Opportunity enablement or risk reduction
 
 By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all?
 Are there risks that are minimized by achieving a certain result?
@@ -57,10 +57,9 @@ The roadmap.yml structure derived from the schema is supplemented by the followi
 
 ```
 wsjf:
-- cost_of_delay:
-  - user_business_value: range[0...10]
-  - time_criticality: range[0...10]
-  - opportunity_and_risk: range[0...10]
+- user_business_value: range[0...10]
+- time_criticality: range[0...10]
+- opportunity_or_risk: range[0...10]
 - jobsize: range[0...10]
 ```
 
