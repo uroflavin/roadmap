@@ -145,19 +145,20 @@
   - **`description`** *(string)*: A markdown formatted description of what this todo entails and what to do.
   - **`state`**: Refer to *[#/definitions/TodoState](#definitions/TodoState)*.
 - <a id="definitions/WSJF"></a>**`WSJF`** *(object)*: WSJF is a prioritization method that helps to identify the greatest possible value of a planned result in relation to its effort.
+All Dimension are normally given independently
 WSJF = CoD(Cost of Delay) / Job Size
 CoD is: (user_business_value + time_criticality +  opportunity_or_risk)
 In Order to calculate, we need .
   - **`user_business_value`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result. Minimum: `0`. Maximum: `10`. Default: `0`.
   - **`time_criticality`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today? Minimum: `0`. Maximum: `10`. Default: `0`.
-  - **`opportunity_and_risk`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement oder risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `0`.
+  - **`opportunity_enablement_or_risk_reduction`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `0`.
   - **`jobsize`** *(integer)*: A value between 0 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result. Minimum: `0`. Maximum: `10`. Default: `0`.
 
   Examples:
   ```yaml
   $comment: 'Item with a wsjf of 3: ((1 + 1+ 1) / 1) - mid ranked'
   jobsize: 1
-  opportunity_and_risk: 1
+  opportunity_enablement_or_risk_reduction: 1
   time_criticality: 1
   user_business_value: 1
   ```
@@ -165,7 +166,7 @@ In Order to calculate, we need .
   ```yaml
   $comment: 'Item with a wsjf of 12: ((10 + 1+ 1) / 1) - ranked high'
   jobsize: 1
-  opportunity_and_risk: 1
+  opportunity_enablement_or_risk_reduction: 1
   time_criticality: 1
   user_business_value: 10
   ```
@@ -173,7 +174,7 @@ In Order to calculate, we need .
   ```yaml
   $comment: 'Item with a wsjf of 1.2: ((10 + 1+ 1) / 10) -> ranked low'
   jobsize: 10
-  opportunity_and_risk: 1
+  opportunity_enablement_or_risk_reduction: 1
   time_criticality: 1
   user_business_value: 10
   ```

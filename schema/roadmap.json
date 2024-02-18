@@ -380,7 +380,7 @@
         },
         "WSJF": {
             "type": "object",
-            "description": "WSJF is a prioritization method that helps to identify the greatest possible value of a planned result in relation to its effort.\nWSJF = CoD(Cost of Delay) / Job Size\nCoD is: (user_business_value + time_criticality +  opportunity_or_risk)\nIn Order to calculate, we need ",
+            "description": "WSJF is a prioritization method that helps to identify the greatest possible value of a planned result in relation to its effort.\nAll Dimension are normally given independently\nWSJF = CoD(Cost of Delay) / Job Size\nCoD is: (user_business_value + time_criticality +  opportunity_or_risk)\nIn Order to calculate, we need ",
             "properties": {
                 "user_business_value": {
                     "type": "integer",
@@ -396,12 +396,12 @@
                     "default": 0,
                     "description": "A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today?"
                 },
-                "opportunity_and_risk": {
+                "opportunity_enablement_or_risk_reduction": {
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 10,
                     "default": 0,
-                    "description": "A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement oder risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result?"
+                    "description": "A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result?"
                 },
                 "jobsize": {
                     "type": "integer",
@@ -416,21 +416,21 @@
                     "$comment": "Item with a wsjf of 3: ((1 + 1+ 1) / 1) - mid ranked",
                     "user_business_value": 1,
                     "time_criticality": 1,
-                    "opportunity_and_risk": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
                     "jobsize": 1
                 },
                 {
                     "$comment": "Item with a wsjf of 12: ((10 + 1+ 1) / 1) - ranked high",
                     "user_business_value": 10,
                     "time_criticality": 1,
-                    "opportunity_and_risk": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
                     "jobsize": 1
                 },
                 {
                     "$comment": "Item with a wsjf of 1.2: ((10 + 1+ 1) / 10) -> ranked low",
                     "user_business_value": 10,
                     "time_criticality": 1,
-                    "opportunity_and_risk": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
                     "jobsize": 10
                 }
 

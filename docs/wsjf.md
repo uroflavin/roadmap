@@ -59,7 +59,7 @@ The roadmap.yml structure derived from the schema is supplemented by the followi
 wsjf:
 - user_business_value: range[0...10]
 - time_criticality: range[0...10]
-- opportunity_or_risk: range[0...10]
+- opportunity_enablement_or_risk_reduction: range[0...10]
 - jobsize: range[0...10]
 ```
 
@@ -67,7 +67,11 @@ The planned value scale for each value ranges from 0 (lowest) to 10 (highest).
 
 This also means that no matter in which dimension you look at the job size with the teams, there is only one value that is kept in roadmap.yml. It does not matter for the calculation whether you estimate in relative or absolute terms - what is relevant is that your estimate result can be sorted on a scale from 0 to 10.
 
-The following is then calculated
+None of the values is required from schema/roadmap.json - Normally you find out the parameters with different people in different meetings.
+
+Nevertheless the default value is 0 for all dimensions.
+
+The following is calculated during rendering (if all dimensions are part of your roadmap.yml)
 
 ```
 quantifiers:
