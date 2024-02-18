@@ -18,7 +18,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         # this is the version of the excisting roadmap
         # if you modifiy this file, make shure to modifiy his version
         # version is calculated using md5 and take the first and last 4 characters as version
-        self.version_excisting_roadmap = "a782c6e6"
+        self.version_excisting_roadmap = "1e7b934e"
 
     def test_create_output_folder(self):
         # Test when the folder does not exist

@@ -68,6 +68,11 @@ objectives:
           state: OPEN
         - title: Objective 1 - keyresult 1 - Todo 4 - title
           state: OPEN
+      wsjf:
+        user_business_value: 1
+        time_criticality: 1
+        opportunity_and_risk: 1
+        jobsize: 1
     - title: Objective 1 - keyresult 2 - title
       description: Objective 1 - keyresult 2 - description
       state: DOING
@@ -85,6 +90,11 @@ objectives:
           state: CLOSED
         - title: Objective 1 - keyresult 2 - Todo 4 - title
           state: CLOSED
+      wsjf:
+        user_business_value: 2
+        time_criticality: 2
+        opportunity_and_risk: 2
+        jobsize: 2
     - title: Objective 1 - keyresult 3 - title
       description: Objective 1 - keyresult 3 - description
       state: TODO
@@ -92,6 +102,11 @@ objectives:
       reference:
         link: https://example.com/o1/k3.html
         name: example.com/o1/k3.html
+      wsjf:
+        user_business_value: 3
+        time_criticality: 3
+        opportunity_and_risk: 3
+        jobsize: 3
   - title: Objective 2 - title
     description: | 
       Objective 2 - description
@@ -126,6 +141,11 @@ objectives:
           state: OPEN
         - title: Objective 2 - keyresult 1 - Todo 4 - title
           state: OPEN
+      wsjf:
+        user_business_value: 1
+        time_criticality: 1
+        opportunity_and_risk: 1
+        jobsize: 1
     - title: Objective 2 - keyresult 2 - title
       description: Objective 2 - keyresult 2 - description
       state: DOING
@@ -190,36 +210,56 @@ milestones:
             state: DOING
           - title: Milestone 1 - Deliverable 1 - Todo 3
             state: OPEN
-      - title: Milestone 1 - Deliverable 1 - title
+        wsjf:
+          user_business_value: 1
+          time_criticality: 1
+          opportunity_and_risk: 1
+          jobsize: 1
+      - title: Milestone 1 - Deliverable 2 - title
         state: DONE
         requirement: MUST
         date: Q2/2023
         description: |
-          Milestone 1 - Deliverable 1 - description - line 1
-          Milestone 1 - Deliverable 1 - description - line 2
+          Milestone 1 - Deliverable2 - description - line 1
+          Milestone 1 - Deliverable 2 - description - line 2
         reference:
-          link: https://example.com/m1/d1.html
-          name: example.com/m1/d1.html
-      - title: Milestone 1 - Deliverable 1 - title
+          link: https://example.com/m1/d2.html
+          name: example.com/m1/d2.html
+        wsjf:
+          user_business_value: 2
+          time_criticality: 2
+          opportunity_and_risk: 2
+          jobsize: 2
+      - title: Milestone 1 - Deliverable 3 - title
         state: DONE
         requirement: MUST
         date: Q2/2023
         description: |
-          Milestone 1 - Deliverable 1 - description - line 1
-          Milestone 1 - Deliverable 1 - description - line 2
+          Milestone 1 - Deliverable 3 - description - line 1
+          Milestone 1 - Deliverable 3 - description - line 2
         reference:
-          link: https://example.com/m1/d1.html
-          name: example.com/m1/d1.html
-      - title: Milestone 1 - Deliverable 1 - title
+          link: https://example.com/m1/d3.html
+          name: example.com/m1/d3.html
+        wsjf:
+          user_business_value: 3
+          time_criticality: 3
+          opportunity_and_risk: 3
+          jobsize: 3
+      - title: Milestone 1 - Deliverable 4 - title
         state: DONE
         requirement: MUST
         date: Q1/2023
         description: |
-          Milestone 1 - Deliverable 1 - description - line 1
-          Milestone 1 - Deliverable 1 - description - line 2
+          Milestone 1 - Deliverable 4 - description - line 1
+          Milestone 1 - Deliverable 4 - description - line 2
         reference:
-          link: https://example.com/m1/d1.html
-          name: example.com/m1/d1.html
+          link: https://example.com/m1/d4.html
+          name: example.com/m1/d4html
+        wsjf:
+          user_business_value: 4
+          time_criticality: 4
+          opportunity_and_risk: 4
+          jobsize: 4
   - id: M2
     title: Milestone 2 - title
     description: |
@@ -251,41 +291,46 @@ milestones:
         reference:
           link: https://example.com/M2/d1.html
           name: example.com/M2/d1.html
-      - title: Milestone 2 - Deliverable 1 - title
+        wsjf:
+          user_business_value: 1
+          time_criticality: 1
+          opportunity_and_risk: 1
+          jobsize: 1
+      - title: Milestone 2 - Deliverable 2 - title
         state: TODO
         requirement: SHOULD
         date: Q2/2023
         description: |
-          Milestone 2 - Deliverable 1 - description - line 1
-          Milestone 2 - Deliverable 1 - description - line 2
+          Milestone 2 - Deliverable 2 - description - line 1
+          Milestone 2 - Deliverable 2 - description - line 2
         reference:
-          link: https://example.com/M2/d1.html
-          name: example.com/M2/d1.html
+          link: https://example.com/M2/d2.html
+          name: example.com/M2/d2.html
         todos:
           - title: Milestone 2 - Deliverable 2 - Todo 1
-            description: Milestone 2 - Deliverable 1 - Todo 1 - description
+            description: Milestone 2 - Deliverable 2 - Todo 1 - description
             state: CLOSED
           - title: Milestone 2 - Deliverable 2 - Todo 2
             state: DOING
           - title: Milestone 2 - Deliverable 2 - Todo 3
             state: OPEN
-      - title: Milestone 2 - Deliverable 1 - title
+      - title: Milestone 2 - Deliverable 3 - title
         state: DOING
         requirement: MAY
         date: Q2/2023
         description: |
-          Milestone 2 - Deliverable 1 - description - line 1
-          Milestone 2 - Deliverable 1 - description - line 2
+          Milestone 2 - Deliverable 3 - description - line 1
+          Milestone 2 - Deliverable 3 - description - line 2
         reference:
-          link: https://example.com/M2/d1.html
-          name: example.com/M2/d1.html
-      - title: Milestone 2 - Deliverable 1 - title
+          link: https://example.com/M2/d3.html
+          name: example.com/M2/d3.html
+      - title: Milestone 2 - Deliverable 4 - title
         state: DONE
         requirement: MUST
         date: Q1/2023
         description: |
-          Milestone 2 - Deliverable 1 - description - line 1
-          Milestone 2 - Deliverable 1 - description - line 2
+          Milestone 2 - Deliverable 4 - description - line 1
+          Milestone 2 - Deliverable 4 - description - line 2
         reference:
-          link: https://example.com/M2/d1.html
-          name: example.com/M2/d1.html
+          link: https://example.com/M2/d4.html
+          name: example.com/M2/d4.html

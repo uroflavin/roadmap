@@ -6,16 +6,18 @@ This list is a scratchpad during development of a new features to break down som
 
 - documentation: added description for wsjf into docs/wsjf.md
 - feat(schema): added wsjf to schema/roadmap.json
-
+- feat(tests): put some fake data to tests/roadmap.yml
+  calculated md5 and modified test_roadmap.py
+  
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
 - [x] added wsjf to schema/roadmap.json
   for deliverables and keyresults only
   with examples
   with full template for autocompletion in vscode
-- [ ] update schema/roadmap.md documentation
-- [ ] put some fake data to tests/roadmap.yml
-  calculate md5 and modify test_roadmap.py
+- [x] updated schema/roadmap.md documentation
+- [x] put some fake data to tests/roadmap.yml
+  calculated md5 and modified test_roadmap.py
 - [ ] add testcase to calculate quantifiers
 - [ ] implement calculation of quantifiers (before rendering)
 - [ ] create a prototype for displaying wsjf and quantifier information in html template
