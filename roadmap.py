@@ -43,6 +43,12 @@ from collections import defaultdict
 # need sys.stdout as logging handler for stdout
 import sys
 
+# need to calculate hash of roadmap.yml for project.version
+import hashlib
+
+# time is used to output rendering timestamp
+import time
+
 def create_output_folder(path_to_folder: str = ""):
     """
     Create Folder for the roadmap.py output
@@ -431,6 +437,37 @@ def remove_element(element_name: str = "", project: dict = None):
     else:
         logging.error("element_name '%s' is to short for removing", element_name)
 
+def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
+    """
+    Calculate an version of roadmap.yml
+    
+    version is calculated using md5 of the roadmap.yml and contains the first and last 4 characters of md5 hash as a version
+
+    note: part of this code is from https://stackoverflow.com/questions/1131220/get-the-md5-hash-of-big-files-in-python
+
+    :param str path_to_roadmap_yml: path/to/roadmap.yml
+    :return: md5sum of roadmap.yml
+    :rtype: string of md5 or None in case of error
+    """
+    try:
+        hash = ""
+        # we use the whole file and open in binary
+        with open(path_to_roadmap_yml, "rb") as f:
+            # init hashlib for md5 hashing
+            file_hash = hashlib.md5()
+            # we only read chunks of the file to fill in the MD5 128-byte digest blocks
+            # chunk mechanic prevent us from using to much memory 
+            while chunk := f.read(8192):
+                # update the hash with chunk data
+                file_hash.update(chunk)
+            # get the hash as string
+            hash = file_hash.hexdigest()
+        # version uses first and last 4 characters from hash
+        version = hash[0:4] + hash[-4:]
+        return version
+    except:
+        return None
+
 def main():
     # Init
     # Load Config from roadmap.env
@@ -485,6 +522,14 @@ def main():
             roadmap_data=project, path_to_json_schema=config["SCHEMA"])
 
         if is_valid_yaml:
+            # add some version
+            project['meta'] = {
+                "version": calculate_roadmap_version(path_to_roadmap_yml=roadmap_definition_file),
+                "rendertime": time.strftime("%Y%m%d%H%M%S") 
+            }
+            logging.info("version of roadmap.yml is '%s'", project['meta']["version"])
+            logging.info("rendering time '%s'", project['meta']["rendertime"])
+
             # Find all templates
             templates = find_templates(template_path=config["TEMPLATE_PATH"],
                                     template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])

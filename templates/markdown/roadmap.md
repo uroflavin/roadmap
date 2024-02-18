@@ -93,4 +93,7 @@
 {% endif -%}
 {% if "milestones" in project %}
 {% include "roadmap.milestone.template.md" -%}
-{% endif -%}
+{% endif %}
+
+---
+version:{{ project.meta.version}}/{{project.meta.rendertime}}
