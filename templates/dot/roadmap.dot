@@ -58,4 +58,11 @@ digraph Roadmap {
         }
     {% endif -%} 
 {% endfor -%}
+
+            subgraph footer {
+                {
+                    rank="sink"; 
+                    footer [fontsize=7 shape="box" color="white" label="version:\l{{ project.meta.version}}/{{project.meta.rendertime}}\l"];
+                }
+            }
 }

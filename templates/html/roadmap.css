@@ -137,7 +137,9 @@ a:visited:hover {
 p > a {
     text-decoration: underline dotted;
 }
-
+pre {
+    font-size: 0.5rem;
+}
 r-project > r-description {
     margin-right:2rem;
     

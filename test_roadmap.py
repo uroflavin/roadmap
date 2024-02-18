@@ -4,14 +4,21 @@ import shutil
 from pathlib import Path
 from unittest.mock import patch
 from io import StringIO
-from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, calculate_ids_for_element_items, is_graphviz_installed, remove_element
+from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, calculate_ids_for_element_items, is_graphviz_installed, remove_element,calculate_roadmap_version
 import os
 
 class TestRoadmapFunctions(unittest.TestCase):
     def setUp(self):
+        # this folder is used for storing data during test
         self.test_folder = "tests/test_folder"
+        # this file did not excist
         self.test_file = "test_file.yml"
+        # this is a excisting roadmap
         self.test_excisting_file = "tests/roadmap.yml"
+        # this is the version of the excisting roadmap
+        # if you modifiy this file, make shure to modifiy his version
+        # version is calculated using md5 and take the first and last 4 characters as version
+        self.version_excisting_roadmap = "a782c6e6"
 
     def test_create_output_folder(self):
         # Test when the folder does not exist
@@ -144,7 +151,12 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIn("objectives", project)
         # check if milestones are still present
         self.assertIn("milestones", project)
-        
+    
+    def test_roadmap_yml_version_id(self):
+        # test if we get none for non-existing file
+        self.assertIsNone(calculate_roadmap_version(self.test_file))
+        # test if the version id of roadmap fullfills our expectations
+        self.assertEqual(calculate_roadmap_version(self.test_excisting_file),self.version_excisting_roadmap)
         
                                                                  
 if __name__ == '__main__':

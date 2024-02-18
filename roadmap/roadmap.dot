@@ -134,4 +134,10 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
                 o3_r2 [label="Complete examples in schema-definition",tooltip="Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases",color="grey"];
                 o3_r2 -> o3;
             }
-    }
+    subgraph footer {
+                {
+                    rank="sink"; 
+                    footer [fontsize=7 shape="box" color="white" label="version:\lac8dd2fa/20240218110338\l"];
+                }
+            }
+}
