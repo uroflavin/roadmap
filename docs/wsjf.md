@@ -60,10 +60,13 @@ wsjf:
 - user_business_value: range[0...10]
 - time_criticality: range[0...10]
 - opportunity_enablement_or_risk_reduction: range[0...10]
-- jobsize: range[0...10]
+- jobsize: range[1...10]
 ```
 
-The planned value scale for each value ranges from 0 (lowest) to 10 (highest).
+The planned value scale for each value ranges from 0 (lowest) to 10 (highest), except for jobsize. 
+
+If you realy need a Jobsize of 0, think twice if you really have to present this in your roadmap. To make your life easier, it is simply not allowed from schema and validation will fail if you use it.
+Technically: division by zero will cause errors, so we can't support this.
 
 This also means that no matter in which dimension you look at the job size with the teams, there is only one value that is kept in roadmap.yml. It does not matter for the calculation whether you estimate in relative or absolute terms - what is relevant is that your estimate result can be sorted on a scale from 0 to 10.
 

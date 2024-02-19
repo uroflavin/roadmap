@@ -152,7 +152,8 @@ In Order to calculate, we need .
   - **`user_business_value`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result. Minimum: `0`. Maximum: `10`. Default: `0`.
   - **`time_criticality`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today? Minimum: `0`. Maximum: `10`. Default: `0`.
   - **`opportunity_enablement_or_risk_reduction`** *(integer)*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `0`.
-  - **`jobsize`** *(integer)*: A value between 0 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result. Minimum: `0`. Maximum: `10`. Default: `0`.
+  - **`jobsize`** *(integer)*: A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.
+If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Maximum: `10`. Default: `0`.
 
   Examples:
   ```yaml
