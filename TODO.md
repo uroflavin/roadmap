@@ -8,6 +8,8 @@ This list is a scratchpad during development of a new features to break down som
 - feat(schema): added wsjf to schema/roadmap.json
 - feat(tests): put some fake data to tests/roadmap.yml
   calculated md5 and modified test_roadmap.py
+- ref: ignore SameFileError while copy logo file 
+- ref: add some debug info for args
   
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md

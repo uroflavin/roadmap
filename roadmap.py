@@ -504,10 +504,13 @@ def main():
                         default=None)
 
     args = parser.parse_args()
-
     roadmap_definition_file = args.roadmap_file
     output_folder = args.output_dir
     skip_items = args.skip_items
+
+    logging.debug("args.roadmap_file: %s",args.roadmap_file)
+    logging.debug("args.output_dir: %s",args.output_dir)
+    logging.debug("args.skip_items: %s",args.skip_items)
 
     if output_folder[-1] != os.sep:
         output_folder = output_folder + os.sep
@@ -591,7 +594,11 @@ def main():
                     # loginfo
                     logging.info("copy project.logo '%s' to '%s'", logo_src_path, output_folder)
                     # copy
-                    shutil.copy(logo_src_path, output_folder)
+                    try:
+                        shutil.copy(logo_src_path, output_folder)
+                    except shutil.SameFileError:
+                        # for now, we ignore SameFileError
+                        pass
             except Exception as err:
                 logging.error("copy logo file '%s' failed: %s",
                       logo_src_path, 
