@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.20] - 2024-02-20
+### Fix
+fix(html): timelineitem should display date in one line
+
 ## [0.0.19] - 2024-02-18
 ### Added
 Make the version of a roadmap unique and visible #74
@@ -176,3 +180,4 @@ BREAKING CHANGE
 [0.0.17]: https://github.com/uroflavin/roadmap/pull/81
 [0.0.18]: https://github.com/uroflavin/roadmap/pull/83
 [0.0.19]: https://github.com/uroflavin/roadmap/pull/84
+[0.0.20]: https://github.com/uroflavin/roadmap/pull/
