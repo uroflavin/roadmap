@@ -844,10 +844,9 @@ r-timeline > r-timeline-item > r-date {
     position: absolute;
     left:-8rem;
     top: 0rem;
-    
     font-weight: bold;
     font-size: 0.9rem;
-    width: 5.5rem;
+    width: 6rem;
     text-align: right;
 }
 r-timeline > r-timeline-item > r-name > h3 {
