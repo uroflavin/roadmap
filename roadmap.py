@@ -288,6 +288,108 @@ def make_id_from(input: str = ""):
     _id = _id.translate(special_char_map)
     return _id
 
+def calculate_cost_of_delay(
+    user_business_value: int = None,
+    time_criticality: int = None,
+    opportunity_enablement_or_risk_reduction: int = None):
+    """
+    calculate cost of delay for given values according to docs/wjsf.md
+
+    :param int user_business_value: A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result.
+    :param int time_criticality: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist.
+    :param int opportunity_enablement_or_risk_reduction: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item.
+    :return: cod as integer or None in case of error
+    """
+    try:
+        # check if we got integers
+        if not isinstance(user_business_value, int ):
+            raise ValueError("user_business_value is type '" + str(type(user_business_value)) + "' expect int")
+        if not isinstance(time_criticality, int):
+            raise ValueError("time_criticality is type '" + str(type(time_criticality)) + "' expect int")
+        if not isinstance(opportunity_enablement_or_risk_reduction, int):
+            raise ValueError("opportunity_enablement_or_risk_reduction is type '" + str(type(opportunity_enablement_or_risk_reduction)) + "' expect int")
+        # value between 0 (lowest) and 10 (highest)
+        if not ( 0 <= user_business_value <= 10) :
+            raise ValueError("user_business_value is not value between 0 (lowest) and 10 (highest)")
+        # value between 0 (lowest) and 10 (highest)
+        if not ( 0 <= time_criticality <= 10) :
+            raise ValueError("time_criticality is not value between 0 (lowest) and 10 (highest)")
+        # value between 0 (lowest) and 10 (highest)
+        if not ( 0 <= opportunity_enablement_or_risk_reduction <= 10) :
+            raise ValueError("opportunity_enablement_or_risk_reduction is not value between 0 (lowest) and 10 (highest)")
+
+        return user_business_value + time_criticality + opportunity_enablement_or_risk_reduction
+        
+    except ValueError as e:
+        logging.error("calculating cost of delay failed: %s",e)
+        return None
+
+def calculate_weighted_shortest_job_first(
+    cost_of_delay: int = None,
+    jobsize: int = None):
+    """
+    calculate wsjf (weighted shortest job first) for given values according to docs/wjsf.md
+
+    wsjf is rounded to 2 digits
+
+    :param int cost_of_delay: A value between 0 (lowest) and 30 (highest), a measure of the economic value of a job over time
+    :param int jobsize: value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result
+    :param int opportunity_enablement_or_risk_reduction: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item.
+    :return: wsjf as integer or None in case of error
+    """
+    try:
+        # check if we got integers
+        if not isinstance(cost_of_delay, int ):
+            raise ValueError("cost_of_delay is type '" + str(type(cost_of_delay)) + "' expect int")
+        if not isinstance(jobsize, int):
+            raise ValueError("jobsize is type '" + str(type(jobsize)) + "' expect int")
+        # value between 0 (lowest) and 30 (highest)
+        if not ( 0 <= cost_of_delay <= 30) :
+            raise ValueError("cost_of_delay is not value between 0 (lowest) and 30 (highest)")
+        # value between 1 (lowest) and 10 (highest)
+        if not ( 1 <= jobsize <= 10) :
+            raise ValueError("jobsize is not value between 1 (shortest) and 10 (longest)")
+        
+        return round((cost_of_delay / + jobsize),2)
+        
+    except ValueError as e:
+        logging.error("calculating weighted shortest job first failed: %s",e)
+        return None
+
+def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
+    """
+    calculate quantifiers for given keyresults or deliverables according to docs/wsjf.md
+
+    add quantifiers.cost_of_delay to element items
+    add quantifiers.jobsize to element items
+    add quantifiers.wsjf to element items
+
+    quantifier is only added if all values for wsjf.* are present and valid
+
+    :param dict element: roadmap element data as dict, e.g. timeline, objectives...
+    :return: dict new project with added ["quantifiers"]
+    """
+    # iterate over each item
+    for count, item in enumerate(elements):
+        # check if we have wsjf present in item
+        if "wsjf" in item:
+            # try calculating
+            try:
+                cost_of_delay = calculate_cost_of_delay(
+                    user_business_value=item["wsjf"]["user_business_value"],
+                    time_criticality=item["wsjf"]["time_criticality"],
+                    opportunity_enablement_or_risk_reduction=item["wsjf"]["opportunity_enablement_or_risk_reduction"])
+                weighted_shortest_job_first = calculate_weighted_shortest_job_first(cost_of_delay=cost_of_delay,jobsize=item["wsjf"]["jobsize"])
+                item["quantifiers"]= {
+                    "cost_of_delay": cost_of_delay,
+                    "jobsize" : item["wsjf"]["jobsize"],
+                    "wsjf" : weighted_shortest_job_first
+                }
+            except:
+                # ignore error - we simply don't add quantifiers to item
+                logging.error("wsjf failed")
+    return elements.copy()
+
 def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", parent_id: str = ""):
     """
     calculate ids for todos, objectives, keyresults, milestones and deliverables
@@ -333,8 +435,10 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
         # check each dict-object and calculate the id's
         if "keyresults" in item:
             item["keyresults"] = calculate_ids_for_element_items(item["keyresults"], "R", parent_id=_parent_id)
+            item["keyresults"] = calculate_weighted_shortest_job_first(item["keyresults"])
         if "deliverables" in item:
             item["deliverables"] = calculate_ids_for_element_items(item["deliverables"], "D", parent_id=_parent_id)
+            item["deliverables"] = calculate_weighted_shortest_job_first(item["deliverables"])
         if "objectives" in item:
             item["objectives"] = calculate_ids_for_element_items(item["objectives"], "O", parent_id=_parent_id)
         if "milestones" in item:

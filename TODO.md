@@ -10,7 +10,14 @@ This list is a scratchpad during development of a new features to break down som
   calculated md5 and modified test_roadmap.py
 - ref: ignore SameFileError while copy logo file 
 - ref: add some debug info for args
-  
+- fix: allow jobsize range from 1...10 to prevent division by zero
+- feat(tests): add testcase for calculate_cost_of_delay
+- feat(core): add calculate_cost_of_delay
+- feat(tests): add testcase for calculate_weighted_shortest_job_first
+- feat(core): add calculate_weighted_shortest_job_first
+- feat(tests): add testcase for calculate_wsjf_quantifiers_for_element_items
+- feat(core): add calculate_wsjf_quantifiers_for_element_items
+
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
 - [x] added wsjf to schema/roadmap.json
@@ -20,8 +27,8 @@ This list is a scratchpad during development of a new features to break down som
 - [x] updated schema/roadmap.md documentation
 - [x] put some fake data to tests/roadmap.yml
   calculated md5 and modified test_roadmap.py
-- [ ] add testcase to calculate quantifiers
-- [ ] implement calculation of quantifiers (before rendering)
+- [x] add testcases to calculate quantifiers
+- [x] implement calculation of quantifiers (before rendering)
 - [ ] create a prototype for displaying wsjf and quantifier information in html template
 - [ ] put some data to examples/roadmap.yml to display feature in the examples
 - [ ] add wsjf and quantifiers to html template

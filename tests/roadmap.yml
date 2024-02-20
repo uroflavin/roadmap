@@ -71,7 +71,7 @@ objectives:
       wsjf:
         user_business_value: 1
         time_criticality: 1
-        opportunity_and_risk: 1
+        opportunity_enablement_or_risk_reduction: 1
         jobsize: 1
     - title: Objective 1 - keyresult 2 - title
       description: Objective 1 - keyresult 2 - description
@@ -93,7 +93,7 @@ objectives:
       wsjf:
         user_business_value: 2
         time_criticality: 2
-        opportunity_and_risk: 2
+        opportunity_enablement_or_risk_reduction: 2
         jobsize: 2
     - title: Objective 1 - keyresult 3 - title
       description: Objective 1 - keyresult 3 - description
@@ -105,7 +105,7 @@ objectives:
       wsjf:
         user_business_value: 3
         time_criticality: 3
-        opportunity_and_risk: 3
+        opportunity_enablement_or_risk_reduction: 3
         jobsize: 3
   - title: Objective 2 - title
     description: | 
@@ -144,7 +144,7 @@ objectives:
       wsjf:
         user_business_value: 1
         time_criticality: 1
-        opportunity_and_risk: 1
+        opportunity_enablement_or_risk_reduction: 1
         jobsize: 1
     - title: Objective 2 - keyresult 2 - title
       description: Objective 2 - keyresult 2 - description
@@ -213,7 +213,7 @@ milestones:
         wsjf:
           user_business_value: 1
           time_criticality: 1
-          opportunity_and_risk: 1
+          opportunity_enablement_or_risk_reduction: 1
           jobsize: 1
       - title: Milestone 1 - Deliverable 2 - title
         state: DONE
@@ -228,7 +228,7 @@ milestones:
         wsjf:
           user_business_value: 2
           time_criticality: 2
-          opportunity_and_risk: 2
+          opportunity_enablement_or_risk_reduction: 2
           jobsize: 2
       - title: Milestone 1 - Deliverable 3 - title
         state: DONE
@@ -243,7 +243,7 @@ milestones:
         wsjf:
           user_business_value: 3
           time_criticality: 3
-          opportunity_and_risk: 3
+          opportunity_enablement_or_risk_reduction: 3
           jobsize: 3
       - title: Milestone 1 - Deliverable 4 - title
         state: DONE
@@ -258,7 +258,7 @@ milestones:
         wsjf:
           user_business_value: 4
           time_criticality: 4
-          opportunity_and_risk: 4
+          opportunity_enablement_or_risk_reduction: 4
           jobsize: 4
   - id: M2
     title: Milestone 2 - title
@@ -294,7 +294,7 @@ milestones:
         wsjf:
           user_business_value: 1
           time_criticality: 1
-          opportunity_and_risk: 1
+          opportunity_enablement_or_risk_reduction: 1
           jobsize: 1
       - title: Milestone 2 - Deliverable 2 - title
         state: TODO
