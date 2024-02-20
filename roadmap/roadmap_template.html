@@ -1154,6 +1154,116 @@ r-todo > r-description > p {
                                 <r-description>Es ist das Budget zu klären</r-description>
                             </r-todo>
                         </r-todos>
+                        <style>
+                            /* Tooltip container */
+                            .tooltip {
+                                position: relative;
+                                display: inline-block;
+                                /*border-bottom: 1px dotted grey; *//* If you want dots under the hoverable text */
+                            }
+
+                            /* Tooltip text */
+                            .tooltip .tooltiptext {
+                                visibility: hidden;
+                                width: 120px;
+                                background-color: lightblue;
+                                color: black;
+                                text-align: left;
+                                padding: 0.5rem;
+                                border-radius: 6px;
+                                box-shadow: 1px 2px 2px 2px var(--deliverable_boxshadow);
+                                font-size: 0.8rem;
+                                opacity: 0.95;
+                                /* Position the tooltip text - see examples below! */
+                                position: absolute;
+                                z-index: 1;
+                                width: 120px;
+                                top: 100%;
+                                left: 50%;
+                                margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+                                margin-top:0.5rem;
+                            }
+                            .tooltip .tooltiptext::after {
+                                content: " ";
+                                position: absolute;
+                                bottom: 100%;  /* At the top of the tooltip */
+                                left: 50%;
+                                margin-left: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: transparent transparent red transparent;
+                            }
+                            /* Show the tooltip text when you mouse over the tooltip container */
+                            .tooltip:hover .tooltiptext {
+                                visibility: visible;
+                            }
+                            r-quantifiers {
+                                border-top: 1px dashed gray;
+                                display: block;
+                                margin:0rem;
+                                padding-top:0.5rem;
+                                padding-bottom:0.5rem;
+                                padding-left:0.2rem;
+                                padding-right:0.2rem;
+                                font-size: 0.8rem;
+                                color: black;
+                                
+                            }
+                            r-cost_of_delay {
+                                background-image: url('streamline-pixel--free--14x14-Business-Products-Performance-Money-Decrease.png');
+                                background-repeat: no-repeat;
+                                margin-top:0.5rem;
+                                padding-left: 1.3rem;
+                                padding-right: 0.5rem;
+                            }
+                            r-jobsize {
+                                background-image: url('streamline-pixel--free--14x14-wrench.png');
+                                background-repeat: no-repeat;
+                                margin-top:0.5rem;
+                                padding-left: 1.3rem;
+                                padding-right: 0.5rem;
+                            }
+                            r-jobsize > table, tr, td {
+                                border: 0px;
+                                margin: 0;
+                                padding:0;
+                                padding:0.1rem;
+                                vertical-align: top;
+                            }
+                            r-jobsize > table, td {
+                                border-bottom: 1px solid black;
+                            }
+                            r-wsjf {
+                                background-image: url('streamline-pixel--free--14x14-Map-Navigation-Pin-Location-Trip.png');
+                                background-repeat: no-repeat;
+                                margin-top:0.5rem;
+                                padding-left: 1.3rem;
+                                padding-right: 0.5rem;
+                                font-weight: bold;
+                            }
+                        </style>
+                        <r-quantifiers>
+                            <r-wsjf>WSJF: 3.75</r-wsjf>
+                            <r-jobsize>Jobsize: 4</r-jobsize>
+                            <r-cost_of_delay class="tooltip">Cost of Delay: 15<span class="tooltiptext">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>User Value or Business Value</td>
+                                            <td>10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time Criticalitiy</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </span></r-cost_of_delay>
+                        </r-quantifiers>
                     </r-deliverable>
                     <r-deliverable class="TODO">
                         <r-header>
@@ -1162,6 +1272,28 @@ r-todo > r-description > p {
                             <r-state><span class="IDEA">IDEA</span></r-state> 
                         </r-header>
                         <r-description><p>Once we know how we want a road map file to look...</p></r-description>
+                        <r-quantifiers>
+                            <r-wsjf>WSJF: 6.00</r-wsjf>
+                            <r-jobsize>Jobsize: 1</r-jobsize>
+                            <r-cost_of_delay class="tooltip">Cost of Delay: 6<span class="tooltiptext">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>User Value or Business Value</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time Criticalitiy</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
+                                            <td>3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </span></r-cost_of_delay>
+                        </r-quantifiers>
                     </r-deliverable>
                     <r-deliverable class="TODO">
                         <r-date>01.01.2001</r-date>
@@ -1171,6 +1303,28 @@ r-todo > r-description > p {
                             <r-state><span class="IDEA">IDEA</span></r-state> 
                         </r-header>
                         <r-description><p>Once we know how we want a road map file to look...</p></r-description>
+                        <r-quantifiers>
+                            <r-wsjf>WSJF: 6.00</r-wsjf>
+                            <r-jobsize>Jobsize: 1</r-jobsize>
+                            <r-cost_of_delay class="tooltip">Cost of Delay: 6<span class="tooltiptext">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>User Value or Business Value</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time Criticalitiy</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
+                                            <td>3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                 </span></r-cost_of_delay>
+                        </r-quantifiers>
                     </r-deliverable>
                 </r-deliverables>
             

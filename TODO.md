@@ -17,6 +17,8 @@ This list is a scratchpad during development of a new features to break down som
 - feat(core): add calculate_weighted_shortest_job_first
 - feat(tests): add testcase for calculate_wsjf_quantifiers_for_element_items
 - feat(core): add calculate_wsjf_quantifiers_for_element_items
+- feat(html): create a prototype for displaying wsjf and quantifier information in html template
+  used icons from https://www.streamlinehq.com/ licenced under CC 4.0
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -29,7 +31,7 @@ This list is a scratchpad during development of a new features to break down som
   calculated md5 and modified test_roadmap.py
 - [x] add testcases to calculate quantifiers
 - [x] implement calculation of quantifiers (before rendering)
-- [ ] create a prototype for displaying wsjf and quantifier information in html template
+- [x] create a prototype for displaying wsjf and quantifier information in html template
 - [ ] put some data to examples/roadmap.yml to display feature in the examples
 - [ ] add wsjf and quantifiers to html template
 - [ ] add wsjf and quantifiers to csv template

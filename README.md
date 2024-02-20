@@ -150,5 +150,9 @@ There are a bunch of editors out there. Some might have the ability to make auto
 To enable this, you might link **schema/roadmap.json** into your prefered text-editor.
 
 ## Credits
-This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap
+This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap.
 
+All Images used in our roadmap templates are from https://www.streamlinehq.com/
+They are open-source licensed under Creative Commons 4.0. 
+Streamline, you did a great job and a big thank you for the lovelly art.
+We mainly used the icons from https://www.streamlinehq.com/freebies/pixel/ and one illustration as an example for roadmap-logo.
