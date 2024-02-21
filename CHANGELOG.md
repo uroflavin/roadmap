@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.0.21] - 2024-02-21
+### Added
+integrate pr #87 into main: Learnings from daily usage
+- feat(helloworld): removed helloworld.py including test suite
+- feat(roadmap): added new command line argument for environment file
+- feat(roadmap): extracted command line parsing into separate method
+- feat(roadmap): adjusted requirements.txt
+- doc: incorporated new findings into the technical documentation.
+
 ## [0.0.20] - 2024-02-20
 ### Fix
 fix(html): timeline item should display date in one line
@@ -181,3 +190,4 @@ BREAKING CHANGE
 [0.0.18]: https://github.com/uroflavin/roadmap/pull/83
 [0.0.19]: https://github.com/uroflavin/roadmap/pull/84
 [0.0.20]: https://github.com/uroflavin/roadmap/pull/86
+[0.0.21]: https://github.com/uroflavin/roadmap/pull/88
