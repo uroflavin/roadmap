@@ -32,6 +32,10 @@ This list is a scratchpad during development of a new features to break down som
 - [x] add testcases to calculate quantifiers
 - [x] implement calculation of quantifiers (before rendering)
 - [x] create a prototype for displaying wsjf and quantifier information in html template
+- [ ] base64 encode referenced icons for offline use
+  images are references in css as background-image.
+  current offline support is really handy, so we should not broke this functionality
+  we should think about it later, to enhance this for the logo.
 - [ ] put some data to examples/roadmap.yml to display feature in the examples
 - [ ] add wsjf and quantifiers to html template
 - [ ] add wsjf and quantifiers to csv template
