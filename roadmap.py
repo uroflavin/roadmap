@@ -572,10 +572,47 @@ def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
     except:
         return None
 
+# This function parses command-line arguments using the argparse module.
+def parse_commandline_args(parser):
+    # Add optional argument for specifying the path to the roadmap YAML file:
+    parser.add_argument("--roadmap-file", "-rf", type=str,
+                        help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
+    # Add optional argument for specifying the output directory for rendered results:
+    parser.add_argument("--output-dir", "-out", type=str,
+                        help="path to rendered output", nargs="?", default="roadmap/")
+    # Add optional argument for skipping specific roadmap elements during rendering:
+    parser.add_argument("--skip-items", "-skip",
+                        type=str,
+                        help="object path of roadmap-elements which should be skipped for rendering - separated by comma e.g.: milestones.todos,milestones.deliverables.todos ",
+                        nargs="?",
+                        default=None)
+    # Add optional argument for specifying an environment file containing paths to schema definitions, logfile, etc.:
+    parser.add_argument("--environment", "-env",
+                        type=str,
+                        help="environment file containing paths to the schema definitions, logfile, etc.",
+                        nargs="?",
+                        default="roadmap.env")
+    # Parse the arguments and return the parsed argument object:
+    args = parser.parse_args()
+    return args
+
 def main():
     # Init
-    # Load Config from roadmap.env
-    config = dotenv_values("roadmap.env")
+    parser = argparse.ArgumentParser(description="Process command line arguments.")
+    args = parse_commandline_args(parser)
+
+    roadmap_definition_file = args.roadmap_file
+    output_folder = args.output_dir
+    skip_items = args.skip_items
+    environment_definition_file = args.environment
+
+    if not os.path.exists(roadmap_definition_file):
+        raise ValueError("Roadmap file not found!")
+    if not os.path.exists(environment_definition_file):
+        raise ValueError("Environment file not found!")
+
+    # Load Config from environment definition
+    config = dotenv_values(environment_definition_file)
 
     LOGFILE = config["LOGFILE"]
     # basic logging is filebases with level DEBUG and above and with timestamp
@@ -594,31 +631,8 @@ def main():
     # log config
     logging.debug("config: %s", config)
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--roadmap-file", type=str,
-                        help="path to roadmap.yml", nargs="?", default="examples/roadmap.yml")
-
-    parser.add_argument("--output-dir", type=str,
-                        help="path to rendered output", nargs="?", default=config["OUTPUT_PATH"])
-    
-    parser.add_argument("--skip-items", 
-                        type=str,
-                        help="object path of roadmap-elements which should be skipped for rendering - separated by comma e.g.: milestones.todos,milestones.deliverables.todos ", 
-                        nargs="?", 
-                        default=None)
-
-    args = parser.parse_args()
-    roadmap_definition_file = args.roadmap_file
-    output_folder = args.output_dir
-    skip_items = args.skip_items
-
-    logging.debug("args.roadmap_file: %s",args.roadmap_file)
-    logging.debug("args.output_dir: %s",args.output_dir)
-    logging.debug("args.skip_items: %s",args.skip_items)
-
     if output_folder[-1] != os.sep:
         output_folder = output_folder + os.sep
-
 
     if create_output_folder(output_folder):
         # Read Roadmap-Definition
