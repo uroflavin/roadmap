@@ -23,6 +23,18 @@ Before running the script, you should set up a virtual environment. This helps t
 
 4. Once the virtual environment is activated, the name of your virtual environment will appear on left side of terminal.
 
+## Generate clean requirements.txt
+
+pipreqs helps you create lean and accurate requirements.txt files for your Python projects. Unlike pip freeze, it analyzes your code to identify only the packages you actually use, preventing bloat and unnecessary dependencies.
+
+```bash
+pip install pipreqs
+# Simply run pipreqs in your project directory:
+pipreqs
+```
+
+PyPI: https://pypi.org/project/pipreqs/
+
 ## Installing Dependencies
 
 The dependencies of the script are listed in the `requirements.txt` file. After activating the virtual environment, you can use the following command to install these dependencies:
