@@ -68,7 +68,9 @@ objectives:
           state: OPEN
         - title: Objective 1 - keyresult 1 - Todo 4 - title
           state: OPEN
-      wsjf:
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
         user_business_value: 1
         time_criticality: 1
         opportunity_enablement_or_risk_reduction: 1
@@ -90,7 +92,9 @@ objectives:
           state: CLOSED
         - title: Objective 1 - keyresult 2 - Todo 4 - title
           state: CLOSED
-      wsjf:
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
         user_business_value: 2
         time_criticality: 2
         opportunity_enablement_or_risk_reduction: 2
@@ -102,7 +106,9 @@ objectives:
       reference:
         link: https://example.com/o1/k3.html
         name: example.com/o1/k3.html
-      wsjf:
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
         user_business_value: 3
         time_criticality: 3
         opportunity_enablement_or_risk_reduction: 3
@@ -141,7 +147,9 @@ objectives:
           state: OPEN
         - title: Objective 2 - keyresult 1 - Todo 4 - title
           state: OPEN
-      wsjf:
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
         user_business_value: 1
         time_criticality: 1
         opportunity_enablement_or_risk_reduction: 1
@@ -210,7 +218,9 @@ milestones:
             state: DOING
           - title: Milestone 1 - Deliverable 1 - Todo 3
             state: OPEN
-        wsjf:
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
           user_business_value: 1
           time_criticality: 1
           opportunity_enablement_or_risk_reduction: 1
@@ -225,7 +235,9 @@ milestones:
         reference:
           link: https://example.com/m1/d2.html
           name: example.com/m1/d2.html
-        wsjf:
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
           user_business_value: 2
           time_criticality: 2
           opportunity_enablement_or_risk_reduction: 2
@@ -240,7 +252,9 @@ milestones:
         reference:
           link: https://example.com/m1/d3.html
           name: example.com/m1/d3.html
-        wsjf:
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
           user_business_value: 3
           time_criticality: 3
           opportunity_enablement_or_risk_reduction: 3
@@ -255,7 +269,9 @@ milestones:
         reference:
           link: https://example.com/m1/d4.html
           name: example.com/m1/d4html
-        wsjf:
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
           user_business_value: 4
           time_criticality: 4
           opportunity_enablement_or_risk_reduction: 4
@@ -291,7 +307,9 @@ milestones:
         reference:
           link: https://example.com/M2/d1.html
           name: example.com/M2/d1.html
-        wsjf:
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
           user_business_value: 1
           time_criticality: 1
           opportunity_enablement_or_risk_reduction: 1

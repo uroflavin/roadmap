@@ -18,7 +18,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         # this is the version of the excisting roadmap
         # if you modifiy this file, make shure to modifiy his version
         # version is calculated using md5 and take the first and last 4 characters as version
-        self.version_excisting_roadmap = "61a5ff21"
+        self.version_excisting_roadmap = "880a29cf"
 
     def test_create_output_folder(self):
         # Test when the folder does not exist
@@ -173,6 +173,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIsNone(calculate_cost_of_delay(user_business_value=11,time_criticality=0,opportunity_enablement_or_risk_reduction=0))
         self.assertIsNone(calculate_cost_of_delay(user_business_value=0,time_criticality=11,opportunity_enablement_or_risk_reduction=0))
         self.assertIsNone(calculate_cost_of_delay(user_business_value=0,time_criticality=0,opportunity_enablement_or_risk_reduction=11))
+        self.assertIsNone(calculate_cost_of_delay(user_business_value=None,time_criticality=1,opportunity_enablement_or_risk_reduction=1))
 
     def test_calculate_weighted_shortest_job_first(self):
         # this test covers the calculating part of WSJF
@@ -186,60 +187,125 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay="16",jobsize="3"))
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=19))
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=100,jobsize=100))
+        self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=None,jobsize=None))
+        self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=None,jobsize=1))
+        self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=1,jobsize=None))
     
+    def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_set(self):
+        # test if we calculate correctly and quantifier will be added to project
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+        # check if first objecttive contains keyresults
+        self.assertIn("keyresults", project["objectives"][0])
+        # check if first objecttive first keyresult contains well known quantifiers
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
+        # set some weird WSJF
+        weird_wsjf = 100.01
+        project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'] = weird_wsjf
+        # calculate
+        project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
+        # did we still have our weird wsjf?
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'],weird_wsjf)
+         # cost_of_delay must be calculated
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'],3)
+
+    def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_not_set(self):
+        # test if we calculate correctly and quantifier will be added to project
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+        # check if first objecttive contains keyresults
+        self.assertIn("keyresults", project["objectives"][0])
+        # check if first objecttive first keyresult contains quantifiers
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        # set user_business_value to None
+        project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'] = None
+        # calcualte
+        project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
+         # cost_of_delay should not be calculated
+        self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'])
+        # delete quantifier user_business_value
+        del project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value']
+        # calculate with missing user_business_value
+        project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
+         # cost_of_delay should not be calculated
+        self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'])
+        # weighted_shortest_job_first should not be calculated
+        self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'])
+
+    def test_calculate_wsjf_quantifiers_if_cost_of_delay_is_set(self):
+        # test if we calculate correctly and quantifier will be added to project
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+        # check if first objecttive contains keyresults
+        self.assertIn("keyresults", project["objectives"][0])
+        # check if first objecttive first keyresult contains well known quantifiers
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
+        # set some weird cost_of_delay
+        weird_cost_of_delay = 100
+        project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'] = weird_cost_of_delay
+        # calculate
+        project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
+        # cost of delay should be untouched
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'],weird_cost_of_delay)
+        # wsjf should not be calculated
+        self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'])
+
     def test_calculate_wsjf_quantifiers_for_milestones_deliverables(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
         # check if first milestone contains deliverables
         self.assertIn("deliverables", project["milestones"][0])
-        # check if first milestone first deliverable contains wsjf
-        self.assertIn("wsjf", project["milestones"][0]['deliverables'][0])
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['user_business_value'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['time_criticality'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['jobsize'],1)
+        # check if first milestone first deliverable contains well known quantifiers
+        self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],1)
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["milestones"][0]['deliverables'])
         # did we still have wsjf?
-        self.assertIn("wsjf", project["milestones"][0]['deliverables'][0])
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['user_business_value'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['time_criticality'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['jobsize'],1)
+        self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],1)
         # did we get quantifiers
         self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
         # is cost of delay correct?
         self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['cost_of_delay'],3)
         # is wsjf correct
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['wsjf'],3)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['weighted_shortest_job_first'],3)
         # is jobsize correct from wjs copied
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['wsjf']['jobsize'],project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'])
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'])
     
     def test_calculate_wsjf_quantifiers_for_objectives_keyresult(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
         # check if first objecttive contains keyresults
         self.assertIn("keyresults", project["objectives"][0])
-        # check if first objecttive first keyresult contains wsjf
-        self.assertIn("wsjf", project["objectives"][0]['keyresults'][0])
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['user_business_value'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['time_criticality'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['jobsize'],1)
+        # check if first objecttive first keyresult contains well known quantifiers
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
         # did we still have wsjf?
-        self.assertIn("wsjf", project["objectives"][0]['keyresults'][0])
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['user_business_value'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['time_criticality'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['jobsize'],1)
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
         # did we get quantifiers
         self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
         # is cost of delay correct?
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'],3)
         # is wsjf correct
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['wsjf'],3)
-        # is jobsize correct from wjs copied
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['wsjf']['jobsize'],project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'])
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'],3)
         
         
 

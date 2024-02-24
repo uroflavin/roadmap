@@ -53,39 +53,49 @@ For the implementation, you can either start with an easily estimable average re
 
 The relevant support for WSJF that roadmap.py offers, is to provide the necessary parameters for CoD and WSJF and to calculate them on the basis of the information in roadmap.yml and to aggregate them to the higher-level objects - if they are not stored there.
 
-The roadmap.yml structure derived from the schema is supplemented by the following optional elements
-
-```
-wsjf:
-- user_business_value: range[0...10]
-- time_criticality: range[0...10]
-- opportunity_enablement_or_risk_reduction: range[0...10]
-- jobsize: range[1...10]
-```
-
-The planned value scale for each value ranges from 0 (lowest) to 10 (highest), except for jobsize. 
-
-If you realy need a Jobsize of 0, think twice if you really have to present this in your roadmap. To make your life easier, it is simply not allowed from schema and validation will fail if you use it.
-Technically: division by zero will cause errors, so we can't support this.
-
-This also means that no matter in which dimension you look at the job size with the teams, there is only one value that is kept in roadmap.yml. It does not matter for the calculation whether you estimate in relative or absolute terms - what is relevant is that your estimate result can be sorted on a scale from 0 to 10.
-
-None of the values is required from schema/roadmap.json - Normally you find out the parameters with different people in different meetings.
-
-Nevertheless the default value is 0 for all dimensions.
-
-The following is calculated during rendering (if all dimensions are part of your roadmap.yml)
+The roadmap.yml structure derived from the schema is supplemented by the following optional elements (under quantifiers)
 
 ```
 quantifiers:
-- cost_of_delay: sum (wsjf.cost_of_delay.*)
-- jobsize: wsjf.jobsize
-- wsjf: (cost_of_delay / jobsize)
+- <...>
+- weighted_shortest_job_first: range from 0 to 30 as floating point number
+- cost_of_delay: range from 0 to 0 as whole number
+- user_business_value: range from 0 to 10 as whole number
+- time_criticality: range from 0 to 10 as whole number
+- opportunity_enablement_or_risk_reduction: range from 0 to 10 as whole number
+- jobsize: range from 1 to 10 as whole number
 ```
 
-Both ```wsjf.*``` and ```quantifier.*``` are available in the templates ```project.*``` structure.
+The default value from schema/roadmap.jsoon is NULL for all dimensions and **all given ranges are inclusive!**
 
-The output takes place in the csv, markdown and HTML templates, if wsjf is used on the respective element
+**Keep in mind:** 
+If you realy need a Jobsize of 0, think twice if you really have to present this in your roadmap. To make your life easier, it is simply not allowed from schema and validation will fail if you use it.
+Technically: division by zero will cause errors, so we can't support this.
+
+This also means that no matter in which dimension you look at the job size with the teams, there is only one value that is kept in roadmap.yml. 
+It does not matter for the calculation whether you estimate in relative or absolute terms - what is relevant is that your estimate result can be sorted on a scale from 0 to 10.
+
+None of the values are required from schema/roadmap.json Just leave them empty until you know.
+Normally you find out the parameters with different people in different meetings.
+
+## Calculating WSJF and using in templates
+
+*weighted_shortest_job_first* and *cost_of_delay* are both calculated during rendering, under the following condtions:
+
+**cost_of_delay**, is only calculated if cost_of_delay is empty AND if user_business_value,time_criticality, opportunity_enablement_or_risk_reduction are not empty
+
+**weighted_shortest_job_first**, is only calculated if weighted_shortest_job_first is empty AND if both jobsize AND cost_of_delay are not empty
+
+The order of calculating is *cost_of_delay*  -> *weighted_shortest_job_first*.
+
+This means you can either enter weightet shortet job first and cost_of_delay yourself into your roadmap.yml or left the calculation to roadmap.py.
+In addition, you can set cost_of_delay in roadmap.yml according to your needs and let roadmap.py calculate weighted_shortest_job_first using your given value and your given jobsize.
+
+But every calculation requires validity!
+
+The ```quantifier.*``` are available in the templates ```project.*``` structure.
+
+The output takes place in the csv, markdown and HTML templates
 
 # A few more personal things
 

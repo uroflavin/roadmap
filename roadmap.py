@@ -364,30 +364,39 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
     add quantifiers.jobsize to element items
     add quantifiers.wsjf to element items
 
-    quantifier is only added if all values for wsjf.* are present and valid
+    weighted_shortest_job_first and cost_of_delay is only added if all values for wsjf are present and valid 
+    this is jobsize, user_business_value, time_criticality, opportunity_enablement_or_risk_reduction
+    in addtion: cost_of_delay is only calculated if not set
+    in addtion: weighted_shortest_job_first is only calculated if not set
 
     :param dict element: roadmap element data as dict, e.g. timeline, objectives...
     :return: dict new project with added ["quantifiers"]
     """
     # iterate over each item
     for count, item in enumerate(elements):
-        # check if we have wsjf present in item
-        if "wsjf" in item:
+        # check if we have quantifiers present in item
+        if "quantifiers" in item:
             # try calculating
             try:
-                cost_of_delay = calculate_cost_of_delay(
-                    user_business_value=item["wsjf"]["user_business_value"],
-                    time_criticality=item["wsjf"]["time_criticality"],
-                    opportunity_enablement_or_risk_reduction=item["wsjf"]["opportunity_enablement_or_risk_reduction"])
-                weighted_shortest_job_first = calculate_weighted_shortest_job_first(cost_of_delay=cost_of_delay,jobsize=item["wsjf"]["jobsize"])
-                item["quantifiers"]= {
-                    "cost_of_delay": cost_of_delay,
-                    "jobsize" : item["wsjf"]["jobsize"],
-                    "wsjf" : weighted_shortest_job_first
-                }
+                # cost_of_delay is only calculated if not set
+                if item["quantifiers"]["cost_of_delay"] is None:
+                    item["quantifiers"]["cost_of_delay"] = calculate_cost_of_delay(
+                        user_business_value=item["quantifiers"]["user_business_value"],
+                        time_criticality=item["quantifiers"]["time_criticality"],
+                        opportunity_enablement_or_risk_reduction=item["quantifiers"]["opportunity_enablement_or_risk_reduction"])
             except:
                 # ignore error - we simply don't add quantifiers to item
-                logging.error("wsjf failed")
+                logging.error("cost_of_delay: calculating failed")
+            
+            try:
+                # weighted_shortest_job_first is only calculated if not set
+                if item["quantifiers"]["weighted_shortest_job_first"] is None:
+                    item["quantifiers"]["weighted_shortest_job_first"] = calculate_weighted_shortest_job_first(
+                        cost_of_delay=item["quantifiers"]["cost_of_delay"],
+                        jobsize=item["quantifiers"]["jobsize"])
+            except:
+                # ignore error - we simply don't add quantifiers to item
+                logging.error("weighted_shortest_job_first; calculating failed")
     return elements.copy()
 
 def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", parent_id: str = ""):
