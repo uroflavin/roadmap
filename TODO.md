@@ -19,6 +19,14 @@ This list is a scratchpad during development of a new features to break down som
 - feat(core): add calculate_wsjf_quantifiers_for_element_items
 - feat(html): create a prototype for displaying wsjf and quantifier information in html template
   used icons from https://www.streamlinehq.com/ licenced under CC 4.0
+- feat(core): changed wsjf into a more generall approach of using quantifiers in schema.roadmap.json
+  changed documentation
+  changed tests
+  changed implementation
+  changed html-prototype
+- feat(html): base64 encode referenced icons in html template for offline use
+  used https://www.base64-image.de/ as encoder
+  only in html-prototype
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
