@@ -27,6 +27,7 @@ This list is a scratchpad during development of a new features to break down som
 - feat(html): base64 encode referenced icons in html template for offline use
   used https://www.base64-image.de/ as encoder
   only in html-prototype
+- documentation: add wjsf and quantifiers to README and link to docs/wsjf.md
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -42,11 +43,13 @@ This list is a scratchpad during development of a new features to break down som
 - [x] create a prototype for displaying wsjf and quantifier information in html template
 - [x] changed wsjf into a more generall approach of using quantifiers in schema.roadmap.json
 - [X] base64 encode referenced icons in html template for offline use
+- [x] add wjsf and quantifiers to README
 - [ ] put some data to examples/roadmap.yml to display feature in the examples
-- [ ] add wsjf and quantifiers to html template
-- [ ] add wsjf and quantifiers to csv template
-- [ ] add wsjf and quantifiers to markdown template
-- [ ] add wjsf to README / see also part --skip-items
+- [ ] add quantifiers to html template
+- [ ] add quantifiers to csv template
+- [ ] add quantifiers to markdown template
+- [ ] make a review to docs (readme, schema, wsjf) 
+- [ ] make a review to rendered roadmap examples
 - [ ] check requirements.txt for any new requirements
 - [ ] merge into master
 - [ ] update changelog
