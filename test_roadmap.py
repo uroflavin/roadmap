@@ -50,12 +50,52 @@ class TestRoadmapFunctions(unittest.TestCase):
         # test if graphviz is installed
         self.assertTrue(is_graphviz_installed())
     
+    def test_roadmap_yml_version_id(self):
+        # test if we get none for non-existing file
+        self.assertIsNone(calculate_roadmap_version(self.test_file))
+        # test if the version id of roadmap fullfills our expectations
+        self.assertEqual(calculate_roadmap_version(self.test_excisting_file),self.version_excisting_roadmap)
+
+    def test_preconditions_in_test_excisting_file(self):
+        # this test is to check if your test.yml has some predefined conditions for testing
+        #
+        #   the conditions are checked twice: once for version id, which is md5sum of file
+        #   and second for the condtions here
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+        # did we have milestones
+        self.assertIn("milestones", project)
+        # check if objectives are in project
+        self.assertIn("objectives", project)
+        # check if milestones first deliverable contains todos
+        self.assertIn("todos", project["milestones"][0]["deliverables"][0])
+        
+        # check if first milestone contains deliverables
+        self.assertIn("deliverables", project["milestones"][0])
+        # check if first objecttive contains keyresults
+        self.assertIn("keyresults", project["objectives"][0])
+        
+        # check if first milestone first deliverables contains well known quantifiers
+        self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
+        # check if first objecttive first keyresult contains well known quantifiers
+        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
+        
+        # check conditions for cost of delay and wsjf calculation
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
+        self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'])
+
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['user_business_value'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['time_criticality'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],1)
+        self.assertIsNone(project["milestones"][0]['deliverables'][0]['quantifiers']['weighted_shortest_job_first'])
+
     def test_is_level0_element_removed_from_project(self):
         remove_pattern = "milestones"
         # test if a element from project is scipped during operation
         project = read_roadmap_definition(self.test_excisting_file)
-        
-        self.assertIn("milestones", project)
         remove_element(remove_pattern, project=project)
         self.assertNotIn("milestones", project)
         self.assertIn("objectives", project)
@@ -64,10 +104,6 @@ class TestRoadmapFunctions(unittest.TestCase):
         remove_pattern = "milestones.deliverables"
         # test if a element from project is scipped during operation
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if milestones in project
-        self.assertIn("milestones", project)
-        # check if first milestone contains deliverables
-        self.assertIn("deliverables", project["milestones"][0])
         # remove milestones deliverables
         remove_element(remove_pattern, project=project)
         # check if deliverables from first milestone is removed
@@ -81,14 +117,6 @@ class TestRoadmapFunctions(unittest.TestCase):
         remove_pattern = "milestones.deliverables.todos"
         # test if a element from project is scipped during operation
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if milestones are in project
-        self.assertIn("milestones", project)
-        # check if objectives are in project
-        self.assertIn("objectives", project)
-        # check if milestones first element contains deliverables
-        self.assertIn("deliverables", project["milestones"][0])
-        # check if milestones first deliverable contains todos
-        self.assertIn("todos", project["milestones"][0]["deliverables"][0])
         # remove milestones.deliverables.todos
         remove_element(remove_pattern, project=project)
         # check if objectives are still present
@@ -141,7 +169,18 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertNotIn("description", project["milestones"][0]['deliverables'][0]['todos'][0])
         # check if objectives first keyresult todo element contains still description
         self.assertIn("description", project["objectives"][0]['keyresults'][0]['todos'][0])
-    
+
+    def test_is_level3_string_element_removal_is_set_to_none(self):
+        remove_pattern = "milestones.deliverables.quantifiers.jobsize"
+        # test if a element from project is scipped during operation
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+        # check if milestones first deliverables quantifiers element contains jobsize
+        self.assertIn("jobsize", project["milestones"][0]['deliverables'][0]['quantifiers'])
+        # remove quantifiers.jobsize
+        remove_element(remove_pattern, project=project)
+        # check if milestones first deliverable is None
+        self.assertIsNone(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'])
+        
     def test_correct_errorhandling_for_unsupported_remove_string(self):
         # test if we handle all errors correctly
         remove_pattern = "."
@@ -151,13 +190,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIn("objectives", project)
         # check if milestones are still present
         self.assertIn("milestones", project)
-    
-    def test_roadmap_yml_version_id(self):
-        # test if we get none for non-existing file
-        self.assertIsNone(calculate_roadmap_version(self.test_file))
-        # test if the version id of roadmap fullfills our expectations
-        self.assertEqual(calculate_roadmap_version(self.test_excisting_file),self.version_excisting_roadmap)
-    
+
     def test_calculate_cost_of_delay(self):
         # this test covers the calculating part of Cost of Delay
         # check for valid input with zero
@@ -167,6 +200,9 @@ class TestRoadmapFunctions(unittest.TestCase):
         # check for valid input with 10 for each value should give 30
         self.assertEqual(calculate_cost_of_delay(user_business_value=10,time_criticality=10,opportunity_enablement_or_risk_reduction=10),30)
         # check for handling non valid input
+    
+    def test_calculate_cost_of_delay_non_valid_inputs(self):
+        # test for correct handling non valid inputs during calculation of cost_of_delay
         self.assertIsNone(calculate_cost_of_delay(user_business_value="1",time_criticality="1",opportunity_enablement_or_risk_reduction="1"))
         self.assertIsNone(calculate_cost_of_delay(user_business_value=1.0,time_criticality=1.0,opportunity_enablement_or_risk_reduction=1.0))
         self.assertIsNone(calculate_cost_of_delay(user_business_value=11,time_criticality=-1,opportunity_enablement_or_risk_reduction=100))
@@ -184,6 +220,9 @@ class TestRoadmapFunctions(unittest.TestCase):
         # check for valid input with floating result 
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16,jobsize=3),5.33)
         # check for handling non valid input
+    
+    def test_calculate_weighted_shortest_job_first_non_valid_inputs(self):
+        # test for correct handling non valid inputs during calculation of wsjf
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay="16",jobsize="3"))
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=19))
         self.assertIsNone(calculate_weighted_shortest_job_first(cost_of_delay=100,jobsize=100))
@@ -194,34 +233,23 @@ class TestRoadmapFunctions(unittest.TestCase):
     def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_set(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if first objecttive contains keyresults
-        self.assertIn("keyresults", project["objectives"][0])
-        # check if first objecttive first keyresult contains well known quantifiers
-        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
         # set some weird WSJF
         weird_wsjf = 100.01
+        # store in project
         project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'] = weird_wsjf
         # calculate
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
         # did we still have our weird wsjf?
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'],weird_wsjf)
-         # cost_of_delay must be calculated
+         # cost_of_delay should be calculated
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'],3)
 
     def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_not_set(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if first objecttive contains keyresults
-        self.assertIn("keyresults", project["objectives"][0])
-        # check if first objecttive first keyresult contains quantifiers
-        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
         # set user_business_value to None
         project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'] = None
-        # calcualte
+        # calculate
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
          # cost_of_delay should not be calculated
         self.assertIsNone(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'])
@@ -237,19 +265,12 @@ class TestRoadmapFunctions(unittest.TestCase):
     def test_calculate_wsjf_quantifiers_if_cost_of_delay_is_set(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if first objecttive contains keyresults
-        self.assertIn("keyresults", project["objectives"][0])
-        # check if first objecttive first keyresult contains well known quantifiers
-        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
         # set some weird cost_of_delay
         weird_cost_of_delay = 100
         project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'] = weird_cost_of_delay
         # calculate
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
+        
         # cost of delay should be untouched
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['cost_of_delay'],weird_cost_of_delay)
         # wsjf should not be calculated
@@ -258,14 +279,6 @@ class TestRoadmapFunctions(unittest.TestCase):
     def test_calculate_wsjf_quantifiers_for_milestones_deliverables(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if first milestone contains deliverables
-        self.assertIn("deliverables", project["milestones"][0])
-        # check if first milestone first deliverable contains well known quantifiers
-        self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['user_business_value'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['time_criticality'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],1)
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["milestones"][0]['deliverables'])
         # did we still have wsjf?
         self.assertIn("quantifiers", project["milestones"][0]['deliverables'][0])
@@ -285,14 +298,6 @@ class TestRoadmapFunctions(unittest.TestCase):
     def test_calculate_wsjf_quantifiers_for_objectives_keyresult(self):
         # test if we calculate correctly and quantifier will be added to project
         project = dict(read_roadmap_definition(self.test_excisting_file))
-        # check if first objecttive contains keyresults
-        self.assertIn("keyresults", project["objectives"][0])
-        # check if first objecttive first keyresult contains well known quantifiers
-        self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['user_business_value'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['time_criticality'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['opportunity_enablement_or_risk_reduction'],1)
-        self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['jobsize'],1)
         project["milestones"][0]['deliverables'] = calculate_wsjf_quantifiers_for_element_items(project["objectives"][0]['keyresults'])
         # did we still have wsjf?
         self.assertIn("quantifiers", project["objectives"][0]['keyresults'][0])

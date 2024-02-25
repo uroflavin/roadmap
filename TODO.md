@@ -33,6 +33,7 @@ This list is a scratchpad during development of a new features to break down som
 - feat(core): do some postprocessing to enable skipping calculated elements
   postprocessing is using skip-items from preprocessing, we just do it twice
 - feat(example): put some data to examples/roadmap.yml to display feature in the examples
+- ref(test): put precondition check in separate testcase
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
