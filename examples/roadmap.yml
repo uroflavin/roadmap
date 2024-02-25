@@ -149,7 +149,7 @@ milestones:
           user_business_value: 10
           time_criticality: 0
           opportunity_enablement_or_risk_reduction: 10
-          jobsize: 10
+          jobsize: null
       - title: Roadmap
         state: DONE
         requirement: MUST
@@ -413,11 +413,25 @@ milestones:
         description: |
           The most important part of this milestone is the development of a web based renderer which can present a road map file. 
           This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: null
+          time_criticality: null
+          opportunity_enablement_or_risk_reduction: null
+          jobsize: 10
       - title: Markdown To HTML as JINJA2 Function
         state: TODO
         requirement: SHOULD
         description: |
           The renderer should support Markdown
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: null
+          jobsize: null
       - title: Renderer Package
         state: TODO
         requirement: MAY

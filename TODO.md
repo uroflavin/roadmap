@@ -35,6 +35,8 @@ This list is a scratchpad during development of a new features to break down som
 - feat(example): put some data to examples/roadmap.yml to display feature in the examples
 - ref(test): put precondition check in separate testcase
 - feat(core): support skip-items for quantifiers
+- feat(html): add quantifiers to html template
+  put some documentation and skip-item examples
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -52,7 +54,7 @@ This list is a scratchpad during development of a new features to break down som
 - [X] base64 encode referenced icons in html template for offline use
 - [x] add wjsf and quantifiers to README
 - [x] put some data to examples/roadmap.yml to display feature in the examples
-- [ ] add quantifiers to html template
+- [x] add quantifiers to html template
 - [ ] add quantifiers to csv template
 - [ ] add quantifiers to markdown template
 - [ ] make a review to docs (readme, schema, wsjf) 
@@ -61,4 +63,4 @@ This list is a scratchpad during development of a new features to break down som
 - [ ] merge into master
 - [ ] update changelog
 - [ ] merge into main
-
+- [ ] enable calculation of cod and wsjf but hide details using skip mechanics

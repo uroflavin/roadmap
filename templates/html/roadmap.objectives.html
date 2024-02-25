@@ -61,6 +61,10 @@
                                             {% set todos = keyresult.todos %}
                                             {% include "roadmap.todos.html" -%}
                                         {% endif -%}
+                                        {% if "quantifiers" in keyresult %}
+                                            {% set quantifiers = keyresult.quantifiers %}
+                                            {% include "roadmap.quantifiers.html" -%}
+                                        {% endif -%}
                                     </r-keyresult>
                                 {% endfor -%}
                             </r-keyresults>
@@ -129,6 +133,10 @@
                                         {% if "todos" in keyresult %}
                                             {% set todos = keyresult.todos %}
                                             {% include "roadmap.todos.html" -%}
+                                        {% endif -%}
+                                        {% if "quantifiers" in keyresult %}
+                                            {% set quantifiers = keyresult.quantifiers %}
+                                            {% include "roadmap.quantifiers.html" -%}
                                         {% endif -%}
                                     </r-keyresult>
                                 {% endfor -%}

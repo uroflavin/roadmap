@@ -61,6 +61,16 @@ It is also possible to store and calculate certain **quantifiers**.
 Currently supported is **weighted shortest job first** for objective.keyresults and milestone.deliverables. 
 Details on the use in your own projects can be found under **[docs/wsjf.md](docs/wsjf.md)**
 
+Quantifiers in **HTML Template** are rendered in the following order:
+
+- if all quantifiers for **weighted shortest job first** are present, only ```weighed_shortest_job_first``` is rendered, and all the calculation bases are displayed as tooltip.
+- if anything is missing to calculate **weighted shortest job first**,  ```weighed_shortest_job_first``` is not rendered but all the calculation bases are displayed.
+- if all quantifiers for **cost of delay** are present, then ```cost_of_delay``` is calculated and rendered, but all the calculation bases are displayed as tooltip.
+
+If you like to use this feature, please make sure that all quantifiers are present in your roadmap.yml and that unknown values are listed as ```null```-values.
+
+This gives you the option of managing all data in one place, even if the data is only created gradually during the process. As soon as aggregation is possible, the details disappear.
+
 ## Howto Use
 
 ### Render Example
@@ -140,6 +150,24 @@ You can add as many elements you like, just separate these by comma (,)
 ```
 --skip-items milestones.deliverables,objectives.keyresults,objectives.milestones.deliverables
 ```
+
+**if you want to skip quantifiers**:
+- skip all deliverables quantifiers
+- skip all keyresults quantifiers
+
+```
+--skip-items milestones.deliverables.quantifiers,objectives.keyresults.quantifiers,objectives.milestones.deliverables.quantifiers
+```
+
+**if you want to skip quantifiers jobsize for milestone deliverables**:
+- skip jobsize for all deliverables quantifiers
+
+*Keep in mind: This skips also the processing and calculation of wsjf!*
+
+```
+--skip-items milestones.deliverables.quantifiers.jobsize
+```
+
 
 **if you want a quick highlevel view**
 - skip all todos

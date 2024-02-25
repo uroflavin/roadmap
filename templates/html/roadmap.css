@@ -52,6 +52,24 @@
     --color_state_may: #008450;
     
     --color_state__text: white;
+
+    --color_tooltip_background: lightblue;
+    --color_tooltip_boxshadow: gray;
+    --color_tooltip_arrow: red;
+
+    /* Embeded Icons for quantifiers - for offline support */
+    /* Icon 'streamline-pixel--free--14x14-Business-Products-Performance-Money-Decrease.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_cost_of_delay: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABCElEQVR4nHXQMVLCQBiG4c0JTOcRsNycgKSytKTUTujW0kpvQKwcbyClJwhU2GWtNDeQylDa+X7s/EzCjO/MAzM/85GBzKVqTFGhh+WhIkZlsAKuUUB5NFAVIlSNkPEyTMcpAt5QutTaOXeFGnuUp0MVsESBCOXRQm1wHOqDM6g9IqwcDTzUBoehDhPsoM7RIULl8LB6RA1bVNBB5dATCvxbhogtLqC+sMLajdOXqQ8EDXvc4hs6XmIBK+DGpXflMdHwB3PsMMMLIizdOtjNo9GwxTt+oeMnXmE9IeDRpfT54TeWLn3rcLiCtcQdHqD0H9xrOKzGFgtYz+gQcex0qGaYw9LTRiP1B3j/QPxnrZ9XAAAAAElFTkSuQmCC');
+    /* Icon 'streamline-pixel--free--14x14-wrench.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_jobsize: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAzUlEQVR4nJXRuQ3CQABE0XEHS0RKSEgJpgQiUkpwSgWkEEFGC3TAlgARIqMEdwB/WK24fIgvPZAljw+50KsaJwTssUFr78M5rrhJikoqNOZhDVdKWqNUGrlSLXkYla58hBsgKlWqJQ+3WKKGC3BRHe/qoU9cYQw3g499saikwkcefpef4H38c+emYUAe5f+opMKzpmHu+84HuAuWXcOAPHI1XMCqa5iLSp/ljjMW4nv/O5xiiF3BT19b+HFHShfxo6pAXz7R7+rvPMEAegDuLC1lknRX8AAAAABJRU5ErkJggg==');
+    /* Icon 'streamline-pixel--free--14x14-Map-Navigation-Pin-Location-Trip.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_weighted_shortest_job_first: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA8ElEQVR4nH3QsU3DUBSF4cMGb4uICm/A24KWknSmZAK3pqJ1m4oRuBtgymwRNsh/dGX5WXLySx9Efjp+UR609gP3hx5387BgwAee8I8DTriZh1/wyDd2+MQk6VV3bvYwJFVJM3yjhz1C+Xy3dljQIZSF8vluHlZlobXQ+rxgwCNcj9nDAh8c4ToccIJbfoNvvMNnZw/diEm8CS84w59DeXNIeobzJvxnyYM3+K0euVAOO/zCZyM2wwJ3wdKISeuLXMHQDquy0LbQeuaqqB36Te6CtqoslIV41g6rstC2ggFHjJjEV2+Hzgd79Qjl/xm6AuiZNZalitGHAAAAAElFTkSuQmCC');
+    /* Icon 'streamline-pixel--free--14x14-Hand-Awesome--Streamline-Pixel.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_user_business_value: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAzElEQVR4nI3RsQ2CUBSF4eMGbGHp28DnFLa2dlg6gaV0trZ2jnBHoHULR/C/vlwEBOOffAXknmDiQvMlnLHBVwvMZZKypAuOeKLrn2FWydRrbpiwk1Qjq2TqFcMGK3gHLHGD9/OnmspXvKvKlyqcYJL2iGq0/WGUVarg3ZH1ycRzf7iGF++8hAbjchyZpocmjjTMxLs4Mk0PExqMy3Fkmh6aONIwE+/iyDQ99J5o4SVU6I5Mn6Gp/JctvC0e8Ja4oRs2SPCyhs9RixrvXl+pKQ9nLDyoAAAAAElFTkSuQmCC');
+    /* Icon 'streamline-pixel--free--14x14-Interface-Essential-Alert--Streamline-Pixel.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_time_criticality: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABBElEQVR4nHXRIXKDQBiG4Y8bICvjMjhuUI5QR2UsqlTi4mqpwkYW1yNsb4Bj6iIruUH7fiXbwJS8Mw/MLPsvzJBISvGCDB16bFWiwojGgx0a7CTt0WOrEp84ixclXIKkGgfN93s8IoMb8YYPtDiJe8KlhOvhB+8YsNPcWVKOB9T43Z8g5gV/ihuQwk3I4fbwC1aDQVKhedOAQnNB17Wgy3ocDLosLHqCe8WyIPYuB2u4Ae4bLkh6RqzFarDQuqC5QuuCWIuDOQ66vvVWLU7iq+Kg69DgqP8HtDiKH48KWg6m+HtAOdwAFw+esDmYwZu+4O5QYcTmYIf4IEcKN2FACh/sQ/QDYrE9zd2lgwUAAAAASUVORK5CYII=');
+    /* Icon 'streamline-pixel--free--14x14-Interface-Essential-Link-Broken-1--Streamline-Pixel.png' from https://www.streamlinehq.com/ */
+    --icon_quantifiers_opportunity_enablement_or_risk_reduction: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA6ElEQVR4nI3PsVGEQACF4UcHFxqaGUoHUoJG2AIZ6VVguhmpoRfZwtrBZg4ZJVCC/7udFVDu5v6Z7wKOt8xWWnqC+4KrkbBbhVIjKaCGi8rPdlsPXUAjqcczerToUPrG8e/QNcpF5aKWZ+6At/UwKtdoW40AN+CEuB7eUlQ+eDNs0aFHQumAR7hX+J3fYcC78iAqn1oacILz/zPOwxYjJnFpdKjhEgZ8oHSH0cOo/AW/cMS9pAe4EZOWg9yMVPETtQx98gt6tPAw4V8elhcm5ZOjtnfezUMX8Al3vgMSLlaGrlFuRsLVfgDDFDXmUtKoowAAAABJRU5ErkJggg==');
     
 }
 
@@ -966,4 +984,119 @@ r-todo > r-description > p {
     padding-bottom: 0rem;
     margin-bottom: 0rem;
     font-size: 0.8rem !important;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted grey; *//* If you want dots under the hoverable text */
+}
+.tooltiptext {
+    display: inline;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: var(--color_tooltip_background);
+    color: black;
+    text-align: left;
+    padding: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 1px 2px 2px 2px var(--color_tooltip_boxshadow);
+    font-size: 0.8rem;
+    opacity: 0.95;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    margin-top:0.5rem;
+
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%; /* red arrow is centered */
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--color_tooltip_arrow) transparent;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+r-quantifiers {
+    border-top: 1px dashed gray;
+    display: block;
+    margin:0rem;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
+    padding-left:0.2rem;
+    padding-right:0.2rem;
+    font-size: 0.8rem;
+    color: black;
+    
+}
+r-weighted_shortest_job_first,r-cost_of_delay,r-jobsize, r-user_business_value, r-time_criticality,  r-opportunity_enablement_or_risk_reduction {
+    display:inline-block;
+    width: auto;
+    background-repeat: no-repeat;
+    margin-top:0rem;
+    margin-bottom:0.5rem;
+    padding-left: 1.3rem;
+    padding-right: 0.5rem;
+    padding-top: 0rem;
+    text-wrap: nowrap;
+}
+
+r-cost_of_delay {
+    background-image: var(--icon_quantifiers_cost_of_delay);
+}
+r-jobsize {
+    background-image: var(--icon_quantifiers_jobsize);
+}
+r-weighted_shortest_job_first {
+    background-image:var(--icon_quantifiers_weighted_shortest_job_first);
+}
+
+r-user_business_value {
+    background-image: var(--icon_quantifiers_user_business_value);
+}
+r-time_criticality {
+    background-image:var(--icon_quantifiers_time_criticality);
+}
+r-opportunity_enablement_or_risk_reduction {
+    background-image: var(--icon_quantifiers_opportunity_enablement_or_risk_reduction);
+}
+.tooltip table {
+    border-collapse: collapse;
+}
+.tooltip td {
+    border: 0px;
+    margin: 0;
+    padding:0;
+    vertical-align: top;
+    text-wrap: nowrap;
+    padding-top:0.1rem;
+    padding-bottom:0.1rem;
+}
+.tooltip td:nth-child(2) {
+    text-align: right;
+    padding-left: 0rem;
+    font-weight: bold;
+}
+.tooltip tr {
+    border-bottom: 1px dotted gray;
+}
+.tooltip caption {
+    text-align:left;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
