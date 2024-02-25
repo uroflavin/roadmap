@@ -525,7 +525,11 @@ def remove_element(element_name: str = "", project: dict = None):
                             for project_level2_element in project_level1_element[level2_element]:
                                 if level3_element in project_level2_element:
                                     logging.info("skip level %s (project.%s)", remove_level, element_name)
-                                    del project_level2_element[level3_element]
+                                    # if element is string, we could not easy del, so we just set it to none
+                                    if isinstance(project_level2_element,str):
+                                        project_level1_element[level2_element][level3_element] = None
+                                    else:
+                                        del project_level2_element[level3_element]
         elif remove_level == 4:
             # example element_name is: objectives.milestones.deliverables.todos.description
             level0_element = element_name.split(".")[0]
