@@ -28,6 +28,7 @@ This list is a scratchpad during development of a new features to break down som
   used https://www.base64-image.de/ as encoder
   only in html-prototype
 - documentation: add wjsf and quantifiers to README and link to docs/wsjf.md
+- feat(html): css variables and some more mods in prototype for quantifiers for better look
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md

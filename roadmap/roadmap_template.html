@@ -61,6 +61,10 @@
     
     --color_state__text: white;
 
+    --color_tooltip_background: lightblue;
+    --color_tooltip_boxshadow: gray;
+    --color_tooltip_arrow: red;
+
     /* Embeded Icons for quantifiers - for offline support */
     /* Icon 'streamline-pixel--free--14x14-Business-Products-Performance-Money-Decrease.png' from https://www.streamlinehq.com/ */
     --icon_quantifiers_cost_of_delay: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABCElEQVR4nHXQMVLCQBiG4c0JTOcRsNycgKSytKTUTujW0kpvQKwcbyClJwhU2GWtNDeQylDa+X7s/EzCjO/MAzM/85GBzKVqTFGhh+WhIkZlsAKuUUB5NFAVIlSNkPEyTMcpAt5QutTaOXeFGnuUp0MVsESBCOXRQm1wHOqDM6g9IqwcDTzUBoehDhPsoM7RIULl8LB6RA1bVNBB5dATCvxbhogtLqC+sMLajdOXqQ8EDXvc4hs6XmIBK+DGpXflMdHwB3PsMMMLIizdOtjNo9GwxTt+oeMnXmE9IeDRpfT54TeWLn3rcLiCtcQdHqD0H9xrOKzGFgtYz+gQcex0qGaYw9LTRiP1B3j/QPxnrZ9XAAAAAElFTkSuQmCC');
@@ -996,17 +1000,20 @@ r-todo > r-description > p {
     display: inline-block;
     /*border-bottom: 1px dotted grey; *//* If you want dots under the hoverable text */
 }
+.tooltiptext {
+    display: inline;
+}
 
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: lightblue;
+    width: auto;
+    background-color: var(--color_tooltip_background);
     color: black;
     text-align: left;
     padding: 0.5rem;
     border-radius: 6px;
-    box-shadow: 1px 2px 2px 2px var(--deliverable_boxshadow);
+    box-shadow: 1px 2px 2px 2px var(--color_tooltip_boxshadow);
     font-size: 0.8rem;
     opacity: 0.95;
     /* Position the tooltip text - see examples below! */
@@ -1014,19 +1021,20 @@ r-todo > r-description > p {
     z-index: 1;
     width: auto;
     top: 100%;
-    left: 50%;
+    left: 10%;
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
     margin-top:0.5rem;
+
 }
 .tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
     bottom: 100%;  /* At the top of the tooltip */
-    left: 20%; /* red arrow is 20% from left, use 50 if you like to center */
+    left: 50%; /* red arrow is centered */
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent red transparent;
+    border-color: transparent transparent var(--color_tooltip_arrow) transparent;
 }
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
@@ -1082,17 +1090,18 @@ r-opportunity_enablement_or_risk_reduction {
     border: 0px;
     margin: 0;
     padding:0;
-    padding:0.1rem;
     vertical-align: top;
     text-wrap: nowrap;
+    padding-top:0.1rem;
+    padding-bottom:0.1rem;
 }
 .tooltip td:nth-child(2) {
     text-align: right;
-    padding-left: 1rem;
+    padding-left: 0rem;
     font-weight: bold;
 }
 .tooltip tr {
-    border-bottom: 1px dotted black;
+    border-bottom: 1px dotted gray;
 }
 .tooltip caption {
     text-align:left;
@@ -1283,22 +1292,11 @@ r-opportunity_enablement_or_risk_reduction {
                             <r-jobsize>Jobsize: 4</r-jobsize>
                             <r-cost_of_delay class="tooltip">Cost of Delay: 15<span class="tooltiptext">
                                 <table>
-                                    <caption>
-                                        Cost of Delay
-                                      </caption>
+                                    <caption>Cost of delay</caption>
                                     <tbody>
-                                        <tr>
-                                            <td>User Value or Business Value</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Time Criticality</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
-                                            <td>4</td>
-                                        </tr>
+                                        <tr><td><r-user_business_value>User Value<br> Business Value</r-user_business_value></td><td>10</td></tr>
+                                        <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
+                                        <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br> Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
                                     </tbody>
                                 </table>
                             </span></r-cost_of_delay>
@@ -1314,22 +1312,13 @@ r-opportunity_enablement_or_risk_reduction {
                         <r-quantifiers>
                             <r-weighted_shortest_job_first>WSJF: 6.00</r-weighted_shortest_job_first>
                             <r-jobsize>Jobsize: 1</r-jobsize>
-                            <r-cost_of_delay class="tooltip">Cost of Delay: 6<span class="tooltiptext">
+                            <r-cost_of_delay class="tooltip">Cost of Delay: 15<span class="tooltiptext">
                                 <table>
-                                    <caption>Cost of Delay</caption>
+                                    <caption>Cost of delay</caption>
                                     <tbody>
-                                        <tr>
-                                            <td><r-user_business_value>User Value or Business Value</r-user_business_value></td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Time Criticality</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
-                                            <td>3</td>
-                                        </tr>
+                                        <tr><td><r-user_business_value>User Value<br> Business Value</r-user_business_value></td><td>10</td></tr>
+                                        <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
+                                        <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br> Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
                                     </tbody>
                                 </table>
                             </span></r-cost_of_delay>
@@ -1346,24 +1335,16 @@ r-opportunity_enablement_or_risk_reduction {
                         <r-quantifiers>
                             <r-weighted_shortest_job_first>WSJF: 6.00</r-weighted_shortest_job_first>
                             <r-jobsize>Jobsize: 1</r-jobsize>
-                            <r-cost_of_delay class="tooltip">Cost of Delay: 6<span class="tooltiptext">
+                            <r-cost_of_delay class="tooltip">Cost of Delay: 15<span class="tooltiptext">
                                 <table>
+                                    <caption>Cost of delay</caption>
                                     <tbody>
-                                        <tr>
-                                            <td>User Value or Business Value</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Time Criticality</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Opportunity Enablement <br>Or Risk Reduction</td>
-                                            <td>3</td>
-                                        </tr>
+                                        <tr><td><r-user_business_value>User Value<br> Business Value</r-user_business_value></td><td>10</td></tr>
+                                        <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
+                                        <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br> Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
                                     </tbody>
                                 </table>
-                                 </span></r-cost_of_delay>
+                            </span></r-cost_of_delay>
                         </r-quantifiers>
                     </r-deliverable>
                 </r-deliverables>
@@ -1441,9 +1422,8 @@ r-opportunity_enablement_or_risk_reduction {
                         <r-quantifiers>
                             <r-jobsize>Jobsize: 4</r-jobsize>
                             <r-user_business_value>User / Business Value: 10</r-user_business_value>
-                            <r-time_crititcality>Time Criticality: 1</r-time_crititcality>
+                            <r-time_criticality>Time Criticality: 1</r-time_criticality>
                             <r-opportunity_enablement_risk_reduction>Opportunity / Risk Reduction: 4</r-opportunity_enablement_risk_reduction>
-                            
                         </r-quantifiers>
                     </r-deliverable>
                 </r-deliverables>
@@ -2377,15 +2357,15 @@ r-opportunity_enablement_or_risk_reduction {
                                         <p>This is a description for a SKIP...</p>
                                     </r-description>
                                     <r-quantifiers>
-                                        <r-weighted_shortest_job_first class="tooltip">WSJF: 1<span class="tooltiptext">
+                                        <r-weighted_shortest_job_first class="tooltip">WSJF: 3.75<span class="tooltiptext">
                                             <table>
                                                 <caption>Weighted Shortest Job First</caption>
                                                 <tbody>
                                                     <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>4</td></tr>
                                                     <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>15</td></tr>
-                                                    <tr><td><r-user_business_value>User Value / Business Value</r-user_business_value></td><td>10</td></tr>
+                                                    <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                                                     <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
-                                                    <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement / Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
+                                                    <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
                                                  </tbody>
                                             </table>
                                         </span></r-weighted_shortest_job_first>
@@ -2402,15 +2382,26 @@ r-opportunity_enablement_or_risk_reduction {
                                         <p>This is a description for a DONE...</p>
                                     </r-description>
                                     <r-quantifiers>
-                                        <r-weighted_shortest_job_first>WSJF: 3.75</r-weighted_shortest_job_first>
+                                        <r-weighted_shortest_job_first class="tooltip">WSJF: 3.75<span class="tooltiptext">
+                                            <table>
+                                                <caption>Weighted Shortest Job First</caption>
+                                                <tbody>
+                                                    <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>4</td></tr>
+                                                    <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>15</td></tr>
+                                                    <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
+                                                    <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
+                                                    <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
+                                                 </tbody>
+                                            </table>
+                                        </span></r-weighted_shortest_job_first>
                                         <r-jobsize>Jobsize: 4</r-jobsize>
                                         <r-cost_of_delay class="tooltip">Cost of Delay: 15<span class="tooltiptext">
                                             <table>
                                                 <caption>Cost of delay</caption>
                                                 <tbody>
-                                                    <tr><td><r-user_business_value>User Value / Business Value</r-user_business_value></td><td>10</td></tr>
+                                                    <tr><td><r-user_business_value>User Value<br> Business Value</r-user_business_value></td><td>10</td></tr>
                                                     <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>1</td></tr>
-                                                    <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement / Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
+                                                    <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br> Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>4</td></tr>
                                                 </tbody>
                                             </table>
                                         </span></r-cost_of_delay>
