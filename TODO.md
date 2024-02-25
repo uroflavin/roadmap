@@ -29,6 +29,9 @@ This list is a scratchpad during development of a new features to break down som
   only in html-prototype
 - documentation: add wjsf and quantifiers to README and link to docs/wsjf.md
 - feat(html): css variables and some more mods in prototype for quantifiers for better look
+- fix(core): wrong function call during processing
+- feat(core): do some postprocessing to enable skipping calculated elements
+  postprocessing is using skip-items from preprocessing, we just do it twice
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md

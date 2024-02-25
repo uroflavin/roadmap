@@ -444,10 +444,10 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", pare
         # check each dict-object and calculate the id's
         if "keyresults" in item:
             item["keyresults"] = calculate_ids_for_element_items(item["keyresults"], "R", parent_id=_parent_id)
-            item["keyresults"] = calculate_weighted_shortest_job_first(item["keyresults"])
+            item["keyresults"] = calculate_wsjf_quantifiers_for_element_items(item["keyresults"])
         if "deliverables" in item:
             item["deliverables"] = calculate_ids_for_element_items(item["deliverables"], "D", parent_id=_parent_id)
-            item["deliverables"] = calculate_weighted_shortest_job_first(item["deliverables"])
+            item["deliverables"] = calculate_wsjf_quantifiers_for_element_items(item["deliverables"])
         if "objectives" in item:
             item["objectives"] = calculate_ids_for_element_items(item["objectives"], "O", parent_id=_parent_id)
         if "milestones" in item:
@@ -700,7 +700,12 @@ def main():
             if "releases" in project:
                 project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
             
-            
+            # do some postprocessing to enable skipping calculated elements
+            # we use the same skip_items from preprocessing
+            if skip_items != None:
+                for skip in skip_items.replace(" ","").split(","):
+                    remove_element(skip, project=project)
+
             # process templates with jinja
             # Load Jinja Environment
             env = Environment()
