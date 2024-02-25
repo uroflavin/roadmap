@@ -32,6 +32,7 @@ This list is a scratchpad during development of a new features to break down som
 - fix(core): wrong function call during processing
 - feat(core): do some postprocessing to enable skipping calculated elements
   postprocessing is using skip-items from preprocessing, we just do it twice
+- feat(example): put some data to examples/roadmap.yml to display feature in the examples
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -48,7 +49,7 @@ This list is a scratchpad during development of a new features to break down som
 - [x] changed wsjf into a more generall approach of using quantifiers in schema.roadmap.json
 - [X] base64 encode referenced icons in html template for offline use
 - [x] add wjsf and quantifiers to README
-- [ ] put some data to examples/roadmap.yml to display feature in the examples
+- [x] put some data to examples/roadmap.yml to display feature in the examples
 - [ ] add quantifiers to html template
 - [ ] add quantifiers to csv template
 - [ ] add quantifiers to markdown template
