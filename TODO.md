@@ -56,6 +56,13 @@ This list is a scratchpad during development of a new features to break down som
 - [x] put some data to examples/roadmap.yml to display feature in the examples
 - [x] add quantifiers to html template
 - [ ] add quantifiers to csv template
+  - refactor csv template: there is to much logic to flatten the data in the csv template
+    it is not readable any more
+  - add logic to make a list from roadmap structure into core
+    the logic should bring milestones,milestones.deliverables,objectives,objective.keyresults,objective.milestones and objective.milestones.keyresults in the following structure
+      type, _id, id, requirement, state, title, date, description, reference.name, reference.link, _has_todos, _has_quantifiers,quantifiers.weighted_shortest_job_first, quantifiers.jobsize, quantifiers.cost_of_delay, quantifiers.user_business_value, quantifiers.time_criticality, quantifiers.opportunity_enablement_or_risk_reduction
+    the list should be created after all skipping and calculation is finisehd
+  - refactor csv-template to use list structure
 - [ ] add quantifiers to markdown template
 - [ ] make a review to docs (readme, schema, wsjf) 
 - [ ] make a review to rendered roadmap examples
