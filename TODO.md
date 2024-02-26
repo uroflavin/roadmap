@@ -59,6 +59,8 @@ This list is a scratchpad during development of a new features to break down som
 - ref(prototype): moved css in separete file
 - documentation(tech): known bug in pipreqs
 - feat(dev): added rebuild of requirements as pre-commit
+- feat(dev): removed rebuild of requirements as pre-commit
+  needs more research work, pip must run in venv
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
