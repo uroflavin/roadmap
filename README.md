@@ -1,5 +1,5 @@
 # roadmap
-Manage your project and team roadmaps in YAML.
+Manage your project or team roadmaps in YAML.
 
 roadmap.py itself has a fancy roadmap as an living-example.
 Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.py's-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
@@ -31,25 +31,47 @@ You can see the state of roadmap.pys objectives and keyresults in the following 
 ![roadmap.pys objective + keyresult graph](roadmap/roadmap.dot.png)
 
 ## Whats inside the box?
+
 I mainly focus on mapping the following structure:
+
  - Everything under **project** holds your project information, like your [vision](https://en.wikipedia.org/wiki/Vision_statement), important dates for your project, your objectives and your milesstones
 - **Objectives** descripe central goals you might have to achieve. Objectives could be breaked down into **keyresults** - usefull if your team use [OKRs](https://en.wikipedia.org/wiki/Objectives_and_key_results). 
 - **Milestones** are used as an indicator for overall-progress of certain features or capabilities. They could be used either on *project* or *objective* level. To break down a milestone into smaller pieces of work use **deliverables**. A deliverable could be a feature or capability or some work, you have to achieve before reaching the milestone.
 
 Every objective, milestone, deliverable or keyresult can have a **reference** e.g. to your ticketsystem or detaildocument or whatsoever.
 
+### Item-Todos
 They also might have some **todos**, which are necessary to clarify the item, e.g. a open point or something to validate, some research work... 
 The intend of the todos is around the roadmap creation process, not to do something to achieve an roadmap objective. 
 But you are free to do it in your way.
 
+### Item-Status
 The items have different **status** to describe commitment and achievments of the item.
 
+### Linear View
 Be aware: **Sequence is crucial**
 The order of each item in your roadmap.yml indicates their logical or temporal sequence and will always take precedence over calculated or grouped order.
 
 To understand all the different item attributes and status take a detailed look into **[schema/roadmap.md](schema/roadmap.md)**.
 
-## Howto Use 
+### Quantifiers
+
+It is also possible to store and calculate certain **quantifiers**. 
+
+Currently supported is **weighted shortest job first** for ```objective.keyresults``` and ```milestone.deliverables```. 
+Details on the use in your own projects can be found under **[docs/wsjf.md](docs/wsjf.md)**
+
+Quantifiers in **HTML Template** are rendered in the following order:
+
+- if all quantifiers for **weighted shortest job first** are present, only ```weighed_shortest_job_first``` is rendered, and all the calculation bases are displayed as tooltip.
+- if anything is missing to calculate **weighted shortest job first**,  ```weighed_shortest_job_first``` is not rendered but all the calculation bases are displayed.
+- if all quantifiers for **cost of delay** are present, then ```cost_of_delay``` is calculated and rendered, but all the calculation bases are displayed as tooltip.
+
+If you like to use this feature, please make sure that all quantifiers are present in your roadmap.yml and that unknown values are listed as ```null```-values.
+
+This gives you the option of managing all data in one place, even if the data is only created gradually during the process. As soon as aggregation is possible, the details disappear.
+
+## Howto Use
 
 ### Render Example
 To render roadmap.py roadmap as an example: 
@@ -82,6 +104,9 @@ Next, create a folder for the rendered output your own directory, e.g. named *ro
 
 There you have a good starting point for your own project.
 
+For advanced users, there is also a [dockerfile](Dockerfile) to run everything inside a container.
+See [TECH_README.md](TECH_README.md) for the details.
+
 #### Commandline Options
 To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
 
@@ -103,9 +128,9 @@ e.g. if **your own directory** is located under */home/example/my_own_roadmap* a
 python3 /home/example/roadmap/roadmap.py --roadmap-file /home/example/my_own_roadmap/roadmap.yml --output-dir /home/example/my_own_roadmap/roadmap/
 ```
 
-#### Stakholder specific view
+#### Stakeholder specific view
 To render your roadmap without all the details you need during creation, use commandline option ```--skip-items```
-You can add as many elements you like, just separate these by comma (,)
+You can add as many elements you like, just separate these by comma ```,```
 
 ##### Some examples
 **if you want to skip all your todos**:
@@ -129,6 +154,24 @@ You can add as many elements you like, just separate these by comma (,)
 --skip-items milestones.deliverables,objectives.keyresults,objectives.milestones.deliverables
 ```
 
+**if you want to skip quantifiers**:
+- skip all deliverables quantifiers
+- skip all keyresults quantifiers
+
+```
+--skip-items milestones.deliverables.quantifiers,objectives.keyresults.quantifiers,objectives.milestones.deliverables.quantifiers
+```
+
+**if you want to skip quantifiers jobsize for milestone deliverables**:
+- skip jobsize for all deliverables quantifiers
+
+*Keep in mind: This skips also the processing and calculation of wsjf!*
+
+```
+--skip-items milestones.deliverables.quantifiers.jobsize
+```
+
+
 **if you want a quick highlevel view**
 - skip all todos
 - skip all references
@@ -150,5 +193,11 @@ There are a bunch of editors out there. Some might have the ability to make auto
 To enable this, you might link **schema/roadmap.json** into your prefered text-editor.
 
 ## Credits
-This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap
+This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap.
+
+We used the icons from https://www.streamlinehq.com/freebies/pixel/ and one illustration as an example for roadmap-logo.
+
+All images and icons in our templates are from https://www.streamlinehq.com/. They are open-source licensed under Creative Commons 4.0. 
+
+Streamline, you did a great job and a big thank you for the lovelly art.
 

@@ -35,6 +35,17 @@ pipreqs
 
 PyPI: https://pypi.org/project/pipreqs/
 
+**Note** 
+There is a known bug in pipreqs which is causing UnicodeError.
+
+see https://github.com/bndr/pipreqs/issues/214
+
+To prevent this, use the good old way with pip freeze (as mentioned in the [comment](https://github.com/bndr/pipreqs/issues/214#issuecomment-1903770050) )
+
+```bash
+# run inside project directory
+pip freeze > requirements.txt
+```
 ## Installing Dependencies
 
 The dependencies of the script are listed in the `requirements.txt` file. After activating the virtual environment, you can use the following command to install these dependencies:

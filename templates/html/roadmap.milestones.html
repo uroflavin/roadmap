@@ -61,6 +61,10 @@
                                             {% set todos = deliverable.todos %}
                                             {% include "roadmap.todos.html" -%}
                                         {% endif -%}
+                                        {% if "quantifiers" in deliverable %}
+                                            {% set quantifiers = deliverable.quantifiers %}
+                                            {% include "roadmap.quantifiers.html" -%}
+                                        {% endif -%}
                                     </r-deliverable>
                                 {% endfor -%}
                             </r-deliverables>

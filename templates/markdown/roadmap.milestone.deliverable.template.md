@@ -8,4 +8,8 @@
 {% set todos = deliverable.todos %}
 {% include "roadmap.todos.md" -%}
 {% endif -%}
+{%- if "quantifiers" in deliverable %}
+{% set quantifiers = deliverable.quantifiers %}
+{% include "roadmap.quantifiers.md" -%}
+{% endif %}
 {% endfor -%}
