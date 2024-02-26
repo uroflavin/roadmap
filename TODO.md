@@ -61,7 +61,7 @@ This list is a scratchpad during development of a new features to break down som
 - feat(dev): added rebuild of requirements as pre-commit
 - feat(dev): removed rebuild of requirements as pre-commit
   needs more research work, pip must run in venv
-
+- documentation: make a review to docs and roadmap examples
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
 - [x] added wsjf to schema/roadmap.json
@@ -85,8 +85,8 @@ This list is a scratchpad during development of a new features to break down som
 - [x] enable calculation of cod and wsjf but hide details using skip mechanics
   skip_items is possible by design
   html template is keept clean
-- [ ] make a review to docs (readme, schema, wsjf) 
-- [ ] make a review to rendered roadmap examples
+- [x] make a review to docs (readme, schema, wsjf) 
+- [x] make a review to rendered roadmap examples
 - [ ] merge into master
 - [ ] update changelog
 - [ ] merge into main
@@ -96,4 +96,4 @@ This list is a scratchpad during development of a new features to break down som
 ## Reminder Notes
 The function get_key_value_list() contains a lot of the logic to refactor remove_element().
 
-The function 
+Markdown Template needs refactoring. There are a bunch of empty lines. looks terrible in the md file, but renders okayish.

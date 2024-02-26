@@ -73,7 +73,7 @@ We should be able to generate some dot out of roadmap.yml
 
 - [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
 
-##### [R4] | Roadmap Milestones as CSV-File | MAY DOING
+##### [R4] | Roadmap Milestones as CSV-File | MAY DONE
 Excel is THE projectmanagement tool. 
 To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
 CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
@@ -197,7 +197,7 @@ Develop a jinja2 template for markdown output of the roadmap
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 10
 
-#### [D3] | markdonw-renderer | MUST DONE
+#### [D3] | markdown-renderer | MUST DONE
 Put some code in roadmap.py to render roadmap as Markdown
 
 - [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
@@ -382,4 +382,4 @@ Some teams might want to host a version of the renderer on their own website, in
 
 
 ---
-version:b909cf44/20240226182726
+version:1a3e914d/20240226210222

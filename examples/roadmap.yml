@@ -93,7 +93,7 @@ objectives:
         Excel is THE projectmanagement tool. 
         To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
         CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
-      state: DOING
+      state: DONE
       requirement: MAY
     - title: Roadmap as XLS-File
       description: |
@@ -235,7 +235,7 @@ milestones:
         time_criticality: 0
         opportunity_enablement_or_risk_reduction: 10
         jobsize: 9
-    - title: markdonw-renderer
+    - title: markdown-renderer
       description: |
         Put some code in roadmap.py to render roadmap as Markdown
       requirement: MUST

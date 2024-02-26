@@ -1,5 +1,5 @@
 # roadmap
-Manage your project and team roadmaps in YAML.
+Manage your project or team roadmaps in YAML.
 
 roadmap.py itself has a fancy roadmap as an living-example.
 Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.py's-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
@@ -58,7 +58,7 @@ To understand all the different item attributes and status take a detailed look 
 
 It is also possible to store and calculate certain **quantifiers**. 
 
-Currently supported is **weighted shortest job first** for objective.keyresults and milestone.deliverables. 
+Currently supported is **weighted shortest job first** for ```objective.keyresults``` and ```milestone.deliverables```. 
 Details on the use in your own projects can be found under **[docs/wsjf.md](docs/wsjf.md)**
 
 Quantifiers in **HTML Template** are rendered in the following order:
@@ -104,6 +104,9 @@ Next, create a folder for the rendered output your own directory, e.g. named *ro
 
 There you have a good starting point for your own project.
 
+For advanced users, there is also a [dockerfile](Dockerfile) to run everything inside a container.
+See [TECH_README.md](TECH_README.md) for the details.
+
 #### Commandline Options
 To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
 
@@ -127,7 +130,7 @@ python3 /home/example/roadmap/roadmap.py --roadmap-file /home/example/my_own_roa
 
 #### Stakeholder specific view
 To render your roadmap without all the details you need during creation, use commandline option ```--skip-items```
-You can add as many elements you like, just separate these by comma (,)
+You can add as many elements you like, just separate these by comma ```,```
 
 ##### Some examples
 **if you want to skip all your todos**:
@@ -192,7 +195,9 @@ To enable this, you might link **schema/roadmap.json** into your prefered text-e
 ## Credits
 This project is heavyly inspired by https://github.com/SierraSoftworks/roadmap.
 
-All Images used in our roadmap templates are from https://www.streamlinehq.com/
-They are open-source licensed under Creative Commons 4.0. 
+We used the icons from https://www.streamlinehq.com/freebies/pixel/ and one illustration as an example for roadmap-logo.
+
+All images and icons in our templates are from https://www.streamlinehq.com/. They are open-source licensed under Creative Commons 4.0. 
+
 Streamline, you did a great job and a big thank you for the lovelly art.
-We mainly used the icons from https://www.streamlinehq.com/freebies/pixel/ and one illustration as an example for roadmap-logo.
+
