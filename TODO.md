@@ -37,6 +37,19 @@ This list is a scratchpad during development of a new features to break down som
 - feat(core): support skip-items for quantifiers
 - feat(html): add quantifiers to html template
   put some documentation and skip-item examples
+- feat(core): added logic to make a key-value list from roadmap structure
+  ref(test/core): function behaviours were refactored to be more compliant with the raise error concept
+
+  there are two functions added to core: 
+  - get_key_value_list() is capable of creating a key value list, having keys with optional index identifier
+  - get_filtered_key_value_list() is capable to filter the list using key identifiers like in skip_items, just for the opposite
+  
+  get_key_value_list() will be used to refactor csv-export. 
+  csv export will become a breaking change, because i re-arrange to just use key-value
+  the advantage is, that every roadmap item could be exported, even the currently unknown items
+  and the export will be much more future proof
+
+  In addition test_roadmap.py and some function behavoiurs were refactored to be more compliant with raising error.
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -58,10 +71,6 @@ This list is a scratchpad during development of a new features to break down som
 - [ ] add quantifiers to csv template
   - refactor csv template: there is to much logic to flatten the data in the csv template
     it is not readable any more
-  - add logic to make a list from roadmap structure into core
-    the logic should bring milestones,milestones.deliverables,objectives,objective.keyresults,objective.milestones and objective.milestones.keyresults in the following structure
-      type, _id, id, requirement, state, title, date, description, reference.name, reference.link, _has_todos, _has_quantifiers,quantifiers.weighted_shortest_job_first, quantifiers.jobsize, quantifiers.cost_of_delay, quantifiers.user_business_value, quantifiers.time_criticality, quantifiers.opportunity_enablement_or_risk_reduction
-    the list should be created after all skipping and calculation is finisehd
   - refactor csv-template to use list structure
 - [ ] add quantifiers to markdown template
 - [ ] make a review to docs (readme, schema, wsjf) 
@@ -71,3 +80,9 @@ This list is a scratchpad during development of a new features to break down som
 - [ ] update changelog
 - [ ] merge into main
 - [ ] enable calculation of cod and wsjf but hide details using skip mechanics
+
+
+## Reminder Notes
+The function get_key_value_list() contains a lot of the logic to refactor remove_element().
+
+The function 

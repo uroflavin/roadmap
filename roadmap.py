@@ -99,9 +99,9 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
             return project
     except OSError as err:
         # in case of an error log file name and error message 
-        logging.error("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
-        logging.error("Error: %s", err.strerror)
-        return None
+        logging.debug("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
+        logging.debug("Error: %s", err.strerror)
+        raise err
 
 def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
@@ -300,29 +300,24 @@ def calculate_cost_of_delay(
     :param int opportunity_enablement_or_risk_reduction: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item.
     :return: cod as integer or None in case of error
     """
-    try:
-        # check if we got integers
-        if not isinstance(user_business_value, int ):
-            raise ValueError("user_business_value is type '" + str(type(user_business_value)) + "' expect int")
-        if not isinstance(time_criticality, int):
-            raise ValueError("time_criticality is type '" + str(type(time_criticality)) + "' expect int")
-        if not isinstance(opportunity_enablement_or_risk_reduction, int):
-            raise ValueError("opportunity_enablement_or_risk_reduction is type '" + str(type(opportunity_enablement_or_risk_reduction)) + "' expect int")
-        # value between 0 (lowest) and 10 (highest)
-        if not ( 0 <= user_business_value <= 10) :
-            raise ValueError("user_business_value is not value between 0 (lowest) and 10 (highest)")
-        # value between 0 (lowest) and 10 (highest)
-        if not ( 0 <= time_criticality <= 10) :
-            raise ValueError("time_criticality is not value between 0 (lowest) and 10 (highest)")
-        # value between 0 (lowest) and 10 (highest)
-        if not ( 0 <= opportunity_enablement_or_risk_reduction <= 10) :
-            raise ValueError("opportunity_enablement_or_risk_reduction is not value between 0 (lowest) and 10 (highest)")
+    # check if we got integers
+    if not isinstance(user_business_value, int ):
+        raise ValueError("user_business_value is type '" + str(type(user_business_value)) + "' expect int")
+    if not isinstance(time_criticality, int):
+        raise ValueError("time_criticality is type '" + str(type(time_criticality)) + "' expect int")
+    if not isinstance(opportunity_enablement_or_risk_reduction, int):
+        raise ValueError("opportunity_enablement_or_risk_reduction is type '" + str(type(opportunity_enablement_or_risk_reduction)) + "' expect int")
+    # value between 0 (lowest) and 10 (highest)
+    if not ( 0 <= user_business_value <= 10) :
+        raise ValueError("user_business_value is not value between 0 (lowest) and 10 (highest)")
+    # value between 0 (lowest) and 10 (highest)
+    if not ( 0 <= time_criticality <= 10) :
+        raise ValueError("time_criticality is not value between 0 (lowest) and 10 (highest)")
+    # value between 0 (lowest) and 10 (highest)
+    if not ( 0 <= opportunity_enablement_or_risk_reduction <= 10) :
+        raise ValueError("opportunity_enablement_or_risk_reduction is not value between 0 (lowest) and 10 (highest)")
 
-        return user_business_value + time_criticality + opportunity_enablement_or_risk_reduction
-        
-    except ValueError as e:
-        logging.error("calculating cost of delay failed: %s",e)
-        return None
+    return user_business_value + time_criticality + opportunity_enablement_or_risk_reduction
 
 def calculate_weighted_shortest_job_first(
     cost_of_delay: int = None,
@@ -337,24 +332,19 @@ def calculate_weighted_shortest_job_first(
     :param int opportunity_enablement_or_risk_reduction: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item.
     :return: wsjf as integer or None in case of error
     """
-    try:
-        # check if we got integers
-        if not isinstance(cost_of_delay, int ):
-            raise ValueError("cost_of_delay is type '" + str(type(cost_of_delay)) + "' expect int")
-        if not isinstance(jobsize, int):
-            raise ValueError("jobsize is type '" + str(type(jobsize)) + "' expect int")
-        # value between 0 (lowest) and 30 (highest)
-        if not ( 0 <= cost_of_delay <= 30) :
-            raise ValueError("cost_of_delay is not value between 0 (lowest) and 30 (highest)")
-        # value between 1 (lowest) and 10 (highest)
-        if not ( 1 <= jobsize <= 10) :
-            raise ValueError("jobsize is not value between 1 (shortest) and 10 (longest)")
-        
-        return round((cost_of_delay / + jobsize),2)
-        
-    except ValueError as e:
-        logging.error("calculating weighted shortest job first failed: %s",e)
-        return None
+    # check if we got integers
+    if not isinstance(cost_of_delay, int ):
+        raise ValueError("cost_of_delay is type '" + str(type(cost_of_delay)) + "' expect int")
+    if not isinstance(jobsize, int):
+        raise ValueError("jobsize is type '" + str(type(jobsize)) + "' expect int")
+    # value between 0 (lowest) and 30 (highest)
+    if not ( 0 <= cost_of_delay <= 30) :
+        raise ValueError("cost_of_delay is not value between 0 (lowest) and 30 (highest)")
+    # value between 1 (lowest) and 10 (highest)
+    if not ( 1 <= jobsize <= 10) :
+        raise ValueError("jobsize is not value between 1 (shortest) and 10 (longest)")
+    
+    return round((cost_of_delay / + jobsize),2)
 
 def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
     """
@@ -386,7 +376,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                         opportunity_enablement_or_risk_reduction=item["quantifiers"]["opportunity_enablement_or_risk_reduction"])
             except:
                 # ignore error - we simply don't add quantifiers to item
-                logging.error("cost_of_delay: calculating failed")
+                logging.debug("cost_of_delay: calculating failed")
             
             try:
                 # weighted_shortest_job_first is only calculated if not set
@@ -396,7 +386,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                         jobsize=item["quantifiers"]["jobsize"])
             except:
                 # ignore error - we simply don't add quantifiers to item
-                logging.error("weighted_shortest_job_first; calculating failed")
+                logging.debug("weighted_shortest_job_first; calculating failed")
     return elements.copy()
 
 def calculate_ids_for_element_items(elements: dict = None, prefix: str ="", parent_id: str = ""):
@@ -552,7 +542,7 @@ def remove_element(element_name: str = "", project: dict = None):
         else:
             logging.warning("skip level %s (project.%s) is not supported", remove_level, element_name)
     else:
-        logging.error("element_name '%s' is to short for removing", element_name)
+        raise ValueError("element_name is to short for removing")
 
 def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
     """
@@ -584,6 +574,134 @@ def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
         return version
     except:
         return None
+
+def get_key_value_list(element = None, key_value_list: list = None, prefix_for_key: str = None, keep_index = False):
+    """
+    iterate over all given elements and make a key value list containing each element key and value
+
+    the key is build in form of the elements:
+    - milestones.title
+    - milestones.description
+    - milestones.deliverables.title
+    - milestones.deliverables.title
+    and so on
+    
+    if you set keep_index to True, the keys are build like
+    - milestones.0.title
+    - milestones.0.description
+    - milestones.0.deliverables.0.title
+    - milestones.0.deliverables.1.title
+    
+    the ordering from element is keept
+
+    :param Any element: anything you like to make a flat list
+    :param list key_value_list: a optional list, we have to append our key value pairs
+    :param str prefix_for_key: prefix_for_key is used to prefix the key in the result list
+    :param bool keep_index: if true, key contains loop index of all dict and list elements
+
+    :return: list with key/value pairs as dict for given elements
+    """
+    # add dot to prefix if prefix is given and there is no dot present
+    if prefix_for_key is None:
+        prefix_for_key = ""
+    elif prefix_for_key is not None and prefix_for_key[-1] != ".":
+        prefix_for_key += "."
+    
+    # make shure to have a list
+    if key_value_list is None:
+        key_value_list = list()
+
+    # if we get a list
+    if isinstance(element,list):
+        # iterate over list
+        for index, item in enumerate(element):
+            if isinstance(item,dict):
+                # should we add index to prefix?
+                if keep_index:
+                    subprefix = prefix_for_key + str(index)
+                else:
+                    subprefix = prefix_for_key
+                # if we got an dict we recall this function
+                get_key_value_list(element=item,
+                                   prefix_for_key=subprefix,
+                                   key_value_list=key_value_list,
+                                   keep_index=keep_index)
+    elif isinstance(element,dict):
+        # iterate over dict
+        for index, key in enumerate(element.keys()):
+            # make a subprfix for this element
+            subprefix = prefix_for_key + key
+            
+            # we got an element 
+            if not isinstance(element[key],(list,dict,tuple)):
+                key_value_list.append({'key': subprefix, 
+                                       'value': element[key]})
+            # we got a list,dict or tuple, so we have to go further into the element
+            else:
+                get_key_value_list(element=element[key],
+                                   prefix_for_key=subprefix,
+                                   key_value_list=key_value_list,
+                                   keep_index=keep_index)                          
+    # we got our value
+    else:
+        # remove the dot from prefix
+        if len(prefix_for_key) >= 1 and prefix_for_key[-1] == ".":
+            prefix_for_key = prefix_for_key[:-1]
+        # we need SOME key, so we use none if prefix is not present
+            # this is, because we set prefix = "" if it is none
+        if prefix_for_key == "":
+            prefix_for_key = None
+        # add element to the list
+        key_value_list.append({'key': prefix_for_key, 'value': element})
+    
+    # return a copy of our list
+    return key_value_list.copy()
+            
+def get_filtered_key_value_list(element = None, key_value_list: list = None, prefix_for_key: str = None, filter_for_keys: str = "", precise_search: bool = True):
+    """
+    filter elements by filter_for_keys
+
+    you can use this, to filter the key_value list using certain criterias
+    e.g. to get all todos
+    - set filter_for_keys = ".todos."
+    - set precice_search = False
+
+    the ordering from element is keept
+
+    :param Any element: anything you like to make a flat list
+    :param list key_value_list: a optional list, we have use as our list, if not given, we build list for ourself from element
+                                it is not useful to have a list which is build with keep_index!
+    :param str prefix_for_key: prefix_for_key is used to prefix the key in the result list if key_value_list is None and we have to build the list ourself from element
+    :param str filter_for_keys: a string separated by comma like "skip_items", to filter items, e.g. milestones.todos,milestones.deliverables.todos
+    :param bool precise_search: if true, the exact strings from filter_keys are searched, if false, we look if any filter_key is part of key
+    
+    :return: list with key/value pairs as dict for given elements
+    """
+    # we need a key_value list without index
+    if key_value_list is None and element is not None:
+        key_value_list = get_key_value_list(element=element,key_value_list=None, prefix_for_key=prefix_for_key,keep_index=False)
+    elif key_value_list is None and element is None:
+        raise ValueError("neither 'key_value_list' nor 'element' is present")
+    
+    # our result list
+    filtered_key_value_list = list()
+    # we iterate over the filter_keys
+    for filter in filter_for_keys.split(","):
+        # lets remove any whitespaces just for convenience
+        filter_key = filter.strip(" ")
+        # we iterate over our original list
+        for item in key_value_list:
+            # make shure we have 'key' in our list
+            if 'key' in item:
+                if precise_search:
+                    # check the exact key
+                    if item["key"] == filter_key:
+                        filtered_key_value_list.append(item)
+                else:
+                    if filter_key in item["key"]:
+                        filtered_key_value_list.append(item)
+
+    return filtered_key_value_list.copy()
 
 # This function parses command-line arguments using the argparse module.
 def parse_commandline_args(parser):
