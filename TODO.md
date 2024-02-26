@@ -50,6 +50,8 @@ This list is a scratchpad during development of a new features to break down som
   and the export will be much more future proof
 
   In addition test_roadmap.py and some function behavoiurs were refactored to be more compliant with raising error.
+- fix(core): remove_element() failed with KeyError
+  added a test to covers this problem
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md

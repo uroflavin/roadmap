@@ -192,6 +192,24 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIn("objectives", project)
         # check if milestones are still present
         self.assertIn("milestones", project)
+    
+    def test_remove_handles_multiple_levels_to_multiple_times(self):
+        skip_items = "milestones.deliverables.quantifiers.weighted_shortest_job_first,objectives.keyresults.todos,objectives.keyresults,milestones"
+        project = dict(read_roadmap_definition(self.test_excisting_file))
+         # check if milestones are present
+        self.assertIn("milestones", project)
+        # first round
+        for skip in skip_items.replace(" ","").split(","):
+            remove_element(skip, project=project)
+        # second round
+        for skip in skip_items.replace(" ","").split(","):
+            remove_element(skip, project=project)
+        # check if objectives are still present
+        self.assertIn("objectives", project)
+        # check if milestones are removed
+        self.assertNotIn("milestones", project)
+        # check if first keyresult of first objective is removed
+        self.assertNotIn('keyresults', project['objectives'][0])
 
     def test_calculate_cost_of_delay(self):
         # this test covers the calculating part of Cost of Delay
