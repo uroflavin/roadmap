@@ -56,6 +56,7 @@ This list is a scratchpad during development of a new features to break down som
   BREAKING CHANGE: csv file structure changed from element structure to a key-value list
 - feat(markdown): add quantifiers to markdown template
 - ref(prototype): got css from html template for compatibiltiy
+- ref(prototype): moved css in separete file
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
