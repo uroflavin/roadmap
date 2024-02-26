@@ -40,7 +40,7 @@
 {% endif -%}
 {% if "keyresults" in objective %}
 ##### Keyresults
-{%- for keyresult in objective.keyresults -%}
+{% for keyresult in objective.keyresults -%}
 ###### [{{ keyresult.date if 'date' in keyresult else keyresult.id  }}] | {{ keyresult.title}} | {{keyresult.requirement}} {{ keyresult.state}}
 {{ keyresult.description -}}
 {% if "reference" in keyresult %}
@@ -50,6 +50,10 @@
 {% set todos = keyresult.todos %}
 {% include "roadmap.todos.md" -%}
 {% endif -%}
+{%- if "quantifiers" in keyresult %}
+{% set quantifiers = keyresult.quantifiers %}
+{% include "roadmap.quantifiers.md" -%}
+{% endif %}
 {% endfor -%}
 {% endif %}
 {% if "milestones" in objective %}
@@ -72,7 +76,7 @@
 {% endif -%}
 {% if "keyresults" in objective %}
 #### Keyresults
-{%- for keyresult in objective.keyresults -%}
+{% for keyresult in objective.keyresults -%}
 ##### [{{ keyresult.date if 'date' in keyresult else keyresult.id  }}] | {{ keyresult.title}} | {{keyresult.requirement}} {{ keyresult.state}}
 {{ keyresult.description -}}
 {% if "reference" in keyresult %}
@@ -82,6 +86,10 @@
 {% set todos = keyresult.todos %}
 {% include "roadmap.todos.md" -%}
 {% endif -%}
+{%- if "quantifiers" in keyresult %}
+{% set quantifiers = keyresult.quantifiers %}
+{% include "roadmap.quantifiers.md" -%}
+{% endif %}
 {% endfor -%}
 {% endif %}
 {% if "milestones" in objective %}

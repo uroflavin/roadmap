@@ -311,6 +311,9 @@
                     "items": {
                         "$ref": "#/definitions/Todo"
                     }
+                },
+                "quantifiers": {
+                    "$ref": "#/definitions/Quantifiers"
                 }
             }
         },
@@ -348,6 +351,9 @@
                     "items": {
                         "$ref": "#/definitions/Todo"
                     }
+                },
+                "quantifiers": {
+                    "$ref": "#/definitions/Quantifiers"
                 }
             }
         },
@@ -371,6 +377,84 @@
                     "$ref": "#/definitions/TodoState"
                 }
             }
+        },
+        "Quantifiers": {
+            "type": "object",
+            "description": "Quantifiers attempt to convert or describe particular properties and aspects of certain roadmap elements into mathematically measurable values.\nThis involves reformulating properties and assumptions of key results or deliverables into numerical values.\nNot all aspects of roadmap are currently supported.",
+            "properties": {
+                "weighted_shortest_job_first": {
+                    "type": ["number", "null"],
+                    "minimum": 0.0,
+                    "maximum": 30.0,
+                    "default": null,
+                    "description": "A value between 0 (lowest) and 30 (highest), describing, the weighet shortest job first size (according to docs/wsjf.md).\nIf weighted_shortest_job_first is NULL weighted_shortest_job_first is calculated during processing, if all criteria of calculation are meet.\nWSJF is a prioritization method that helps to identify the greatest possible value of a planned result in relation to its effort.\nAll Dimension are normally given independently\nWSJF = CoD(Cost of Delay) / Job Size\nCoD is: (user_business_value + time_criticality +  opportunity_or_risk)\nIn Order to calculate, we need all of them"
+                },
+                "cost_of_delay": {
+                    "type": ["integer", "null"],
+                    "minimum": 0,
+                    "maximum": 30,
+                    "default": null,
+                    "description": "A value between 0 (lowest) and 30 (highest), describing a measurement of the economic value of a job over time.\nAccording to docs/wsjf.md CoD is calculated using user_business_value + time_criticality + opportunity_enablement_or_risk_reduction\nIf cost_of_delay is NULL cost_of_delay is calculated during processing, if all criteria are given and have values >= 0"
+                },
+                "user_business_value": {
+                    "type": ["integer", "null"],
+                    "minimum": 0,
+                    "maximum": 10,
+                    "default": null,
+                    "description": "A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result."
+                },
+                "time_criticality": {
+                    "type": ["integer", "null"],
+                    "minimum": 0,
+                    "maximum": 10,
+                    "default": null,
+                    "description": "A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today?"
+                },
+                "opportunity_enablement_or_risk_reduction": {
+                    "type": ["integer", "null"],
+                    "minimum": 0,
+                    "maximum": 10,
+                    "default": null,
+                    "description": "A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result?"
+                },
+                "jobsize": {
+                    "type": ["integer", "null"],
+                    "minimum": 1,
+                    "maximum": 10,
+                    "default": null,
+                    "description": "A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.\nIf you really need a Jobsize of 0, something went wrong.."
+                }
+            },
+            "examples": [
+                {
+                    "$comment": "Item with a wsjf of 3: ((1 + 1+ 1) / 1) - mid ranked",
+                    "weighted_shortest_job_first" : 3.0,
+                    "cost_of_delay" : 3,
+                    "user_business_value": 1,
+                    "time_criticality": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
+                    "jobsize": 1
+                },
+                {
+                    "$comment": "Item with a wsjf of 12: ((10 + 1+ 1) / 1) - ranked high",
+                    "weighted_shortest_job_first" : 12,
+                    "cost_of_delay" : 12,
+                    "user_business_value": 10,
+                    "time_criticality": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
+                    "jobsize": 1
+                },
+                {
+                    "$comment": "Item with a wsjf of 1.2: ((10 + 1+ 1) / 10) -> ranked low",
+                    "weighted_shortest_job_first" : 1.2,
+                    "cost_of_delay" : 12,
+                    "user_business_value": 10,
+                    "time_criticality": 1,
+                    "opportunity_enablement_or_risk_reduction": 1,
+                    "jobsize": 10
+                }
+
+            ]
         },
         "Reference": {
             "type": "object",

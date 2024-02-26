@@ -93,7 +93,7 @@ objectives:
         Excel is THE projectmanagement tool. 
         To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
         CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
-      state: DOING
+      state: DONE
       requirement: MAY
     - title: Roadmap as XLS-File
       description: |
@@ -143,6 +143,13 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/README.md
           name: see README
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: 10
+          jobsize: null
       - title: Roadmap
         state: DONE
         requirement: MUST
@@ -152,6 +159,13 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml
           name: see roadmap.yml
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: 10
+          jobsize: 10
   - id: Roadmap Schema
     title: Roadmap Schema
     description: |
@@ -168,6 +182,13 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
           name: see roadmap.json
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: 10
+          jobsize: 10
       - title: Publish Schema
         description: |
           Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
@@ -177,6 +198,13 @@ milestones:
         reference:
           link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
           name: see roadmap.json
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: 10
+          jobsize: 1
 
   - title: Markdown Renderer
     description: |
@@ -188,12 +216,26 @@ milestones:
         Understand the Syntax of the go-template from https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md
       requirement: MUST
       state: DONE
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 0
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 0
+        jobsize: 2
     - title: jinja2 template
       description: |
         Develop a jinja2 template for markdown output of the roadmap
       requirement: MUST
       state: DONE
-    - title: markdonw-renderer
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 1
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 9
+    - title: markdown-renderer
       description: |
         Put some code in roadmap.py to render roadmap as Markdown
       requirement: MUST
@@ -201,6 +243,13 @@ milestones:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md
         name: see Markdown-result of this roadmap.yml
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 10
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 10
 
   - title: HTML
     description: |
@@ -216,6 +265,13 @@ milestones:
       reference:
         link: https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html
         name: see SierraSoftworks-Go-Template
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 1
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 9
     - title: html-renderer
       description: |
         Put some code in roadmap.py to render roadmap as HTML
@@ -224,6 +280,13 @@ milestones:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html
         name: see HTML-result of this roadmap.yml
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 10
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 10
       
   - title: Graphviz
     description: |
@@ -238,17 +301,38 @@ milestones:
       reference:
         link: https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot
         name: see SierraSoftworks-Go-Template
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 1
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 9
     - title: dot-renderer
       description: |
         Put some code in roadmap.py to render roadmap as dot-file
       requirement: MUST
       state: DONE
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 10
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 10
     - title: convert dot as png
       description: |
         Put some code in roadmap.py to convert dot-file to png
         e.g. the generated file roadmap.dot.png can be used in your project description.
       requirement: MAY
       state: DONE
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 10
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 6
+        jobsize: 3
 
   - title: XLS-File
     description: |
@@ -287,11 +371,25 @@ milestones:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv
         name: see roadmap.csv
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 1
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 10
     - title: xls-renderer
       description: |
         Put some code in roadmap.py to render roadmap as XLS File
       requirement: MUST
-      state: TODO    
+      state: TODO
+      quantifiers:
+        weighted_shortest_job_first: null
+        cost_of_delay: null
+        user_business_value: 10
+        time_criticality: 0
+        opportunity_enablement_or_risk_reduction: 10
+        jobsize: 10
       
   - title: Web Renderer
     description: |
@@ -315,11 +413,25 @@ milestones:
         description: |
           The most important part of this milestone is the development of a web based renderer which can present a road map file. 
           This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: null
+          time_criticality: null
+          opportunity_enablement_or_risk_reduction: null
+          jobsize: 10
       - title: Markdown To HTML as JINJA2 Function
         state: TODO
         requirement: SHOULD
         description: |
           The renderer should support Markdown
+        quantifiers:
+          weighted_shortest_job_first: null
+          cost_of_delay: null
+          user_business_value: 10
+          time_criticality: 0
+          opportunity_enablement_or_risk_reduction: null
+          jobsize: null
       - title: Renderer Package
         state: TODO
         requirement: MAY

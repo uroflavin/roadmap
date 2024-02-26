@@ -98,10 +98,10 @@ This includes things like being able to visualize your road map in common format
                 
                 
                     
-                o2_r4 [label="Roadmap Milestones as CSV-File",tooltip="Excel is THE projectmanagement tool. 
+                o2_r4 [label="✓ Roadmap Milestones as CSV-File",tooltip="Excel is THE projectmanagement tool. 
 To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
 CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
-",color="lightblue"];
+",color="palegreen"];
                 o2_r4 -> o2;
             
                 
@@ -137,7 +137,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
     subgraph footer {
                 {
                     rank="sink"; 
-                    footer [fontsize=7 shape="box" color="white" label="version:\lac8dd2fa/20240220184715\l"];
+                    footer [fontsize=7 shape="box" color="white" label="version:\l1a3e914d/20240226210222\l"];
                 }
             }
 }
