@@ -8,6 +8,73 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.0] - 2024-02-26
+
+BREAKING CHANGE: csv file structure changed from element structure to a key-value list
+
+### Added
+
+#### Feature #85: add WSJF parameters to reflect planned value and work and to enable prioritization
+
+- documentation: added description for wsjf into docs/wsjf.md
+- feat(schema): added wsjf to schema/roadmap.json
+- feat(tests): put some fake data to tests/roadmap.yml
+  calculated md5 and modified test_roadmap.py
+- ref: ignore SameFileError while copy logo file 
+- ref: add some debug info for args
+- fix: allow jobsize range from 1...10 to prevent division by zero
+- feat(tests): add testcase for calculate_cost_of_delay
+- feat(core): add calculate_cost_of_delay
+- feat(tests): add testcase for calculate_weighted_shortest_job_first
+- feat(core): add calculate_weighted_shortest_job_first
+- feat(tests): add testcase for calculate_wsjf_quantifiers_for_element_items
+- feat(core): add calculate_wsjf_quantifiers_for_element_items
+- feat(html): create a prototype for displaying wsjf and quantifier information in html template
+  used icons from https://www.streamlinehq.com/ licenced under CC 4.0
+- feat(core): changed wsjf into a more generall approach of using quantifiers in schema.roadmap.json
+  changed documentation
+  changed tests
+  changed implementation
+  changed html-prototype
+- feat(html): base64 encode referenced icons in html template for offline use
+  used https://www.base64-image.de/ as encoder
+  only in html-prototype
+- documentation: add wjsf and quantifiers to README and link to docs/wsjf.md
+- feat(html): css variables and some more mods in prototype for quantifiers for better look
+- fix(core): wrong function call during processing
+- feat(core): do some postprocessing to enable skipping calculated elements
+  postprocessing is using skip-items from preprocessing, we just do it twice
+- feat(example): put some data to examples/roadmap.yml to display feature in the examples
+- ref(test): put precondition check in separate testcase
+- feat(core): support skip-items for quantifiers
+- feat(html): add quantifiers to html template
+  put some documentation and skip-item examples
+- feat(core): added logic to make a key-value list from roadmap structure
+  ref(test/core): function behaviours were refactored to be more compliant with the raise error concept
+
+  there are two functions added to core: 
+  - get_key_value_list() is capable of creating a key value list, having keys with optional index identifier
+  - get_filtered_key_value_list() is capable to filter the list using key identifiers like in skip_items, just for the opposite
+  
+  get_key_value_list() will be used to refactor csv-export. 
+  csv export will become a breaking change, because i re-arrange to just use key-value
+  the advantage is, that every roadmap item could be exported, even the currently unknown items
+  and the export will be much more future proof
+
+  In addition test_roadmap.py and some function behavoiurs were refactored to be more compliant with raising error.
+- fix(core): remove_element() failed with KeyError
+  added a test to covers this problem
+- feat(csv/core)!: add quantifiers to csv template and put project as a key-value-list under project['as_list]' for use in templates
+  BREAKING CHANGE: csv file structure changed from element structure to a key-value list
+- feat(markdown): add quantifiers to markdown template
+- ref(prototype): got css from html template for compatibiltiy
+- ref(prototype): moved css in separete file
+- documentation(tech): known bug in pipreqs
+- feat(dev): added rebuild of requirements as pre-commit
+- feat(dev): removed rebuild of requirements as pre-commit
+  needs more research work, pip must run in venv
+- documentation: make a review to docs and roadmap examples
+
 ## [0.0.21] - 2024-02-21
 ### Added
 integrate pr #87 into main: Learnings from daily usage
@@ -191,3 +258,4 @@ BREAKING CHANGE
 [0.0.19]: https://github.com/uroflavin/roadmap/pull/84
 [0.0.20]: https://github.com/uroflavin/roadmap/pull/86
 [0.0.21]: https://github.com/uroflavin/roadmap/pull/88
+[0.1.0]: https://github.com/uroflavin/roadmap/pull/90
