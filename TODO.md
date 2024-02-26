@@ -55,6 +55,7 @@ This list is a scratchpad during development of a new features to break down som
 - feat(csv/core)!: add quantifiers to csv template and put project as a key-value-list under project['as_list]' for use in templates
   BREAKING CHANGE: csv file structure changed from element structure to a key-value list
 - feat(markdown): add quantifiers to markdown template
+- ref(prototype): got css from html template for compatibiltiy
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
