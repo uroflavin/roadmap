@@ -45,9 +45,11 @@ The usefulness and applicability of this schema to real-world problem domains wi
 
 - [see json-schema.org](https://json-schema.org/)
 
-#### Keyresults##### [R1] | Provide a schema definition | MUST DONE
+#### Keyresults
+##### [R1] | Provide a schema definition | MUST DONE
 Develop a schema that fulfills the main requirements of the objective
 - [see README](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
 
 
 
@@ -55,24 +57,30 @@ Develop a schema that fulfills the main requirements of the objective
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
 
-#### Keyresults##### [R1] | Roadmap as Markdown | MUST DONE
+#### Keyresults
+##### [R1] | Roadmap as Markdown | MUST DONE
 We should be able to generate some markdown out of roadmap.yml
 
 - [see Markdown-Template](https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md)
+
 ##### [R2] | Roadmap as HTML | MUST DONE
 We should be able to generate some html out of roadmap.yml
 
 - [see HTML-Template](https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html)
+
 ##### [R3] | Roadmap as Graph | MAY DONE
 We should be able to generate some dot out of roadmap.yml
 
 - [see DOT-Template](https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot)
+
 ##### [R4] | Roadmap Milestones as CSV-File | MAY DOING
 Excel is THE projectmanagement tool. 
 To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
 CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.
+
 ##### [R5] | Roadmap as XLS-File | MAY TODO
 We should be able to generate some xls out of roadmap.yml
+
 
 
 
@@ -80,13 +88,16 @@ We should be able to generate some xls out of roadmap.yml
 Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
 
-#### Keyresults##### [R1] | Awesome README | MUST DONE
+#### Keyresults
+##### [R1] | Awesome README | MUST DONE
 We need to complete our README explaining the purpose of this project and giving some basic examples of its use.
 
 - [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
+
 ##### [R2] | Complete examples in schema-definition | MAY TODO
 Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases
 - [see schema/roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
 
 
 
@@ -104,10 +115,28 @@ We need to add a README file explaining the purpose of this project and giving s
 
 - [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
 
+
+**_Quantifiers_**
+
+
+- _Cost of Delay_: 20
+
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
 #### [Q4/2023] | Roadmap | MUST DONE
 We need to know what the roadmap file format looks like, so we'll get started with an example roadmap to kick the tyres.
 
 - [see roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml)
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 ### #Roadmap Schema | Roadmap Schema | REACHED
 Once we know how we want a road map file to look, we should put together a schema for the file. 
@@ -118,10 +147,28 @@ Put together a JSONSchema file describing the road map file format.
 
 - [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
 
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
 #### [Q1/2024] | Publish Schema | MUST DONE
 Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.
 
 - [see roadmap.json](https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json)
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 20.00**
+- _Jobsize_: 1
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 ### #M3 | Markdown Renderer | REACHED
 The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.
@@ -129,13 +176,40 @@ The Goal is, to implement an markdown renderer, which is capable to render this 
 #### [D1] | Understand SierraWorks Basic Markdown | MUST DONE
 Understand the Syntax of the go-template from https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md
 
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 0.00**
+- _Jobsize_: 2
+- _Cost of Delay_: 0
+- _User Value / Business Value_: 0
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 0
+
 #### [D2] | jinja2 template | MUST DONE
 Develop a jinja2 template for markdown output of the roadmap
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 1.22**
+- _Jobsize_: 9
+- _Cost of Delay_: 11
+- _User Value / Business Value_: 1
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 #### [D3] | markdonw-renderer | MUST DONE
 Put some code in roadmap.py to render roadmap as Markdown
 
 - [see Markdown-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md)
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 ### #M4 | HTML | REACHED
 The Goal is, to implement a html-renderer, which is capable to render this yml as html
@@ -146,10 +220,28 @@ Use SierraSoftworks-Go-Template as a starting point
 
 - [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html)
 
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 1.22**
+- _Jobsize_: 9
+- _Cost of Delay_: 11
+- _User Value / Business Value_: 1
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
 #### [D2] | html-renderer | MUST DONE
 Put some code in roadmap.py to render roadmap as HTML
 
 - [see HTML-result of this roadmap.yml](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html)
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 ### #M5 | Graphviz | REACHED
 The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
@@ -159,12 +251,39 @@ Develop a dot-template for graphviz output of the roadmap
 
 - [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot)
 
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 1.22**
+- _Jobsize_: 9
+- _Cost of Delay_: 11
+- _User Value / Business Value_: 1
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
 #### [D2] | dot-renderer | MUST DONE
 Put some code in roadmap.py to render roadmap as dot-file
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 #### [D3] | convert dot as png | MAY DONE
 Put some code in roadmap.py to convert dot-file to png
 e.g. the generated file roadmap.dot.png can be used in your project description.
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 5.33**
+- _Jobsize_: 3
+- _Cost of Delay_: 16
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 6
 
 ### #M6 | XLS-File | COMMITED
 The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
@@ -197,8 +316,26 @@ for each object item the following attributes will be rendered:
 
 - [see roadmap.csv](https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv)
 
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 1.10**
+- _Jobsize_: 10
+- _Cost of Delay_: 11
+- _User Value / Business Value_: 1
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
 #### [D2] | xls-renderer | MUST TODO
 Put some code in roadmap.py to render roadmap as XLS File
+
+
+**_Quantifiers_**
+- **_Weighted Shortest Job First_: 2.00**
+- _Jobsize_: 10
+- _Cost of Delay_: 20
+- _User Value / Business Value_: 10
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
 
 ### #M7 | Web Renderer | IDEA
 GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
@@ -219,11 +356,30 @@ See [graphviz.org](https://graphviz.org/)
 The most important part of this milestone is the development of a web based renderer which can present a road map file. 
 This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      
 
+
+**_Quantifiers_**
+
+- _Jobsize_: 10
+
+- _User Value / Business Value_: None
+
+
+
 #### [D2] | Markdown To HTML as JINJA2 Function | SHOULD TODO
 The renderer should support Markdown
+
+
+**_Quantifiers_**
+
+
+
+
+- _Time Criticality_: 0
+
 
 #### [D3] | Renderer Package | MAY TODO
 Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer
 
+
 ---
-version:ac8dd2fa/20240220184715
+version:b909cf44/20240226182726

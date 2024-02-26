@@ -54,6 +54,7 @@ This list is a scratchpad during development of a new features to break down som
   added a test to covers this problem
 - feat(csv/core)!: add quantifiers to csv template and put project as a key-value-list under project['as_list]' for use in templates
   BREAKING CHANGE: csv file structure changed from element structure to a key-value list
+- feat(markdown): add quantifiers to markdown template
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -73,7 +74,7 @@ This list is a scratchpad during development of a new features to break down som
 - [x] put some data to examples/roadmap.yml to display feature in the examples
 - [x] add quantifiers to html template
 - [x] add quantifiers to csv template
-- [ ] add quantifiers to markdown template
+- [x] add quantifiers to markdown template
 - [ ] make a review to docs (readme, schema, wsjf) 
 - [ ] make a review to rendered roadmap examples
 - [ ] check requirements.txt for any new requirements
