@@ -81,13 +81,16 @@ This list is a scratchpad during development of a new features to break down som
 - [x] add quantifiers to html template
 - [x] add quantifiers to csv template
 - [x] add quantifiers to markdown template
+- [x] check requirements.txt for any new requirements
+- [x] enable calculation of cod and wsjf but hide details using skip mechanics
+  skip_items is possible by design
+  html template is keept clean
 - [ ] make a review to docs (readme, schema, wsjf) 
 - [ ] make a review to rendered roadmap examples
-- [ ] check requirements.txt for any new requirements
 - [ ] merge into master
 - [ ] update changelog
 - [ ] merge into main
-- [ ] enable calculation of cod and wsjf but hide details using skip mechanics
+
 
 
 ## Reminder Notes
