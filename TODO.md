@@ -52,6 +52,8 @@ This list is a scratchpad during development of a new features to break down som
   In addition test_roadmap.py and some function behavoiurs were refactored to be more compliant with raising error.
 - fix(core): remove_element() failed with KeyError
   added a test to covers this problem
+- feat(csv/core)!: add quantifiers to csv template and put project as a key-value-list under project['as_list]' for use in templates
+  BREAKING CHANGE: csv file structure changed from element structure to a key-value list
 
 ### TODOS
 - [x] added description for wsjf into docs/wsjf.md
@@ -70,10 +72,7 @@ This list is a scratchpad during development of a new features to break down som
 - [x] add wjsf and quantifiers to README
 - [x] put some data to examples/roadmap.yml to display feature in the examples
 - [x] add quantifiers to html template
-- [ ] add quantifiers to csv template
-  - refactor csv template: there is to much logic to flatten the data in the csv template
-    it is not readable any more
-  - refactor csv-template to use list structure
+- [x] add quantifiers to csv template
 - [ ] add quantifiers to markdown template
 - [ ] make a review to docs (readme, schema, wsjf) 
 - [ ] make a review to rendered roadmap examples

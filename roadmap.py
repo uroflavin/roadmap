@@ -831,6 +831,10 @@ def main():
             if skip_items != None:
                 for skip in skip_items.replace(" ","").split(","):
                     remove_element(skip, project=project)
+
+            # add our project as a key_value list
+            project["as_list"] = get_key_value_list(element=project)
+            
             # process templates with jinja
             # Load Jinja Environment
             env = Environment()
