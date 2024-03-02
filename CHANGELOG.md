@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
+## [0.1.1] - 2024-03-02
+### Fix
+ref: make it more pep and fixed a bunch of typos
+this was possible due to support from jetbrains :)
 
 ## [0.1.0] - 2024-02-26
 
@@ -259,3 +263,4 @@ BREAKING CHANGE
 [0.0.20]: https://github.com/uroflavin/roadmap/pull/86
 [0.0.21]: https://github.com/uroflavin/roadmap/pull/88
 [0.1.0]: https://github.com/uroflavin/roadmap/pull/90
+[0.1.0]: https://github.com/uroflavin/roadmap/pull/92

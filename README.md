@@ -199,5 +199,8 @@ We used the icons from https://www.streamlinehq.com/freebies/pixel/ and one illu
 
 All images and icons in our templates are from https://www.streamlinehq.com/. They are open-source licensed under Creative Commons 4.0. 
 
-Streamline, you did a great job and a big thank you for the lovelly art.
+Streamline, you did a great job and a big thank you for the lovely art.
 
+The development of roadmap.py is supported by jetbrains via their Open Source Development Program. 
+Thank you [JetBrains](https://www.jetbrains.com/community/opensource/#support) for giving me PyCharm and access to all your great developer stuff.
+I really appreciate this.
