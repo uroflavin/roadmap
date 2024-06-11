@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.3] - 2024-06-11
+- feat(core):  Jobsize should be greater 0 - fix for #94
+
 ## [0.1.2] - 2024-06-11
 - fix: Don't render "r-state" for milestones.deliverables if state is empty #95
 - ref: typos in code comments
@@ -270,3 +273,4 @@ BREAKING CHANGE
 [0.1.0]: https://github.com/uroflavin/roadmap/pull/90
 [0.1.1]: https://github.com/uroflavin/roadmap/pull/92
 [0.1.2]: https://github.com/uroflavin/roadmap/pull/96
+[0.1.3]: https://github.com/uroflavin/roadmap/pull/
