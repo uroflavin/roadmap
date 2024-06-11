@@ -149,8 +149,8 @@ Put together a JSONSchema file describing the road map file format.
 
 
 **_Quantifiers_**
-- **_Weighted Shortest Job First_: 2.00**
-- _Jobsize_: 10
+- **_Weighted Shortest Job First_: 0.20**
+- _Jobsize_: 100
 - _Cost of Delay_: 20
 - _User Value / Business Value_: 10
 - _Time Criticality_: 0
@@ -382,4 +382,4 @@ Some teams might want to host a version of the renderer on their own website, in
 
 
 ---
-version:1a3e914d/20240611144905
+version:0ecbd678/20240611150649

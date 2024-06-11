@@ -260,7 +260,9 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=30, jobsize=10), 3.00)
         # check for valid input with floating result 
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=3), 5.33)
-        # check for handling non-valid input
+        # Check for Jobsize 30 (implementing #94)
+        self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=30), 0.53)
+        
 
     def test_calculate_weighted_shortest_job_first_non_valid_inputs(self):
         # test for correct handling non-valid inputs during calculation of wsjf
