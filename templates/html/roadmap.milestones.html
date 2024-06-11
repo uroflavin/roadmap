@@ -45,9 +45,11 @@
                                                     <span class="{{ deliverable.requirement}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.requirement}}</span>
                                                 </r-requirement>
                                             {% endif -%}
-                                            <r-state>
-                                                <span class="{{ deliverable.state}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.state}}</span>
-                                            </r-state> 
+                                            {% if "state" in deliverable %}
+                                                <r-state>
+                                                    <span class="{{ deliverable.state}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.state}}</span>
+                                                </r-state>
+                                            {% endif -%}
                                         </r-header>
                                         <r-description>
                                             {% markdown %}{{ deliverable.description -}}{% endmarkdown %}
