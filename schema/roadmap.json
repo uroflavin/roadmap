@@ -420,7 +420,6 @@
                 "jobsize": {
                     "type": ["integer", "null"],
                     "minimum": 1,
-                    "maximum": 10,
                     "default": null,
                     "description": "A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.\nIf you really need a Jobsize of 0, something went wrong.."
                 }

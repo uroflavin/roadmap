@@ -188,7 +188,7 @@ milestones:
           user_business_value: 10
           time_criticality: 0
           opportunity_enablement_or_risk_reduction: 10
-          jobsize: 10
+          jobsize: 100
       - title: Publish Schema
         description: |
           Publish the schema file on [github](https://https://github.com/uroflavin/roadmap) so that people can reference it easily.

@@ -2,39 +2,252 @@
 @page {
     size: A4;
 }
-/* Color Definitions 
-    * TODO: Add more color definitions to make it themeable
-    */
-:root {
-    
-    --milestone_background: rgb(226, 225, 225);
-    --milestone_boxshadow: gray;
-    --milestone_arrow: #CB6262;
-    
+ :root {
+     /* Colors are ios compliant
+        see https://developer.apple.com/design/human-interface-guidelines/color#Specifications
+      */
+    --color_red_default_light: rgba(255, 59, 48);
+    --color_red_default_dark: rgba(255, 69, 58);
+    --color_red_accessible_light: rgba(215, 0, 21);
+    --color_red_accessible_dark: rgba(255, 105, 97);
+    --color_orange_default_light: rgba(255, 149, 0);
+    --color_orange_default_dark: rgba(255, 159, 10);
+    --color_orange_accessible_light: rgba(201, 52, 0);
+    --color_orange_accessible_dark: rgba(255, 179, 64);
+    --color_yellow_default_light: rgba(255, 204, 0);
+    --color_yellow_default_dark: rgba(255, 214, 10);
+    --color_yellow_accessible_light: rgba(178, 80, 0);
+    --color_yellow_accessible_dark: rgba(255, 212, 38);
+    --color_green_default_light: rgba(52, 199, 89);
+    --color_green_default_dark: rgba(48, 209, 88);
+    --color_green_accessible_light: rgba(36, 138, 61);
+    --color_green_accessible_dark: rgba(48, 219, 91);
+    --color_mint_default_light: rgba(0, 199, 190);
+    --color_mint_default_dark: rgba(102, 212, 207);
+    --color_mint_accessible_light: rgba(12, 129, 123);
+    --color_mint_accessible_dark: rgba(102, 212, 207);
+    --color_teal_default_light: rgba(48, 176, 199);
+    --color_teal_default_dark: rgba(64, 200, 224);
+    --color_teal_accessible_light: rgba(0, 130, 153);
+    --color_teal_accessible_dark: rgba(93, 230, 255);
+    --color_cyan_default_light: rgba(50, 173, 230);
+    --color_cyan_default_dark: rgba(100, 210, 255);
+    --color_cyan_accessible_light: rgba(0, 113, 164);
+    --color_cyan_accessible_dark: rgba(112, 215, 255);
+    --color_blue_default_light: rgba(0, 122, 255);
+    --color_blue_default_dark: rgba(10, 132, 255);
+    --color_blue_accessible_light: rgba(0, 64, 221);
+    --color_blue_accessible_dark: rgba(64, 156, 255);
+    --color_indigo_default_light: rgba(88, 86, 214);
+    --color_indigo_default_dark: rgba(94, 92, 230);
+    --color_indigo_accessible_light: rgba(54, 52, 163);
+    --color_indigo_accessible_dark: rgba(125, 122, 255);
+    --color_purple_default_light: rgba(175, 82, 222);
+    --color_purple_default_dark: rgba(191, 90, 242);
+    --color_purple_accessible_light: rgba(137, 68, 171);
+    --color_purple_accessible_dark: rgba(218, 143, 255);
+    --color_pink_default_light: rgba(255, 45, 85);
+    --color_pink_default_dark: rgba(255, 55, 95);
+    --color_pink_accessible_light: rgba(211, 15, 69);
+    --color_pink_accessible_dark: rgba(255, 100, 130);
+    --color_brown_default_light: rgba(165, 132, 94);
+    --color_brown_default_dark: rgba(172, 142, 104);
+    --color_brown_accessible_light: rgba(127, 101, 69);
+    --color_brown_accessible_dark: rgba(181, 148, 105);
+    --color_gray_default_light: rgba(142, 142, 147);
+    --color_gray_default_dark: rgba(142, 142, 147);
+    --color_gray_accessible_light: rgba(108, 108, 112);
+    --color_gray_accessible_dark: rgba(174, 174, 178);
+    --color_gray2_default_light: rgba(174, 174, 178);
+    --color_gray2_default_dark: rgba(99, 99, 102);
+    --color_gray2_accessible_light: rgba(142, 142, 147);
+    --color_gray2_accessible_dark: rgba(124, 124, 128);
+    --color_gray3_default_light: rgba(199, 199, 204);
+    --color_gray3_default_dark: rgba(72, 72, 74);
+    --color_gray3_accessible_light: rgba(174, 174, 178);
+    --color_gray3_accessible_dark: rgba(84, 84, 86);
+    --color_gray4_default_light: rgba(209, 209, 214);
+    --color_gray4_default_dark: rgba(58, 58, 60);
+    --color_gray4_accessible_light: rgba(188, 188, 192);
+    --color_gray4_accessible_dark: rgba(68, 68, 70);
+    --color_gray5_default_light: rgba(229, 229, 234);
+    --color_gray5_default_dark: rgba(44, 44, 46);
+    --color_gray5_accessible_light: rgba(216, 216, 220);
+    --color_gray5_accessible_dark: rgba(54, 54, 56);
+    --color_gray6_default_light: rgba(242, 242, 247);
+    --color_gray6_default_dark: rgba(28, 28, 30);
+    --color_gray6_accessible_light: rgba(235, 235, 240);
+    --color_gray6_accessible_dark: rgba(36, 36, 38);
 
-    --deliverable_background: white;
-    --deliverable_boxshadow: gray;
+     --boxshadow_shift_right: 1px;
+     --boxshadow_shift_down: 1px;
+     --boxshadow_spread: 2px;
+     --boxshadow_blur: 0px;
+ }
+@media (prefers-color-scheme: dark) {
+  :root {
+      /*
+        we define basic color names to override with their accessibility mode
+       */
+    --color_white: rgba(255, 255, 255);
+    --color_black: rgba(0, 0, 0);
+    --color_red:  var(--color_red_default_dark);
+    --color_orange:  var(--color_orange_default_dark);
+    --color_yellow:  var(--color_yellow_default_dark);
+    --color_green:  var(--color_green_default_dark);
+    --color_mint:  var(--color_mint_default_dark);
+    --color_teal:  var(--color_teal_default_dark);
+    --color_cyan:  var(--color_cyan_default_dark);
+    --color_blue:  var(--color_blue_default_dark);
+    --color_indigo:  var(--color_indigo_default_dark);
+    --color_purple:  var(--color_purple_default_dark);
+    --color_pink:  var(--color_pink_default_dark);
+    --color_brown:  var(--color_brown_default_dark);
+    --color_gray:  var(--color_gray_default_dark);
+    --color_gray2:  var(--color_gray2_default_dark);
+    --color_gray3:  var(--color_gray3_default_dark);
+    --color_gray4:  var(--color_gray4_default_dark);
+    --color_gray5:  var(--color_gray5_default_dark);
+    --color_gray6:  var(--color_gray6_default_dark);
+/*
+from here starts the layout
 
-    --objective_background: white;
-    --objective_boxshadow: gray;
+the order is
+body - timeline
+body - milestone - deliverable
+body - objective - keyresults - keyresults
+body - objective - milestone - deliverable
+ */
+    --body-background: var(--color_black);
+    --body_text: var(--color_white);
+    --color_boxshadow: var(--color_gray);
 
-    --keyresults_background: white;
+    --timeline_background: var(--color_gray6);
+
+    --milestone_background: var(--color_gray3);
+    --milestone_boxshadow: var(--color_boxshadow);
+    --milestone_arrow: var(--color_red);
+    --milestone_text: var(--color_white);
+
+    --deliverable_background:var(--color_gray2);
+    --deliverable_boxshadow: var(--color_boxshadow);
+
+    --objective_background: var(--color_gray5);
+    --objective_boxshadow: var(--color_boxshadow);
+
+
+    --keyresults_background: var(--color_gray5);
+    --keyresults_r-timeline_color: gray;
+    --keyresults_circle_border_color: gray;
+    --keyresults_circle_fill_color: #444;
+
+    --keyresult_background: var(--color_gray4);
+    --keyresult_boxshadow: var(--color_boxshadow);
+
+    --keyresult_date_underline: gray;
+
+
+    --link_color: var(--color_mint);
+    --link_color_hover: var(--color_pink);
+    --link_color_visited: var(--color_purple);
+
+    --color_todo: var(--color_gray);
+    --color_planned: var(--color_orange);
+    --color_doing: var(--color_blue);
+    --color_done: var(--color_green);
+    --color_skip: var(--color_purple);
+    --color_must: var(--color_red);
+    --color_should: var(--color_orange);
+    --color_may: var(--color_green);
+
+    --color_state_todo: var(--color_todo);
+    --color_state_idea: var(--color_todo);
+    --color_state_planned: var(--color_planned);
+    --color_state_commited: var(--color_doing);
+    --color_state_doing: var(--color_doing);
+    --color_state_reached: var(--color_done);
+    --color_state_achieved: var(--color_done);
+    --color_state_done: var(--color_done);
+    --color_state_skip: var(--color_skip);
+    --color_state_must: var(--color_must);
+    --color_state_should: var(--color_should);
+    --color_state_may: var(--color_may);
+
+    --color_state__text: var(--color_white);
+
+    --color_tooltip_background: var(--color_gray6);
+    --color_tooltip_boxshadow: var(--color_boxshadow);
+    --color_tooltip_arrow: var(--color_red);
+
+    --quantifiers_text_color: var(--color_white);
+
+      r-project > img {
+          background-color: var(--color_gray);
+      }
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+      /*
+      es gibt folgende Ebenen
+      level0: Body
+      level1: milestones
+       */
+      --color_level0_background: white;
+
+      --color_level1_background: #f1f1f1;
+      --color_level1_text: black;
+
+      --color_level2_background: rgb(226, 225, 225);
+      --color_level2_text: black;
+
+      --color_level3_background: #2d2d2d;
+      --color_level3_text: white;
+
+      --color_level4_background: #363636;
+      --color_level4_text: white;
+
+      --color_level5_background: #1a1a1a;
+      --color_level5_text: white;
+
+      --color_level6_background: black;
+      --color_level6_text: white;
+
+      --color_level7_background: black;
+      --color_level7_text: white;
+
+      --body-background: white;
+      --body_text: black;
+      --color_boxshadow: gray;
+
+    --milestone_background: #d9d8d8;
+    --milestone_boxshadow: var(--color_boxshadow);
+    --milestone_arrow: #ff0808;
+    --milestone_text: gray;
+
+    --deliverable_background: rgb(244, 244, 245);
+    --deliverable_boxshadow: var(--color_boxshadow);
+
+    --objective_background: #f1f1f1;
+    --objective_boxshadow: var(--color_boxshadow);
+
+    --keyresults_background: #f1f1f1;
     --keyresults_r-timeline_color: gray;
     --keyresults_circle_border_color: gray;
     --keyresults_circle_fill_color: #444;
 
     --keyresult_background: rgb(226, 225, 225);
-    --keyresult_boxshadow: gray;
-    
+    --keyresult_boxshadow: var(--color_boxshadow);
+
     --keyresult_date_underline: gray;
-    
-    
+
+
     --link_color: #209c41;
-    --link_color_hover: #bf4aaa ;
-    --link_color_visited: #203d9c;
-    
+    --link_color_hover: #bf4aaa;
+    --link_color_visited: #6381ef;
+
     --color_todo: #888;
-    --color_doing: #63B2EB; ;
+    --color_doing: #63B2EB;;
     --color_done: #10c350;
     --color_skip: #F65BD2;
 
@@ -50,14 +263,76 @@
     --color_state_must: #B81D13;
     --color_state_should: #ecb70b;
     --color_state_may: #008450;
-    
+
+    --color_state__text: white;
+
+    --color_tooltip_background: lightblue;
+    --color_tooltip_boxshadow: var(--color_boxshadow);
+    --color_tooltip_arrow: red;
+  }
+}
+@media (prefers-color-scheme: no-preference) {
+  :root {
+    --body-background: white;
+    --body_text: black;
+
+    --milestone_background: rgb(226, 225, 225);
+    --milestone_boxshadow: gray;
+    --milestone_arrow: #CB6262;
+
+
+    --deliverable_background: white;
+    --deliverable_boxshadow: gray;
+
+    --objective_background: white;
+    --objective_boxshadow: gray;
+
+    --keyresults_background: white;
+    --keyresults_r-timeline_color: gray;
+    --keyresults_circle_border_color: gray;
+    --keyresults_circle_fill_color: #444;
+
+    --keyresult_background: rgb(226, 225, 225);
+    --keyresult_boxshadow: gray;
+
+    --keyresult_date_underline: gray;
+
+
+    --link_color: #209c41;
+    --link_color_hover: #bf4aaa;
+    --link_color_visited: #203d9c;
+
+    --color_todo: #888;
+    --color_doing: #63B2EB;;
+    --color_done: #10c350;
+    --color_skip: #F65BD2;
+
+    --color_state_todo: var(--color_todo);
+    --color_state_idea: var(--color_todo);
+    --color_state_planned: #E0AF2F;
+    --color_state_commited: #63B2EB;
+    --color_state_doing: var(--color_doing);
+    --color_state_reached: var(--color_done);
+    --color_state_achieved: var(--color_done);
+    --color_state_done: var(--color_done);
+    --color_state_skip: var(--color_skip);
+    --color_state_must: #B81D13;
+    --color_state_should: #ecb70b;
+    --color_state_may: #008450;
+
     --color_state__text: white;
 
     --color_tooltip_background: lightblue;
     --color_tooltip_boxshadow: gray;
     --color_tooltip_arrow: red;
+  }
+}
+:root {
+
+
 
     /* Embeded Icons for quantifiers - for offline support */
+    /* all these images are with black lines */
     /* Icon 'streamline-pixel--free--14x14-Business-Products-Performance-Money-Decrease.png' from https://www.streamlinehq.com/ */
     --icon_quantifiers_cost_of_delay: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABCElEQVR4nHXQMVLCQBiG4c0JTOcRsNycgKSytKTUTujW0kpvQKwcbyClJwhU2GWtNDeQylDa+X7s/EzCjO/MAzM/85GBzKVqTFGhh+WhIkZlsAKuUUB5NFAVIlSNkPEyTMcpAt5QutTaOXeFGnuUp0MVsESBCOXRQm1wHOqDM6g9IqwcDTzUBoehDhPsoM7RIULl8LB6RA1bVNBB5dATCvxbhogtLqC+sMLajdOXqQ8EDXvc4hs6XmIBK+DGpXflMdHwB3PsMMMLIizdOtjNo9GwxTt+oeMnXmE9IeDRpfT54TeWLn3rcLiCtcQdHqD0H9xrOKzGFgtYz+gQcex0qGaYw9LTRiP1B3j/QPxnrZ9XAAAAAElFTkSuQmCC');
     /* Icon 'streamline-pixel--free--14x14-wrench.png' from https://www.streamlinehq.com/ */
@@ -70,7 +345,7 @@
     --icon_quantifiers_time_criticality: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABBElEQVR4nHXRIXKDQBiG4Y8bICvjMjhuUI5QR2UsqlTi4mqpwkYW1yNsb4Bj6iIruUH7fiXbwJS8Mw/MLPsvzJBISvGCDB16bFWiwojGgx0a7CTt0WOrEp84ixclXIKkGgfN93s8IoMb8YYPtDiJe8KlhOvhB+8YsNPcWVKOB9T43Z8g5gV/ihuQwk3I4fbwC1aDQVKhedOAQnNB17Wgy3ocDLosLHqCe8WyIPYuB2u4Ae4bLkh6RqzFarDQuqC5QuuCWIuDOQ66vvVWLU7iq+Kg69DgqP8HtDiKH48KWg6m+HtAOdwAFw+esDmYwZu+4O5QYcTmYIf4IEcKN2FACh/sQ/QDYrE9zd2lgwUAAAAASUVORK5CYII=');
     /* Icon 'streamline-pixel--free--14x14-Interface-Essential-Link-Broken-1--Streamline-Pixel.png' from https://www.streamlinehq.com/ */
     --icon_quantifiers_opportunity_enablement_or_risk_reduction: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA6ElEQVR4nI3PsVGEQACF4UcHFxqaGUoHUoJG2AIZ6VVguhmpoRfZwtrBZg4ZJVCC/7udFVDu5v6Z7wKOt8xWWnqC+4KrkbBbhVIjKaCGi8rPdlsPXUAjqcczerToUPrG8e/QNcpF5aKWZ+6At/UwKtdoW40AN+CEuB7eUlQ+eDNs0aFHQumAR7hX+J3fYcC78iAqn1oacILz/zPOwxYjJnFpdKjhEgZ8oHSH0cOo/AW/cMS9pAe4EZOWg9yMVPETtQx98gt6tPAw4V8elhcm5ZOjtnfezUMX8Al3vgMSLlaGrlFuRsLVfgDDFDXmUtKoowAAAABJRU5ErkJggg==');
-    
+
 }
 
 html {
@@ -80,6 +355,8 @@ html {
 body {
     margin-right: 1rem;
     margin-left: 1rem;
+    background-color: var(--body-background);
+    color: var(--body_text);
 }
 h1, h2, h3, h4, h5 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -180,17 +457,19 @@ r-objective, r-milestone {
 
 }
 
+
 r-objective  {
-    box-shadow: 1px 2px 1px 2px var(--objective_boxshadow);
+    box-shadow: var(--boxshadow_shift_right) var(--boxshadow_shift_down) var(--boxshadow_spread) var(--boxshadow_blur) var(--objective_boxshadow);
 }
 r-keyresult {
-    box-shadow: 1px 2px 2px 2px var(--keyresult_boxshadow);
+    box-shadow: var(--boxshadow_shift_right) var(--boxshadow_shift_down) var(--boxshadow_spread) var(--boxshadow_blur)  var(--keyresult_boxshadow);
 }
 r-deliverable {
-    box-shadow: 1px 2px 2px 2px var(--deliverable_boxshadow);
+    box-shadow: var(--boxshadow_shift_right) var(--boxshadow_shift_down) var(--boxshadow_spread) var(--boxshadow_blur)  var(--deliverable_boxshadow);
 }
 r-milestone {
-    border:1px solid gray;
+    /*border:1px solid gray;*/
+    box-shadow: var(--boxshadow_shift_right) var(--boxshadow_shift_down) var(--boxshadow_spread) var(--boxshadow_blur)  var(--milestone_boxshadow);
 }
 r-keyresults {
     border-left: 4px solid var(--keyresults_circle_border_color);
@@ -619,7 +898,7 @@ r-milestone:nth-child(odd)::before {
     content: " ";
     height: 0;
     position: absolute;
-    right: -10px;
+    right: -12px;
     border: medium solid white;
     border-width: 10px 0 10px 10px;
     border-color: transparent transparent transparent var(--milestone_arrow);
@@ -634,7 +913,7 @@ r-milestone:nth-child(even)::before {
     top: 0.5rem;
     width: 0;
     z-index: 1;
-    left: -10px;
+    left: -11px;
     border: medium solid white;
     border-width: 10px 10px 10px 0;
     border-color: transparent var(--milestone_arrow) transparent transparent;
@@ -682,7 +961,7 @@ r-milestone:nth-child(even)::before {
     }
     r-deliverable > r-date {
         display: contents !important;
-        color:black !important;
+        color: var(--body_text) !important;
         font-weight: bold !important;
         font-size: 0.9rem !important;
         text-align: right !important;
@@ -691,7 +970,7 @@ r-milestone:nth-child(even)::before {
 
     r-milestone > r-date {
         display: contents !important;
-        color:black !important;
+        color:var(--body_text) !important;
         font-weight: bold !important;
         font-size: 0.9rem !important;
         text-align: right !important;
@@ -746,7 +1025,7 @@ r-milestone:nth-child(even)::before {
     }
     r-deliverable > r-date {
         display: contents !important;
-        color:black !important;
+        color:var(--milestone_text) !important;
         font-weight: bold !important;
         font-size: 0.9rem !important;
         text-align: right !important;
@@ -755,7 +1034,7 @@ r-milestone:nth-child(even)::before {
 
     r-milestone > r-date {
         display: contents !important;
-        color:black !important;
+        color:var(--milestone_text) !important;
         font-weight: bold !important;
         font-size: 0.9rem !important;
         text-align: right !important;
@@ -817,7 +1096,7 @@ r-description > ul {
 
 r-timeline {
     border-left: 0.3rem solid var(--keyresults_circle_border_color);
-    background: var(--keyresults_background);
+    background: var(--timeline_background);
     
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -1005,7 +1284,7 @@ r-todo > r-description > p {
     text-align: left;
     padding: 0.5rem;
     border-radius: 6px;
-    box-shadow: 1px 2px 2px 2px var(--color_tooltip_boxshadow);
+    box-shadow: var(--boxshadow_shift_right) var(--boxshadow_shift_down) var(--boxshadow_spread) var(--boxshadow_blur) var(--color_tooltip_boxshadow);
     font-size: 0.8rem;
     opacity: 0.95;
     /* Position the tooltip text - see examples below! */
@@ -1041,7 +1320,7 @@ r-quantifiers {
     padding-left:0.2rem;
     padding-right:0.2rem;
     font-size: 0.8rem;
-    color: black;
+    color: var(--quantifiers_text_color);
     
 }
 r-weighted_shortest_job_first,r-cost_of_delay,r-jobsize, r-user_business_value, r-time_criticality,  r-opportunity_enablement_or_risk_reduction {

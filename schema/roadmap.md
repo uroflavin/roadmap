@@ -161,7 +161,7 @@ If cost_of_delay is NULL cost_of_delay is calculated during processing, if all c
   - **`time_criticality`** *(['integer', 'null'])*: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today? Minimum: `0`. Maximum: `10`. Default: `null`.
   - **`opportunity_enablement_or_risk_reduction`** *(['integer', 'null'])*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `null`.
   - **`jobsize`** *(['integer', 'null'])*: A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.
-If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Maximum: `10`. Default: `null`.
+If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Default: `null`.
 
   Examples:
   ```yaml

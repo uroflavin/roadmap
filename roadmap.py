@@ -363,8 +363,8 @@ def calculate_weighted_shortest_job_first(
     if not (0 <= cost_of_delay <= 30):
         raise ValueError("cost_of_delay is not value between 0 (lowest) and 30 (highest)")
     # value between 1 (lowest) and 10 (highest)
-    if not (1 <= jobsize <= 10):
-        raise ValueError("jobsize is not value between 1 (shortest) and 10 (longest)")
+    if not (1 <= jobsize):
+        raise ValueError("jobsize is not value greater 1 (shortest)")
 
     return round((cost_of_delay / + jobsize), 2)
 
