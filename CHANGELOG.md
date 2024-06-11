@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
+
+## [0.1.2] - 2024-06-11
+- fix: Don't render "r-state" for milestones.deliverables if state is empty #95
+- ref: typos in code comments
+
 ## [0.1.1] - 2024-03-02
 ### Fix
 ref: make it more pep and fixed a bunch of typos
@@ -263,4 +268,5 @@ BREAKING CHANGE
 [0.0.20]: https://github.com/uroflavin/roadmap/pull/86
 [0.0.21]: https://github.com/uroflavin/roadmap/pull/88
 [0.1.0]: https://github.com/uroflavin/roadmap/pull/90
-[0.1.0]: https://github.com/uroflavin/roadmap/pull/92
+[0.1.1]: https://github.com/uroflavin/roadmap/pull/92
+[0.1.2]: https://github.com/uroflavin/roadmap/pull/96
