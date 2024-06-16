@@ -3,6 +3,7 @@ Manage your project or team roadmaps in YAML.
 
 roadmap.py itself has a fancy roadmap as an living-example.
 Take a look the rendered [markdown](roadmap/roadmap.md) of roadmap.py's-roadmap and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
+You can also take a look at the [html version](https://html-preview.github.io/?url=https://raw.githubusercontent.com/uroflavin/roadmap/main/roadmap/roadmap.html) of the roadmap.
 
 ## Goals
 My development approach is to enable teams or projects to structurize their development approaches in a structural and hopefull natural way.
