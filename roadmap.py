@@ -22,7 +22,8 @@ import subprocess
 # Used for logging events that happen while the application is running.
 import logging
 
-# Used for loading templates from the file system and creating a Jinja2 environment.
+# Used for loading templates from the file system and creating
+# a Jinja2 environment.
 from jinja2 import FileSystemLoader, Environment
 
 # A function to validate a given JSON data with a given JSON schema.
@@ -100,7 +101,7 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
             logging.debug("project: %s", project)
             return project
     except OSError as err:
-        # in case of an error log file name and error message 
+        # in case of an error log file name and error message
         logging.debug("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
         logging.debug("Error: %s", err.strerror)
         raise err
@@ -147,7 +148,7 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
     find all templates in given template_path
 
     Return list of templates
-    :param str template_path: directory containing templates 
+    :param str template_path: directory containing templates
     :param list template_known_suffixes: list of know-suffixes for templates, e.g. html, md, txt
     :return: templates
     :rtype: list
@@ -254,7 +255,7 @@ def process_template(
 
 def get_items_grouped_by_date(elements=None):
     """
-    Groups items by similar dates, maintaining the original order. If an item has no date attribute, 
+    Groups items by similar dates, maintaining the original order. If an item has no date attribute,
     it is grouped under "None".
 
     :param elements: List of items where each item is a dictionary that may contain a "date" key.
@@ -377,7 +378,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
     add quantifiers.jobsize to element items
     add quantifiers.wsjf to element items
 
-    weighted_shortest_job_first and cost_of_delay is only added if all values for wsjf are present and valid 
+    weighted_shortest_job_first and cost_of_delay is only added if all values for wsjf are present and valid
     this is jobsize, user_business_value, time_criticality, opportunity_enablement_or_risk_reduction
     in addition: cost_of_delay is only calculated if not set
     in addition: weighted_shortest_job_first is only calculated if not set
@@ -424,7 +425,7 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str = "", par
     :param str parent_id: id of parent element,
     used to make id unique
     it is used to make a prefix before _id
-    :return: dict new project with added ["_id"] and ["id] 
+    :return: dict new project with added ["_id"] and ["id]
     """
 
     # this is the id of the element before current element in a list - already used during dot-processing
@@ -482,10 +483,10 @@ def calculate_ids_for_element_items(elements: dict = None, prefix: str = "", par
 def remove_element(element_name: str = "", project: dict = None):
     """
     Remove given element from project - we are working with project by reference
-    
+
     TODO: this function is working but need refactoring - is way to much redundancy in the code base
 
-    element can be any kind of object or attribute 
+    element can be any kind of object or attribute
 
     support 5 levels, which is the maximum number in our supported schema
 
@@ -493,7 +494,7 @@ def remove_element(element_name: str = "", project: dict = None):
 
     :param str element_name: roadmap element name as dotted path,
     e.g. 'objectives.milestones.deliverables.todos.description'
-    
+
     :param dict project: reference of project
 
     :return: Nothing
@@ -581,7 +582,7 @@ def remove_element(element_name: str = "", project: dict = None):
 def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
     """
     Calculate a version of roadmap.yml
-    
+
     version is calculated using md5 of the roadmap.yml and
     id contains the first and last 4 characters of md5 hash as a version
 
@@ -606,7 +607,7 @@ def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
         # version uses first and last 4 characters from hash
         version = version_hash[0:4] + version_hash[-4:]
         return version
-    except Exception as err:
+    except Exception:
         return None
 
 
@@ -620,13 +621,13 @@ def get_key_value_list(element=None, key_value_list: list = None, prefix_for_key
     - milestones.deliverables.title
     - milestones.deliverables.title
     and so on
-    
+
     if you set keep_index to True, the keys are build like
     - milestones.0.title
     - milestones.0.description
     - milestones.0.deliverables.0.title
     - milestones.0.deliverables.1.title
-    
+
     the ordering from element is kept
 
     :param Any element: anything you like to make a flat list
@@ -667,7 +668,7 @@ def get_key_value_list(element=None, key_value_list: list = None, prefix_for_key
             # make a sub-prefix for this element
             sub_prefix = prefix_for_key + str(key)
 
-            # we got an element 
+            # we got an element
             if not isinstance(element[key], (list, dict, tuple)):
                 key_value_list.append({'key': sub_prefix,
                                        'value': element[key]})
@@ -715,7 +716,7 @@ def get_filtered_key_value_list(element=None, key_value_list: list = None, prefi
     e.g. milestones.todos,milestones.deliverables.todos
     :param bool precise_search: if true, the exact strings from filter_keys are searched,
     if false, we look if any filter_key is part of key
-    
+
     :return: list with key/value pairs as dict for given elements
     """
     # we need a key_value list without index
