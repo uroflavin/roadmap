@@ -234,7 +234,7 @@ r-deliverable {
     border-radius: 5px;
     position:relative;
 
-    margin: 0 0 0.8rem;
+    margin: 0 0.2rem 0.8rem;
 
     padding: 0.5rem 0.5rem 0.2rem 0.8rem;
 }
@@ -1068,4 +1068,53 @@ r-opportunity_enablement_or_risk_reduction {
     text-align:left;
     font-weight: bold;
     margin-bottom: 0.5rem;
+}
+/**************/
+/* Accordion */
+.accordion .container {
+	position: relative;
+	
+	margin-top:0.5rem;
+}
+.accordion .label {
+	position: relative;
+	color: black;
+	cursor: pointer;
+
+	height:1.5rem;
+}
+.accordion .content {
+	position: relative;
+	height: 0;
+	text-align: justify;
+	overflow: hidden;
+	transition: 0.5s;
+}
+.accordion .container.active .content {
+	height: auto;
+}
+.accordion .label::before {
+	content: '⇣';
+	color: black;
+	position: absolute;
+	top: 0.75rem;
+	right: 0;
+
+	transform: translateY(-50%);
+
+	font-weight:bolder;
+	font-size:1rem;
+
+}
+.accordion .container.active .label::before {
+	content: '⇡';
+	font-weight:bolder;
+	font-size:1rem;
+	display:block;
+}
+.active > .label > span {
+	display: none;
+}
+.label > span {
+	font-size:0.8rem;
 }

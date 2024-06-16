@@ -114,28 +114,39 @@
                     <r-name><h3>Milestone 1</h3></r-name>
                     <r-state><span class="PLANNED">PLANNED</span></r-state> 
                 </r-header>
-                
+                <style>
+                    
+                </style>
                 <r-description><p>Once we know how we want a road map file to look...</p></r-description>
                 <r-reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></r-reference>
-                <r-todos>
-                    <h5>TODO</h5>
-                    <r-todo id="m1-todo1" class="OPEN">
-                        <r-title>Check ABC</r-title>
-                        <r-description>Hier muss noch was geprüft werden</r-description>
-                    </r-todo>
-                    <r-todo id="m1-todo2" class="OPEN">
-                        <r-title>Klärung: Was soll das?</r-title>
-                        <r-description>Mit Max arbeiten</r-description>
-                    </r-todo>
-                    <r-todo id="m1-todo3" class="DOING">
-                        <r-title>Beschreibung ergänzen</r-title>
-                        <r-description>Es braucht eine Aussagekräftige <a target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">Beschreibung</a></r-description>
-                    </r-todo>
-                    <r-todo id="m1-todo4" class="CLOSED">
-                        <r-title>Budgetklärung</r-title>
-                        <r-description>Es ist das Budget zu klären</r-description>
-                    </r-todo>
-                </r-todos>
+                
+                <div class="accordion">
+                    <div class="container active">
+                        <div class="label">&nbsp;</div>
+												<div class="content">
+                        <r-todos>
+                            <h5>TODO</h5>
+                            <r-todo id="m1-todo1" class="OPEN">
+                                <r-title>Check ABC</r-title>
+                                <r-description>Hier muss noch was geprüft werden</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo2" class="OPEN">
+                                <r-title>Klärung: Was soll das?</r-title>
+                                <r-description>Mit Max arbeiten</r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo3" class="DOING">
+                                <r-title>Beschreibung ergänzen</r-title>
+                                <r-description>Es braucht eine Aussagekräftige <a target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">Beschreibung</a></r-description>
+                            </r-todo>
+                            <r-todo id="m1-todo4" class="CLOSED">
+                                <r-title>Budgetklärung</r-title>
+                                <r-description>Es ist das Budget zu klären</r-description>
+                            </r-todo>
+                        </r-todos>
+                    </div>
+                </div>                </div>
+                
+                
             </r-milestone>
 
             <r-milestone class="REACHED">
@@ -145,7 +156,10 @@
                     <r-name><h3>Milestone 1</h3></r-name>
                     <r-state><span class="REACHED">REACHED</span></r-state> 
                 </r-header>
-                
+                <div class="accordion">
+                    <div class="container">
+											<div class="label"><span>see details...</span></div>
+											<div class="content">
                 <r-description><p>Once we know how we want a road map file to look...</p></r-description>
                 <r-reference><a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a></r-reference>
                 <r-deliverables>
@@ -245,7 +259,9 @@
                         </r-quantifiers>
                     </r-deliverable>
                 </r-deliverables>
-            
+									</div>
+							</div>
+							</div>							</div>
             </r-milestone>
 
             <r-milestone class="COMMITED">
@@ -1313,5 +1329,7 @@
         <footer>
             <pre>version: a782c6e6/20240218102300</pre>
         </footer>
+        <script src="app.js" type="text/javascript"></script>
     </body>
 </html>
+	
