@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Roadmap for roadmap.py (0ecbd678/20240611150649)</title>
+        <title>Roadmap for roadmap.py (0ecbd678/20240616124215)</title>
         <style>
             /* Print Style */
 @page {
@@ -242,7 +242,7 @@ r-deliverable {
     border-radius: 5px;
     position:relative;
 
-    margin: 0 0 0.8rem;
+    margin: 0 0.2rem 0.8rem;
 
     padding: 0.5rem 0.5rem 0.2rem 0.8rem;
 }
@@ -1076,6 +1076,55 @@ r-opportunity_enablement_or_risk_reduction {
     text-align:left;
     font-weight: bold;
     margin-bottom: 0.5rem;
+}
+/**************/
+/* Accordion */
+.accordion .container {
+	position: relative;
+	
+	margin-top:0.5rem;
+}
+.accordion .label {
+	position: relative;
+	color: black;
+	cursor: pointer;
+
+	height:1.5rem;
+}
+.accordion .content {
+	position: relative;
+	height: 0;
+	text-align: justify;
+	overflow: hidden;
+	transition: 0.5s;
+}
+.accordion .container.active .content {
+	height: auto;
+}
+.accordion .label::before {
+	content: '⇣';
+	color: black;
+	position: absolute;
+	top: 0.75rem;
+	right: 0;
+
+	transform: translateY(-50%);
+
+	font-weight:bolder;
+	font-size:1rem;
+
+}
+.accordion .container.active .label::before {
+	content: '⇡';
+	font-weight:bolder;
+	font-size:1rem;
+	display:block;
+}
+.active > .label > span {
+	display: none;
+}
+.label > span {
+	font-size:0.8rem;
 }</style>
     </head>
     <body>
@@ -1161,43 +1210,47 @@ The goal is to make this as easy as possible for humans to read and reason about
                                     <span class="REACHED">REACHED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>The design and planning stage is where we&rsquo;re figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span><p>The design and planning stage is where we&rsquo;re figuring [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>The design and planning stage is where we&rsquo;re figuring out how this project should work and, broadly, what kind of information we want to show on our road maps.
 We should do something for the <a href="https://github.com/uroflavin/roadmap">roadmap</a>, just to let us know, if the design is broken.</p>
-                        </r-description>
-                        
-                            <r-reference>
-                                <a class="card-link" target="_blank" href="https://www.turing.com/blog/principles-of-software-development-guide/">explaining design and planning principles</a>
-                            </r-reference>
-                        
-                            <r-deliverables>
-                                
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="design_and_planning_d1" class="DONE">
-                                        
-                                        <r-date>Q4/2023</r-date>
-                                        <r-header>
-                                            <r-name><h4>README</h4></r-name>
+                                        <r-reference>
+                                            <a class="card-link" target="_blank" href="https://www.turing.com/blog/principles-of-software-development-guide/">explaining design and planning principles</a>
+                                        </r-reference>
+                                    
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>We need to add a README file explaining the purpose of this project and giving some basic examples of its use.</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="design_and_planning_d1" class="DONE">
+                                                    
+                                                    <r-date>Q4/2023</r-date>
+                                                    <r-header>
+                                                        <r-name><h4>README</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>We need to add a README file explaining the purpose of this project and giving some basic examples of its use.</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
                 
                     <r-cost_of_delay class="tooltip">Cost of Delay: 20<span class="tooltiptext">
@@ -1211,33 +1264,33 @@ We should do something for the <a href="https://github.com/uroflavin/roadmap">ro
                         </table>
                     </span></r-cost_of_delay>
                 </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="design_and_planning_d2" class="DONE">
-                                        
-                                        <r-date>Q4/2023</r-date>
-                                        <r-header>
-                                            <r-name><h4>Roadmap</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>We need to know what the roadmap file format looks like, so we&rsquo;ll get started with an example roadmap to kick the tyres.</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml">see roadmap.yml</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="design_and_planning_d2" class="DONE">
+                                                    
+                                                    <r-date>Q4/2023</r-date>
+                                                    <r-header>
+                                                        <r-name><h4>Roadmap</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>We need to know what the roadmap file format looks like, so we&rsquo;ll get started with an example roadmap to kick the tyres.</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/examples/roadmap.yml">see roadmap.yml</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
                 <table>
@@ -1252,8 +1305,11 @@ We should do something for the <a href="https://github.com/uroflavin/roadmap">ro
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="roadmap_schema" class="REACHED">
                         <r-milestone-id>Roadmap Schema</r-milestone-id>
@@ -1264,39 +1320,43 @@ We should do something for the <a href="https://github.com/uroflavin/roadmap">ro
                                     <span class="REACHED">REACHED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>Once we know how we want a road map file to look, we should put together a schema for the file. 
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span><p>Once we know how we want a road map file to look, we [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>Once we know how we want a road map file to look, we should put together a schema for the file. 
 This will allow us to document the file structure and provide a first class editing experience to people using it.</p>
-                        </r-description>
-                        
-                            <r-deliverables>
-                                
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="roadmap_schema_d1" class="DONE">
-                                        
-                                        <r-date>Q1/2024</r-date>
-                                        <r-header>
-                                            <r-name><h4>roadmap.schema.json</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put together a JSONSchema file describing the road map file format.</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see roadmap.json</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="roadmap_schema_d1" class="DONE">
+                                                    
+                                                    <r-date>Q1/2024</r-date>
+                                                    <r-header>
+                                                        <r-name><h4>roadmap.schema.json</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put together a JSONSchema file describing the road map file format.</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see roadmap.json</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  0.25<span class="tooltiptext">
                 <table>
@@ -1311,33 +1371,33 @@ This will allow us to document the file structure and provide a first class edit
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="roadmap_schema_d2" class="DONE">
-                                        
-                                        <r-date>Q1/2024</r-date>
-                                        <r-header>
-                                            <r-name><h4>Publish Schema</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Publish the schema file on <a href="https://https://github.com/uroflavin/roadmap">github</a> so that people can reference it easily.</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see roadmap.json</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="roadmap_schema_d2" class="DONE">
+                                                    
+                                                    <r-date>Q1/2024</r-date>
+                                                    <r-header>
+                                                        <r-name><h4>Publish Schema</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Publish the schema file on <a href="https://https://github.com/uroflavin/roadmap">github</a> so that people can reference it easily.</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see roadmap.json</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  20.05<span class="tooltiptext">
                 <table>
@@ -1352,8 +1412,11 @@ This will allow us to document the file structure and provide a first class edit
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="m3" class="REACHED">
                         <r-milestone-id>M3</r-milestone-id>
@@ -1364,32 +1427,36 @@ This will allow us to document the file structure and provide a first class edit
                                     <span class="REACHED">REACHED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.</p>
-                        </r-description>
-                        
-                            <r-deliverables>
-                                
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span><p>The Goal is, to implement an markdown renderer, which [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>The Goal is, to implement an markdown renderer, which is capable to render this yml as markdown.</p>
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="m3_d1" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>Understand SierraWorks Basic Markdown</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Understand the Syntax of the go-template from <a href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md">https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md</a></p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m3_d1" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>Understand SierraWorks Basic Markdown</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Understand the Syntax of the go-template from <a href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md">https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-md/roadmap.basic.md</a></p>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  0.05<span class="tooltiptext">
                 <table>
@@ -1404,27 +1471,27 @@ This will allow us to document the file structure and provide a first class edit
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m3_d2" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>jinja2 template</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Develop a jinja2 template for markdown output of the roadmap</p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m3_d2" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>jinja2 template</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Develop a jinja2 template for markdown output of the roadmap</p>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
                 <table>
@@ -1439,31 +1506,31 @@ This will allow us to document the file structure and provide a first class edit
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m3_d3" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>markdown-renderer</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put some code in roadmap.py to render roadmap as Markdown</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md">see Markdown-result of this roadmap.yml</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m3_d3" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>markdown-renderer</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put some code in roadmap.py to render roadmap as Markdown</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.md">see Markdown-result of this roadmap.yml</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
                 <table>
@@ -1478,8 +1545,11 @@ This will allow us to document the file structure and provide a first class edit
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="m4" class="REACHED">
                         <r-milestone-id>M4</r-milestone-id>
@@ -1490,37 +1560,41 @@ This will allow us to document the file structure and provide a first class edit
                                     <span class="REACHED">REACHED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>The Goal is, to implement a html-renderer, which is capable to render this yml as html</p>
-                        </r-description>
-                        
-                            <r-deliverables>
-                                
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span><p>The Goal is, to implement a html-renderer, which is [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>The Goal is, to implement a html-renderer, which is capable to render this yml as html</p>
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="m4_d1" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>html-template from original source</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Develop a template for html output of the roadmap
+                                                
+                                                    
+                                                <r-deliverable id="m4_d1" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>html-template from original source</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Develop a template for html output of the roadmap
 Use SierraSoftworks-Go-Template as a starting point</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html">see SierraSoftworks-Go-Template</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-html/roadmap.html">see SierraSoftworks-Go-Template</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
                 <table>
@@ -1535,31 +1609,31 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m4_d2" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>html-renderer</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put some code in roadmap.py to render roadmap as HTML</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html">see HTML-result of this roadmap.yml</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m4_d2" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>html-renderer</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put some code in roadmap.py to render roadmap as HTML</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.html">see HTML-result of this roadmap.yml</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
                 <table>
@@ -1574,8 +1648,11 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="m5" class="REACHED">
                         <r-milestone-id>M5</r-milestone-id>
@@ -1586,36 +1663,40 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                                     <span class="REACHED">REACHED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.</p>
-                        </r-description>
-                        
-                            <r-deliverables>
-                                
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span><p>The Goal is, to implement a dot-file, which is [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.</p>
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="m5_d1" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>dot-template</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Develop a dot-template for graphviz output of the roadmap</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot">see SierraSoftworks-Go-Template</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m5_d1" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>dot-template</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Develop a dot-template for graphviz output of the roadmap</p>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot">see SierraSoftworks-Go-Template</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
                 <table>
@@ -1630,27 +1711,27 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m5_d2" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>dot-renderer</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put some code in roadmap.py to render roadmap as dot-file</p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m5_d2" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>dot-renderer</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST-inverted">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put some code in roadmap.py to render roadmap as dot-file</p>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
                 <table>
@@ -1665,28 +1746,28 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m5_d3" class="DONE">
-                                        <r-header>
-                                            <r-name><h4>convert dot as png</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MAY-inverted">MAY</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DONE-inverted">DONE</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put some code in roadmap.py to convert dot-file to png
+                                                
+                                                    
+                                                <r-deliverable id="m5_d3" class="DONE">
+                                                    <r-header>
+                                                        <r-name><h4>convert dot as png</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MAY-inverted">MAY</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DONE-inverted">DONE</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put some code in roadmap.py to convert dot-file to png
 e.g. the generated file roadmap.dot.png can be used in your project description.</p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  5.335<span class="tooltiptext">
                 <table>
@@ -1701,8 +1782,11 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="m6" class="COMMITED">
                         <r-milestone-id>M6</r-milestone-id>
@@ -1713,28 +1797,32 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
                                     <span class="COMMITED">COMMITED</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.</p>
-                        </r-description>
-                        
-                            <r-deliverables>
-                                
+                        <div class="accordion">
+                            <div class="container active">
+                                <div class="label"><span><p>The Goal is, to implement a xls-renderer, which is [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.</p>
+                                    </r-description>
                                     
-                                        
-                                    <r-deliverable id="m6_d1" class="DOING">
-                                        <r-header>
-                                            <r-name><h4>csv-template</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="DOING">DOING</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Develop a template for csv output of the roadmap
+                                                
+                                                    
+                                                <r-deliverable id="m6_d1" class="DOING">
+                                                    <r-header>
+                                                        <r-name><h4>csv-template</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="DOING">DOING</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Develop a template for csv output of the roadmap
 csv output should contain all roadmap items, without the meta-information regarding your project.</p>
 <p>The following Roadmap Items will be exported:</p>
 <ul>
@@ -1758,14 +1846,14 @@ csv output should contain all roadmap items, without the meta-information regard
 <li>reference.link</li>
 <li>_has_todos: calculated if item it has any todos</li>
 </ul>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv">see roadmap.csv</a>
-                                            </r-reference>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                    </r-description>
+                                                    
+                                                        <r-reference>
+                                                            <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv">see roadmap.csv</a>
+                                                        </r-reference>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  1.15<span class="tooltiptext">
                 <table>
@@ -1780,27 +1868,27 @@ csv output should contain all roadmap items, without the meta-information regard
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m6_d2" class="TODO">
-                                        <r-header>
-                                            <r-name><h4>xls-renderer</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="TODO">TODO</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Put some code in roadmap.py to render roadmap as XLS File</p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m6_d2" class="TODO">
+                                                    <r-header>
+                                                        <r-name><h4>xls-renderer</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="TODO">TODO</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Put some code in roadmap.py to render roadmap as XLS File</p>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
             <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
                 <table>
@@ -1815,8 +1903,11 @@ csv output should contain all roadmap items, without the meta-information regard
                 </table>
             </span></r-weighted_shortest_job_first>
             </r-quantifiers></r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 
                     <r-milestone id="m7" class="IDEA">
                         <r-milestone-id>M7</r-milestone-id>
@@ -1827,14 +1918,18 @@ csv output should contain all roadmap items, without the meta-information regard
                                     <span class="IDEA">IDEA</span>
                                 </r-state> 
                             </r-header>
-                        <r-description>
-                            <p>GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
+                        <div class="accordion">
+                            <div class="container active">
+                                <div class="label"><span><p>GraphViz is great, but being able to see things like [&hellip;]</p></span></div>
+                                <div class="content">
+                                    <r-description>
+                                        <p>GraphViz is great, but being able to see things like the description of your deliverables and their current state is something that most users are probably going to find quite useful. 
 Pair that with a need to make tinkering and experimentation easy and there are few things better than an interactive website to show your road map.
 The goal here is to produce something which is easy and pleasurable to use, which shows your road map in a format which can be understood and makes interacting with it as low-fuss as possible.</p>
-                        </r-description>
-                        
-                            
-                                    <r-todos>
+                                    </r-description>
+                                    
+                                        
+                                                <r-todos>
             <h5>TODO</h5>
             
                 <r-todo id="m7_todo1" class="OPEN">
@@ -1848,55 +1943,55 @@ The goal here is to produce something which is easy and pleasurable to use, whic
 See <a href="https://graphviz.org/">graphviz.org</a></p></r-description>
                 </r-todo>
             </r-todos>
-                            <r-deliverables>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m7_d1" class="TODO">
-                                        <r-header>
-                                            <r-name><h4>Web Renderer</h4></r-name>
+                                        <r-deliverables>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST">MUST</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="TODO">TODO</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>The most important part of this milestone is the development of a web based renderer which can present a road map file. 
+                                                
+                                                    
+                                                <r-deliverable id="m7_d1" class="TODO">
+                                                    <r-header>
+                                                        <r-name><h4>Web Renderer</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MUST">MUST</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="TODO">TODO</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>The most important part of this milestone is the development of a web based renderer which can present a road map file. 
 This renderer is going to form the basis for our user flows, including acting as a realtime preview for the editor and a final output for the repository viewer.      </p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
                 
                     <r-jobsize>Jobsize: 10</r-jobsize>
                 
                     </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m7_d2" class="TODO">
-                                        <r-header>
-                                            <r-name><h4>Markdown To HTML as JINJA2 Function</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="SHOULD">SHOULD</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="TODO">TODO</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>The renderer should support Markdown</p>
-                                        </r-description>
-                                        
-                                            
-                                                    <r-quantifiers>
+                                                
+                                                    
+                                                <r-deliverable id="m7_d2" class="TODO">
+                                                    <r-header>
+                                                        <r-name><h4>Markdown To HTML as JINJA2 Function</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="SHOULD">SHOULD</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="TODO">TODO</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>The renderer should support Markdown</p>
+                                                    </r-description>
+                                                    
+                                                        
+                                                                <r-quantifiers>
             
                 
                     
@@ -1904,27 +1999,30 @@ This renderer is going to form the basis for our user flows, including acting as
                     
                         <r-time_criticality>Time Criticality: 0</r-time_criticality>
                     </r-quantifiers></r-deliverable>
-                                
-                                    
-                                        
-                                    <r-deliverable id="m7_d3" class="TODO">
-                                        <r-header>
-                                            <r-name><h4>Renderer Package</h4></r-name>
                                             
-                                                <r-requirement>
-                                                    <span class="MAY">MAY</span>
-                                                </r-requirement>
-                                            
-                                                <r-state>
-                                                    <span class="TODO">TODO</span>
-                                                </r-state>
-                                            </r-header>
-                                        <r-description>
-                                            <p>Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer</p>
-                                        </r-description>
-                                        </r-deliverable>
-                                </r-deliverables>
-                        </r-milestone>
+                                                
+                                                    
+                                                <r-deliverable id="m7_d3" class="TODO">
+                                                    <r-header>
+                                                        <r-name><h4>Renderer Package</h4></r-name>
+                                                        
+                                                            <r-requirement>
+                                                                <span class="MAY">MAY</span>
+                                                            </r-requirement>
+                                                        
+                                                            <r-state>
+                                                                <span class="TODO">TODO</span>
+                                                            </r-state>
+                                                        </r-header>
+                                                    <r-description>
+                                                        <p>Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer</p>
+                                                    </r-description>
+                                                    </r-deliverable>
+                                            </r-deliverables>
+                                    </div>
+                            </div>
+                        </div>
+                    </r-milestone>
                 </r-milestones>
                 <h2>Objectives</h2>
     
@@ -1947,34 +2045,41 @@ This renderer is going to form the basis for our user flows, including acting as
                             <p>The goal of this project is, primarily, to provide a single schema that can be used by different teams to describe the work they are doing and their future intentions. 
 The usefulness and applicability of this schema to real-world problem domains will determine whether anything else we do here is of value.</p>
                         </r-description>
-                        
-                            <r-reference>
-                                <a class="card-link" target="_blank" href="https://json-schema.org/">see json-schema.org</a>
-                            </r-reference>
-                        
-                            <r-keyresults>
-                                
-                                    <r-keyresult id="o1_r1" data-date="R1">
-                                        <r-header>
-                                            <r-name><h5>Provide a schema definition</h5></r-name>
+                        <div class="accordion">
+                            <div class="container ">
+                                <div class="label"><span>see details...</span></div>
+                                <div class="content">
+                            
+                                <r-reference>
+                                    <a class="card-link" target="_blank" href="https://json-schema.org/">see json-schema.org</a>
+                                </r-reference>
+                            
+                                <r-keyresults>
+                                    
+                                        <r-keyresult id="o1_r1" data-date="R1">
+                                            <r-header>
+                                                <r-name><h5>Provide a schema definition</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MUST-inverted">MUST</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>Develop a schema that fulfills the main requirements of the objective</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>Develop a schema that fulfills the main requirements of the objective</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                </r-keyresults>
-                        </r-objective>
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see README</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    </r-keyresults>
+                            </div>
+                        </div>
+                    </div>
+                    </r-objective>
                 
                     <r-objective id="o2">
                         <r-header>
@@ -1988,104 +2093,111 @@ The usefulness and applicability of this schema to real-world problem domains wi
                             <p>While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren&rsquo;t already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.</p>
                         </r-description>
-                        
-                            <r-keyresults>
-                                
-                                    <r-keyresult id="o2_r1" data-date="R1">
-                                        <r-header>
-                                            <r-name><h5>Roadmap as Markdown</h5></r-name>
+                        <div class="accordion">
+                            <div class="container active">
+                                <div class="label"><span>see details...</span></div>
+                                <div class="content">
+                            
+                                <r-keyresults>
+                                    
+                                        <r-keyresult id="o2_r1" data-date="R1">
+                                            <r-header>
+                                                <r-name><h5>Roadmap as Markdown</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MUST-inverted">MUST</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>We should be able to generate some markdown out of roadmap.yml</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>We should be able to generate some markdown out of roadmap.yml</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md">see Markdown-Template</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                
-                                    <r-keyresult id="o2_r2" data-date="R2">
-                                        <r-header>
-                                            <r-name><h5>Roadmap as HTML</h5></r-name>
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/markdown/roadmap.md">see Markdown-Template</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    
+                                        <r-keyresult id="o2_r2" data-date="R2">
+                                            <r-header>
+                                                <r-name><h5>Roadmap as HTML</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MUST-inverted">MUST</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>We should be able to generate some html out of roadmap.yml</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>We should be able to generate some html out of roadmap.yml</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html">see HTML-Template</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                
-                                    <r-keyresult id="o2_r3" data-date="R3">
-                                        <r-header>
-                                            <r-name><h5>Roadmap as Graph</h5></r-name>
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/html/roadmap.html">see HTML-Template</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    
+                                        <r-keyresult id="o2_r3" data-date="R3">
+                                            <r-header>
+                                                <r-name><h5>Roadmap as Graph</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MAY-inverted">MAY</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>We should be able to generate some dot out of roadmap.yml</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MAY-inverted">MAY</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>We should be able to generate some dot out of roadmap.yml</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot">see DOT-Template</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                
-                                    <r-keyresult id="o2_r4" data-date="R4">
-                                        <r-header>
-                                            <r-name><h5>Roadmap Milestones as CSV-File</h5></r-name>
-                                            
-                                                <r-requirement>
-                                                    <span class="MAY-inverted">MAY</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>Excel is THE projectmanagement tool. 
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/templates/dot/roadmap.dot">see DOT-Template</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    
+                                        <r-keyresult id="o2_r4" data-date="R4">
+                                            <r-header>
+                                                <r-name><h5>Roadmap Milestones as CSV-File</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MAY-inverted">MAY</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>Excel is THE projectmanagement tool. 
 To render some progress in your favorite tool ;-) we should be able to generate some csv out of roadmap.yml-milestone and deliverables.
 CSV is limited capable for exporting everything, so this would be a good first step towards Roadmap als XLS-File.</p>
-                                        </r-description>
-                                        </r-keyresult>
-                                
-                                    <r-keyresult id="o2_r5" data-date="R5">
-                                        <r-header>
-                                            <r-name><h5>Roadmap as XLS-File</h5></r-name>
-                                            
-                                                <r-requirement>
-                                                    <span class="MAY">MAY</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="TODO">TODO</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>We should be able to generate some xls out of roadmap.yml</p>
-                                        </r-description>
-                                        </r-keyresult>
-                                </r-keyresults>
-                        </r-objective>
+                                            </r-description>
+                                            </r-keyresult>
+                                    
+                                        <r-keyresult id="o2_r5" data-date="R5">
+                                            <r-header>
+                                                <r-name><h5>Roadmap as XLS-File</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MAY">MAY</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="TODO">TODO</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>We should be able to generate some xls out of roadmap.yml</p>
+                                            </r-description>
+                                            </r-keyresult>
+                                    </r-keyresults>
+                            </div>
+                        </div>
+                    </div>
+                    </r-objective>
                 
                     <r-objective id="o3">
                         <r-header>
@@ -2099,53 +2211,68 @@ CSV is limited capable for exporting everything, so this would be a good first s
                             <p>Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.</p>
                         </r-description>
-                        
-                            <r-keyresults>
-                                
-                                    <r-keyresult id="o3_r1" data-date="R1">
-                                        <r-header>
-                                            <r-name><h5>Awesome README</h5></r-name>
+                        <div class="accordion">
+                            <div class="container active">
+                                <div class="label"><span>see details...</span></div>
+                                <div class="content">
+                            
+                                <r-keyresults>
+                                    
+                                        <r-keyresult id="o3_r1" data-date="R1">
+                                            <r-header>
+                                                <r-name><h5>Awesome README</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MUST-inverted">MUST</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="DONE">DONE</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>We need to complete our README explaining the purpose of this project and giving some basic examples of its use.</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MUST-inverted">MUST</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="DONE">DONE</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>We need to complete our README explaining the purpose of this project and giving some basic examples of its use.</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                
-                                    <r-keyresult id="o3_r2" data-date="R2">
-                                        <r-header>
-                                            <r-name><h5>Complete examples in schema-definition</h5></r-name>
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/README.md">see README</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    
+                                        <r-keyresult id="o3_r2" data-date="R2">
+                                            <r-header>
+                                                <r-name><h5>Complete examples in schema-definition</h5></r-name>
+                                                
+                                                    <r-requirement>
+                                                        <span class="MAY">MAY</span>
+                                                    </r-requirement> 
+                                                <r-state>
+                                                    <span class="TODO">TODO</span>
+                                                </r-state> 
+                                            </r-header>
+                                            <r-description>
+                                                <p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p>
+                                            </r-description>
                                             
-                                                <r-requirement>
-                                                    <span class="MAY">MAY</span>
-                                                </r-requirement> 
-                                            <r-state>
-                                                <span class="TODO">TODO</span>
-                                            </r-state> 
-                                        </r-header>
-                                        <r-description>
-                                            <p>Complete the examples so that every user of the schema is able to find suitable examples for their specific use cases</p>
-                                        </r-description>
-                                        
-                                            <r-reference>
-                                                <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see schema/roadmap.json</a>
-                                            </r-reference>
-                                        </r-keyresult>
-                                </r-keyresults>
-                        </r-objective>
+                                                <r-reference>
+                                                    <a class="card-link" target="_blank" href="https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json">see schema/roadmap.json</a>
+                                                </r-reference>
+                                            </r-keyresult>
+                                    </r-keyresults>
+                            </div>
+                        </div>
+                    </div>
+                    </r-objective>
                 </r-objectives>
         
     
-    <footer><pre>version:0ecbd678/20240611150649</pre></footer>
+    <footer><pre>version:0ecbd678/20240616124215</pre></footer>
     </body>
+    <script>
+        const accordion = document.getElementsByClassName('container');
+
+for (i=0; i<accordion.length; i++) {
+  accordion[i].addEventListener('click', function () {
+    this.classList.toggle('active')
+  })
+}</script>
 </html>
