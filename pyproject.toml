@@ -19,7 +19,6 @@ dependencies = [
     'jinja_markdown=="1.210911"',
     'MarkupSafe>="2.0"',
     'jsonschema~="4.20.0"',
-    'pre-commit=="3.6.0"',
-    'jsonschema2md'
+    'pre-commit=="3.6.0"'
 ]
 dynamic = ["version"]

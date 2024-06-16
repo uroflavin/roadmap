@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/schema",
+    "$schema": "https://json-schema.org/schema",
     "description": "A roadmap represents a high-level plan for your project or team.",
     "type": "object",
     "required": [
