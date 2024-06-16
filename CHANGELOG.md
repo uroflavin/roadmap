@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.6] - 2024-06-16
+- feat(core+html): embed logo as base64 in roadmap html template
+
 ## [0.1.5] - 2024-06-16
 - ref: fix some flake error and adjust complexity level to 34
 - doc: reformating examples
@@ -284,3 +287,4 @@ BREAKING CHANGE
 [0.1.3]: https://github.com/uroflavin/roadmap/pull/97
 [0.1.4]: https://github.com/uroflavin/roadmap/pull/98
 [0.1.5]: https://github.com/uroflavin/roadmap/pull/99
+[0.1.6]: https://github.com/uroflavin/roadmap/pull/100

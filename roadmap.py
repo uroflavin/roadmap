@@ -50,6 +50,9 @@ import hashlib
 # time is used to output rendering timestamp
 import time
 
+# base64 is used to convert image to html embeddable string
+import base64
+
 
 def create_output_folder(path_to_folder: str = ""):
     """
@@ -773,6 +776,24 @@ def parse_commandline_args(parser):
     return args
 
 
+def convert_image_to_html_base64(image_filename:str = ""):
+    """
+    Converts an image file in the given path to html compatible base64 string
+
+    :param image_filename: full path to image file
+    :return: string as html base64 string usable in img-src-tag
+    """
+    try:
+        data = open(image_filename, 'rb').read()  # read bytes from file
+        data_base64 = base64.b64encode(data)  # encode to base64 (bytes)
+        data_base64 = data_base64.decode()  # convert bytes to string
+        image_type = Path(image_filename).suffix[1:]
+        return "data:image/" + image_type + ";base64," + data_base64
+    except FileNotFoundError:
+        logging.error("Could not open image" + image_filename)
+        return ""
+
+
 def main():
     # Init
     parser = argparse.ArgumentParser(description="Process command line arguments.")
@@ -881,6 +902,12 @@ def main():
             env = Environment()
             # Add some extensions for jinja
             env.add_extension(MarkdownExtension)
+            # convert logo to make it embeddable in the html template
+            if "logo" in project:
+                # create path
+                logo_src_path = os.path.join(Path(roadmap_definition_file).parent.absolute(
+                ).resolve(), project["logo"]["filename"])
+                project["logo"]["base64"] = convert_image_to_html_base64(logo_src_path)
 
             for template in templates:
                 logging.info("processing '%s'", os.path.join(template["path"], template["file"]))
