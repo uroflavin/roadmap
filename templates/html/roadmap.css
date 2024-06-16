@@ -1092,6 +1092,7 @@ r-opportunity_enablement_or_risk_reduction {
 }
 .accordion .container.active .content {
 	height: auto;
+    display: contents;
 }
 .accordion .label::before {
 	content: '⇣';
@@ -1105,6 +1106,9 @@ r-opportunity_enablement_or_risk_reduction {
 	font-weight:bolder;
 	font-size:1rem;
 
+}
+.label:hover::before {
+    color:red;
 }
 .accordion .container.active .label::before {
 	content: '⇡';
