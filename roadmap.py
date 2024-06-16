@@ -53,6 +53,7 @@ import time
 # base64 is used to convert image to html embeddable string
 import base64
 
+
 def create_output_folder(path_to_folder: str = ""):
     """
     Create Folder for the roadmap.py output
