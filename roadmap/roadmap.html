@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Roadmap for roadmap.py (0ecbd678/20240616190107)</title>
+        <title>Roadmap for roadmap.py (0ecbd678/20240618220645)</title>
         <style>
             /* Print Style */
 @page {
@@ -1081,20 +1081,17 @@ r-opportunity_enablement_or_risk_reduction {
 /* Accordion */
 .accordion .container {
 	position: relative;
-	
 	margin-top:0.5rem;
 }
 .accordion .label {
 	position: relative;
 	color: black;
 	cursor: pointer;
-
-	height:1.5rem;
+	height:auto;
 }
 .accordion .content {
 	position: relative;
 	height: 0;
-	text-align: justify;
 	overflow: hidden;
 	transition: 0.5s;
 }
@@ -1108,12 +1105,10 @@ r-opportunity_enablement_or_risk_reduction {
 	position: absolute;
 	top: 0.75rem;
 	right: 0;
-
 	transform: translateY(-50%);
-
 	font-weight:bolder;
 	font-size:1rem;
-
+    display: block;
 }
 .label:hover::before {
     color:red;
@@ -2268,7 +2263,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
                 </r-objectives>
         
     
-    <footer><pre>version:0ecbd678/20240616190107</pre></footer>
+    <footer><pre>version:0ecbd678/20240618220645</pre></footer>
     </body>
     <script>
         const accordion = document.getElementsByClassName('container');

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [dev] - 2024-06-18
+- fix(html): accordion text-align justify breaks layout 
+
 ## [0.1.7] - 2024-06-16
 - fix: tooltip is not visible (caused by accordion)
 
