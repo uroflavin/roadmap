@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.8] - 2024-08-18
+- fix(html): accordion text-align justify breaks layout 
+- fix: change accordion to dblclick to prevent accidential open or close
+
 ## [0.1.7] - 2024-06-16
 - fix: tooltip is not visible (caused by accordion)
 
@@ -292,3 +296,4 @@ BREAKING CHANGE
 [0.1.5]: https://github.com/uroflavin/roadmap/pull/99
 [0.1.6]: https://github.com/uroflavin/roadmap/pull/100
 [0.1.7]: https://github.com/uroflavin/roadmap/pull/101
+[0.1.7]: https://github.com/uroflavin/roadmap/pull/102

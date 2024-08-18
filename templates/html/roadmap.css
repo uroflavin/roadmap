@@ -1073,20 +1073,17 @@ r-opportunity_enablement_or_risk_reduction {
 /* Accordion */
 .accordion .container {
 	position: relative;
-	
 	margin-top:0.5rem;
 }
 .accordion .label {
 	position: relative;
 	color: black;
 	cursor: pointer;
-
-	height:1.5rem;
+	height:auto;
 }
 .accordion .content {
 	position: relative;
 	height: 0;
-	text-align: justify;
 	overflow: hidden;
 	transition: 0.5s;
 }
@@ -1100,12 +1097,9 @@ r-opportunity_enablement_or_risk_reduction {
 	position: absolute;
 	top: 0.75rem;
 	right: 0;
-
 	transform: translateY(-50%);
-
 	font-weight:bolder;
 	font-size:1rem;
-
 }
 .label:hover::before {
     color:red;
