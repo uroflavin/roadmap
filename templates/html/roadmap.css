@@ -1081,6 +1081,9 @@ r-opportunity_enablement_or_risk_reduction {
 	cursor: pointer;
 	height:auto;
 }
+.accordion .container.active .label {
+	display: none; /* arrow is not displayed if container is active */
+}
 .accordion .content {
 	position: relative;
 	height: 0;

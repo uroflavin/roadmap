@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.9] - 2024-08-18
+- fix(html): accordion arrow breaks layout: arrow is displayed only if container closed
+
 ## [0.1.8] - 2024-08-18
 - fix(html): accordion text-align justify breaks layout 
 - fix: change accordion to dblclick to prevent accidential open or close
@@ -297,3 +300,4 @@ BREAKING CHANGE
 [0.1.6]: https://github.com/uroflavin/roadmap/pull/100
 [0.1.7]: https://github.com/uroflavin/roadmap/pull/101
 [0.1.8]: https://github.com/uroflavin/roadmap/pull/102
+[0.1.9]: https://github.com/uroflavin/roadmap/pull/104
