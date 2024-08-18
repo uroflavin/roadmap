@@ -137,7 +137,7 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
     subgraph footer {
                 {
                     rank="sink"; 
-                    footer [fontsize=7 shape="box" color="white" label="version:\l0ecbd678/20240818092142\l"];
+                    footer [fontsize=7 shape="box" color="white" label="version:\l0ecbd678/20240818095230\l"];
                 }
             }
 }
