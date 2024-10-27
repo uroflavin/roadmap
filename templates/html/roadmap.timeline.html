@@ -1,5 +1,4 @@
         <h2>Important Dates</h2>
-
             <r-timeline>
                 {% for date, timelineentries in project.group.timeline_by.date.items() %}
                 {% set id = "timeline_grouped_" + loop.index | string %}
@@ -7,10 +6,7 @@
                         <r-date>{{ date }}</r-date>
                         <r-name>
                             {% for timelineentry in timelineentries %}
-                                <r-timeline-item id="{{ timelineentry._id }}">
-                                    <r-name><h3>{{ timelineentry.title }}</h3></r-name>
-                                    <r-description>{% markdown %}{{ timelineentry.description -}}{% endmarkdown %}</r-description>
-                                </r-timeline-item>
+                                {% include "roadmap.timeline.timelinemarker.html" %}
                             {% endfor %}                
                         </r-name>
                     </r-timeline-item>

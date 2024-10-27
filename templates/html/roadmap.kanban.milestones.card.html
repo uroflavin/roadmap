@@ -1,0 +1,28 @@
+                            <div class="card">
+                                {% if "title" in objective %}
+                                <div class="tags">
+                                    <span class="milestone_tag_{{ objective.state|lower }}">{{ objective.title }}</span>
+                                </div>
+                                {% endif -%}
+                                <h4 id="{{ milestone._id  }}">{{  milestone.id + ' - '  if (milestone.title != milestone.id ) }}{{ milestone.title}}</h4>
+                                
+                                    {% markdown %}{{ milestone.description }}{% endmarkdown %}
+                                    
+
+                                    {% if "deliverables" in milestone %}
+                                        <div class="todos">
+                                            <ul>
+                                                {% for deliverable in milestone.deliverables %}
+                                                    <li class="{{ 'done' if (deliverable.state == 'DONE' or deliverable.state == 'SKIP' ) }}">{%- if "requirement" in deliverable -%}<span class="tag {{ deliverable.requirement }}{{ '-inverted' if (deliverable.state == 'DONE' or deliverable.state == 'SKIP' ) }}">{{ deliverable.requirement }}</span>{%- endif %} {%- if "state" in deliverable and deliverable.state != "DONE" and deliverable.state != "SKIP" -%}<span class="tag {{ deliverable.state }}">{{ deliverable.state }}</span>{%- endif %} 
+                                                        {{deliverable.title }}</li>
+                                                {% endfor -%}
+                                            </ul>
+                                        </div>
+                                    {% endif -%}
+
+                                    {% if "reference" in milestone %}
+                                        <div class="reference">
+                                            <a class="card-link" target="_blank" href="{{ milestone.reference.link -}}">{{ milestone.reference.name if milestone.reference.name != "" else milestone.reference.link }}</a>
+                                        </div>
+                                    {% endif -%}
+                            </div>

@@ -1,0 +1,18 @@
+    <h1>{{ project.title }}</h1>
+        <r-project>
+            {% if "logo" in project %}
+                <img src="{{ project.logo.base64 }}" alt="{{ project.logo.copyright_notice }}">
+            {% endif -%}
+            
+            {% if "authors" in project %}
+                {% include "roadmap.authors.html" -%}
+            {% endif -%}
+
+            <r-description>
+                {% markdown %}{{ project.description }}{% endmarkdown %}
+            </r-description>
+
+            {% if "visionstatement" in project %}
+                {% include "roadmap.visionstatement.html" -%}
+            {% endif -%}
+        </r-project>

@@ -1,0 +1,13 @@
+                            <div class="card">
+                                <div class="tags">
+                                    <span class="milestone_tag_{{ milestone.state|lower }}">{{ milestone.title }}</span>
+                                    <span class="{{ deliverable.requirement }}">{{ deliverable.requirement }}</span>
+                                </div>
+                                <h4 id="{{ deliverable._id  }}">{{ deliverable.title}}</h4>
+                                    {% markdown %}{{ deliverable.description }}{% endmarkdown %}
+                                    {% if "reference" in deliverable %}
+                                        <div class="reference">
+                                            <a class="card-link" target="_blank" href="{{ deliverable.reference.link -}}">{{ deliverable.reference.name if deliverable.reference.name != "" else deliverable.reference.link }}</a>
+                                        </div>
+                                    {% endif -%}
+                            </div>

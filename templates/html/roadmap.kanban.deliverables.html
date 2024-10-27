@@ -1,0 +1,43 @@
+            <h2>State of Deliverables</h2>
+                <div class="grid4">
+                    <div class='list todo'>
+                        <h3>TODO</h3>
+                            {% for milestone in project.milestones %}
+                                {% for deliverable in milestone.deliverables %}
+                                    {% if deliverable.state == "TODO" %}
+                                        {% include "roadmap.kanban.deliverables.card.html" -%}
+                                    {% endif -%}
+                                {% endfor -%}
+                            {% endfor -%}
+                    </div>
+                    <div class='list doing'>
+                        <h3>DOING</h3>
+                        {% for milestone in project.milestones %}
+                            {% for deliverable in milestone.deliverables %}
+                                {% if deliverable.state == "DOING" %}
+                                    {% include "roadmap.kanban.deliverables.card.html" -%}
+                                {% endif -%}
+                            {% endfor -%}
+                        {% endfor -%}
+                    </div>
+                    <div class='list done'>
+                        <h3>DONE</h3>
+                        {% for milestone in project.milestones %}
+                            {% for deliverable in milestone.deliverables %}
+                                {% if deliverable.state == "DONE" %}
+                                    {% include "roadmap.kanban.deliverables.card.html" -%}
+                                {% endif -%}
+                            {% endfor -%}
+                        {% endfor -%}
+                    </div>
+                    <div class='list skip'>
+                        <h3>SKIP</h3>
+                        {% for milestone in project.milestones %}
+                            {% for deliverable in milestone.deliverables %}
+                                {% if deliverable.state == "SKIP" %}
+                                    {% include "roadmap.kanban.deliverables.card.html" -%}
+                                {% endif -%}
+                        {% endfor -%}
+                    {% endfor -%}
+                    </div>
+                </div>

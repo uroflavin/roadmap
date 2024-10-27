@@ -1,0 +1,32 @@
+                            <r-keyresult id="{{ keyresult._id }}" data-date="{{ keyresult.date if 'date' in keyresult else keyresult.id  }}">
+                                <r-header>
+                                    <r-name><h5>{{ keyresult.title}}</h5></r-name>
+                                    {% if "requirement" in keyresult %}
+                                        <r-requirement>
+                                            <span class="{{ keyresult.requirement}}{{ '-inverted' if keyresult.state =='DONE' or keyresult.state =='SKIP' or objective.state == 'ACHIEVED' or objective.state == 'SKIP' }}">{{ keyresult.requirement}}</span>
+                                        </r-requirement> 
+                                    {% endif -%}
+                                    
+                                    <r-state>
+                                        <span class="{{ keyresult.state}}{{ '-inverted' if keyresult.state !='DONE' and (objective.state == 'ACHIEVED' or objective.state == 'SKIP' ) }}">{{ keyresult.state}}</span>
+                                    </r-state> 
+                                </r-header>
+                                <r-description>
+                                    {% markdown %}{{ keyresult.description }}{% endmarkdown %}
+                                </r-description>
+
+                                {% if "reference" in keyresult %}
+                                    {% set reference = keyresult.reference %}
+                                    {% include "roadmap.reference.html" -%}
+                                {% endif -%}
+
+                                {% if "todos" in keyresult %}
+                                    {% set todos = keyresult.todos %}
+                                    {% include "roadmap.todos.html" -%}
+                                {% endif -%}
+                                
+                                {% if "quantifiers" in keyresult %}
+                                    {% set quantifiers = keyresult.quantifiers %}
+                                    {% include "roadmap.quantifiers.html" -%}
+                                {% endif -%}
+                            </r-keyresult>

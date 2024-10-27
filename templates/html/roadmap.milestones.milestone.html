@@ -1,0 +1,40 @@
+                    <r-milestone id="{{ milestone._id  }}" class="{{ milestone.state}}">
+                        <r-milestone-id>{{ milestone.id }}</r-milestone-id>
+                        {% if "date" in milestone %}
+                        <r-date>{{ milestone.date}}</r-date>
+                        {% endif -%}
+                        <r-header>
+                            <r-name><h{{- milestone_header_level -}}>{{ milestone.title}}</h{{- milestone_header_level -}}></r-name>
+                            {% if "state" in milestone %}  
+                                <r-state>
+                                    <span class="{{ milestone.state}}">{{ milestone.state}}</span>
+                                </r-state> 
+                            {% endif -%}
+                        </r-header>
+                        <div class="accordion">
+                            <div class="container {{ 'active' if (milestone.state != 'REACHED' and milestone.state != 'SKIP' ) }}">
+                                <div class="label">
+                                    <span>{% markdown %}{{ milestone.description|truncate(60,false,' [...]',0) }}{% endmarkdown %}</span>
+                                </div>
+                                <div class="content">
+                                    <r-description>
+                                        {% markdown %}{{ milestone.description }}{% endmarkdown %}
+                                    </r-description>
+
+                                    {% if "reference" in milestone %}
+                                        {% set reference = milestone.reference %}
+                                        {% include "roadmap.reference.html" -%}
+                                    {% endif -%}
+
+                                    {% if "todos" in milestone %}
+                                        {% set todos = milestone.todos %}
+                                        {% include "roadmap.todos.html" -%}
+                                    {% endif -%}
+
+                                    {% if "deliverables" in milestone %}
+                                        {% include "roadmap.milestones.milestone.deliverables.html" -%}
+                                    {% endif -%}
+                                </div>
+                            </div>
+                        </div>
+                    </r-milestone>
