@@ -3,6 +3,9 @@ Manage your project or team roadmaps in YAML.
 
 roadmap.py itself has a fancy roadmap as an living-example:
 - see the [html version](https://html-preview.github.io/?url=https://raw.githubusercontent.com/uroflavin/roadmap/main/roadmap/roadmap.html)
+- to visualize the progress of your roadmap:
+    - see the [Milestone-Kanban-Board](https://html-preview.github.io/?url=https://raw.githubusercontent.com/uroflavin/roadmap/main/roadmap/kanban/milestones.html)
+    - see the [Deliverables-Kanban-Board](https://html-preview.github.io/?url=https://raw.githubusercontent.com/uroflavin/roadmap/main/roadmap/kanban/deliverables.html)
 - see the rendered [markdown](roadmap/roadmap.md) 
 - and the according definition in [examples/roadmap.yml](examples/roadmap.yml)
 

@@ -121,7 +121,8 @@ span {
     margin-top: 0.5rem;
     text-align: right;
     text-decoration: none;
-  color: var(--link_color);
+    color: var(--link_color);
+    font-size: 0.9rem;
 }
 .card .todos {
     margin: 0;
@@ -136,6 +137,9 @@ span {
     list-style-type:none;
     margin: 0;
     padding: 0;
+}
+.card .todos ul li {
+    font-size: 0.9rem !important;
 }
 .card .todos li.done {
     text-decoration: line-through;

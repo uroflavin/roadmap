@@ -1,3 +1,7 @@
+{% include "roadmap.header.html" -%}
+{% if "title" in project %}
+    {% include "roadmap.project.html" -%}
+{% endif -%}
             <h2>State of Milestones</h2>
                 <div class="grid5">
                     <div class='list idea'>
@@ -49,3 +53,7 @@
                     </div>
                 </div>
 
+
+
+
+{% include "roadmap.footer.html" -%}

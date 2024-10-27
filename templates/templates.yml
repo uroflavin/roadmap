@@ -1,0 +1,18 @@
+- name: Full Roadmap as HTML
+  input: html/roadmap.html
+  output: roadmap.html
+- name: Full Roadmap as CSV-Export
+  input: csv/roadmap.csv
+  output: roadmap.csv
+- name: Full Roadmap as dot-file
+  input: dot/roadmap.dot
+  output: roadmap.dot
+- name: Full Roadmap as markdown-file
+  input: markdown/roadmap.md
+  output: roadmap.md
+- name: HTML-Kanbanboard for Milestones
+  input: html-kanban/roadmap.kanban.milestones.html
+  output: kanban/milestones.html
+- name: HTML-Kanbanboard for Deliverables
+  input: html-kanban/roadmap.kanban.deliverables.html
+  output: kanban/deliverables.html
