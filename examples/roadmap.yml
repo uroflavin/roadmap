@@ -57,6 +57,26 @@ objectives:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/schema/roadmap.json
         name: see README
+    milestones:
+      - title: Test Meilenstein 1
+        state: IDEA
+        deliverables:
+        - title: README
+          state: DONE
+          requirement: MUST
+          date: Q4/2023
+          description: |
+            We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
+          reference:
+            link: https://github.com/uroflavin/roadmap/blob/main/README.md
+            name: see README
+          quantifiers:
+            weighted_shortest_job_first: null
+            cost_of_delay: null
+            user_business_value: 10
+            time_criticality: 0
+            opportunity_enablement_or_risk_reduction: 10
+            jobsize: null
 
   - title: We provide official tooling for most common use cases
     description: |

@@ -1,0 +1,43 @@
+        <r-objective id="{{ objective._id }}">
+            <r-header>
+                {% if "date" in objective %}
+                    <r-date>{{ objective.date}}</r-date>
+                {% endif -%}
+                <r-name><h4>{{ objective.title -}}</h4></r-name>
+                {% if "state" in objective %}    
+                    <r-state>
+                        <span class="{{ objective.state -}}">{{ objective.state -}}</span>
+                    </r-state>
+                {% endif -%}
+            </r-header>
+            <r-description>
+                {% markdown %}{{ objective.description -}}{% endmarkdown %}
+            </r-description>
+            <div class="accordion">
+                <div class="container {{ 'active' if (objective.state != 'ACHIEVED' and objective.state != 'SKIP' ) }}">
+                    <div class="label">
+                        <span>see details...</span>
+                    </div>
+                    <div class="content">
+                        
+                        {% if "reference" in objective %}
+                            {% set reference = objective.reference %}
+                            {% include "roadmap.reference.html" -%}
+                        {% endif -%}
+
+                        {% if "todos" in objective %}
+                            {% set todos = objective.todos %}
+                            {% include "roadmap.todos.html" -%}
+                        {% endif -%}
+
+                        {% if "keyresults" in objective %}
+                            {% include "roadmap.objectives.objective.keyresults.html" -%}
+                        {% endif -%}
+                        
+                        {% if "milestones" in objective %}
+                            {% include "roadmap.objective.milestones.html" -%}
+                        {% endif -%}
+                    </div>
+                </div>
+            </div>
+        </r-objective>

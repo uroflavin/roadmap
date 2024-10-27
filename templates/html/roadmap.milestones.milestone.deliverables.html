@@ -1,0 +1,44 @@
+                                        <r-deliverables>
+                                            {% for deliverable in milestone.deliverables %}
+                                                {% if "state" in deliverable %}
+                                                    {% set deliverable_state = deliverable.state %}
+                                                {% else %}
+                                                    {% set deliverable_state = 'TODO' %}
+                                                {% endif -%}
+                                                <r-deliverable id="{{ deliverable._id }}" class="{{ deliverable_state }}">
+                                                    {% if "date" in deliverable %}
+                                                    <r-date>{{ deliverable.date}}</r-date>
+                                                    {% endif -%}
+                                                    <r-header>
+                                                        <r-name><h4>{{ deliverable.title}}</h4></r-name>
+                                                        {% if "requirement" in deliverable %}
+                                                            <r-requirement>
+                                                                <span class="{{ deliverable.requirement}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.requirement}}</span>
+                                                            </r-requirement>
+                                                        {% endif -%}
+                                                        {% if "state" in deliverable %}
+                                                            <r-state>
+                                                                <span class="{{ deliverable.state}}{{ '-inverted' if (milestone.state == 'REACHED' or milestone.state == 'SKIP' ) }}">{{ deliverable.state}}</span>
+                                                            </r-state>
+                                                        {% endif -%}
+                                                    </r-header>
+                                                    <r-description>
+                                                        {% markdown %}{{ deliverable.description -}}{% endmarkdown %}
+                                                    </r-description>
+                                                    
+                                                    {% if "reference" in deliverable %}
+                                                        {% set reference = deliverable.reference %}
+                                                        {% include "roadmap.reference.html" -%}
+                                                    {% endif -%}
+
+                                                    {% if "todos" in deliverable %}
+                                                        {% set todos = deliverable.todos %}
+                                                        {% include "roadmap.todos.html" -%}
+                                                    {% endif -%}
+                                                    {% if "quantifiers" in deliverable %}
+                                                        {% set quantifiers = deliverable.quantifiers %}
+                                                        {% include "roadmap.quantifiers.html" -%}
+                                                    {% endif -%}
+                                                </r-deliverable>
+                                            {% endfor -%}
+                                        </r-deliverables>

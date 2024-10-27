@@ -1,11 +1,8 @@
         <div class="authors">
             <div class="title">Authored by</div>
             <ul>
-            {% for author in project.authors %}
-                <li class="author">
-                    <div class="name">{{ author.name}}</div>
-                    <div class="contact">{{ author.contact}}</div>
-                </li>
-            {% endfor %}
+                {% for author in project.authors %}
+                    {%- include "roadmap.authors.author.html" -%}
+                {% endfor %}
             </ul>  
         </div>

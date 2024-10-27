@@ -52,6 +52,24 @@ Develop a schema that fulfills the main requirements of the objective
 
 
 
+#### Milestones
+
+##### Test Meilenstein 1 | IDEA
+
+###### [Q4/2023] | README | MUST DONE
+We need to add a README file explaining the purpose of this project and giving some basic examples of its use.
+
+- [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
+
+**_Quantifiers_**
+
+
+- _Cost of Delay_: 20
+
+- _Time Criticality_: 0
+- _Opportunity Enablement / Risk Reduction_: 10
+
+
 
 ### We provide official tooling for most common use cases | COMMITED
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
@@ -382,4 +400,4 @@ Some teams might want to host a version of the renderer on their own website, in
 
 
 ---
-version:0ecbd678/20240818095230
+version:ae1a1246/20241027102902

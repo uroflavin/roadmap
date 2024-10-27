@@ -1,48 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ project.title }} ({{ project.meta.version }}/{{ project.meta.rendertime }})</title>
-        <style>
-            {% include "roadmap.css" -%}
-        </style>
-    </head>
-    <body>
-        <h1>{{ project.title }}</h1>
-        <r-project>
-            {% if "logo" in project %}
-                <img src="{{ project.logo.base64 }}" alt="{{ project.logo.copyright_notice }}">
-            {% endif -%}
-            
-            {% if "authors" in project %}
-                {% include "roadmap.authors.html" -%}
-            {% endif -%}
+{% include "roadmap.header.html" -%}
 
-            <r-description>
-                {% markdown %}{{ project.description }}{% endmarkdown %}
-            </r-description>
+{% if "title" in project %}
+    {% include "roadmap.project.html" -%}
+{% endif -%}
 
-            {% if "visionstatement" in project %}
-                {% include "roadmap.visionstatement.html" -%}
-            {% endif -%}
-        </r-project>
-        
-        {% if "timeline" in project %}
-            {% include "roadmap.timeline.html" -%}
-        {% endif -%}
+{% if "timeline" in project %}
+    {% include "roadmap.timeline.html" -%}
+{% endif -%}
 
-        {% if "milestones" in project %}
-            {% include "roadmap.milestones.html" -%}
-        {% endif -%}
+{% if "milestones" in project %}
+    {% include "roadmap.milestones.html" -%}
+{% endif -%}
 
-        {% if "objectives" in project %}
-            {% include "roadmap.objectives.html" -%}
-        {% endif -%}
-        <footer><pre>version:{{ project.meta.version}}/{{project.meta.rendertime}}</pre></footer>
-    </body>
-    <script>
-        {% include "roadmap.js" -%}
-    </script>
-</html>
+{% if "objectives" in project %}
+    {% include "roadmap.objectives.html" -%}
+{% endif -%}
+
+{% include "roadmap.footer.html" -%}
