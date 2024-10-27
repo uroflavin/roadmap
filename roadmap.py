@@ -86,6 +86,28 @@ def create_output_folder(path_to_folder: str = ""):
         logging.error("output_folder '%s' is not writeable", path_to_folder)
         return False
 
+def read_yml_to_dict(path_to_yml: str = ""):
+    """
+    Read some yml file and return this as a dict
+
+    Return Dict: if conversion to dict was successfully
+    Return None: if conversion failed
+
+    :param str path_to_yml: path/to/your.yml
+    :return: dict on Success, None on Error
+    :rtype: dict
+    """
+    try:
+        with open(path_to_yml, "r") as f:
+            yml_content = yaml.load(f, Loader=yaml.FullLoader)
+            logging.debug("yml_content: %s", yml_content)
+            return yml_content
+    except OSError as err:
+        # in case of an error log file name and error message
+        logging.debug("yml-definition-file '%s' not readable", path_to_yml)
+        logging.debug("Error: %s", err.strerror)
+        raise err
+
 
 def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     """
@@ -98,17 +120,7 @@ def read_roadmap_definition(path_to_roadmap_yml: str = ""):
     :return: dict on Success, None on Error
     :rtype: dict
     """
-    try:
-        with open(path_to_roadmap_yml, "r") as f:
-            project = yaml.load(f, Loader=yaml.FullLoader)
-            logging.debug("project: %s", project)
-            return project
-    except OSError as err:
-        # in case of an error log file name and error message
-        logging.debug("roadmap-definition-file '%s' not readable", path_to_roadmap_yml)
-        logging.debug("Error: %s", err.strerror)
-        raise err
-
+    return read_yml_to_dict(path_to_yml=path_to_roadmap_yml)
 
 def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
     """
@@ -146,30 +158,83 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
         return err, False
 
 
-def find_templates(template_path: str = "", template_known_suffixes: list = None):
+def find_templates(template_path: str = "", template_known_suffixes: list = None, global_output_path: str = ""):
     """
     find all templates in given template_path
 
     Return list of templates
     :param str template_path: directory containing templates
     :param list template_known_suffixes: list of know-suffixes for templates, e.g. html, md, txt
+    :param str global_output_path: global directory for template-rendering-output
     :return: templates
     :rtype: list
     """
     templates = []
-    for dirname, dir_names, filenames in os.walk(template_path):
-        for file in filenames:
-            file_parts = file.split(".")
+    # looking for templates.yml in templates path - this is our entry-point
+    template_yml = Path(template_path + os.sep + "templates.yml")
 
-            if len(file_parts) == 2 and file_parts[0] == "roadmap":
-                file_suffix = file_parts[1]
-                if file_suffix in template_known_suffixes:
-                    templates.append({
-                        "path": dirname + os.sep,
-                        "file": file,
-                        "suffix": file_suffix,
-                        "type": dirname.split("/")[1]
+    if template_yml.is_file():
+        # TODO: Check if template.yml is valid
+
+        # read yml
+        templates_from_yml = read_yml_to_dict(template_yml.absolute())
+
+        for template in templates_from_yml:
+            input_file_parts = template["input"].split(".")
+            
+            input_file = Path(template_path + os.sep + template["input"]).absolute().resolve()
+            input_file_suffix = input_file.suffix.replace(".","")
+
+            input_file_type = input_file.parts[-2]
+            input_file_path = Path(template_path + os.sep + input_file_type).absolute().resolve().as_posix()
+            # if we get some subdir
+            if os.sep in template["output"]:
+                # we need to split everything from right os.sep
+                output_parts = template["output"].split(os.sep)
+                output_file_path = Path(global_output_path + os.sep + os.sep.join(output_parts[0:-1])).resolve().absolute().as_posix()
+                output_file = Path(output_file_path + os.sep + output_parts[-1]  ).resolve().absolute().as_posix()
+            else:
+                output_file_path = Path(global_output_path).absolute().as_posix()
+                output_file = Path(output_file_path + os.sep + template["output"]).resolve().absolute().as_posix()
+            output_file_basename = Path(template["output"]).stem
+            
+
+            if input_file_suffix in template_known_suffixes:
+                templates.append({
+                        "path": input_file_path,
+                        "file": input_file.name,
+                        "output_file": output_file,
+                        "output_file_basename": output_file_basename,
+                        "output_path": output_file_path,
+                        "suffix": input_file_suffix,
+                        "type": input_file_type
                     })
+    else:
+        # We keep the current implementation for backward compability
+        for dirname, dir_names, filenames in os.walk(template_path):
+            for file in filenames:
+                file_parts = file.split(".")
+
+                input_file = Path(file).absolute().resolve()
+                input_file_suffix = input_file.suffix.replace(".","")
+
+                output_parts = file.split(os.sep)
+                output_file_path = Path(global_output_path + os.sep + os.sep.join(output_parts[0:-1])).resolve().absolute().as_posix()
+                output_file = Path(output_file_path + os.sep + output_parts[-1]  ).resolve().absolute().as_posix()
+                output_file_basename = Path(file).stem
+
+                if len(file_parts) == 2 and file_parts[0] == "roadmap":
+                    file_suffix = file_parts[1]
+                    if file_suffix in template_known_suffixes:
+                        templates.append({
+                            "path": dirname + os.sep,
+                            "file": file,
+                            "output_file": output_file,
+                            "output_file_basename": output_file_basename,
+                            "output_path": output_file_path,
+                            "suffix": input_file_suffix,
+                            "type": dirname.split("/")[1]
+                        })
     logging.debug("templates: %s", templates)
 
     return templates
@@ -195,8 +260,7 @@ def process_template(
         environment: Environment = None,
         template: dict = None,
         roadmap_definition_file: str = "",
-        project=None,
-        output_path: str = ""
+        project=None
 ):
     """
     Process the template and write rendered output-data to filesystem.
@@ -209,24 +273,27 @@ def process_template(
     :type roadmap_definition_file: str, optional
     :param project: Roadmap data as a dictionary.
     :type project: dict, optional
-    :param output_path: Path for the rendered templates.
-    :type output_path: str, optional
     :return: None
     """
     # Set default template and environment if not provided
     if environment is None:
         environment = Environment()
     if template is None:
-        template = {"path": "", "file": "", "suffix": "", "type": ""}
+        raise ValueError("Template file not given!")
 
     try:
         # Render the template and write the output file.
         environment.loader = FileSystemLoader(template["path"])
         template_file = environment.get_template(template["file"])
         rendered_template = template_file.render(project=project)
-        output_basename = Path(roadmap_definition_file).stem
-        output_file = os.path.join(
-            output_path, f"{output_basename}.{template['suffix']}")
+        output_basename = template["output_file_basename"]
+        output_file = template["output_file"]
+        output_path = template["output_path"]
+
+        # create directory
+        if not Path(output_path).exists():
+            Path(output_path).mkdir(parents=True, exist_ok=True)
+
         with open(output_file, "w") as f:
             f.write(rendered_template)
 
@@ -235,7 +302,7 @@ def process_template(
             # first check if we have graphviz installed
             if is_graphviz_installed():
                 output_png = os.path.join(
-                    output_path, f"{output_basename}.dot.png")
+                    template["output_path"], f"{output_basename}.dot.png")
                 # log info about converting
                 logging.info("rendering '%s' to '%s'", output_file, output_png)
                 subprocess.check_call(
@@ -850,7 +917,9 @@ def main():
 
             # Find all templates
             templates = find_templates(template_path=config["TEMPLATE_PATH"],
-                                       template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"])
+                                       template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"],
+                                       global_output_path=output_folder)
+            
             # do some preprocessing
             if skip_items is not None:
                 for skip in skip_items.replace(" ", "").split(","):
@@ -912,7 +981,7 @@ def main():
             for template in templates:
                 logging.info("processing '%s'", os.path.join(template["path"], template["file"]))
                 process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
-                                 project=project, output_path=output_folder)
+                                 project=project)
 
             # Copy logo to output path if it exists in the project
             if "logo" in project:
