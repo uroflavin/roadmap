@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.11] - 2024-10-27
+- feat(core): support project-specific templates and kanban-boards for progress-tracking #91
+  This feature implements #91 and supports project-specific templates
+
+  Every known template is stored in a ```templates.yml``` file
+  
+  To make use of the feature, put your ```templates.yml``` into the root of your templates-directory.
+  
+  The location of your templates-directory is defined in ```roadmap.env ``` as ```TEMPLATE_PATH```
+  
+  **This feature is backwards-compatible**: If no ```templates.yml```is found, the template-path is searched for any template starting with *roadmap* and having a suffix, given in ```TEMPLATE_KNOWN_SUFFIXES```, e.g. *roadmap.html*
+
+  Be aware: kanban-boards are only rendered if you make use of templates.yml
+
 ## [0.1.10] - 2024-10-27
 - ref: reorganize prototypes
 - ref: reorganize html-template-structure
@@ -306,3 +320,4 @@ BREAKING CHANGE
 [0.1.8]: https://github.com/uroflavin/roadmap/pull/102
 [0.1.9]: https://github.com/uroflavin/roadmap/pull/104
 [0.1.10]: https://github.com/uroflavin/roadmap/pull/105
+[0.1.11]: https://github.com/uroflavin/roadmap/pull/106
