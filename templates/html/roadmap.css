@@ -894,7 +894,10 @@ r-deliverable > r-date {
 }
 
 r-milestone:nth-child(even) > div > div > div > r-deliverables > r-deliverable > r-date {
-/*r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
+/* 
+THIS is removed to fix #107 and replaced by above line 
+TODO: Check this div div div 
+r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
     left: -12.5rem;
     text-align: left;
 }
