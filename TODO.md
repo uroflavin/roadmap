@@ -10,11 +10,6 @@ This list is a scratchpad during development of a new features to break down som
 - [ ] add involved teams
       involved teams are identified by their tag
 
-- [x] fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
-      date of deliverable is currently displayed right of deliverable, which breaks layout.
-
-- [x] fix(doc): Remove sponsorship by jetbrains, because sponsorship is over
-
 ## Reminder Notes
 The function get_key_value_list() contains a lot of the logic to refactor remove_element().
 
