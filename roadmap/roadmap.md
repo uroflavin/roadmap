@@ -264,7 +264,7 @@ Put some code in roadmap.py to render roadmap as HTML
 ### #M5 | Graphviz | REACHED
 The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
 
-#### [D1] | dot-template | MUST DONE
+#### [01.01.2013] | dot-template | MUST DONE
 Develop a dot-template for graphviz output of the roadmap
 
 - [see SierraSoftworks-Go-Template](https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot)
@@ -290,7 +290,7 @@ Put some code in roadmap.py to render roadmap as dot-file
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 10
 
-#### [D3] | convert dot as png | MAY DONE
+#### [02.01.2013] | convert dot as png | MAY DONE
 Put some code in roadmap.py to convert dot-file to png
 e.g. the generated file roadmap.dot.png can be used in your project description.
 
@@ -306,7 +306,7 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
 ### #M6 | XLS-File | COMMITED
 The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
 
-#### [D1] | csv-template | MUST DOING
+#### [21.01.2013] | csv-template | MUST DOING
 Develop a template for csv output of the roadmap
 csv output should contain all roadmap items, without the meta-information regarding your project.
 
@@ -343,7 +343,7 @@ for each object item the following attributes will be rendered:
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 10
 
-#### [D2] | xls-renderer | MUST TODO
+#### [22.01.2013] | xls-renderer | MUST TODO
 Put some code in roadmap.py to render roadmap as XLS File
 
 
@@ -400,4 +400,4 @@ Some teams might want to host a version of the renderer on their own website, in
 
 
 ---
-version:ae1a1246/20241027165149
+version:ae90a806/20250528192029

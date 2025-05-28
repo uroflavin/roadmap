@@ -312,12 +312,14 @@ milestones:
     description: |
       The Goal is, to implement a dot-file, which is capable to render this yml as graphviz.
     state: REACHED
+    date: 31.01.2013
     deliverables:
     - title: dot-template
       description: |
         Develop a dot-template for graphviz output of the roadmap
       requirement: MUST
       state: DONE
+      date: 01.01.2013
       reference:
         link: https://github.com/SierraSoftworks/roadmap/blob/main/tools/roadmap-graphviz/roadmap.dot
         name: see SierraSoftworks-Go-Template
@@ -346,6 +348,7 @@ milestones:
         e.g. the generated file roadmap.dot.png can be used in your project description.
       requirement: MAY
       state: DONE
+      date: 02.01.2013
       quantifiers:
         weighted_shortest_job_first: null
         cost_of_delay: null
@@ -358,6 +361,7 @@ milestones:
     description: |
       The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
     state: COMMITED
+    date: 28.02.2013
     deliverables:
     - title: csv-template
       description: |
@@ -391,6 +395,7 @@ milestones:
       reference:
         link: https://github.com/uroflavin/roadmap/blob/main/roadmap/roadmap.csv
         name: see roadmap.csv
+      date: 21.01.2013
       quantifiers:
         weighted_shortest_job_first: null
         cost_of_delay: null
@@ -403,6 +408,7 @@ milestones:
         Put some code in roadmap.py to render roadmap as XLS File
       requirement: MUST
       state: TODO
+      date: 22.01.2013
       quantifiers:
         weighted_shortest_job_first: null
         cost_of_delay: null

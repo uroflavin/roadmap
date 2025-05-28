@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 -  see [TODO.md](TODO.md)
 
+## [0.1.12] - 2025-05-28
+- fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
+  date of deliverable is currently displayed right of deliverable, which breaks layout.
+
+- fix(doc): Remove sponsorship by jetbrains, because sponsorship is over
+
 ## [0.1.11] - 2024-10-27
 - feat(core): support project-specific templates and kanban-boards for progress-tracking #91
   This feature implements #91 and supports project-specific templates
@@ -321,3 +327,4 @@ BREAKING CHANGE
 [0.1.9]: https://github.com/uroflavin/roadmap/pull/104
 [0.1.10]: https://github.com/uroflavin/roadmap/pull/105
 [0.1.11]: https://github.com/uroflavin/roadmap/pull/106
+[0.1.12]: https://github.com/uroflavin/roadmap/pull/108
