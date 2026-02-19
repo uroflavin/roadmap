@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
--  see [TODO.md](TODO.md)
+- ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
+- ref: rewrite remove_element() as recursive implementation
+- ref: deduplicate html-kanban CSS/JS via symlinks to html/
+- ref: reorganize project structure (tests/, docs/, config/, .github/)
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
