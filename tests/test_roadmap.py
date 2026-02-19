@@ -4,21 +4,22 @@ import shutil
 from pathlib import Path
 from unittest.mock import patch
 from io import StringIO
-from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, \
-    calculate_ids_for_element_items, is_graphviz_installed, remove_element, calculate_roadmap_version, \
-    calculate_cost_of_delay, calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items, \
-    get_key_value_list, get_filtered_key_value_list
+from roadmap_app.cli import create_output_folder
+from roadmap_app.utils import read_roadmap_definition, calculate_roadmap_version, get_key_value_list, get_filtered_key_value_list
+from roadmap_app.model import (calculate_ids_for_element_items, remove_element, calculate_cost_of_delay,
+                           calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items)
+from roadmap_app.rendering import validate_yaml, find_templates, process_template, is_graphviz_installed
 import os
 
 
 class TestRoadmapFunctions(unittest.TestCase):
     def setUp(self):
         # this folder is used for storing data during test
-        self.test_folder = "tests/test_folder"
+        self.test_folder = os.path.join(os.path.dirname(__file__), "test_folder")
         # this file did not exist
-        self.test_file = "test_file.yml"
+        self.test_file = os.path.join(os.path.dirname(__file__), "test_file.yml")
         # this is an existing roadmap
-        self.test_existing_file = "tests/roadmap.yml"
+        self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
         # this is the version of the existing roadmap
         # if you modify this file, make shure to modify his version.
         # version is calculated using md5 and take the first and last 4 characters

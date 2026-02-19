@@ -4,5 +4,5 @@ repos:
       - id: jsonschema2md
         name: jsonschema2md
         language: script
-        entry: pre-commit.sh
+        entry: .github/pre-commit.sh
         pass_filenames: false
