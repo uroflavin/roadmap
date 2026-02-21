@@ -62,98 +62,138 @@ def is_graphviz_installed():
     return False
 
 
+def _resolve_output_paths(output_name: str, global_output_path: str):
+    """
+    Resolve output file path and directory from an output name.
+
+    :param str output_name: output filename, may contain subdirectories (e.g. 'kanban/milestones.html')
+    :param str global_output_path: global directory for template-rendering-output
+    :return: tuple of (output_file, output_file_path, output_file_basename)
+    :rtype: tuple
+    """
+    if os.sep in output_name:
+        output_parts = output_name.split(os.sep)
+        output_file_path = (Path(global_output_path + os.sep + os.sep.join(output_parts[0:-1]))
+                            .resolve().absolute().as_posix())
+        output_file = (Path(output_file_path + os.sep + output_parts[-1])
+                       .resolve().absolute().as_posix())
+    else:
+        output_file_path = Path(global_output_path).absolute().as_posix()
+        output_file = (Path(output_file_path + os.sep + output_name)
+                       .resolve().absolute().as_posix())
+    output_file_basename = Path(output_name).stem
+    return output_file, output_file_path, output_file_basename
+
+
+def _find_templates_from_manifest(template_path, template_known_suffixes, global_output_path):
+    """
+    Load templates from a templates.yml manifest file.
+
+    :param str template_path: directory containing templates
+    :param list template_known_suffixes: list of known suffixes for templates
+    :param str global_output_path: global directory for template-rendering-output
+    :return: list of template dicts
+    :rtype: list
+    """
+    templates = []
+    template_yml = Path(template_path + os.sep + "templates.yml")
+
+    templates_from_yml = read_yml_to_dict(template_yml.absolute())
+
+    if not isinstance(templates_from_yml, list):
+        logging.error("templates.yml must be a list of template entries")
+        return templates
+
+    for template in templates_from_yml:
+        if not isinstance(template, dict) or "input" not in template or "output" not in template:
+            logging.warning("skipping invalid template entry (missing 'input' or 'output'): %s", template)
+            continue
+
+        input_file = Path(template_path + os.sep + template["input"]).absolute().resolve()
+        input_file_suffix = input_file.suffix.replace(".", "")
+        input_file_type = input_file.parts[-2]
+        input_file_path = Path(template_path + os.sep + input_file_type).absolute().resolve().as_posix()
+
+        output_file, output_file_path, output_file_basename = _resolve_output_paths(
+            template["output"], global_output_path)
+
+        if input_file_suffix in template_known_suffixes:
+            templates.append({
+                "path": input_file_path,
+                "file": input_file.name,
+                "output_file": output_file,
+                "output_file_basename": output_file_basename,
+                "output_path": output_file_path,
+                "suffix": input_file_suffix,
+                "type": input_file_type
+            })
+
+    return templates
+
+
+def _find_templates_from_directory(template_path, template_known_suffixes, global_output_path):
+    """
+    Find templates by walking the template directory (backward compatibility fallback).
+
+    Looks for files matching 'roadmap.<suffix>' pattern.
+
+    :param str template_path: directory containing templates
+    :param list template_known_suffixes: list of known suffixes for templates
+    :param str global_output_path: global directory for template-rendering-output
+    :return: list of template dicts
+    :rtype: list
+    """
+    templates = []
+
+    for dirname, dir_names, filenames in os.walk(template_path):
+        for file in filenames:
+            file_parts = file.split(".")
+
+            input_file = Path(file).absolute().resolve()
+            input_file_suffix = input_file.suffix.replace(".", "")
+
+            output_file, output_file_path, output_file_basename = _resolve_output_paths(
+                file, global_output_path)
+
+            if len(file_parts) == 2 and file_parts[0] == "roadmap":
+                file_suffix = file_parts[1]
+                if file_suffix in template_known_suffixes:
+                    templates.append({
+                        "path": dirname + os.sep,
+                        "file": file,
+                        "output_file": output_file,
+                        "output_file_basename": output_file_basename,
+                        "output_path": output_file_path,
+                        "suffix": input_file_suffix,
+                        "type": dirname.split("/")[1]
+                    })
+
+    return templates
+
+
 def find_templates(template_path: str = "", template_known_suffixes: list = None, global_output_path: str = ""):
     """
-    find all templates in given template_path
+    Find all templates in given template_path.
 
     If a templates.yml manifest exists, it is validated and used as the
     source of template definitions. Each entry must be a dict with at least
     'input' and 'output' keys. Invalid entries are logged and skipped.
     If no manifest exists, the template_path is walked for backward compatibility.
 
-    Return list of templates
     :param str template_path: directory containing templates
-    :param list template_known_suffixes: list of know-suffixes for templates, e.g. html, md, txt
+    :param list template_known_suffixes: list of known suffixes for templates, e.g. html, md, txt
     :param str global_output_path: global directory for template-rendering-output
     :return: templates
     :rtype: list
     """
-    templates = []
-    # looking for templates.yml in templates path - this is our entry-point
     template_yml = Path(template_path + os.sep + "templates.yml")
 
     if template_yml.is_file():
-        # read yml
-        templates_from_yml = read_yml_to_dict(template_yml.absolute())
-
-        # validate templates.yml structure
-        if not isinstance(templates_from_yml, list):
-            logging.error("templates.yml must be a list of template entries")
-            return templates
-
-        for template in templates_from_yml:
-            if not isinstance(template, dict) or "input" not in template or "output" not in template:
-                logging.warning("skipping invalid template entry (missing 'input' or 'output'): %s", template)
-                continue
-            input_file = Path(template_path + os.sep + template["input"]).absolute().resolve()
-            input_file_suffix = input_file.suffix.replace(".", "")
-
-            input_file_type = input_file.parts[-2]
-            input_file_path = Path(template_path + os.sep + input_file_type).absolute().resolve().as_posix()
-            # if we get some subdir
-            if os.sep in template["output"]:
-                # we need to split everything from right os.sep
-                output_parts = template["output"].split(os.sep)
-                output_file_path = (Path(global_output_path + os.sep + os.sep.join(output_parts[0:-1]))
-                                    .resolve().absolute().as_posix())
-                output_file = (Path(output_file_path + os.sep + output_parts[-1])
-                               .resolve().absolute().as_posix())
-            else:
-                output_file_path = Path(global_output_path).absolute().as_posix()
-                output_file = (Path(output_file_path + os.sep + template["output"])
-                               .resolve().absolute().as_posix())
-            output_file_basename = Path(template["output"]).stem
-
-            if input_file_suffix in template_known_suffixes:
-                templates.append({
-                        "path": input_file_path,
-                        "file": input_file.name,
-                        "output_file": output_file,
-                        "output_file_basename": output_file_basename,
-                        "output_path": output_file_path,
-                        "suffix": input_file_suffix,
-                        "type": input_file_type
-                    })
+        templates = _find_templates_from_manifest(template_path, template_known_suffixes, global_output_path)
     else:
-        # We keep the current implementation for backward compability
-        for dirname, dir_names, filenames in os.walk(template_path):
-            for file in filenames:
-                file_parts = file.split(".")
+        templates = _find_templates_from_directory(template_path, template_known_suffixes, global_output_path)
 
-                input_file = Path(file).absolute().resolve()
-                input_file_suffix = input_file.suffix.replace(".", "")
-
-                output_parts = file.split(os.sep)
-                output_file_path = (Path(global_output_path + os.sep + os.sep.join(output_parts[0:-1]))
-                                    .resolve().absolute().as_posix())
-                output_file = (Path(output_file_path + os.sep + output_parts[-1])
-                               .resolve().absolute().as_posix())
-                output_file_basename = Path(file).stem
-
-                if len(file_parts) == 2 and file_parts[0] == "roadmap":
-                    file_suffix = file_parts[1]
-                    if file_suffix in template_known_suffixes:
-                        templates.append({
-                            "path": dirname + os.sep,
-                            "file": file,
-                            "output_file": output_file,
-                            "output_file_basename": output_file_basename,
-                            "output_path": output_file_path,
-                            "suffix": input_file_suffix,
-                            "type": dirname.split("/")[1]
-                        })
     logging.debug("templates: %s", templates)
-
     return templates
 
 

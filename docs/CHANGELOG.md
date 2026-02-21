@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: reorganize project structure (tests/, docs/, config/, .github/)
 - ref: replace string concatenation with f-strings in model.py and cli.py
 - ref: simplify `enrich_project()` -- remove duplicate skip pass, skip once after all enrichment
+- ref: split `find_templates()` into manifest-based and directory-walk functions, extract shared output path logic
 
 ### Fixed
 - fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)
