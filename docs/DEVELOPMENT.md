@@ -196,9 +196,10 @@ Runs on push/PR to `main`:
 
 Triggered by pushing a tag matching `v*`:
 1. Extracts version from the tag
-2. Finalizes `docs/CHANGELOG.md` (replaces `[Unreleased]` header with version + date)
-3. Commits the CHANGELOG update to `main`
-4. Creates a GitHub Release with notes extracted from the CHANGELOG
+2. Extracts release notes from `docs/CHANGELOG.md` (content under the version header)
+3. Creates a GitHub Release with the extracted notes
+
+**Note:** The CHANGELOG must be finalized (version header + compare links) *before* tagging. The action does not modify `docs/CHANGELOG.md` on `main`.
 
 ## Versioning
 
