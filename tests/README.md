@@ -24,7 +24,7 @@ Tests are organized into three files, each mirroring a module in the `src/roadma
 |---|---|---|
 | `tests/test_utils.py` | `roadmap_app.utils` | 5 |
 | `tests/test_model.py` | `roadmap_app.model` | 25 |
-| `tests/test_rendering.py` | `roadmap_app.rendering` | 11 |
+| `tests/test_rendering.py` | `roadmap_app.rendering` | 19 |
 | `tests/test_integration.py` | cross-module (cli, model, rendering, utils) | 16 |
 
 All test classes inherit from `unittest.TestCase`.
@@ -112,9 +112,9 @@ Tests for the data enrichment layer: ID generation, element removal, WSJF/CoD ca
 |---|---|
 | `test_enrich_project` | Full enrichment pipeline: verifies `meta`, IDs on milestones/objectives, `group`, and `as_list` |
 
-## test_rendering.py -- TestRendering (11 tests)
+## test_rendering.py -- TestRendering + TestProcessTemplate (19 tests)
 
-Tests for template discovery, YAML schema validation, and Graphviz detection.
+Tests for template discovery, YAML schema validation, Graphviz detection, and template processing.
 
 ### is_graphviz_installed (1 test)
 
@@ -141,6 +141,19 @@ Tests for template discovery, YAML schema validation, and Graphviz detection.
 | `test_find_templates_without_manifest` | Directory-walk fallback discovers `roadmap.<suffix>` files |
 | `test_find_templates_without_manifest_filters_unknown_suffix` | Directory-walk also filters by known suffixes |
 | `test_find_templates_with_real_templates` | Integration test using the actual `templates/` directory (expects 6 entries) |
+
+### process_template (8 tests)
+
+| Test | Description |
+|---|---|
+| `test_renders_template_to_output_file` | Renders a Jinja2 template with project data and verifies file content |
+| `test_raises_value_error_when_template_is_none` | `ValueError` raised when `template=None` |
+| `test_handles_missing_variable_gracefully` | Undefined variables render as empty string (no crash) |
+| `test_handles_syntax_error_in_template` | Jinja2 syntax error is caught internally; output file not created |
+| `test_creates_output_subdirectory` | Missing output directories are created automatically |
+| `test_uses_default_environment_when_none` | `environment=None` creates a default Jinja2 `Environment` |
+| `test_uses_provided_environment` | A custom `Environment` object is used when provided |
+| `test_template_with_none_project` | `project=None` works for templates with only static content |
 
 ## test_integration.py -- TestIntegration (16 tests)
 
