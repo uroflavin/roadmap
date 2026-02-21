@@ -26,6 +26,13 @@
                                     {% include "roadmap.kanban.milestones.card.html" -%}
                                 {% endif -%}
                             {% endfor -%}
+                            {% for objective in project.objectives %}
+                                {% for milestone in objective.milestones %}
+                                    {% if milestone.state == "PLANNED" %}
+                                        {% include "roadmap.kanban.milestones.card.html" -%}
+                                    {% endif -%}
+                                {% endfor -%}
+                            {% endfor -%}
                     </div>
                     <div class='list committed'>
                         <h3>COMMITTED</h3>
@@ -33,6 +40,13 @@
                                 {% if milestone.state == "COMMITTED" %}
                                     {% include "roadmap.kanban.milestones.card.html" -%}
                                 {% endif -%}
+                            {% endfor -%}
+                            {% for objective in project.objectives %}
+                                {% for milestone in objective.milestones %}
+                                    {% if milestone.state == "COMMITTED" %}
+                                        {% include "roadmap.kanban.milestones.card.html" -%}
+                                    {% endif -%}
+                                {% endfor -%}
                             {% endfor -%}
                     </div>
                     <div class='list reached'>
@@ -42,6 +56,13 @@
                                     {% include "roadmap.kanban.milestones.card.html" -%}
                                 {% endif -%}
                             {% endfor -%}
+                            {% for objective in project.objectives %}
+                                {% for milestone in objective.milestones %}
+                                    {% if milestone.state == "REACHED" %}
+                                        {% include "roadmap.kanban.milestones.card.html" -%}
+                                    {% endif -%}
+                                {% endfor -%}
+                            {% endfor -%}
                     </div>
                     <div class='list skip'>
                         <h3>SKIP</h3>
@@ -49,6 +70,13 @@
                                 {% if milestone.state == "SKIP" %}
                                     {% include "roadmap.kanban.milestones.card.html" -%}
                                 {% endif -%}
+                            {% endfor -%}
+                            {% for objective in project.objectives %}
+                                {% for milestone in objective.milestones %}
+                                    {% if milestone.state == "SKIP" %}
+                                        {% include "roadmap.kanban.milestones.card.html" -%}
+                                    {% endif -%}
+                                {% endfor -%}
                             {% endfor -%}
                     </div>
                 </div>

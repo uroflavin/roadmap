@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - ref: remove Dockerfile (unused, broken since package restructuring; CLI tool doesn't need containerization)
 - ref: remove outdated `docs/TECH_README.md`
+- ref: remove unused Tailwind CSS dev dependency from `templates/` (hill chart prototypes use CDN instead)
 
 ### Added
 - doc: add `docs/DEVELOPMENT.md` as complete developer documentation replacing TECH_README.md
@@ -57,6 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`
 - fix: replace bare `except Exception` with specific exception types (KeyError, TypeError, ValueError, TemplateError, OSError)
 - fix: correct typo "shure" -> "sure" in utils.py
+- fix(template): eliminate spurious blank lines in `markdown/roadmap.quantifiers.md` when quantifier values are missing
+- fix(template): kanban milestones board now shows objective-milestones in all state columns, not just IDEA
 - fix: use `with`-statement for file handle in `convert_image_to_html_base64`
 
 ### Tests
