@@ -167,3 +167,5 @@ cython_debug/
 /templates/node_modules/*
 # Ignore prototypes
 roadmap/prototypes/*
+# Analyse-Dokument (nur lokal)
+docs/ANALYSE.md
