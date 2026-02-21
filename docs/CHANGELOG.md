@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- doc: update release workflow docs in `DEVELOPMENT.md` — action no longer commits CHANGELOG to main
+- fix(ci): remove `Finalize CHANGELOG` step from `release.yml` (already removed in v0.2.0)
+
 ## [0.2.1] - 2026-02-21
 
 ### Fixed
