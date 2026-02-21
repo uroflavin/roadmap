@@ -60,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: correct typo "shure" -> "sure" in utils.py
 - fix(template): eliminate spurious blank lines in `markdown/roadmap.quantifiers.md` when quantifier values are missing
 - fix(template): kanban milestones board now shows objective-milestones in all state columns, not just IDEA
+- fix(template): guard `objective` variable in kanban milestone card to prevent `UndefinedError` for top-level milestones
 - fix: use `with`-statement for file handle in `convert_image_to_html_base64`
 
 ### Tests
