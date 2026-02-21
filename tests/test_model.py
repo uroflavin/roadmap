@@ -1,68 +1,19 @@
 import unittest
-import tempfile
-import shutil
-from pathlib import Path
-from unittest.mock import patch
-from io import StringIO
-from roadmap_app.utils import (read_roadmap_definition, calculate_roadmap_version, get_key_value_list,
-                               get_filtered_key_value_list, create_output_folder)
-from roadmap_app.model import (calculate_ids_for_element_items, remove_element, calculate_cost_of_delay,
-                           calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items,
-                           make_id_from, get_items_grouped_by_date, enrich_project)
-from roadmap_app.rendering import validate_yaml, find_templates, process_template, is_graphviz_installed
 import os
+from roadmap_app.utils import read_roadmap_definition
+from roadmap_app.model import (remove_element, calculate_cost_of_delay,
+                               calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items,
+                               make_id_from, get_items_grouped_by_date, enrich_project)
 
 
-class TestRoadmapFunctions(unittest.TestCase):
+class TestModel(unittest.TestCase):
     def setUp(self):
-        # this folder is used for storing data during test
-        self.test_folder = os.path.join(os.path.dirname(__file__), "test_folder")
-        # this file did not exist
-        self.test_file = os.path.join(os.path.dirname(__file__), "test_file.yml")
         # this is an existing roadmap
         self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
         # this is the version of the existing roadmap
         # if you modify this file, make sure to modify his version.
         # version is calculated using md5 and take the first and last 4 characters
         self.version_existing_roadmap = "880a29cf"
-
-    def test_create_output_folder(self):
-        # Test when the folder does not exist
-        if os.path.exists(self.test_folder):
-            os.rmdir(self.test_folder)
-        self.assertTrue(create_output_folder(self.test_folder))
-
-        # Test when the folder already exists
-        self.assertTrue(create_output_folder(self.test_folder))
-
-        # Clean up after testing
-        if os.path.exists(self.test_folder):
-            os.rmdir(self.test_folder)
-
-    def test_read_roadmap_definition(self):
-        # Test with a non-existing file
-        with self.assertRaises(OSError):
-            read_roadmap_definition("non_existing_file.yml")
-
-        # Test with an existing file
-        with open(self.test_file, 'w') as f:
-            f.write("key: value")
-        self.assertEqual(read_roadmap_definition(self.test_file), {"key": "value"})
-
-        # Clean up after testing
-        if os.path.exists(self.test_file):
-            os.remove(self.test_file)
-
-    @unittest.skipUnless(shutil.which("dot"), "graphviz not installed")
-    def test_is_graphviz_installed(self):
-        # test if graphviz is installed
-        self.assertTrue(is_graphviz_installed())
-
-    def test_roadmap_yml_version_id(self):
-        # test if we get none for non-existing file
-        self.assertIsNone(calculate_roadmap_version(self.test_file))
-        # test if the version id of roadmap fulfills our expectations
-        self.assertEqual(calculate_roadmap_version(self.test_existing_file), self.version_existing_roadmap)
 
     def test_preconditions_in_test_exciting_file(self):
         # this test is to check if your test.yml has some predefined conditions for testing
@@ -268,7 +219,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=0, jobsize=1), 0.00)
         # check for valid input with max values
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=30, jobsize=10), 3.00)
-        # check for valid input with floating result 
+        # check for valid input with floating result
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=3), 5.33)
         # Check for Jobsize 30 (implementing #94)
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=30), 0.53)
@@ -380,53 +331,6 @@ class TestRoadmapFunctions(unittest.TestCase):
         # is wsjf correct
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'], 3)
 
-    def test_get_key_value_list(self):
-        # test if we build a key-value list correctly
-        project = dict(read_roadmap_definition(self.test_existing_file))
-        project_as_list = get_key_value_list(element=project)
-        # project_as_list is list?
-        self.assertIsInstance(project_as_list, list)
-        # first key is 'title'
-        self.assertEqual(project_as_list[0]['key'], "title")
-        # second key is 'description'
-        self.assertEqual(project_as_list[1]['key'], "description")
-        # now test with prefix
-        prefix = "project"
-        project_as_list = get_key_value_list(element=project, prefix_for_key=prefix)
-        # first key is 'title'
-        self.assertEqual(project_as_list[0]['key'], prefix + ".title")
-        # second key is 'description'
-        self.assertEqual(project_as_list[1]['key'], prefix + ".description")
-        # check for keeping index properly
-        project_as_list = get_key_value_list(element=project['milestones'], prefix_for_key='milestones',
-                                             keep_index=True)
-        # our testdata first information for milestone is id
-        self.assertEqual(project_as_list[0]['key'], "milestones.0.id")
-        # our testdata first milestone id is M1
-        self.assertEqual(project_as_list[0]['value'], "M1")
-        # check for error handling
-        project_as_list = get_key_value_list()
-        # we always get an empty key, value list
-        self.assertIsNone(project_as_list[0]['key'])
-        self.assertIsNone(project_as_list[0]['value'])
-
-    def test_get_filtered_key_value_list(self):
-        # test if we filter a key-value list correctly
-        project = dict(read_roadmap_definition(self.test_existing_file))
-        # first, test with a known list
-        project_as_list = get_key_value_list(element=project)
-        filtered_list = get_filtered_key_value_list(key_value_list=project_as_list, filter_for_keys="milestones.title",
-                                                    precise_search=True)
-
-        # filtered_list is list?
-        self.assertIsInstance(filtered_list, list)
-        # first and second key are milestones.title
-        self.assertEqual(filtered_list[0]['key'], "milestones.title")
-        self.assertEqual(filtered_list[1]['key'], "milestones.title")
-        # check for error handling
-        with self.assertRaises(ValueError):
-            get_filtered_key_value_list()
-
     def test_make_id_from_basic(self):
         # test basic id generation
         self.assertEqual(make_id_from("Hello World"), "hello_world")
@@ -474,22 +378,6 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertEqual(get_items_grouped_by_date(None), {})
         self.assertEqual(get_items_grouped_by_date([]), {})
 
-    def test_validate_yaml_valid(self):
-        # test validation with valid roadmap data
-        project = dict(read_roadmap_definition(self.test_existing_file))
-        schema_path = os.path.join(os.path.dirname(__file__), "..", "schema", "roadmap.json")
-        error, is_valid = validate_yaml(roadmap_data=project, path_to_json_schema=schema_path)
-        self.assertIsNone(error)
-        self.assertTrue(is_valid)
-
-    def test_validate_yaml_invalid(self):
-        # test validation with invalid data (missing required fields)
-        invalid_data = {"not_a_valid_key": "value"}
-        schema_path = os.path.join(os.path.dirname(__file__), "..", "schema", "roadmap.json")
-        error, is_valid = validate_yaml(roadmap_data=invalid_data, path_to_json_schema=schema_path)
-        self.assertIsNotNone(error)
-        self.assertFalse(is_valid)
-
     def test_enrich_project(self):
         # test that enrich_project adds all expected computed fields
         project = dict(read_roadmap_definition(self.test_existing_file))
@@ -511,181 +399,6 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertIn("as_list", project)
         self.assertIsInstance(project["as_list"], list)
         self.assertGreater(len(project["as_list"]), 0)
-
-
-    def test_find_templates_with_manifest(self):
-        # test manifest-based template discovery (templates.yml present)
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            # create subdirectory and template file
-            html_dir = os.path.join(template_path, "html")
-            os.makedirs(html_dir)
-            with open(os.path.join(html_dir, "roadmap.html"), "w") as f:
-                f.write("<html>{{ project.title }}</html>")
-
-            # create templates.yml manifest
-            with open(os.path.join(template_path, "templates.yml"), "w") as f:
-                f.write("- name: Test HTML\n  input: html/roadmap.html\n  output: roadmap.html\n")
-
-            suffixes = ["html", "md", "dot", "csv"]
-            templates = find_templates(template_path, suffixes, output_path)
-
-            self.assertIsInstance(templates, list)
-            self.assertEqual(len(templates), 1)
-            t = templates[0]
-            # check all expected keys are present
-            for key in ["path", "file", "output_file", "output_file_basename", "output_path", "suffix", "type"]:
-                self.assertIn(key, t)
-            self.assertEqual(t["file"], "roadmap.html")
-            self.assertEqual(t["suffix"], "html")
-            self.assertEqual(t["type"], "html")
-            self.assertEqual(t["output_file_basename"], "roadmap")
-            self.assertTrue(t["output_file"].endswith("roadmap.html"))
-
-    def test_find_templates_with_manifest_subdirectory_output(self):
-        # test manifest-based discovery with subdirectory in output path (e.g. kanban/milestones.html)
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            html_dir = os.path.join(template_path, "html-kanban")
-            os.makedirs(html_dir)
-            with open(os.path.join(html_dir, "roadmap.kanban.milestones.html"), "w") as f:
-                f.write("<html>kanban</html>")
-
-            with open(os.path.join(template_path, "templates.yml"), "w") as f:
-                f.write("- input: html-kanban/roadmap.kanban.milestones.html\n"
-                        "  output: kanban/milestones.html\n")
-
-            templates = find_templates(template_path, ["html"], output_path)
-
-            self.assertEqual(len(templates), 1)
-            t = templates[0]
-            self.assertEqual(t["file"], "roadmap.kanban.milestones.html")
-            self.assertEqual(t["output_file_basename"], "milestones")
-            self.assertTrue(t["output_path"].endswith("kanban"))
-            self.assertTrue(t["output_file"].endswith("milestones.html"))
-
-    def test_find_templates_with_manifest_filters_unknown_suffix(self):
-        # test that templates with unknown suffixes are excluded
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            txt_dir = os.path.join(template_path, "txt")
-            os.makedirs(txt_dir)
-            with open(os.path.join(txt_dir, "roadmap.txt"), "w") as f:
-                f.write("plain text")
-
-            with open(os.path.join(template_path, "templates.yml"), "w") as f:
-                f.write("- input: txt/roadmap.txt\n  output: roadmap.txt\n")
-
-            # "txt" is not in known suffixes
-            templates = find_templates(template_path, ["html", "md"], output_path)
-            self.assertEqual(len(templates), 0)
-
-    def test_find_templates_with_manifest_skips_invalid_entries(self):
-        # test that invalid manifest entries (missing input/output) are skipped
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            html_dir = os.path.join(template_path, "html")
-            os.makedirs(html_dir)
-            with open(os.path.join(html_dir, "roadmap.html"), "w") as f:
-                f.write("<html></html>")
-
-            with open(os.path.join(template_path, "templates.yml"), "w") as f:
-                f.write("- input: html/roadmap.html\n  output: roadmap.html\n"
-                        "- name: missing output\n  input: html/roadmap.html\n"
-                        "- name: missing input\n  output: roadmap.html\n"
-                        "- just a string\n")
-
-            templates = find_templates(template_path, ["html"], output_path)
-            # only the first valid entry should be returned
-            self.assertEqual(len(templates), 1)
-
-    def test_find_templates_with_manifest_non_list(self):
-        # test that a non-list templates.yml returns empty list
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            with open(os.path.join(template_path, "templates.yml"), "w") as f:
-                f.write("key: value\n")
-
-            templates = find_templates(template_path, ["html"], output_path)
-            self.assertEqual(templates, [])
-
-    def test_find_templates_without_manifest(self):
-        # test directory-walk fallback (no templates.yml)
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            # create files matching roadmap.<suffix> pattern
-            with open(os.path.join(template_path, "roadmap.html"), "w") as f:
-                f.write("<html></html>")
-            with open(os.path.join(template_path, "roadmap.md"), "w") as f:
-                f.write("# markdown")
-            # this file should NOT be found (not matching roadmap.<suffix>)
-            with open(os.path.join(template_path, "other.html"), "w") as f:
-                f.write("<html></html>")
-
-            suffixes = ["html", "md"]
-            templates = find_templates(template_path, suffixes, output_path)
-
-            self.assertIsInstance(templates, list)
-            self.assertEqual(len(templates), 2)
-            found_files = {t["file"] for t in templates}
-            self.assertIn("roadmap.html", found_files)
-            self.assertIn("roadmap.md", found_files)
-            self.assertNotIn("other.html", found_files)
-            # check structure of returned dicts
-            for t in templates:
-                for key in ["path", "file", "output_file", "output_file_basename", "output_path", "suffix", "type"]:
-                    self.assertIn(key, t)
-                self.assertEqual(t["output_file_basename"], "roadmap")
-
-    def test_find_templates_without_manifest_filters_unknown_suffix(self):
-        # test that directory-walk also filters by known suffixes
-        with tempfile.TemporaryDirectory() as tmpdir:
-            template_path = tmpdir
-            output_path = os.path.join(tmpdir, "output")
-            os.makedirs(output_path)
-
-            with open(os.path.join(template_path, "roadmap.txt"), "w") as f:
-                f.write("text")
-
-            templates = find_templates(template_path, ["html", "md"], output_path)
-            self.assertEqual(len(templates), 0)
-
-    def test_find_templates_with_real_templates(self):
-        # test with the actual templates/ directory from the project
-        template_path = os.path.join(os.path.dirname(__file__), "..", "templates")
-        if not os.path.isdir(template_path):
-            self.skipTest("templates/ directory not found")
-
-        with tempfile.TemporaryDirectory() as output_path:
-            suffixes = ["html", "md", "dot", "csv"]
-            templates = find_templates(template_path, suffixes, output_path)
-
-            self.assertIsInstance(templates, list)
-            # the real templates.yml has 6 entries
-            self.assertEqual(len(templates), 6)
-            found_suffixes = {t["suffix"] for t in templates}
-            self.assertIn("html", found_suffixes)
-            self.assertIn("csv", found_suffixes)
-            self.assertIn("dot", found_suffixes)
-            self.assertIn("md", found_suffixes)
 
 
 if __name__ == '__main__':
