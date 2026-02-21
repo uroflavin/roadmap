@@ -96,7 +96,7 @@ def calculate_weighted_shortest_job_first(
     if not (1 <= jobsize):
         raise ValueError("jobsize is not value greater 1 (shortest)")
 
-    return round((cost_of_delay / + jobsize), 2)
+    return round((cost_of_delay / jobsize), 2)
 
 
 def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
