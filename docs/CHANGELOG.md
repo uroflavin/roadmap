@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - test: add tests for `find_templates()` -- manifest-based, directory-walk fallback, suffix filtering, invalid entries, real templates
 - test: split `test_roadmap.py` into `test_utils.py`, `test_model.py`, `test_rendering.py` matching package module structure
 - test: add integration tests (`tests/test_integration.py`) covering full pipeline, cross-module data flow, CLI argument variations, and error scenarios
-- doc: add `docs/TESTING.md` with test structure, fixture notes, and per-test descriptions
+- doc: add `tests/README.md` with test structure, fixture notes, and per-test descriptions
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
