@@ -162,6 +162,7 @@ cython_debug/
 
 /venv
 /.idea
+.vscode/
 /tests/results/*
 # Ignore prototypes
 roadmap/prototypes/*
