@@ -4,7 +4,7 @@ import logging
 import subprocess
 import jsonschema
 from jsonschema import validate
-from jinja2 import FileSystemLoader, Environment
+from jinja2 import FileSystemLoader, Environment, TemplateError
 from pathlib import Path
 
 from .utils import read_yml_to_dict
@@ -208,6 +208,6 @@ def process_template(
         logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file,
                      os.path.join(template["path"], template["file"]), output_file)
 
-    except Exception as err:
+    except (TemplateError, OSError, subprocess.CalledProcessError) as err:
         logging.error("processing template '%s' failed: %s",
                       os.path.join(template["path"], template["file"]), err)

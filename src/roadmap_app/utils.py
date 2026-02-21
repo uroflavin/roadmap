@@ -206,7 +206,7 @@ def calculate_roadmap_version(path_to_roadmap_yml: str = ""):
         # version uses first and last 4 characters from hash
         version = version_hash[0:4] + version_hash[-4:]
         return version
-    except Exception:
+    except OSError:
         return None
 
 

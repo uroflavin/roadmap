@@ -128,7 +128,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                         time_criticality=item["quantifiers"]["time_criticality"],
                         opportunity_enablement_or_risk_reduction=item["quantifiers"][
                             "opportunity_enablement_or_risk_reduction"])
-            except Exception as err:
+            except (KeyError, TypeError, ValueError) as err:
                 # ignore error - we simply don't add quantifiers to item
                 logging.debug("cost_of_delay: calculating failed %s", err)
 
@@ -138,7 +138,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                     item["quantifiers"]["weighted_shortest_job_first"] = calculate_weighted_shortest_job_first(
                         cost_of_delay=item["quantifiers"]["cost_of_delay"],
                         jobsize=item["quantifiers"]["jobsize"])
-            except Exception as err:
+            except (KeyError, TypeError, ValueError) as err:
                 # ignore error - we simply don't add quantifiers to item
                 logging.debug("weighted_shortest_job_first; calculating failed: %s", err)
     return elements.copy()
