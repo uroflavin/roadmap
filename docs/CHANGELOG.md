@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-02-21
+
 ### Breaking Changes
 - fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
   Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
@@ -394,7 +396,8 @@ BREAKING CHANGE
   - if there are some arguments, then they will take precedence over static config
 
 
-[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.1.12...HEAD
+[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/uroflavin/roadmap/compare/v0.1.12...v0.2.0
 [0.1.12]: https://github.com/uroflavin/roadmap/compare/v0.1.11...v0.1.12
 [0.1.11]: https://github.com/uroflavin/roadmap/compare/v0.1.10...v0.1.11
 [0.1.10]: https://github.com/uroflavin/roadmap/compare/v0.1.9...v0.1.10
