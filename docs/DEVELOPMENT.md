@@ -90,7 +90,7 @@ project
   +-- as_list (flat key-value representation)
 ```
 
-**States:** Milestones use `IDEA | PLANNED | COMMITTED | REACHED | SKIP`. Objectives use `IDEA | ACHIEVED`. Deliverables and keyresults have `state` and `requirement` (`MUST | SHOULD | NICE_TO_HAVE`).
+**States:** Milestones use `IDEA | PLANNED | COMMITTED | REACHED | SKIP`. Objectives use `IDEA | PLANNED | COMMITTED | ACHIEVED | SKIP`. Deliverables and keyresults use `TODO | DOING | DONE | SKIP` with requirement `MUST | SHOULD | MAY`.
 
 **ID generation:** All elements get `id` (human-readable), `_id` (sanitized, globally unique via parent chaining), `_parent_id`, and `_previous_id`. Internal computed fields are prefixed with `_`.
 

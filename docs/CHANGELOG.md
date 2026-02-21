@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref(git): delete `master` branch (local + remote), `main` is sole default branch
 
 ### Changed
+- doc: update `CLAUDE.md` -- remove sections duplicated with `DEVELOPMENT.md` (architecture, directory structure, CI)
 - doc: update `docs/TODO.md` -- remove resolved reminder notes, update kanban deliverables status
 - ref: replace PR-links in CHANGELOG with tag-based compare links
 - ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
@@ -63,6 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(template): eliminate spurious blank lines in `markdown/roadmap.quantifiers.md` when quantifier values are missing
 - fix(template): kanban milestones board now shows objective-milestones in all state columns, not just IDEA
 - fix(template): guard `objective` variable in kanban milestone card to prevent `UndefinedError` for top-level milestones
+- fix(doc): correct ObjectiveState, DeliverableState and Requirement values in `docs/DEVELOPMENT.md` to match schema
 - fix: use `with`-statement for file handle in `convert_image_to_html_base64`
 
 ### Tests
