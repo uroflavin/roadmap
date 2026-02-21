@@ -66,6 +66,11 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
     """
     find all templates in given template_path
 
+    If a templates.yml manifest exists, it is validated and used as the
+    source of template definitions. Each entry must be a dict with at least
+    'input' and 'output' keys. Invalid entries are logged and skipped.
+    If no manifest exists, the template_path is walked for backward compatibility.
+
     Return list of templates
     :param str template_path: directory containing templates
     :param list template_known_suffixes: list of know-suffixes for templates, e.g. html, md, txt
@@ -78,12 +83,18 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
     template_yml = Path(template_path + os.sep + "templates.yml")
 
     if template_yml.is_file():
-        # TODO: Check if template.yml is valid
-
         # read yml
         templates_from_yml = read_yml_to_dict(template_yml.absolute())
 
+        # validate templates.yml structure
+        if not isinstance(templates_from_yml, list):
+            logging.error("templates.yml must be a list of template entries")
+            return templates
+
         for template in templates_from_yml:
+            if not isinstance(template, dict) or "input" not in template or "output" not in template:
+                logging.warning("skipping invalid template entry (missing 'input' or 'output'): %s", template)
+                continue
             input_file = Path(template_path + os.sep + template["input"]).absolute().resolve()
             input_file_suffix = input_file.suffix.replace(".", "")
 
