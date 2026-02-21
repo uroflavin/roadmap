@@ -22,37 +22,15 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-          TAG="${GITHUB_REF#refs/tags/v}"
-          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
           echo "tag=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
-          echo "date=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
-
-      - name: Finalize CHANGELOG
-        run: |
-          VERSION="${{ steps.version.outputs.version }}"
-          TAG="${{ steps.version.outputs.tag }}"
-          DATE="${{ steps.version.outputs.date }}"
-          PREV_TAG=$(git tag --sort=-v:refname | grep '^v' | sed -n '2p')
-
-          # Replace [Unreleased] header with version + date, add new Unreleased block
-          sed -i "s/^## \[Unreleased\]/## [Unreleased]\n\n## [$VERSION] - $DATE/" docs/CHANGELOG.md
-
-          # Update unreleased compare link to point to new tag
-          sed -i "s|\[unreleased\]: .*|[unreleased]: https://github.com/${{ github.repository }}/compare/$TAG...HEAD|" docs/CHANGELOG.md
-
-          # Add compare link for the new version (before the previous version's link)
-          if [ -n "$PREV_TAG" ]; then
-            sed -i "/^\[$PREV_TAG\]/i [$VERSION]: https://github.com/${{ github.repository }}/compare/$PREV_TAG...$TAG" docs/CHANGELOG.md
-          fi
 
       - name: Extract release notes from CHANGELOG
         id: notes
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           # Extract content between this version header and the next version header
-          NOTES=$(sed -n "/^## \[$VERSION\]/,/^## \[/{ /^## \[$VERSION\]/d; /^## \[/d; p; }" docs/CHANGELOG.md)
-          # Write to file for gh release
-          echo "$NOTES" > /tmp/release-notes.md
+          sed -n "/^## \[$VERSION\]/,/^## \[/{ /^## \[$VERSION\]/d; /^## \[/d; p; }" docs/CHANGELOG.md > /tmp/release-notes.md
 
       - name: Create GitHub Release
         env:
