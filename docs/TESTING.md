@@ -25,6 +25,7 @@ Tests are organized into three files, each mirroring a module in the `src/roadma
 | `tests/test_utils.py` | `roadmap_app.utils` | 5 |
 | `tests/test_model.py` | `roadmap_app.model` | 25 |
 | `tests/test_rendering.py` | `roadmap_app.rendering` | 11 |
+| `tests/test_integration.py` | cross-module (cli, model, rendering, utils) | 16 |
 
 All test classes inherit from `unittest.TestCase`.
 
@@ -132,6 +133,51 @@ Tests for template discovery, YAML schema validation, and Graphviz detection.
 | `test_find_templates_without_manifest` | Directory-walk fallback discovers `roadmap.<suffix>` files |
 | `test_find_templates_without_manifest_filters_unknown_suffix` | Directory-walk also filters by known suffixes |
 | `test_find_templates_with_real_templates` | Integration test using the actual `templates/` directory (expects 6 entries) |
+
+## test_integration.py -- TestIntegration (16 tests)
+
+Integration tests covering the full pipeline (`main()`), cross-module data flow, CLI argument variations, error scenarios, and conditional Graphviz conversion. Each test uses a temporary directory for output and logfiles to avoid polluting the project directory. Logger handlers are reset in `tearDown()` to prevent cross-test interference.
+
+### Full pipeline via main() (6 tests)
+
+| Test | Description |
+|---|---|
+| `test_main_produces_all_output_files` | Runs `main()` with test fixture; verifies all 6 output files exist and are non-empty |
+| `test_main_html_output_contains_project_data` | HTML output contains project title, authors, milestone/objective titles, version `880a29cf` |
+| `test_main_markdown_output_contains_project_data` | Markdown output contains project title, authors, milestone titles, version |
+| `test_main_csv_output_contains_key_value_pairs` | CSV output contains header, project title, milestone/objective data |
+| `test_main_dot_output_contains_graph_structure` | DOT output contains `digraph` declaration and version |
+| `test_main_kanban_outputs_contain_state_columns` | Kanban HTMLs contain state columns (REACHED, PLANNED) and milestone/deliverable titles |
+
+### CLI argument variations (2 tests)
+
+| Test | Description |
+|---|---|
+| `test_main_skip_items_removes_todos_from_output` | `--skip-items "milestones.todos"` removes todos; milestones remain |
+| `test_main_skip_items_removes_milestones_section` | `--skip-items "milestones"` removes milestones; objectives remain |
+
+### Cross-module data flow (4 tests)
+
+| Test | Description |
+|---|---|
+| `test_validation_enrichment_pipeline` | `read_roadmap_definition()` -> `validate_yaml()` -> `enrich_project()`: IDs, WSJF, meta, grouping correct |
+| `test_enrichment_rendering_pipeline` | Enriched data -> `render_templates()`: all output files created correctly |
+| `test_hierarchical_ids_propagate_correctly` | ID chain: `m1` -> `m1_d1` -> `m1_d1_todo1`, `_parent_id`, `_previous_id` verified |
+| `test_wsjf_computed_for_all_elements` | WSJF/CoD computed for all deliverables and keyresults with quantifiers |
+
+### Error scenarios (3 tests)
+
+| Test | Description |
+|---|---|
+| `test_main_nonexistent_roadmap_file_raises_error` | `ValueError` raised for missing roadmap file |
+| `test_main_nonexistent_env_file_raises_error` | `ValueError` raised for missing environment file |
+| `test_main_invalid_yaml_returns_gracefully` | Invalid YAML (valid YAML but fails schema) -> `main()` returns without output files |
+
+### Graphviz (1 test, conditional)
+
+| Test | Description |
+|---|---|
+| `test_dot_to_png_conversion` | Skipped if `dot` not on PATH; verifies `.dot.png` exists with valid PNG magic bytes |
 
 ## Linting
 
