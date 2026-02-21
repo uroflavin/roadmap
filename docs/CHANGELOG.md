@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: replace string concatenation with f-strings in model.py and cli.py
 - ref: simplify `enrich_project()` -- remove duplicate skip pass, skip once after all enrichment
 - ref: split `find_templates()` into manifest-based and directory-walk functions, extract shared output path logic
+- ref: move `create_output_folder()` from `cli.py` to `utils.py` (I/O helper belongs with other I/O utilities)
+- ref: extract `setup_logging()` and `render_templates()` from `main()`, flatten nesting via early returns
 
 ### Fixed
 - fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)
