@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat(core): add `__version__` to package via `importlib.metadata`
 - feat(ci): add `release.yml` GitHub Action -- finalizes CHANGELOG and creates GitHub Release on tag push
 - feat(ops): add retroactive git tags `v0.0.1` through `v0.1.12` on merge commits
+- ref(git): delete `master` branch (local + remote), `main` is sole default branch
 
 ### Breaking Changes
 - fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
