@@ -266,6 +266,97 @@ class TestIntegration(unittest.TestCase):
                         f"objectives[{o_idx}].keyresults[{k_idx}] missing wsjf"
                     )
 
+    # ── Group 3b: Logo processing pipeline ──
+
+    def test_logo_base64_embedding_and_copy(self):
+        """Integration test for the full logo pipeline:
+        base64 conversion into project dict, embedding in HTML, and file copy to output."""
+        # Create a minimal 1x1 red PNG in a temp directory alongside a roadmap YAML
+        import struct
+        import zlib
+
+        logo_dir = os.path.join(self.tmpdir, "logo_project")
+        os.makedirs(logo_dir)
+
+        # Minimal valid PNG: 1x1 pixel, red
+        def _make_minimal_png():
+            signature = b'\x89PNG\r\n\x1a\n'
+            # IHDR: width=1, height=1, bit_depth=8, color_type=2 (RGB)
+            ihdr_data = struct.pack('>IIBBBBB', 1, 1, 8, 2, 0, 0, 0)
+            ihdr = _make_chunk(b'IHDR', ihdr_data)
+            # IDAT: single row, filter byte 0, then R G B
+            raw = b'\x00\xff\x00\x00'
+            idat = _make_chunk(b'IDAT', zlib.compress(raw))
+            iend = _make_chunk(b'IEND', b'')
+            return signature + ihdr + idat + iend
+
+        def _make_chunk(chunk_type, data):
+            chunk = chunk_type + data
+            return struct.pack('>I', len(data)) + chunk + struct.pack('>I', zlib.crc32(chunk) & 0xffffffff)
+
+        logo_path = os.path.join(logo_dir, "test_logo.png")
+        with open(logo_path, "wb") as f:
+            f.write(_make_minimal_png())
+
+        # Create a roadmap YAML with logo reference
+        roadmap_path = os.path.join(logo_dir, "roadmap.yml")
+        with open(roadmap_path, "w") as f:
+            f.write(
+                "title: Logo Test Project\n"
+                "description: Testing logo pipeline\n"
+                "logo:\n"
+                "  filename: test_logo.png\n"
+                "  copyright_notice: Test Copyright\n"
+                "authors:\n"
+                "  - name: Tester\n"
+                "milestones:\n"
+                "  - title: M1\n"
+                "    description: Milestone 1\n"
+                "    state: REACHED\n"
+                "    deliverables:\n"
+                "      - title: D1\n"
+                "        state: DONE\n"
+                "        requirement: MUST\n"
+                "objectives:\n"
+                "  - title: O1\n"
+                "    description: Objective 1\n"
+                "    state: ACTIVE\n"
+                "    keyresults:\n"
+                "      - title: KR1\n"
+                "        state: DONE\n"
+            )
+
+        # Run the pipeline
+        from dotenv import dotenv_values
+        project = dict(read_roadmap_definition(roadmap_path))
+        enrich_project(project, skip_items=None, roadmap_definition_file=roadmap_path)
+
+        config = dotenv_values(self.env_file)
+        config["LOGFILE"] = os.path.join(self.tmpdir, "roadmap.log")
+        output_folder = os.path.join(self.tmpdir, "output") + os.sep
+        os.makedirs(output_folder, exist_ok=True)
+
+        render_templates(project, config, output_folder, roadmap_path)
+
+        # 1. Base64 was injected into the project dict
+        self.assertIn("base64", project["logo"])
+        self.assertTrue(project["logo"]["base64"].startswith("data:image/png;base64,"))
+
+        # 2. HTML output contains the base64 logo
+        html_path = os.path.join(output_folder, "roadmap.html")
+        with open(html_path, "r") as f:
+            html = f.read()
+        self.assertIn("data:image/png;base64,", html)
+        self.assertIn("Test Copyright", html)
+
+        # 3. Logo file was copied to output directory
+        copied_logo = os.path.join(output_folder, "test_logo.png")
+        self.assertTrue(os.path.exists(copied_logo), "Logo was not copied to output directory")
+        # Verify it's a valid PNG (magic bytes)
+        with open(copied_logo, "rb") as f:
+            magic = f.read(4)
+        self.assertEqual(magic, b'\x89PNG')
+
     # ── Group 4: Error scenarios ──
 
     def test_main_nonexistent_roadmap_file_raises_error(self):

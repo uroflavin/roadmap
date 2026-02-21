@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: remove unused Tailwind CSS dev dependency from `templates/` (hill chart prototypes use CDN instead)
 
 ### Added
+- test: add integration test for logo pipeline (base64 embedding in HTML, file copy to output)
 - test: add tests for `objective.milestones` nested milestone IDs and deliverables
 - test: add tests for `visionstatement` presence after enrichment and in `as_list`
 - test: add tests for `convert_image_to_html_base64()` success and file-not-found cases
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref(template): quote CSV header and keys, double-escape quotes in CSV template for RFC 4180 compliance
 
 ### Fixed
+- fix(doc): correct `docs/wsjf.md` typos — `cost_of_delay` range "0 to 0" → "0 to 30", `roadmap.jsoon` → `roadmap.json`
 - fix: catch `FileNotFoundError` in `is_graphviz_installed()` when `dot` binary is not on PATH
 - fix(schema): correct typo "roadmap.Best fit" → "roadmap. Best fit" in logo description
 - fix(schema): correct typo "project pr product" → "project or product" in visionstatement description
