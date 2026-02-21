@@ -52,7 +52,9 @@ def calculate_cost_of_delay(
     if not isinstance(time_criticality, int):
         raise ValueError(f"time_criticality is type '{type(time_criticality)}' expect int")
     if not isinstance(opportunity_enablement_or_risk_reduction, int):
-        raise ValueError(f"opportunity_enablement_or_risk_reduction is type '{type(opportunity_enablement_or_risk_reduction)}' expect int")
+        raise ValueError(
+            f"opportunity_enablement_or_risk_reduction is type "
+            f"'{type(opportunity_enablement_or_risk_reduction)}' expect int")
     # value between 0 (lowest) and 10 (highest)
     if not (0 <= user_business_value <= 10):
         raise ValueError("user_business_value is not value between 0 (lowest) and 10 (highest)")
