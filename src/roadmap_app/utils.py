@@ -226,3 +226,36 @@ def convert_image_to_html_base64(image_filename: str = ""):
     except FileNotFoundError:
         logging.error(f"Could not open image {image_filename}")
         return ""
+
+
+def create_output_folder(path_to_folder: str = ""):
+    """
+    Create Folder for the roadmap.py output
+    If path_to_folder exist, nothing happens
+
+    Return True: if folder is writeable
+    Return False: if folder is not writeable
+
+    :param str path_to_folder: Target folder
+    :return: True on Success, False on Error
+    :rtype: bool
+    """
+    # check if path exist
+    output_folder = Path(path_to_folder)
+    if not output_folder.exists():
+        try:
+            output_folder.mkdir(parents=False, exist_ok=True)
+        # FileNotFoundError is thrown if some parts of path are not present
+        except FileNotFoundError as err:
+            logging.error(
+                "some folders for output_folder '%s' did not exist", path_to_folder)
+            logging.error(err)
+            return False
+
+    # write-access?
+    if output_folder.stat().st_mode & 0o200:
+        logging.debug("output_folder '%s' is writeable", path_to_folder)
+        return True
+    else:
+        logging.error("output_folder '%s' is not writeable", path_to_folder)
+        return False

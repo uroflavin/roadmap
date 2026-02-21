@@ -4,8 +4,8 @@ import shutil
 from pathlib import Path
 from unittest.mock import patch
 from io import StringIO
-from roadmap_app.cli import create_output_folder
-from roadmap_app.utils import read_roadmap_definition, calculate_roadmap_version, get_key_value_list, get_filtered_key_value_list
+from roadmap_app.utils import (read_roadmap_definition, calculate_roadmap_version, get_key_value_list,
+                               get_filtered_key_value_list, create_output_folder)
 from roadmap_app.model import (calculate_ids_for_element_items, remove_element, calculate_cost_of_delay,
                            calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items,
                            make_id_from, get_items_grouped_by_date, enrich_project)
