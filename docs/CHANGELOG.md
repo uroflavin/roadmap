@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: replace string concatenation with f-strings in model.py and cli.py
 - fix: correct typo "shure" -> "sure" in utils.py
 - fix: use `with`-statement for file handle in `convert_image_to_html_base64`
+- test: fix `assertRaises` blocks -- each invalid call gets its own block
+- test: make graphviz test conditional with `@skipUnless`
+- test: add tests for `make_id_from()`, `get_items_grouped_by_date()`, `validate_yaml()`, `enrich_project()`
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
