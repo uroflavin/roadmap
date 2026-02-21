@@ -224,7 +224,12 @@ def process_template(
 
     try:
         # Render the template and write the output file.
-        environment.loader = FileSystemLoader(template["path"])
+        search_paths = [template["path"]]
+        # Add html/ sibling directory as fallback for shared assets (CSS, JS)
+        html_path = str(Path(template["path"]).parent / "html")
+        if html_path != template["path"] and Path(html_path).is_dir():
+            search_paths.append(html_path)
+        environment.loader = FileSystemLoader(search_paths)
         template_file = environment.get_template(template["file"])
         rendered_template = template_file.render(project=project)
         output_basename = template["output_file_basename"]

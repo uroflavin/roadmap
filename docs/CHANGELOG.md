@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
 - ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
 - ref: rewrite remove_element() as recursive implementation
-- ref: deduplicate html-kanban CSS/JS via symlinks to html/
+- ref: replace html-kanban CSS/JS symlinks with Jinja2 fallback search path (cross-platform compatible)
 - ref: reorganize project structure (tests/, docs/, config/, .github/)
 - ref: replace string concatenation with f-strings in model.py and cli.py
 - ref: simplify `enrich_project()` -- remove duplicate skip pass, skip once after all enrichment
