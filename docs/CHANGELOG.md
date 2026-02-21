@@ -45,6 +45,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: simplify CI workflow to `pip install -e ".[dev]"`
 
 ### Fixed
+- fix(template): remove stray literal "5" after WSJF value in `html/roadmap.quantifiers.html`
+- fix(template): add missing `</td>` closing tag for Cost of Delay cell in `html/roadmap.quantifiers.html`
+- fix(template): correct wrong condition in `markdown/roadmap.quantifiers.md` (checked `jobsize` instead of `user_business_value`)
+- fix(template): correct typo "Importand" → "Important" in `markdown/roadmap.md`
+- fix(template): move `<script>` tag inside `<body>` in `html/roadmap.footer.html` and `html-kanban/roadmap.footer.html`
+- fix(template): rename CSS class/variable `commited` → `committed` in kanban CSS, main CSS, and kanban HTML template
 - fix: wrap long line in `calculate_cost_of_delay()` to comply with flake8 max-line-length 127
 - fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)
 - doc: add usage documentation to `templates.yml`

@@ -1,11 +1,11 @@
         <r-quantifiers>
             {% if 'weighted_shortest_job_first' in quantifiers and quantifiers.weighted_shortest_job_first != None %}
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  {{  quantifiers.weighted_shortest_job_first }}5<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  {{  quantifiers.weighted_shortest_job_first }}<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>{{  quantifiers.jobsize }}</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>{{ quantifiers.cost_of_delay }}</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>{{ quantifiers.cost_of_delay }}</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>{{ quantifiers.user_business_value }}</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>{{ quantifiers.time_criticality }}</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>{{ quantifiers.opportunity_enablement_or_risk_reduction }}</td></tr>

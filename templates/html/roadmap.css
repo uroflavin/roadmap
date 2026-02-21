@@ -41,7 +41,7 @@
     --color_state_todo: var(--color_todo);
     --color_state_idea: var(--color_todo);
     --color_state_planned: #E0AF2F;
-    --color_state_commited: #63B2EB;
+    --color_state_committed: #63B2EB;
     --color_state_doing: var(--color_doing);
     --color_state_reached: var(--color_done);
     --color_state_achieved: var(--color_done);
@@ -369,14 +369,14 @@ span.PLANNED-inverted {
     color: var(--color_state_planned);;
 }
 span.COMMITTED {
-    border: 1px solid var(--color_state_commited);
-    background-color: var(--color_state_commited);
+    border: 1px solid var(--color_state_committed);
+    background-color: var(--color_state_committed);
     color: var(--color_state__text);
 }
 span.COMMITTED-inverted {
-    border: 1px solid var(--color_state_commited);
+    border: 1px solid var(--color_state_committed);
     background-color: var(--color_state__text);
-    color: var(--color_state_commited);
+    color: var(--color_state_committed);
 }
 span.DOING {
     border: 1px solid var(--color_state_doing);
@@ -486,7 +486,7 @@ r-milestone.PLANNED-inverted > r-date {
 }
 r-milestone.COMMITTED > r-date,
 r-milestone.COMMITTED-inverted > r-date {
-    color: var(--color_state_commited);
+    color: var(--color_state_committed);
 }
 r-milestone.REACHED > r-date,
 r-milestone.REACHED-inverted > r-date  {

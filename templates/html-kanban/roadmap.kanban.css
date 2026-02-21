@@ -4,7 +4,7 @@
 :root {
     --color_state_idea_text: white;
     --color_state_planned_text: white;
-    --color_state_commited_text: white;
+    --color_state_committed_text: white;
     --color_state_reached_text: white;
     --color_state_skip_text: white;
 
@@ -157,13 +157,13 @@ span {
     background-color: var(--color_state_planned);
     color: var(--color_state_planned_text);
 }
-.list.commited h3 {
-    background-color: var(--color_state_commited);
-    color: var(--color_state_commited_text);
+.list.committed h3 {
+    background-color: var(--color_state_committed);
+    color: var(--color_state_committed_text);
 }
 .list.doing h3 {
     background-color: var(--color_state_doing);
-    color: var(--color_state_commited_text);
+    color: var(--color_state_committed_text);
 }
 .list.reached h3 {
     background-color: var(--color_state_reached);
@@ -291,13 +291,13 @@ span.m1 {
     background-color: var(--color_state_planned);
     color: var(--color_state_planned_text);
 }
-.milestone_tag_commited {
-    background-color: var(--color_state_commited);
-    color: var(--color_state_commited_text);
+.milestone_tag_committed {
+    background-color: var(--color_state_committed);
+    color: var(--color_state_committed_text);
 }
 .milestone_tag_doing {
     background-color: var(--color_state_doing);
-    color: var(--color_state_commited_text);
+    color: var(--color_state_committed_text);
 }
 .milestone_tag_reached {
     background-color: var(--color_state_reached);

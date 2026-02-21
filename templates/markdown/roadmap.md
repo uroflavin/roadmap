@@ -16,7 +16,7 @@
 {% endfor %}
 {% endif -%}
 {%- if "timeline" in project -%}
-## Importand Dates
+## Important Dates
 {% for date, timelineentries in project.group.timeline_by.date.items() %}
 - **{{ date }}**{% for timelineentry in timelineentries %}
     - <u>{{ timelineentry.title }}</u>
