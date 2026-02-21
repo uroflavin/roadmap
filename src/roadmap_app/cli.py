@@ -155,6 +155,6 @@ def main():
             logging.info("roadmap conversion finished")
 
         else:
-            logging.error(roadmap_definition_file + " contains no valid YAML-data - see logfile for details")
+            logging.error(f"{roadmap_definition_file} contains no valid YAML-data - see logfile for details")
     else:
-        logging.error("could not create '" + output_folder + "' - see logfile for details")
+        logging.error(f"could not create '{output_folder}' - see logfile for details")

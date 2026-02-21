@@ -48,12 +48,11 @@ def calculate_cost_of_delay(
     """
     # check if we got integers
     if not isinstance(user_business_value, int):
-        raise ValueError("user_business_value is type '" + str(type(user_business_value)) + "' expect int")
+        raise ValueError(f"user_business_value is type '{type(user_business_value)}' expect int")
     if not isinstance(time_criticality, int):
-        raise ValueError("time_criticality is type '" + str(type(time_criticality)) + "' expect int")
+        raise ValueError(f"time_criticality is type '{type(time_criticality)}' expect int")
     if not isinstance(opportunity_enablement_or_risk_reduction, int):
-        raise ValueError("opportunity_enablement_or_risk_reduction is type '" + str(
-            type(opportunity_enablement_or_risk_reduction)) + "' expect int")
+        raise ValueError(f"opportunity_enablement_or_risk_reduction is type '{type(opportunity_enablement_or_risk_reduction)}' expect int")
     # value between 0 (lowest) and 10 (highest)
     if not (0 <= user_business_value <= 10):
         raise ValueError("user_business_value is not value between 0 (lowest) and 10 (highest)")
@@ -86,9 +85,9 @@ def calculate_weighted_shortest_job_first(
     """
     # check if we got integers
     if not isinstance(cost_of_delay, int):
-        raise ValueError("cost_of_delay is type '" + str(type(cost_of_delay)) + "' expect int")
+        raise ValueError(f"cost_of_delay is type '{type(cost_of_delay)}' expect int")
     if not isinstance(jobsize, int):
-        raise ValueError("jobsize is type '" + str(type(jobsize)) + "' expect int")
+        raise ValueError(f"jobsize is type '{type(jobsize)}' expect int")
     # value between 0 (lowest) and 30 (highest)
     if not (0 <= cost_of_delay <= 30):
         raise ValueError("cost_of_delay is not value between 0 (lowest) and 30 (highest)")
