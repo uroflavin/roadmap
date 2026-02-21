@@ -10,10 +10,6 @@ class TestModel(unittest.TestCase):
     def setUp(self):
         # this is an existing roadmap
         self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
-        # this is the version of the existing roadmap
-        # if you modify this file, make sure to modify his version.
-        # version is calculated using md5 and take the first and last 4 characters
-        self.version_existing_roadmap = "880a29cf"
 
     def test_preconditions_in_test_exciting_file(self):
         # this test is to check if your test.yml has some predefined conditions for testing

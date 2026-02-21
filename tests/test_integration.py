@@ -17,7 +17,6 @@ class TestIntegration(unittest.TestCase):
         self.schema_path = os.path.join(os.path.dirname(__file__), "..", "schema", "roadmap.json")
         self.env_file = os.path.join(os.path.dirname(__file__), "..", "config", "roadmap.env")
         self.template_path = os.path.join(os.path.dirname(__file__), "..", "templates")
-        self.version_existing_roadmap = "880a29cf"
         self.tmpdir = tempfile.mkdtemp()
 
     def tearDown(self):

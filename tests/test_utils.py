@@ -12,10 +12,6 @@ class TestUtils(unittest.TestCase):
         self.test_file = os.path.join(os.path.dirname(__file__), "test_file.yml")
         # this is an existing roadmap
         self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
-        # this is the version of the existing roadmap
-        # if you modify this file, make sure to modify his version.
-        # version is calculated using md5 and take the first and last 4 characters
-        self.version_existing_roadmap = "880a29cf"
 
     def test_create_output_folder(self):
         # Test when the folder does not exist

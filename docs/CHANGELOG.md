@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - test: split `test_roadmap.py` into `test_utils.py`, `test_model.py`, `test_rendering.py` matching package module structure
 - test: add integration tests (`tests/test_integration.py`) covering full pipeline, cross-module data flow, CLI argument variations, and error scenarios
 - doc: add `tests/README.md` with test structure, fixture notes, and per-test descriptions
+- test: centralize expected roadmap version in `tests/conftest.py` (autouse fixture), remove duplication from 3 test files
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even

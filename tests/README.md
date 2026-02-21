@@ -31,7 +31,15 @@ All test classes inherit from `unittest.TestCase`.
 
 ### Test Fixture
 
-Most tests rely on `tests/roadmap.yml`, a sample roadmap file with known properties. Changes to this file will break the hardcoded version assertion (`880a29cf`). If you modify the fixture, update the expected version accordingly (first 4 + last 4 hex chars of the MD5 hash).
+Most tests rely on `tests/roadmap.yml`, a sample roadmap file with known properties. The expected version constant is defined centrally in `tests/conftest.py` as `EXPECTED_ROADMAP_VERSION` and injected into all test instances via an autouse fixture (`self.version_existing_roadmap`).
+
+If you modify the fixture file, update the constant in `tests/conftest.py`:
+
+1. Compute the MD5 hash of the file:
+   - Linux: `md5sum tests/roadmap.yml`
+   - macOS: `md5 -q tests/roadmap.yml`
+2. Take the first 4 and last 4 hex characters of the hash.
+3. Update `EXPECTED_ROADMAP_VERSION` in `tests/conftest.py`.
 
 ## test_utils.py -- TestUtils (5 tests)
 
