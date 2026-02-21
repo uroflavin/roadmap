@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: remove unused Tailwind CSS dev dependency from `templates/` (hill chart prototypes use CDN instead)
 
 ### Added
+- doc: add `docs/DECISION.md` with ADR-001 (keep `get_key_value_list()` and `remove_element()` separate)
 - doc: add `docs/DEVELOPMENT.md` as complete developer documentation replacing TECH_README.md
 - feat(build): add `setuptools-scm` for git-tag-based versioning (`pyproject.toml`)
 - feat(core): add `__version__` to package via `importlib.metadata`
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref(git): delete `master` branch (local + remote), `main` is sole default branch
 
 ### Changed
+- doc: update `docs/TODO.md` -- remove resolved reminder notes, update kanban deliverables status
 - ref: replace PR-links in CHANGELOG with tag-based compare links
 - ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
 - ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
