@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: deduplicate html-kanban CSS/JS via symlinks to html/
 - ref: reorganize project structure (tests/, docs/, config/, .github/)
 - ref: replace string concatenation with f-strings in model.py and cli.py
+- ref: simplify `enrich_project()` -- remove duplicate skip pass, skip once after all enrichment
 
 ### Fixed
 - fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`

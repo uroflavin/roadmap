@@ -305,11 +305,6 @@ def enrich_project(project, skip_items, roadmap_definition_file):
     logging.info("version of roadmap.yml is '%s'", project['meta']["version"])
     logging.info("rendering time '%s'", project['meta']["rendertime"])
 
-    # preprocessing: remove skipped elements
-    if skip_items is not None:
-        for skip in skip_items.replace(" ", "").split(","):
-            remove_element(skip, project=project)
-
     # placeholders for grouping - will be removed if section is absent
     project["group"] = {
         "timeline_by": {"date": None},
@@ -334,7 +329,7 @@ def enrich_project(project, skip_items, roadmap_definition_file):
     if "releases" in project:
         project['releases'] = calculate_ids_for_element_items(project['releases'], prefix="Release")
 
-    # postprocessing: remove skipped elements again (to catch computed fields)
+    # remove skipped elements after all enrichment is complete
     if skip_items is not None:
         for skip in skip_items.replace(" ", "").split(","):
             remove_element(skip, project=project)
