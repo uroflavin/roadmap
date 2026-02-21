@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: rewrite remove_element() as recursive implementation
 - ref: deduplicate html-kanban CSS/JS via symlinks to html/
 - ref: reorganize project structure (tests/, docs/, config/, .github/)
+- fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`
 - fix: replace bare `except Exception` with specific exception types (KeyError, TypeError, ValueError, TemplateError, OSError)
 - ref: replace string concatenation with f-strings in model.py and cli.py
 - fix: correct typo "shure" -> "sure" in utils.py
