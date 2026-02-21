@@ -109,9 +109,6 @@ Next, create a folder for the rendered output your own directory, e.g. named *ro
 
 There you have a good starting point for your own project.
 
-For advanced users, there is also a [dockerfile](Dockerfile) to run everything inside a container.
-See [TECH_README.md](TECH_README.md) for the details.
-
 #### Commandline Options
 To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
 

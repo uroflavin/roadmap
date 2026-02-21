@@ -7,17 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking Changes
+- fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
+  Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
+  Affected: Objectives and Milestones. Schema validation will fail otherwise.
+
+### Removed
+- ref: remove Dockerfile (unused, broken since package restructuring; CLI tool doesn't need containerization)
+- ref: remove outdated `docs/TECH_README.md`
+
 ### Added
+- doc: add `docs/DEVELOPMENT.md` as complete developer documentation replacing TECH_README.md
 - feat(build): add `setuptools-scm` for git-tag-based versioning (`pyproject.toml`)
 - feat(core): add `__version__` to package via `importlib.metadata`
 - feat(ci): add `release.yml` GitHub Action -- finalizes CHANGELOG and creates GitHub Release on tag push
 - feat(ops): add retroactive git tags `v0.0.1` through `v0.1.12` on merge commits
 - ref(git): delete `master` branch (local + remote), `main` is sole default branch
-
-### Breaking Changes
-- fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
-  Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
-  Affected: Objectives and Milestones. Schema validation will fail otherwise.
 
 ### Changed
 - ref: replace PR-links in CHANGELOG with tag-based compare links
