@@ -74,7 +74,7 @@ def get_key_value_list(element=None, key_value_list: list = None, prefix_for_key
     elif prefix_for_key is not None and prefix_for_key[-1] != ".":
         prefix_for_key += "."
 
-    # make shure to have a list
+    # make sure to have a list
     if key_value_list is None:
         key_value_list = list()
 
@@ -165,7 +165,7 @@ def get_filtered_key_value_list(element=None, key_value_list: list = None, prefi
         filter_key = filter_item.strip(" ")
         # we iterate over our original list
         for item in key_value_list:
-            # make shure we have 'key' in our list
+            # make sure we have 'key' in our list
             if 'key' in item:
                 if precise_search:
                     # check the exact key
@@ -218,11 +218,11 @@ def convert_image_to_html_base64(image_filename: str = ""):
     :return: string as html base64 string usable in img-src-tag
     """
     try:
-        data = open(image_filename, 'rb').read()  # read bytes from file
-        data_base64 = base64.b64encode(data)  # encode to base64 (bytes)
-        data_base64 = data_base64.decode()  # convert bytes to string
+        with open(image_filename, 'rb') as f:
+            data = f.read()
+        data_base64 = base64.b64encode(data).decode()
         image_type = Path(image_filename).suffix[1:]
-        return "data:image/" + image_type + ";base64," + data_base64
+        return f"data:image/{image_type};base64,{data_base64}"
     except FileNotFoundError:
-        logging.error("Could not open image" + image_filename)
+        logging.error(f"Could not open image {image_filename}")
         return ""
