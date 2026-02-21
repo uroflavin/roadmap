@@ -7,12 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- feat(build): add `setuptools-scm` for git-tag-based versioning (`pyproject.toml`)
+- feat(core): add `__version__` to package via `importlib.metadata`
+- feat(ci): add `release.yml` GitHub Action -- finalizes CHANGELOG and creates GitHub Release on tag push
+- feat(ops): add retroactive git tags `v0.0.1` through `v0.1.12` on merge commits
+
 ### Breaking Changes
 - fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
   Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
   Affected: Objectives and Milestones. Schema validation will fail otherwise.
 
 ### Changed
+- ref: replace PR-links in CHANGELOG with tag-based compare links
 - ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
 - ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
 - ref: rewrite remove_element() as recursive implementation
@@ -334,38 +341,38 @@ BREAKING CHANGE
   - if there are some arguments, then they will take precedence over static config
 
 
-[unreleased]: https://github.com/uroflavin/roadmap/tree/master
-[0.0.1]: https://github.com/uroflavin/roadmap/pull/24
-[0.0.2]: https://github.com/uroflavin/roadmap/pull/30
-[0.0.3]: https://github.com/uroflavin/roadmap/pull/33
-[0.0.4]: https://github.com/uroflavin/roadmap/pull/34
-[0.0.5]: https://github.com/uroflavin/roadmap/pull/36
-[0.0.6]: https://github.com/uroflavin/roadmap/pull/40
-[0.0.7]: https://github.com/uroflavin/roadmap/pull/41
-[0.0.8]: https://github.com/uroflavin/roadmap/pull/43
-[0.0.9]: https://github.com/uroflavin/roadmap/pull/49
-[0.0.10]: https://github.com/uroflavin/roadmap/pull/52
-[0.0.11]: https://github.com/uroflavin/roadmap/pull/57
-[0.0.12]: https://github.com/uroflavin/roadmap/pull/63
-[0.0.13]: https://github.com/uroflavin/roadmap/pull/65
-[0.0.14]: https://github.com/uroflavin/roadmap/pull/66
-[0.0.15]: https://github.com/uroflavin/roadmap/pull/67
-[0.0.16]: https://github.com/uroflavin/roadmap/pull/69
-[0.0.17]: https://github.com/uroflavin/roadmap/pull/81
-[0.0.18]: https://github.com/uroflavin/roadmap/pull/83
-[0.0.19]: https://github.com/uroflavin/roadmap/pull/84
-[0.0.20]: https://github.com/uroflavin/roadmap/pull/86
-[0.0.21]: https://github.com/uroflavin/roadmap/pull/88
-[0.1.0]: https://github.com/uroflavin/roadmap/pull/90
-[0.1.1]: https://github.com/uroflavin/roadmap/pull/92
-[0.1.2]: https://github.com/uroflavin/roadmap/pull/96
-[0.1.3]: https://github.com/uroflavin/roadmap/pull/97
-[0.1.4]: https://github.com/uroflavin/roadmap/pull/98
-[0.1.5]: https://github.com/uroflavin/roadmap/pull/99
-[0.1.6]: https://github.com/uroflavin/roadmap/pull/100
-[0.1.7]: https://github.com/uroflavin/roadmap/pull/101
-[0.1.8]: https://github.com/uroflavin/roadmap/pull/102
-[0.1.9]: https://github.com/uroflavin/roadmap/pull/104
-[0.1.10]: https://github.com/uroflavin/roadmap/pull/105
-[0.1.11]: https://github.com/uroflavin/roadmap/pull/106
-[0.1.12]: https://github.com/uroflavin/roadmap/pull/108
+[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.1.12...HEAD
+[0.1.12]: https://github.com/uroflavin/roadmap/compare/v0.1.11...v0.1.12
+[0.1.11]: https://github.com/uroflavin/roadmap/compare/v0.1.10...v0.1.11
+[0.1.10]: https://github.com/uroflavin/roadmap/compare/v0.1.9...v0.1.10
+[0.1.9]: https://github.com/uroflavin/roadmap/compare/v0.1.8...v0.1.9
+[0.1.8]: https://github.com/uroflavin/roadmap/compare/v0.1.7...v0.1.8
+[0.1.7]: https://github.com/uroflavin/roadmap/compare/v0.1.6...v0.1.7
+[0.1.6]: https://github.com/uroflavin/roadmap/compare/v0.1.5...v0.1.6
+[0.1.5]: https://github.com/uroflavin/roadmap/compare/v0.1.4...v0.1.5
+[0.1.4]: https://github.com/uroflavin/roadmap/compare/v0.1.3...v0.1.4
+[0.1.3]: https://github.com/uroflavin/roadmap/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/uroflavin/roadmap/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/uroflavin/roadmap/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/uroflavin/roadmap/compare/v0.0.21...v0.1.0
+[0.0.21]: https://github.com/uroflavin/roadmap/compare/v0.0.20...v0.0.21
+[0.0.20]: https://github.com/uroflavin/roadmap/compare/v0.0.19...v0.0.20
+[0.0.19]: https://github.com/uroflavin/roadmap/compare/v0.0.18...v0.0.19
+[0.0.18]: https://github.com/uroflavin/roadmap/compare/v0.0.17...v0.0.18
+[0.0.17]: https://github.com/uroflavin/roadmap/compare/v0.0.16...v0.0.17
+[0.0.16]: https://github.com/uroflavin/roadmap/compare/v0.0.15...v0.0.16
+[0.0.15]: https://github.com/uroflavin/roadmap/compare/v0.0.14...v0.0.15
+[0.0.14]: https://github.com/uroflavin/roadmap/compare/v0.0.13...v0.0.14
+[0.0.13]: https://github.com/uroflavin/roadmap/compare/v0.0.12...v0.0.13
+[0.0.12]: https://github.com/uroflavin/roadmap/compare/v0.0.11...v0.0.12
+[0.0.11]: https://github.com/uroflavin/roadmap/compare/v0.0.10...v0.0.11
+[0.0.10]: https://github.com/uroflavin/roadmap/compare/v0.0.9...v0.0.10
+[0.0.9]: https://github.com/uroflavin/roadmap/compare/v0.0.8...v0.0.9
+[0.0.8]: https://github.com/uroflavin/roadmap/compare/v0.0.7...v0.0.8
+[0.0.7]: https://github.com/uroflavin/roadmap/compare/v0.0.6...v0.0.7
+[0.0.6]: https://github.com/uroflavin/roadmap/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/uroflavin/roadmap/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/uroflavin/roadmap/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/uroflavin/roadmap/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/uroflavin/roadmap/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/uroflavin/roadmap/releases/tag/v0.0.1
