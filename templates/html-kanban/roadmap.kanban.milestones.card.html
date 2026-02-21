@@ -1,5 +1,5 @@
                             <div class="card">
-                                {% if "title" in objective %}
+                                {% if objective is defined and "title" in objective %}
                                 <div class="tags">
                                     <span class="milestone_tag_{{ objective.state|lower }}">{{ objective.title }}</span>
                                 </div>

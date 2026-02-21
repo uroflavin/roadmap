@@ -59,14 +59,14 @@ The roadmap.yml structure derived from the schema is supplemented by the followi
 quantifiers:
 - <...>
 - weighted_shortest_job_first: range from 0 to 30 as floating point number
-- cost_of_delay: range from 0 to 0 as whole number
+- cost_of_delay: range from 0 to 30 as whole number
 - user_business_value: range from 0 to 10 as whole number
 - time_criticality: range from 0 to 10 as whole number
 - opportunity_enablement_or_risk_reduction: range from 0 to 10 as whole number
-- jobsize: range from 1 to 10 as whole number
+- jobsize: minimum 1 (no upper limit) as whole number
 ```
 
-The default value from schema/roadmap.jsoon is NULL for all dimensions and **all given ranges are inclusive!**
+The default value from schema/roadmap.json is NULL for all dimensions and **all given ranges are inclusive!**
 
 **Keep in mind:** 
 If you realy need a Jobsize of 0, think twice if you really have to present this in your roadmap. To make your life easier, it is simply not allowed from schema and validation will fail if you use it.

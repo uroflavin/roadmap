@@ -10,7 +10,9 @@ This list is a scratchpad during development of a new features to break down som
 - [ ] add involved teams
       involved teams are identified by their tag
 
-## Reminder Notes
-The function get_key_value_list() contains a lot of the logic to refactor remove_element().
+- [ ] add template for `releases` (schema and model support exist, but no template renders release data)
 
-Markdown Template needs refactoring. There are a bunch of empty lines. looks terrible in the md file, but renders okayish.
+- [ ] kanban deliverables: also show deliverables from objective-milestones
+      kanban milestones board was fixed (880ce1c), but `roadmap.kanban.deliverables.html` still only iterates `project.milestones`, not `objective.milestones`
+
+## Reminder Notes

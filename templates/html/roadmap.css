@@ -41,7 +41,7 @@
     --color_state_todo: var(--color_todo);
     --color_state_idea: var(--color_todo);
     --color_state_planned: #E0AF2F;
-    --color_state_commited: #63B2EB;
+    --color_state_committed: #63B2EB;
     --color_state_doing: var(--color_doing);
     --color_state_reached: var(--color_done);
     --color_state_achieved: var(--color_done);
@@ -368,15 +368,15 @@ span.PLANNED-inverted {
     background-color: var(--color_state__text);
     color: var(--color_state_planned);;
 }
-span.COMMITED {
-    border: 1px solid var(--color_state_commited);
-    background-color: var(--color_state_commited);
+span.COMMITTED {
+    border: 1px solid var(--color_state_committed);
+    background-color: var(--color_state_committed);
     color: var(--color_state__text);
 }
-span.COMMITED-inverted {
-    border: 1px solid var(--color_state_commited);
+span.COMMITTED-inverted {
+    border: 1px solid var(--color_state_committed);
     background-color: var(--color_state__text);
-    color: var(--color_state_commited);
+    color: var(--color_state_committed);
 }
 span.DOING {
     border: 1px solid var(--color_state_doing);
@@ -484,9 +484,9 @@ r-milestone.PLANNED > r-date,
 r-milestone.PLANNED-inverted > r-date {
     color: var(--color_state_planned);
 }
-r-milestone.COMMITED > r-date,
-r-milestone.COMMITED-inverted > r-date {
-    color: var(--color_state_commited);
+r-milestone.COMMITTED > r-date,
+r-milestone.COMMITTED-inverted > r-date {
+    color: var(--color_state_committed);
 }
 r-milestone.REACHED > r-date,
 r-milestone.REACHED-inverted > r-date  {
@@ -513,12 +513,12 @@ r-milestone.SKIP > r-deliverables > r-deliverable > r-date {
 }
 r-milestone.IDEA::before , 
 r-milestone.PLANNED::before,
-r-milestone.COMMITED::before,
+r-milestone.COMMITTED::before,
 r-milestone.REACHED::before,
 r-milestone.SKIP::before,
 r-milestone.IDEA-inverted::before , 
 r-milestone.PLANNED-inverted::before,
-r-milestone.COMMITED-inverted::before,
+r-milestone.COMMITTED-inverted::before,
 r-milestone.REACHED-inverted::before,
 r-milestone.SKIP-inverted::before {
     background-color: transparent;
@@ -894,7 +894,10 @@ r-deliverable > r-date {
 }
 
 r-milestone:nth-child(even) > div > div > div > r-deliverables > r-deliverable > r-date {
-/*r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
+/* 
+THIS is removed to fix #107 and replaced by above line 
+TODO: Check this div div div 
+r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
     left: -12.5rem;
     text-align: left;
 }

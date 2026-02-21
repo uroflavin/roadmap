@@ -1,7 +1,10 @@
 title: 'Roadmap Unit-Test for roadmap.py'
 description: |
-  This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project. 
+  This is the planning roadmap for the [uroflavin/roadmap](https://github.com/uroflavin/roadmap) project.
   It acts as both the plan for implementing this tool as well as a demonstration of what a roadmap might look like.
+
+visionstatement: |
+  This is the vision statement for testing purposes.
 
 authors:
   - name: Uroflavin
@@ -130,6 +133,15 @@ objectives:
       state: OPEN
     - title: Objective 2 - Todo 4 - title
       state: OPEN
+    milestones:
+      - title: Objective 2 - MS1 - title
+        description: Objective 2 - MS1 - description
+        state: PLANNED
+        deliverables:
+          - title: Objective 2 - MS1 - Deliverable 1 - title
+            state: TODO
+            requirement: MUST
+            description: Objective 2 - MS1 - Deliverable 1 - description
     keyresults:
     - title: Objective 2 - keyresult 1 - title
       description: Objective 2 - keyresult 1 - description
@@ -268,7 +280,7 @@ milestones:
           Milestone 1 - Deliverable 4 - description - line 2
         reference:
           link: https://example.com/m1/d4.html
-          name: example.com/m1/d4html
+          name: example.com/m1/d4.html
         quantifiers:
           weighted_shortest_job_first: null
           cost_of_delay: null

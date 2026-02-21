@@ -82,7 +82,7 @@ objectives:
     description: |
       While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
       This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
-    state: COMMITED
+    state: COMMITTED
     keyresults:
     - title: Roadmap as Markdown
       description: |
@@ -125,7 +125,7 @@ objectives:
     description: |
       Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
       Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
-    state: COMMITED
+    state: COMMITTED
     keyresults:
     - title: Awesome README 
       description: |
@@ -360,7 +360,7 @@ milestones:
   - title: XLS-File
     description: |
       The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
-    state: COMMITED
+    state: COMMITTED
     date: 28.02.2013
     deliverables:
     - title: csv-template

@@ -18,7 +18,7 @@ The goal is to make this as easy as possible for humans to read and reason about
 
 - Uroflavin *uroflavin@gmail.com*
 
-## Importand Dates
+## Important Dates
 
 - **2023-12-09**
     - <u>Project Start</u>
@@ -62,16 +62,14 @@ We need to add a README file explaining the purpose of this project and giving s
 - [see README](https://github.com/uroflavin/roadmap/blob/main/README.md)
 
 **_Quantifiers_**
-
-
 - _Cost of Delay_: 20
-
+- _User Value / Business Value_: 10
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 10
 
 
 
-### We provide official tooling for most common use cases | COMMITED
+### We provide official tooling for most common use cases | COMMITTED
 While the goal of having a single unified schema for planning is that it enables the development of tools that automate various aspects of planning, most teams are not going to adopt this if the fundamentals aren't already solved for them. 
 This includes things like being able to visualize your road map in common formats, validating it against the schema etc.
 
@@ -102,7 +100,7 @@ We should be able to generate some xls out of roadmap.yml
 
 
 
-### We have exceptional documentation | COMMITED
+### We have exceptional documentation | COMMITTED
 Adoption of something intended to make planning easier is only going to be successful if it is easy to use, and a critical part of that is great documentation. 
 Our goal is that someone with no familiarity with our tooling can ramp up and have an initial road map ready for use within only a few minutes.
 
@@ -135,10 +133,8 @@ We need to add a README file explaining the purpose of this project and giving s
 
 
 **_Quantifiers_**
-
-
 - _Cost of Delay_: 20
-
+- _User Value / Business Value_: 10
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 10
 
@@ -303,7 +299,7 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
 - _Time Criticality_: 0
 - _Opportunity Enablement / Risk Reduction_: 6
 
-### #M6 | XLS-File | COMMITED
+### #M6 | XLS-File | COMMITTED
 The Goal is, to implement a xls-renderer, which is capable to render this yml as xls File to open in your prefered spreadsheet software.
 
 #### [21.01.2013] | csv-template | MUST DOING
@@ -376,28 +372,19 @@ This renderer is going to form the basis for our user flows, including acting as
 
 
 **_Quantifiers_**
-
 - _Jobsize_: 10
-
-- _User Value / Business Value_: None
-
-
 
 #### [D2] | Markdown To HTML as JINJA2 Function | SHOULD TODO
 The renderer should support Markdown
 
 
 **_Quantifiers_**
-
-
-
-
+- _User Value / Business Value_: 10
 - _Time Criticality_: 0
-
 
 #### [D3] | Renderer Package | MAY TODO
 Some teams might want to host a version of the renderer on their own website, in which case we should provide them with a package that lets them use the Road Map web renderer
 
 
 ---
-version:ae90a806/20250528192029
+version:108ff620/20260221155819

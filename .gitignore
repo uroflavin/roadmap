@@ -163,8 +163,7 @@ cython_debug/
 /venv
 /.idea
 /tests/results/*
-# ignore npm modules
-/node_modules/*
-package*.json
 # Ignore prototypes
 roadmap/prototypes/*
+# Analyse-Dokument (nur lokal)
+docs/ANALYSE.md

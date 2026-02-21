@@ -1,67 +1,17 @@
 import unittest
-import tempfile
-import shutil
-from pathlib import Path
-from unittest.mock import patch
-from io import StringIO
-from roadmap import create_output_folder, read_roadmap_definition, validate_yaml, find_templates, process_template, \
-    calculate_ids_for_element_items, is_graphviz_installed, remove_element, calculate_roadmap_version, \
-    calculate_cost_of_delay, calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items, \
-    get_key_value_list, get_filtered_key_value_list
 import os
+from roadmap_app.utils import read_roadmap_definition
+from roadmap_app.model import (remove_element, calculate_cost_of_delay,
+                               calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items,
+                               make_id_from, get_items_grouped_by_date, enrich_project)
 
 
-class TestRoadmapFunctions(unittest.TestCase):
+class TestModel(unittest.TestCase):
     def setUp(self):
-        # this folder is used for storing data during test
-        self.test_folder = "tests/test_folder"
-        # this file did not exist
-        self.test_file = "test_file.yml"
         # this is an existing roadmap
-        self.test_existing_file = "tests/roadmap.yml"
-        # this is the version of the existing roadmap
-        # if you modify this file, make shure to modify his version.
-        # version is calculated using md5 and take the first and last 4 characters
-        self.version_existing_roadmap = "880a29cf"
+        self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
 
-    def test_create_output_folder(self):
-        # Test when the folder does not exist
-        if os.path.exists(self.test_folder):
-            os.rmdir(self.test_folder)
-        self.assertTrue(create_output_folder(self.test_folder))
-
-        # Test when the folder already exists
-        self.assertTrue(create_output_folder(self.test_folder))
-
-        # Clean up after testing
-        if os.path.exists(self.test_folder):
-            os.rmdir(self.test_folder)
-
-    def test_read_roadmap_definition(self):
-        # Test with a non-existing file
-        with self.assertRaises(OSError):
-            read_roadmap_definition("non_existing_file.yml")
-
-        # Test with an existing file
-        with open(self.test_file, 'w') as f:
-            f.write("key: value")
-        self.assertEqual(read_roadmap_definition(self.test_file), {"key": "value"})
-
-        # Clean up after testing
-        if os.path.exists(self.test_file):
-            os.remove(self.test_file)
-
-    def test_is_graphviz_installed(self):
-        # test if graphviz is installed
-        self.assertTrue(is_graphviz_installed())
-
-    def test_roadmap_yml_version_id(self):
-        # test if we get none for non-existing file
-        self.assertIsNone(calculate_roadmap_version(self.test_file))
-        # test if the version id of roadmap fulfills our expectations
-        self.assertEqual(calculate_roadmap_version(self.test_existing_file), self.version_existing_roadmap)
-
-    def test_preconditions_in_test_exciting_file(self):
+    def test_preconditions_in_test_existing_file(self):
         # this test is to check if your test.yml has some predefined conditions for testing
         #
         #   the conditions are checked twice: once for version id, which is md5sum of file
@@ -237,18 +187,25 @@ class TestRoadmapFunctions(unittest.TestCase):
         with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=11)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=None, time_criticality=1,
                                     opportunity_enablement_or_risk_reduction=1)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value="1", time_criticality="1",
                                     opportunity_enablement_or_risk_reduction="1")
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=1.0, time_criticality=1.0,
                                     opportunity_enablement_or_risk_reduction=1.0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=11, time_criticality=-1,
                                     opportunity_enablement_or_risk_reduction=100)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=11, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=11,
                                     opportunity_enablement_or_risk_reduction=0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=11)
 
@@ -258,7 +215,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=0, jobsize=1), 0.00)
         # check for valid input with max values
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=30, jobsize=10), 3.00)
-        # check for valid input with floating result 
+        # check for valid input with floating result
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=3), 5.33)
         # Check for Jobsize 30 (implementing #94)
         self.assertEqual(calculate_weighted_shortest_job_first(cost_of_delay=16, jobsize=30), 0.53)
@@ -267,10 +224,15 @@ class TestRoadmapFunctions(unittest.TestCase):
         # test for correct handling non-valid inputs during calculation of wsjf
         with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay="16", jobsize="3")
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=19)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=100, jobsize=100)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=None, jobsize=None)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=None, jobsize=1)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=1, jobsize=None)
 
     def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_set(self):
@@ -342,9 +304,8 @@ class TestRoadmapFunctions(unittest.TestCase):
         self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['cost_of_delay'], 3)
         # is wsjf correct
         self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['weighted_shortest_job_first'], 3)
-        # is jobsize correct from wjs copied
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],
-                         project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'])
+        # is jobsize correct
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'], 1)
 
     def test_calculate_wsjf_quantifiers_for_objectives_keyresult(self):
         # test if we calculate correctly and quantifier will be added to project
@@ -365,52 +326,101 @@ class TestRoadmapFunctions(unittest.TestCase):
         # is wsjf correct
         self.assertEqual(project["objectives"][0]['keyresults'][0]['quantifiers']['weighted_shortest_job_first'], 3)
 
-    def test_get_key_value_list(self):
-        # test if we build a key-value list correctly
-        project = dict(read_roadmap_definition(self.test_existing_file))
-        project_as_list = get_key_value_list(element=project)
-        # project_as_list is list?
-        self.assertIsInstance(project_as_list, list)
-        # first key is 'title'
-        self.assertEqual(project_as_list[0]['key'], "title")
-        # second key is 'description'
-        self.assertEqual(project_as_list[1]['key'], "description")
-        # now test with prefix
-        prefix = "project"
-        project_as_list = get_key_value_list(element=project, prefix_for_key=prefix)
-        # first key is 'title'
-        self.assertEqual(project_as_list[0]['key'], prefix + ".title")
-        # second key is 'description'
-        self.assertEqual(project_as_list[1]['key'], prefix + ".description")
-        # check for keeping index properly
-        project_as_list = get_key_value_list(element=project['milestones'], prefix_for_key='milestones',
-                                             keep_index=True)
-        # our testdata first information for milestone is id
-        self.assertEqual(project_as_list[0]['key'], "milestones.0.id")
-        # our testdata first milestone id is M1
-        self.assertEqual(project_as_list[0]['value'], "M1")
-        # check for error handling
-        project_as_list = get_key_value_list()
-        # we always get an empty key, value list
-        self.assertIsNone(project_as_list[0]['key'])
-        self.assertIsNone(project_as_list[0]['value'])
+    def test_make_id_from_basic(self):
+        # test basic id generation
+        self.assertEqual(make_id_from("Hello World"), "hello_world")
+        self.assertEqual(make_id_from("test.value"), "test_value")
+        self.assertEqual(make_id_from("my-item"), "my_item")
+        self.assertEqual(make_id_from("item#1"), "item_1")
+        self.assertEqual(make_id_from("a+b*c"), "a_b_c")
 
-    def test_get_filtered_key_value_list(self):
-        # test if we filter a key-value list correctly
-        project = dict(read_roadmap_definition(self.test_existing_file))
-        # first, test with a known list
-        project_as_list = get_key_value_list(element=project)
-        filtered_list = get_filtered_key_value_list(key_value_list=project_as_list, filter_for_keys="milestones.title",
-                                                    precise_search=True)
+    def test_make_id_from_umlauts(self):
+        # test umlaut replacement
+        self.assertEqual(make_id_from("Ueberblick"), "ueberblick")
+        self.assertEqual(make_id_from("aerger"), "aerger")
+        self.assertEqual(make_id_from("Größe"), "groesse")
+        self.assertEqual(make_id_from("Übung"), "uebung")
+        self.assertEqual(make_id_from("Straße"), "strasse")
+        self.assertEqual(make_id_from("schön"), "schoen")
 
-        # filtered_list is list?
-        self.assertIsInstance(filtered_list, list)
-        # first and second key are milestones.title
-        self.assertEqual(filtered_list[0]['key'], "milestones.title")
-        self.assertEqual(filtered_list[1]['key'], "milestones.title")
-        # check for error handling
-        with self.assertRaises(ValueError):
-            get_filtered_key_value_list()
+    def test_make_id_from_empty(self):
+        # test empty input
+        self.assertEqual(make_id_from(""), "")
+        self.assertEqual(make_id_from(), "")
+
+    def test_get_items_grouped_by_date(self):
+        # test grouping items by date
+        items = [
+            {"title": "A", "date": "2024-01"},
+            {"title": "B", "date": "2024-01"},
+            {"title": "C", "date": "2024-02"},
+        ]
+        grouped = get_items_grouped_by_date(items)
+        self.assertIn("2024-01", grouped)
+        self.assertIn("2024-02", grouped)
+        self.assertEqual(len(grouped["2024-01"]), 2)
+        self.assertEqual(len(grouped["2024-02"]), 1)
+
+    def test_get_items_grouped_by_date_without_date(self):
+        # test items without date attribute are grouped under "None"
+        items = [{"title": "no date"}, {"title": "also no date"}]
+        grouped = get_items_grouped_by_date(items)
+        self.assertIn("None", grouped)
+        self.assertEqual(len(grouped["None"]), 2)
+
+    def test_get_items_grouped_by_date_empty(self):
+        # test empty and None input
+        self.assertEqual(get_items_grouped_by_date(None), {})
+        self.assertEqual(get_items_grouped_by_date([]), {})
+
+    def test_enrich_project_objective_milestones(self):
+        # test that nested milestones under objectives get IDs and deliverables are processed
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        # Objective 2 (index 1) should have milestones
+        obj2 = project["objectives"][1]
+        self.assertIn("milestones", obj2)
+        self.assertGreater(len(obj2["milestones"]), 0)
+        # nested milestone should have an _id
+        ms = obj2["milestones"][0]
+        self.assertIn("_id", ms)
+        self.assertIn("id", ms)
+        # nested milestone should have deliverables with _id
+        self.assertIn("deliverables", ms)
+        self.assertGreater(len(ms["deliverables"]), 0)
+        self.assertIn("_id", ms["deliverables"][0])
+
+    def test_enrich_project_visionstatement(self):
+        # test that visionstatement is present after enrich_project and appears in as_list
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        self.assertIn("visionstatement", project)
+        self.assertIn("vision statement", project["visionstatement"].lower())
+        # check that visionstatement appears in as_list
+        as_list_keys = [item["key"] for item in project["as_list"]]
+        self.assertIn("visionstatement", as_list_keys)
+
+    def test_enrich_project(self):
+        # test that enrich_project adds all expected computed fields
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        # meta should be added
+        self.assertIn("meta", project)
+        self.assertIn("version", project["meta"])
+        self.assertIn("rendertime", project["meta"])
+        self.assertEqual(project["meta"]["version"], self.version_existing_roadmap)
+        # IDs should be calculated for milestones
+        self.assertIn("_id", project["milestones"][0])
+        self.assertIn("id", project["milestones"][0])
+        self.assertIn("_parent_id", project["milestones"][0])
+        # IDs should be calculated for objectives
+        self.assertIn("_id", project["objectives"][0])
+        # group should be present
+        self.assertIn("group", project)
+        # as_list should be present
+        self.assertIn("as_list", project)
+        self.assertIsInstance(project["as_list"], list)
+        self.assertGreater(len(project["as_list"]), 0)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Roadmap for roadmap.py (ae90a806/20250528192029)</title>
+        <title>Roadmap for roadmap.py (108ff620/20260221155819)</title>
         <style>
             /* Print Style */
 @page {
@@ -49,7 +49,7 @@
     --color_state_todo: var(--color_todo);
     --color_state_idea: var(--color_todo);
     --color_state_planned: #E0AF2F;
-    --color_state_commited: #63B2EB;
+    --color_state_committed: #63B2EB;
     --color_state_doing: var(--color_doing);
     --color_state_reached: var(--color_done);
     --color_state_achieved: var(--color_done);
@@ -376,15 +376,15 @@ span.PLANNED-inverted {
     background-color: var(--color_state__text);
     color: var(--color_state_planned);;
 }
-span.COMMITED {
-    border: 1px solid var(--color_state_commited);
-    background-color: var(--color_state_commited);
+span.COMMITTED {
+    border: 1px solid var(--color_state_committed);
+    background-color: var(--color_state_committed);
     color: var(--color_state__text);
 }
-span.COMMITED-inverted {
-    border: 1px solid var(--color_state_commited);
+span.COMMITTED-inverted {
+    border: 1px solid var(--color_state_committed);
     background-color: var(--color_state__text);
-    color: var(--color_state_commited);
+    color: var(--color_state_committed);
 }
 span.DOING {
     border: 1px solid var(--color_state_doing);
@@ -492,9 +492,9 @@ r-milestone.PLANNED > r-date,
 r-milestone.PLANNED-inverted > r-date {
     color: var(--color_state_planned);
 }
-r-milestone.COMMITED > r-date,
-r-milestone.COMMITED-inverted > r-date {
-    color: var(--color_state_commited);
+r-milestone.COMMITTED > r-date,
+r-milestone.COMMITTED-inverted > r-date {
+    color: var(--color_state_committed);
 }
 r-milestone.REACHED > r-date,
 r-milestone.REACHED-inverted > r-date  {
@@ -521,12 +521,12 @@ r-milestone.SKIP > r-deliverables > r-deliverable > r-date {
 }
 r-milestone.IDEA::before , 
 r-milestone.PLANNED::before,
-r-milestone.COMMITED::before,
+r-milestone.COMMITTED::before,
 r-milestone.REACHED::before,
 r-milestone.SKIP::before,
 r-milestone.IDEA-inverted::before , 
 r-milestone.PLANNED-inverted::before,
-r-milestone.COMMITED-inverted::before,
+r-milestone.COMMITTED-inverted::before,
 r-milestone.REACHED-inverted::before,
 r-milestone.SKIP-inverted::before {
     background-color: transparent;
@@ -902,7 +902,10 @@ r-deliverable > r-date {
 }
 
 r-milestone:nth-child(even) > div > div > div > r-deliverables > r-deliverable > r-date {
-/*r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
+/* 
+THIS is removed to fix #107 and replaced by above line 
+TODO: Check this div div div 
+r-milestone:nth-child(even) > r-deliverables > r-deliverable > r-date { */
     left: -12.5rem;
     text-align: left;
 }
@@ -1294,12 +1297,12 @@ We should do something for the <a href="https://github.com/uroflavin/roadmap">ro
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1363,12 +1366,12 @@ This will allow us to document the file structure and provide a first class edit
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  0.25<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  0.2<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>100</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1405,12 +1408,12 @@ This will allow us to document the file structure and provide a first class edit
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  20.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  20.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>1</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1467,12 +1470,12 @@ This will allow us to document the file structure and provide a first class edit
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  0.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  0.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>2</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>0</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>0</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>0</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>0</td></tr>
@@ -1503,12 +1506,12 @@ This will allow us to document the file structure and provide a first class edit
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.22<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>9</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>11</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>11</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>1</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1543,12 +1546,12 @@ This will allow us to document the file structure and provide a first class edit
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1610,12 +1613,12 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.22<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>9</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>11</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>11</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>1</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1650,12 +1653,12 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1720,12 +1723,12 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.225<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.22<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>9</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>11</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>11</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>1</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1756,12 +1759,12 @@ Use SierraSoftworks-Go-Template as a starting point</p>
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1795,12 +1798,12 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  5.335<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  5.33<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>3</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>16</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>16</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>6</td></tr>
@@ -1813,7 +1816,7 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
                         </div>
                     </r-milestone>
                     
-                                        <r-milestone id="m6" class="COMMITED">
+                                        <r-milestone id="m6" class="COMMITTED">
                         <r-milestone-id>M6</r-milestone-id>
                         
                         <r-date>28.02.2013</r-date>
@@ -1821,7 +1824,7 @@ e.g. the generated file roadmap.dot.png can be used in your project description.
                             <r-name><h3>XLS-File</h3></r-name>
                               
                                 <r-state>
-                                    <span class="COMMITED">COMMITED</span>
+                                    <span class="COMMITTED">COMMITTED</span>
                                 </r-state> 
                             </r-header>
                         <div class="accordion">
@@ -1888,12 +1891,12 @@ csv output should contain all roadmap items, without the meta-information regard
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.15<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  1.1<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>11</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>11</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>1</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -1926,12 +1929,12 @@ csv output should contain all roadmap items, without the meta-information regard
                                                         
                                                                 <r-quantifiers>
             
-            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.05<span class="tooltiptext">
+            <r-weighted_shortest_job_first class="tooltip">WSJF:  2.0<span class="tooltiptext">
                 <table>
                     <caption>Weighted Shortest Job First</caption>
                     <tbody>
                         <tr><td><r-jobsize>Jobsize</r-jobsize></td><td>10</td></tr>
-                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay><td>20</td></tr>
+                        <tr><td><r-cost_of_delay>Cost of Delay</r-cost_of_delay></td><td>20</td></tr>
                         <tr><td><r-user_business_value>User Value<br>Business Value</r-user_business_value></td><td>10</td></tr>
                         <tr><td><r-time_criticality>Time Criticality</r-time_criticality></td><td>0</td></tr>
                         <tr><td><r-opportunity_enablement_or_risk_reduction>Opportunity Enablement<br>Risk Reduction</r-opportunity_enablement_or_risk_reduction></td><td>10</td></tr>
@@ -2196,7 +2199,7 @@ The usefulness and applicability of this schema to real-world problem domains wi
                 <r-name><h4>We provide official tooling for most common use cases</h4></r-name>
                     
                     <r-state>
-                        <span class="COMMITED">COMMITED</span>
+                        <span class="COMMITTED">COMMITTED</span>
                     </r-state>
                 </r-header>
             <r-description>
@@ -2315,7 +2318,7 @@ CSV is limited capable for exporting everything, so this would be a good first s
                 <r-name><h4>We have exceptional documentation</h4></r-name>
                     
                     <r-state>
-                        <span class="COMMITED">COMMITED</span>
+                        <span class="COMMITTED">COMMITTED</span>
                     </r-state>
                 </r-header>
             <r-description>
@@ -2377,14 +2380,14 @@ Our goal is that someone with no familiarity with our tooling can ramp up and ha
         </r-objective></r-objectives>
         
     
-            <footer><pre>version:ae90a806/20250528192029</pre></footer>
-    </body>
-    <script>
-        const accordion = document.getElementsByClassName('container');
+            <footer><pre>version:108ff620/20260221155819</pre></footer>
+        <script>
+            const accordion = document.getElementsByClassName('container');
 
 for (i=0; i<accordion.length; i++) {
   accordion[i].addEventListener('dblclick', function () {
     this.classList.toggle('active')
   })
 }</script>
+    </body>
 </html>

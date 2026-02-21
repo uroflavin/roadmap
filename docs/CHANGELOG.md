@@ -6,7 +6,108 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
--  see [TODO.md](TODO.md)
+
+### Breaking Changes
+- fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
+  Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
+  Affected: Objectives and Milestones. Schema validation will fail otherwise.
+
+### Removed
+- ref: remove Dockerfile (unused, broken since package restructuring; CLI tool doesn't need containerization)
+- ref: remove outdated `docs/TECH_README.md`
+- ref: remove unused Tailwind CSS dev dependency from `templates/` (hill chart prototypes use CDN instead)
+
+### Added
+- test: add integration test for logo pipeline (base64 embedding in HTML, file copy to output)
+- test: add tests for `objective.milestones` nested milestone IDs and deliverables
+- test: add tests for `visionstatement` presence after enrichment and in `as_list`
+- test: add tests for `convert_image_to_html_base64()` success and file-not-found cases
+- doc: add `--environment` option to README command-line options section
+
+### Changed
+- ref: parse `TEMPLATE_KNOWN_SUFFIXES` from dotenv as JSON (`json.loads`) instead of passing raw string
+- ref: use `Path(dirname).parts[-1]` instead of `dirname.split("/")[1]` in `_find_templates_from_directory`
+- ref: convert all `logging.xxx("format %s", var)` calls to f-string style across `cli.py`, `rendering.py`, `model.py`, `utils.py`
+- ref(ci): update `actions/checkout` and `actions/setup-python` from v3 to v4
+- ref(schema): update `$schema` from `https://json-schema.org/schema` to `https://json-schema.org/draft/2020-12/schema`
+- doc: correct jobsize description — remove upper limit "10", align schema, model docstring, and `wsjf.md`
+- doc: correct symlinks reference in `DEVELOPMENT.md` to "Jinja2 FileSystemLoader fallback search path"
+- doc: correct test example path in `DEVELOPMENT.md` to `tests/test_model.py::TestModel::test_calculate_cost_of_delay`
+- ref(template): quote CSV header and keys, double-escape quotes in CSV template for RFC 4180 compliance
+
+### Fixed
+- fix(doc): correct `docs/wsjf.md` typos — `cost_of_delay` range "0 to 0" → "0 to 30", `roadmap.jsoon` → `roadmap.json`
+- fix: catch `FileNotFoundError` in `is_graphviz_installed()` when `dot` binary is not on PATH
+- fix(schema): correct typo "roadmap.Best fit" → "roadmap. Best fit" in logo description
+- fix(schema): correct typo "project pr product" → "project or product" in visionstatement description
+- fix(schema): correct typo "describtion" → "description" in Reference and Release definitions
+- fix(test-fixture): correct reference link `example.com/m1/d4html` → `example.com/m1/d4.html`
+
+### Tests
+- test: fix self-comparison in `test_calculate_wsjf_quantifiers_for_milestones_deliverables` — compare jobsize against expected value `1`
+- test: fix typo in test name `test_preconditions_in_test_exciting_file` → `test_preconditions_in_test_existing_file`
+- test: replace hardcoded template count `assertEqual(len, 6)` with `assertGreaterEqual(len, 1)` in `test_find_templates_with_real_templates`
+- test: add `visionstatement` and nested `objective.milestones` to test fixture `tests/roadmap.yml`
+- test: update expected fixture version hash in `conftest.py`
+- doc: add `docs/DECISION.md` with ADR-001 (keep `get_key_value_list()` and `remove_element()` separate)
+- doc: add `docs/DEVELOPMENT.md` as complete developer documentation replacing TECH_README.md
+- feat(build): add `setuptools-scm` for git-tag-based versioning (`pyproject.toml`)
+- feat(core): add `__version__` to package via `importlib.metadata`
+- feat(ci): add `release.yml` GitHub Action -- finalizes CHANGELOG and creates GitHub Release on tag push
+- feat(ops): add retroactive git tags `v0.0.1` through `v0.1.12` on merge commits
+- ref(git): delete `master` branch (local + remote), `main` is sole default branch
+
+### Changed
+- doc: update `CLAUDE.md` -- remove sections duplicated with `DEVELOPMENT.md` (architecture, directory structure, CI)
+- doc: update `docs/TODO.md` -- remove resolved reminder notes, update kanban deliverables status
+- ref: replace PR-links in CHANGELOG with tag-based compare links
+- ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
+- ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
+- ref: rewrite remove_element() as recursive implementation
+- ref: replace html-kanban CSS/JS symlinks with Jinja2 fallback search path (cross-platform compatible)
+- ref: reorganize project structure (tests/, docs/, config/, .github/)
+- ref: replace string concatenation with f-strings in model.py and cli.py
+- ref: simplify `enrich_project()` -- remove duplicate skip pass, skip once after all enrichment
+- ref: split `find_templates()` into manifest-based and directory-walk functions, extract shared output path logic
+- ref: move `create_output_folder()` from `cli.py` to `utils.py` (I/O helper belongs with other I/O utilities)
+- ref: extract `setup_logging()` and `render_templates()` from `main()`, flatten nesting via early returns
+- ref: replace last string concatenation `output_folder + os.sep` with f-string in `cli.py`
+- ref: simplify `roadmap.py` root shim -- remove `sys.path` manipulation, rely on `pip install -e .`
+- ref: remove `requirements.txt`, use `pyproject.toml` as single source for dependencies
+- ref: add `[project.optional-dependencies] dev` for pytest, flake8, pre-commit, jsonschema2md
+- ref: relax strict version pins (`==`) to compatible ranges (`>=`) in `pyproject.toml`
+- ref: move `pre-commit` from runtime to dev dependencies
+- ref: simplify CI workflow to `pip install -e ".[dev]"`
+
+### Fixed
+- fix(template): remove stray literal "5" after WSJF value in `html/roadmap.quantifiers.html`
+- fix(template): add missing `</td>` closing tag for Cost of Delay cell in `html/roadmap.quantifiers.html`
+- fix(template): correct wrong condition in `markdown/roadmap.quantifiers.md` (checked `jobsize` instead of `user_business_value`)
+- fix(template): correct typo "Importand" → "Important" in `markdown/roadmap.md`
+- fix(template): move `<script>` tag inside `<body>` in `html/roadmap.footer.html` and `html-kanban/roadmap.footer.html`
+- fix(template): rename CSS class/variable `commited` → `committed` in kanban CSS, main CSS, and kanban HTML template
+- fix: wrap long line in `calculate_cost_of_delay()` to comply with flake8 max-line-length 127
+- fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)
+- doc: add usage documentation to `templates.yml`
+- fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`
+- fix: replace bare `except Exception` with specific exception types (KeyError, TypeError, ValueError, TemplateError, OSError)
+- fix: correct typo "shure" -> "sure" in utils.py
+- fix(template): eliminate spurious blank lines in `markdown/roadmap.quantifiers.md` when quantifier values are missing
+- fix(template): kanban milestones board now shows objective-milestones in all state columns, not just IDEA
+- fix(template): guard `objective` variable in kanban milestone card to prevent `UndefinedError` for top-level milestones
+- fix(doc): correct ObjectiveState, DeliverableState and Requirement values in `docs/DEVELOPMENT.md` to match schema
+- fix: use `with`-statement for file handle in `convert_image_to_html_base64`
+
+### Tests
+- test: fix `assertRaises` blocks -- each invalid call gets its own block
+- test: make graphviz test conditional with `@skipUnless`
+- test: add tests for `make_id_from()`, `get_items_grouped_by_date()`, `validate_yaml()`, `enrich_project()`
+- test: add tests for `find_templates()` -- manifest-based, directory-walk fallback, suffix filtering, invalid entries, real templates
+- test: split `test_roadmap.py` into `test_utils.py`, `test_model.py`, `test_rendering.py` matching package module structure
+- test: add integration tests (`tests/test_integration.py`) covering full pipeline, cross-module data flow, CLI argument variations, and error scenarios
+- doc: add `tests/README.md` with test structure, fixture notes, and per-test descriptions
+- test: add unit tests for `process_template()` -- rendering, ValueError, syntax errors, missing variables, output directory creation, environment handling
+- test: centralize expected roadmap version in `tests/conftest.py` (autouse fixture), remove duplication from 3 test files
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
@@ -293,38 +394,38 @@ BREAKING CHANGE
   - if there are some arguments, then they will take precedence over static config
 
 
-[unreleased]: https://github.com/uroflavin/roadmap/tree/master
-[0.0.1]: https://github.com/uroflavin/roadmap/pull/24
-[0.0.2]: https://github.com/uroflavin/roadmap/pull/30
-[0.0.3]: https://github.com/uroflavin/roadmap/pull/33
-[0.0.4]: https://github.com/uroflavin/roadmap/pull/34
-[0.0.5]: https://github.com/uroflavin/roadmap/pull/36
-[0.0.6]: https://github.com/uroflavin/roadmap/pull/40
-[0.0.7]: https://github.com/uroflavin/roadmap/pull/41
-[0.0.8]: https://github.com/uroflavin/roadmap/pull/43
-[0.0.9]: https://github.com/uroflavin/roadmap/pull/49
-[0.0.10]: https://github.com/uroflavin/roadmap/pull/52
-[0.0.11]: https://github.com/uroflavin/roadmap/pull/57
-[0.0.12]: https://github.com/uroflavin/roadmap/pull/63
-[0.0.13]: https://github.com/uroflavin/roadmap/pull/65
-[0.0.14]: https://github.com/uroflavin/roadmap/pull/66
-[0.0.15]: https://github.com/uroflavin/roadmap/pull/67
-[0.0.16]: https://github.com/uroflavin/roadmap/pull/69
-[0.0.17]: https://github.com/uroflavin/roadmap/pull/81
-[0.0.18]: https://github.com/uroflavin/roadmap/pull/83
-[0.0.19]: https://github.com/uroflavin/roadmap/pull/84
-[0.0.20]: https://github.com/uroflavin/roadmap/pull/86
-[0.0.21]: https://github.com/uroflavin/roadmap/pull/88
-[0.1.0]: https://github.com/uroflavin/roadmap/pull/90
-[0.1.1]: https://github.com/uroflavin/roadmap/pull/92
-[0.1.2]: https://github.com/uroflavin/roadmap/pull/96
-[0.1.3]: https://github.com/uroflavin/roadmap/pull/97
-[0.1.4]: https://github.com/uroflavin/roadmap/pull/98
-[0.1.5]: https://github.com/uroflavin/roadmap/pull/99
-[0.1.6]: https://github.com/uroflavin/roadmap/pull/100
-[0.1.7]: https://github.com/uroflavin/roadmap/pull/101
-[0.1.8]: https://github.com/uroflavin/roadmap/pull/102
-[0.1.9]: https://github.com/uroflavin/roadmap/pull/104
-[0.1.10]: https://github.com/uroflavin/roadmap/pull/105
-[0.1.11]: https://github.com/uroflavin/roadmap/pull/106
-[0.1.12]: https://github.com/uroflavin/roadmap/pull/108
+[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.1.12...HEAD
+[0.1.12]: https://github.com/uroflavin/roadmap/compare/v0.1.11...v0.1.12
+[0.1.11]: https://github.com/uroflavin/roadmap/compare/v0.1.10...v0.1.11
+[0.1.10]: https://github.com/uroflavin/roadmap/compare/v0.1.9...v0.1.10
+[0.1.9]: https://github.com/uroflavin/roadmap/compare/v0.1.8...v0.1.9
+[0.1.8]: https://github.com/uroflavin/roadmap/compare/v0.1.7...v0.1.8
+[0.1.7]: https://github.com/uroflavin/roadmap/compare/v0.1.6...v0.1.7
+[0.1.6]: https://github.com/uroflavin/roadmap/compare/v0.1.5...v0.1.6
+[0.1.5]: https://github.com/uroflavin/roadmap/compare/v0.1.4...v0.1.5
+[0.1.4]: https://github.com/uroflavin/roadmap/compare/v0.1.3...v0.1.4
+[0.1.3]: https://github.com/uroflavin/roadmap/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/uroflavin/roadmap/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/uroflavin/roadmap/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/uroflavin/roadmap/compare/v0.0.21...v0.1.0
+[0.0.21]: https://github.com/uroflavin/roadmap/compare/v0.0.20...v0.0.21
+[0.0.20]: https://github.com/uroflavin/roadmap/compare/v0.0.19...v0.0.20
+[0.0.19]: https://github.com/uroflavin/roadmap/compare/v0.0.18...v0.0.19
+[0.0.18]: https://github.com/uroflavin/roadmap/compare/v0.0.17...v0.0.18
+[0.0.17]: https://github.com/uroflavin/roadmap/compare/v0.0.16...v0.0.17
+[0.0.16]: https://github.com/uroflavin/roadmap/compare/v0.0.15...v0.0.16
+[0.0.15]: https://github.com/uroflavin/roadmap/compare/v0.0.14...v0.0.15
+[0.0.14]: https://github.com/uroflavin/roadmap/compare/v0.0.13...v0.0.14
+[0.0.13]: https://github.com/uroflavin/roadmap/compare/v0.0.12...v0.0.13
+[0.0.12]: https://github.com/uroflavin/roadmap/compare/v0.0.11...v0.0.12
+[0.0.11]: https://github.com/uroflavin/roadmap/compare/v0.0.10...v0.0.11
+[0.0.10]: https://github.com/uroflavin/roadmap/compare/v0.0.9...v0.0.10
+[0.0.9]: https://github.com/uroflavin/roadmap/compare/v0.0.8...v0.0.9
+[0.0.8]: https://github.com/uroflavin/roadmap/compare/v0.0.7...v0.0.8
+[0.0.7]: https://github.com/uroflavin/roadmap/compare/v0.0.6...v0.0.7
+[0.0.6]: https://github.com/uroflavin/roadmap/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/uroflavin/roadmap/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/uroflavin/roadmap/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/uroflavin/roadmap/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/uroflavin/roadmap/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/uroflavin/roadmap/releases/tag/v0.0.1

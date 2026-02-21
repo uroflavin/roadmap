@@ -82,8 +82,8 @@ This gives you the option of managing all data in one place, even if the data is
 To render roadmap.py roadmap as an example: 
  - clone this repository
  - change to cloned directory
- - install requirements
- ```pip install -r requirements.txt```
+ - install package
+ ```pip install -e .```
 - use roadmap.py to render the templates
 ```python3 roadmap.py```
 - the rendered roadmap-files are located under **roadmap/** directory
@@ -109,13 +109,10 @@ Next, create a folder for the rendered output your own directory, e.g. named *ro
 
 There you have a good starting point for your own project.
 
-For advanced users, there is also a [dockerfile](Dockerfile) to run everything inside a container.
-See [TECH_README.md](TECH_README.md) for the details.
-
 #### Commandline Options
 To render roadmap.yml in real world scenarios, you normaly have use it with commandline options
 
-There are 3 Options:
+There are 4 Options:
 - ```--roadmap-file```
     this is the path to your roadmap.yml
     default="examples/roadmap.yml
@@ -124,9 +121,12 @@ There are 3 Options:
     default=OUTPUT_PATH from roadmap.env
 - ```--skip-items```
     object path of roadmap-elements which should be skipped for rendering
-    path elements are separated by comma 
-    e.g.: milestones.todos,milestones.deliverables.todos 
+    path elements are separated by comma
+    e.g.: milestones.todos,milestones.deliverables.todos
     default=Nothing is skipped
+- ```--environment```
+    path to environment file containing paths to the schema definitions, logfile, etc.
+    default=config/roadmap.env
 
 e.g. if **your own directory** is located under */home/example/my_own_roadmap* and **roadmap.py** is located under */home/example/roadmap/* run : 
 ```

@@ -6,10 +6,10 @@
 
 - **`title`** *(string)*: A brief title which describes this roadmap.
 - **`description`** *(string)*: A markdown formatted description of what this roadmap represents and any additional context which may be useful to a reader.
-- **`logo`** *(object)*: A path to your project logo. This might be a good brand for your roadmap.Best fit would be some small-icon.
+- **`logo`** *(object)*: A path to your project logo. This might be a good brand for your roadmap. Best fit would be some small-icon.
   - **`filename`** *(string, required)*: Your logo MUST placed where your roadmap.yml lives.
   - **`copyright_notice`** *(string)*: If there is any copyright-notice, this would be rendered as alt-text.
-- **`visionstatement`** *(string)*: A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs.
+- **`visionstatement`** *(string)*: A markdown formatted project or product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs.
 - **`authors`** *(array)*: A list of authors who were/are involved in the creation of the roadmap.
   - **Items**: Refer to *[#/definitions/Author](#definitions/Author)*.
 - **`releases`** *(array)*: A list of releases which provide enhancements in the form of deliverables to the stakeholders.
@@ -160,7 +160,7 @@ If cost_of_delay is NULL cost_of_delay is calculated during processing, if all c
   - **`user_business_value`** *(['integer', 'null'])*: A value between 0 (lowest) and 10 (highest), describing, how much the customer (user value) or the company (business value) benefits from the result. Minimum: `0`. Maximum: `10`. Default: `null`.
   - **`time_criticality`** *(['integer', 'null'])*: A value between 0 (lowest) and 10 (highest), describing, how time critical the item ist. E.g. are there fixed deadlines for certain results, e.g. because there are assurances to partners or customers, contractual agreements or legal deadlines? Is there a risk that the value can no longer be achieved if the deadline is not met? Will a possible completion in a few months still have the same value as today? Minimum: `0`. Maximum: `10`. Default: `null`.
   - **`opportunity_enablement_or_risk_reduction`** *(['integer', 'null'])*: A value between 0 (lowest) and 10 (highest), describing if there is any opportunity enablement or risk reduction by achiving this item. E.g. By achieving the result, are we building up certain technical or specialist skills from which we will benefit later in the implementation or which will allow us to achieve certain later results more easily or at all? Are there risks that are minimized by achieving a certain result? Minimum: `0`. Maximum: `10`. Default: `null`.
-  - **`jobsize`** *(['integer', 'null'])*: A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.
+  - **`jobsize`** *(['integer', 'null'])*: A value with minimum 1 (shortest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.
 If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Default: `null`.
 
   Examples:
@@ -196,14 +196,14 @@ If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Default:
 
 - <a id="definitions/Reference"></a>**`Reference`** *(object)*: A reference to a file or url with additional context which may be useful to a reader.
   - **`name`** *(string)*: a short-name for the uri.
-  - **`description`** *(string)*: a describtion in natural words, what someone could expect by using the link of this reference.
+  - **`description`** *(string)*: a description in natural words, what someone could expect by using the link of this reference.
   - **`link`** *(string, format: uri, required)*: A URI at which additional information about this deliverable may be found (whether that be documentation or a tracking ticket).
 - <a id="definitions/Release"></a>**`Release`** *(object)*: releases which provide enhancements in the form of deliverables to the stakeholders.
   - **`tag`** *(string, required)*: a short-name for the release.
-  - **`description`** *(string)*: a describtion in natural words,what should or must be part of this release.
+  - **`description`** *(string)*: a description in natural words, what should or must be part of this release.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
 - <a id="definitions/DeliverableState"></a>**`DeliverableState`** *(string)*: The state of an item on the roadmap. Must be one of: `["TODO", "DOING", "DONE", "SKIP"]`. Default: `"TODO"`.
-- <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
-- <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
+- <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITTED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
+- <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITTED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/Requirement"></a>**`Requirement`** *(string)*: An RFC2119 verb which describes how a specific requirement should be treated. Must be one of: `["MUST", "SHOULD", "MAY"]`. Default: `"SHOULD"`.
 - <a id="definitions/TodoState"></a>**`TodoState`** *(string)*: The state of an item on a todo-list. Must be one of: `["OPEN", "DOING", "CLOSED"]`. Default: `"OPEN"`.
