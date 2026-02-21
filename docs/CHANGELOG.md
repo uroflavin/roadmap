@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Affected: Objectives and Milestones. Schema validation will fail otherwise.
 
 ### Changed
+- ref: rename virtual environment directory from `env` to `.venv` (project convention alignment)
 - ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
 - ref: rewrite remove_element() as recursive implementation
 - ref: deduplicate html-kanban CSS/JS via symlinks to html/

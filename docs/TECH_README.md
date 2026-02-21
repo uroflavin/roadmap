@@ -6,20 +6,17 @@ This script is used for creating and validating roadmap files. It uses YAML for 
 
 Before running the script, you should set up a virtual environment. This helps to keep the dependencies required by different projects separate by creating isolated python environments for them. Here's how you can do it:
 
-1. Install the `virtualenv` package:
-    ```bash
-    pip install virtualenv
-    ```
+1. Ensure Python 3 is installed (the built-in `venv` module is included with Python 3.3+).
 
-2. Navigate to the project directory and create a virtual environment. You can name the environment anything you like. Here we name it `env`:
+2. Navigate to the project directory and create a virtual environment:
     ```bash
     cd path/to/project/directory
-    virtualenv env
+    python3 -m venv .venv
     ```
 
 3. Activate the virtual environment:
-    - On Windows, run: `env\Scripts\activate`
-    - On Unix or MacOS, run: `source env/bin/activate`
+    - On Windows, run: `.venv\Scripts\activate`
+    - On Unix or MacOS, run: `source .venv/bin/activate`
 
 4. Once the virtual environment is activated, the name of your virtual environment will appear on left side of terminal.
 
