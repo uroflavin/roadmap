@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-02-21
+
 ### Changed
 - doc: update release workflow docs in `DEVELOPMENT.md` — action no longer commits CHANGELOG to main
 - fix(ci): remove `Finalize CHANGELOG` step from `release.yml` (already removed in v0.2.0)
@@ -405,7 +407,8 @@ BREAKING CHANGE
   - if there are some arguments, then they will take precedence over static config
 
 
-[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.2.1...HEAD
+[unreleased]: https://github.com/uroflavin/roadmap/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/uroflavin/roadmap/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/uroflavin/roadmap/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/uroflavin/roadmap/compare/v0.1.12...v0.2.0
 [0.1.12]: https://github.com/uroflavin/roadmap/compare/v0.1.11...v0.1.12
