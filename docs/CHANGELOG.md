@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)
+- doc: add usage documentation to `templates.yml`
 - fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`
 - fix: replace bare `except Exception` with specific exception types (KeyError, TypeError, ValueError, TemplateError, OSError)
 - fix: correct typo "shure" -> "sure" in utils.py

@@ -1,3 +1,20 @@
+# Template manifest for the roadmap renderer.
+#
+# Each entry defines a Jinja2 template to render. Required fields:
+#   input  - path to the template file (relative to this directory)
+#   output - output filename (relative to --output-dir, supports subdirectories)
+#
+# Optional fields:
+#   name   - human-readable description of the template
+#
+# The renderer validates this file: it must be a YAML list, and each entry
+# must contain at least 'input' and 'output'. Invalid entries are skipped.
+# Only templates whose suffix matches TEMPLATE_KNOWN_SUFFIXES (from roadmap.env)
+# are processed.
+#
+# If this file is absent, the renderer falls back to walking the template
+# directory for files matching 'roadmap.<suffix>'.
+
 - name: Full Roadmap as HTML
   input: html/roadmap.html
   output: roadmap.html
