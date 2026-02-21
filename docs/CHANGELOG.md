@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - test: fix `assertRaises` blocks -- each invalid call gets its own block
 - test: make graphviz test conditional with `@skipUnless`
 - test: add tests for `make_id_from()`, `get_items_grouped_by_date()`, `validate_yaml()`, `enrich_project()`
+- test: add tests for `find_templates()` -- manifest-based, directory-walk fallback, suffix filtering, invalid entries, real templates
 
 ## [0.1.12] - 2025-05-28
 - fix(html): #107 display date for deliverables in roadmap view left if milestone number is even
