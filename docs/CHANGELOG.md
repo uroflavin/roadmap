@@ -18,6 +18,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: remove unused Tailwind CSS dev dependency from `templates/` (hill chart prototypes use CDN instead)
 
 ### Added
+- test: add tests for `objective.milestones` nested milestone IDs and deliverables
+- test: add tests for `visionstatement` presence after enrichment and in `as_list`
+- test: add tests for `convert_image_to_html_base64()` success and file-not-found cases
+- doc: add `--environment` option to README command-line options section
+
+### Changed
+- ref: parse `TEMPLATE_KNOWN_SUFFIXES` from dotenv as JSON (`json.loads`) instead of passing raw string
+- ref: use `Path(dirname).parts[-1]` instead of `dirname.split("/")[1]` in `_find_templates_from_directory`
+- ref: convert all `logging.xxx("format %s", var)` calls to f-string style across `cli.py`, `rendering.py`, `model.py`, `utils.py`
+- ref(ci): update `actions/checkout` and `actions/setup-python` from v3 to v4
+- ref(schema): update `$schema` from `https://json-schema.org/schema` to `https://json-schema.org/draft/2020-12/schema`
+- doc: correct jobsize description — remove upper limit "10", align schema, model docstring, and `wsjf.md`
+- doc: correct symlinks reference in `DEVELOPMENT.md` to "Jinja2 FileSystemLoader fallback search path"
+- doc: correct test example path in `DEVELOPMENT.md` to `tests/test_model.py::TestModel::test_calculate_cost_of_delay`
+- ref(template): quote CSV header and keys, double-escape quotes in CSV template for RFC 4180 compliance
+
+### Fixed
+- fix: catch `FileNotFoundError` in `is_graphviz_installed()` when `dot` binary is not on PATH
+- fix(schema): correct typo "roadmap.Best fit" → "roadmap. Best fit" in logo description
+- fix(schema): correct typo "project pr product" → "project or product" in visionstatement description
+- fix(schema): correct typo "describtion" → "description" in Reference and Release definitions
+- fix(test-fixture): correct reference link `example.com/m1/d4html` → `example.com/m1/d4.html`
+
+### Tests
+- test: fix self-comparison in `test_calculate_wsjf_quantifiers_for_milestones_deliverables` — compare jobsize against expected value `1`
+- test: fix typo in test name `test_preconditions_in_test_exciting_file` → `test_preconditions_in_test_existing_file`
+- test: replace hardcoded template count `assertEqual(len, 6)` with `assertGreaterEqual(len, 1)` in `test_find_templates_with_real_templates`
+- test: add `visionstatement` and nested `objective.milestones` to test fixture `tests/roadmap.yml`
+- test: update expected fixture version hash in `conftest.py`
 - doc: add `docs/DECISION.md` with ADR-001 (keep `get_key_value_list()` and `remove_element()` separate)
 - doc: add `docs/DEVELOPMENT.md` as complete developer documentation replacing TECH_README.md
 - feat(build): add `setuptools-scm` for git-tag-based versioning (`pyproject.toml`)

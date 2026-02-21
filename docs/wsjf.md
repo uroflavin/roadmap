@@ -63,7 +63,7 @@ quantifiers:
 - user_business_value: range from 0 to 10 as whole number
 - time_criticality: range from 0 to 10 as whole number
 - opportunity_enablement_or_risk_reduction: range from 0 to 10 as whole number
-- jobsize: range from 1 to 10 as whole number
+- jobsize: minimum 1 (no upper limit) as whole number
 ```
 
 The default value from schema/roadmap.jsoon is NULL for all dimensions and **all given ranges are inclusive!**

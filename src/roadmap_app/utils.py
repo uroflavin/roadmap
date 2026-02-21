@@ -19,12 +19,12 @@ def read_yml_to_dict(path_to_yml: str = ""):
     try:
         with open(path_to_yml, "r") as f:
             yml_content = yaml.load(f, Loader=yaml.FullLoader)
-            logging.debug("yml_content: %s", yml_content)
+            logging.debug(f"yml_content: {yml_content}")
             return yml_content
     except OSError as err:
         # in case of an error log file name and error message
-        logging.debug("yml-definition-file '%s' not readable", path_to_yml)
-        logging.debug("Error: %s", err.strerror)
+        logging.debug(f"yml-definition-file '{path_to_yml}' not readable")
+        logging.debug(f"Error: {err.strerror}")
         raise err
 
 
@@ -248,14 +248,14 @@ def create_output_folder(path_to_folder: str = ""):
         # FileNotFoundError is thrown if some parts of path are not present
         except FileNotFoundError as err:
             logging.error(
-                "some folders for output_folder '%s' did not exist", path_to_folder)
+                f"some folders for output_folder '{path_to_folder}' did not exist")
             logging.error(err)
             return False
 
     # write-access?
     if output_folder.stat().st_mode & 0o200:
-        logging.debug("output_folder '%s' is writeable", path_to_folder)
+        logging.debug(f"output_folder '{path_to_folder}' is writeable")
         return True
     else:
-        logging.error("output_folder '%s' is not writeable", path_to_folder)
+        logging.error(f"output_folder '{path_to_folder}' is not writeable")
         return False

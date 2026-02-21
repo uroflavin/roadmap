@@ -80,7 +80,7 @@ def calculate_weighted_shortest_job_first(
     A value between 0 (lowest) and 30 (highest)
     a measure of the economic value of a job over time
     :param int jobsize:
-    value between 1 (shortest) and 10 (longest)
+    minimum value of 1 (shortest)
     describing, the approximation of the expected effort
     or statement about how long it takes to deliver the value for a delivery or result
     :return: wsjf as integer or None in case of error
@@ -131,7 +131,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                             "opportunity_enablement_or_risk_reduction"])
             except (KeyError, TypeError, ValueError) as err:
                 # ignore error - we simply don't add quantifiers to item
-                logging.debug("cost_of_delay: calculating failed %s", err)
+                logging.debug(f"cost_of_delay: calculating failed {err}")
 
             try:
                 # weighted_shortest_job_first is only calculated if not set
@@ -141,7 +141,7 @@ def calculate_wsjf_quantifiers_for_element_items(elements: dict = None):
                         jobsize=item["quantifiers"]["jobsize"])
             except (KeyError, TypeError, ValueError) as err:
                 # ignore error - we simply don't add quantifiers to item
-                logging.debug("weighted_shortest_job_first; calculating failed: %s", err)
+                logging.debug(f"weighted_shortest_job_first; calculating failed: {err}")
     return elements.copy()
 
 
@@ -263,7 +263,7 @@ def remove_element(element_name: str = "", project: dict = None):
         if len(keys) == 1:
             # direct removal from a dict (reached via list iteration or top level)
             if isinstance(data, dict) and keys[0] in data:
-                logging.info("skip (project.%s)", element_name)
+                logging.info(f"skip (project.{element_name})")
                 del data[keys[0]]
             return
 
@@ -278,7 +278,7 @@ def remove_element(element_name: str = "", project: dict = None):
             # when the parent is a dict (not a list), set leaf values to None
             if len(keys) == 2:
                 if keys[1] in child:
-                    logging.info("skip (project.%s)", element_name)
+                    logging.info(f"skip (project.{element_name})")
                     child[keys[1]] = None
             else:
                 _remove(child, keys[1:])
@@ -304,8 +304,8 @@ def enrich_project(project, skip_items, roadmap_definition_file):
         "version": calculate_roadmap_version(path_to_roadmap_yml=roadmap_definition_file),
         "rendertime": time.strftime("%Y%m%d%H%M%S")
     }
-    logging.info("version of roadmap.yml is '%s'", project['meta']["version"])
-    logging.info("rendering time '%s'", project['meta']["rendertime"])
+    logging.info(f"version of roadmap.yml is '{project['meta']['version']}'")
+    logging.info(f"rendering time '{project['meta']['rendertime']}'")
 
     # placeholders for grouping - will be removed if section is absent
     project["group"] = {

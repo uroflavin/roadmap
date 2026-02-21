@@ -1,6 +1,6 @@
 import pytest
 
-EXPECTED_ROADMAP_VERSION = "880a29cf"
+EXPECTED_ROADMAP_VERSION = "2c1367e2"
 
 
 @pytest.fixture(autouse=True)

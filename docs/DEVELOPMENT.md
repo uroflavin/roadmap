@@ -153,7 +153,7 @@ If `templates.yml` is absent, the renderer falls back to walking the template di
 
 - `MarkdownExtension` for Markdown processing within templates
 - HTML templates use deep `{% include %}` composition with ~22 partials
-- `html-kanban/` shares CSS/JS with `html/` via symlinks (no duplication)
+- `html-kanban/` shares CSS/JS with `html/` via Jinja2 FileSystemLoader fallback search path (no duplication)
 - Per-template error handling: one failing template does not block others
 
 ## Schema & Validation
@@ -169,7 +169,7 @@ If `templates.yml` is absent, the renderer falls back to walking the template di
 pytest tests/
 
 # Run a single test
-pytest tests/test_roadmap.py::TestRoadmapFunctions::test_method_name
+pytest tests/test_model.py::TestModel::test_calculate_cost_of_delay
 ```
 
 See [tests/README.md](../tests/README.md) for test structure, fixture details, and per-test descriptions.

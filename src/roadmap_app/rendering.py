@@ -31,18 +31,18 @@ def validate_yaml(roadmap_data: dict = None, path_to_json_schema: str = ""):
             schema = f.read()
         # Convert Schema to Python Dict
         schema = json.loads(schema)
-        logging.debug("schema: %s", schema)
+        logging.debug(f"schema: {schema}")
 
         # Convert ymlData to Python Dict
         instance = json.loads(json.dumps(
             roadmap_data, indent=4, sort_keys=True, default=str))
-        logging.debug("instance: %s", instance)
+        logging.debug(f"instance: {instance}")
         validate(instance=instance, schema=schema)
         return None, True
     except jsonschema.exceptions.ValidationError as err:
-        logging.error("schema: %s", schema)
-        logging.error("instance: %s", instance)
-        logging.error("ValidationError: %s", err)
+        logging.error(f"schema: {schema}")
+        logging.error(f"instance: {instance}")
+        logging.error(f"ValidationError: {err}")
         return err, False
 
 
@@ -55,9 +55,12 @@ def is_graphviz_installed():
     :return: True if dot is installed, False if dot is not installed
     :rtype: bool
     """
-    graphviz_version = subprocess.check_output(['dot', '-V'], stderr=subprocess.STDOUT)
-    if "graphviz version" in str(graphviz_version):
-        return True
+    try:
+        graphviz_version = subprocess.check_output(['dot', '-V'], stderr=subprocess.STDOUT)
+        if "graphviz version" in str(graphviz_version):
+            return True
+    except FileNotFoundError:
+        return False
 
     return False
 
@@ -106,7 +109,7 @@ def _find_templates_from_manifest(template_path, template_known_suffixes, global
 
     for template in templates_from_yml:
         if not isinstance(template, dict) or "input" not in template or "output" not in template:
-            logging.warning("skipping invalid template entry (missing 'input' or 'output'): %s", template)
+            logging.warning(f"skipping invalid template entry (missing 'input' or 'output'): {template}")
             continue
 
         input_file = Path(template_path + os.sep + template["input"]).absolute().resolve()
@@ -165,7 +168,7 @@ def _find_templates_from_directory(template_path, template_known_suffixes, globa
                         "output_file_basename": output_file_basename,
                         "output_path": output_file_path,
                         "suffix": input_file_suffix,
-                        "type": dirname.split("/")[1]
+                        "type": Path(dirname).parts[-1]
                     })
 
     return templates
@@ -193,7 +196,7 @@ def find_templates(template_path: str = "", template_known_suffixes: list = None
     else:
         templates = _find_templates_from_directory(template_path, template_known_suffixes, global_output_path)
 
-    logging.debug("templates: %s", templates)
+    logging.debug(f"templates: {templates}")
     return templates
 
 
@@ -250,7 +253,7 @@ def process_template(
                 output_png = os.path.join(
                     template["output_path"], f"{output_basename}.dot.png")
                 # log info about converting
-                logging.info("rendering '%s' to '%s'", output_file, output_png)
+                logging.info(f"rendering '{output_file}' to '{output_png}'")
                 subprocess.check_call(
                     ['dot', '-Tpng', output_file, '-o', output_png])
             # if 'dot -V' failed, we assume that graphviz is not installed
@@ -261,9 +264,8 @@ def process_template(
                     "   png rendering skipped \n"
                     "   follow https://www.graphviz.org/ for install instructions")
 
-        logging.info("processed '%s' with template '%s' to '%s'", roadmap_definition_file,
-                     os.path.join(template["path"], template["file"]), output_file)
+        logging.info(f"processed '{roadmap_definition_file}' with template "
+                     f"'{os.path.join(template['path'], template['file'])}' to '{output_file}'")
 
     except (TemplateError, OSError, subprocess.CalledProcessError) as err:
-        logging.error("processing template '%s' failed: %s",
-                      os.path.join(template["path"], template["file"]), err)
+        logging.error(f"processing template '{os.path.join(template['path'], template['file'])}' failed: {err}")

@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import logging
@@ -68,8 +69,9 @@ def render_templates(project, config, output_folder, roadmap_definition_file):
     :param str output_folder: path to output directory
     :param str roadmap_definition_file: path to the roadmap YAML file
     """
+    template_known_suffixes = json.loads(config["TEMPLATE_KNOWN_SUFFIXES"])
     templates = find_templates(template_path=config["TEMPLATE_PATH"],
-                               template_known_suffixes=config["TEMPLATE_KNOWN_SUFFIXES"],
+                               template_known_suffixes=template_known_suffixes,
                                global_output_path=output_folder)
 
     env = Environment()
@@ -83,17 +85,17 @@ def render_templates(project, config, output_folder, roadmap_definition_file):
         project["logo"]["base64"] = convert_image_to_html_base64(logo_src_path)
 
     for template in templates:
-        logging.info("processing '%s'", os.path.join(template["path"], template["file"]))
+        logging.info(f"processing '{os.path.join(template['path'], template['file'])}'")
         process_template(environment=env, template=template, roadmap_definition_file=roadmap_definition_file,
                          project=project)
 
     # Copy logo to output path if it exists in the project
     if logo_src_path:
-        logging.info("copy project.logo '%s' to '%s'", logo_src_path, output_folder)
+        logging.info(f"copy project.logo '{logo_src_path}' to '{output_folder}'")
         try:
             shutil.copy(logo_src_path, output_folder)
         except shutil.SameFileError:
-            logging.debug("copy logo file '%s' failed", logo_src_path)
+            logging.debug(f"copy logo file '{logo_src_path}' failed")
 
 
 def main():
@@ -115,7 +117,7 @@ def main():
     config = dotenv_values(environment_definition_file)
 
     setup_logging(config)
-    logging.debug("config: %s", config)
+    logging.debug(f"config: {config}")
 
     if output_folder[-1] != os.sep:
         output_folder = f"{output_folder}{os.sep}"

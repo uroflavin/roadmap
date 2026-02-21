@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A roadmap represents a high-level plan for your project or team.",
     "type": "object",
     "required": [
@@ -18,7 +18,7 @@
         },
         "logo":  {
             "type": "object",
-            "description": "A path to your project logo. This might be a good brand for your roadmap.Best fit would be some small-icon",
+            "description": "A path to your project logo. This might be a good brand for your roadmap. Best fit would be some small-icon",
             "required": [
                 "filename"           
             ],
@@ -35,7 +35,7 @@
         },
         "visionstatement": {
             "type": "string",
-            "description": "A markdown formatted project pr product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs."
+            "description": "A markdown formatted project or product visionstatement. A product vision describes the ideal product from the customer's perspective. The leitmotif of a product vision is therefore the question of how the product can optimally address and solve the customer's problem or needs."
         },
         "authors": {
             "type": "array",
@@ -421,7 +421,7 @@
                     "type": ["integer", "null"],
                     "minimum": 1,
                     "default": null,
-                    "description": "A value between 1 (shortest) and 10 (longest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.\nIf you really need a Jobsize of 0, something went wrong.."
+                    "description": "A value with minimum 1 (shortest), describing, the approximation of the expected effort or statement about how long it takes to deliver the value for a delivery or result.\nIf you really need a Jobsize of 0, something went wrong.."
                 }
             },
             "examples": [
@@ -468,7 +468,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "a describtion in natural words, what someone could expect by using the link of this reference"
+                    "description": "a description in natural words, what someone could expect by using the link of this reference"
                 },
                 "link": {
                     "type": "string",
@@ -490,7 +490,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "a describtion in natural words,what should or must be part of this release"
+                    "description": "a description in natural words, what should or must be part of this release"
                 },
                 "reference": {
                     "$ref": "#/definitions/Reference"

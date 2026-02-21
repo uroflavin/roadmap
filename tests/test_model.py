@@ -11,7 +11,7 @@ class TestModel(unittest.TestCase):
         # this is an existing roadmap
         self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
 
-    def test_preconditions_in_test_exciting_file(self):
+    def test_preconditions_in_test_existing_file(self):
         # this test is to check if your test.yml has some predefined conditions for testing
         #
         #   the conditions are checked twice: once for version id, which is md5sum of file
@@ -304,9 +304,8 @@ class TestModel(unittest.TestCase):
         self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['cost_of_delay'], 3)
         # is wsjf correct
         self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['weighted_shortest_job_first'], 3)
-        # is jobsize correct from wjs copied
-        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'],
-                         project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'])
+        # is jobsize correct
+        self.assertEqual(project["milestones"][0]['deliverables'][0]['quantifiers']['jobsize'], 1)
 
     def test_calculate_wsjf_quantifiers_for_objectives_keyresult(self):
         # test if we calculate correctly and quantifier will be added to project
@@ -373,6 +372,33 @@ class TestModel(unittest.TestCase):
         # test empty and None input
         self.assertEqual(get_items_grouped_by_date(None), {})
         self.assertEqual(get_items_grouped_by_date([]), {})
+
+    def test_enrich_project_objective_milestones(self):
+        # test that nested milestones under objectives get IDs and deliverables are processed
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        # Objective 2 (index 1) should have milestones
+        obj2 = project["objectives"][1]
+        self.assertIn("milestones", obj2)
+        self.assertGreater(len(obj2["milestones"]), 0)
+        # nested milestone should have an _id
+        ms = obj2["milestones"][0]
+        self.assertIn("_id", ms)
+        self.assertIn("id", ms)
+        # nested milestone should have deliverables with _id
+        self.assertIn("deliverables", ms)
+        self.assertGreater(len(ms["deliverables"]), 0)
+        self.assertIn("_id", ms["deliverables"][0])
+
+    def test_enrich_project_visionstatement(self):
+        # test that visionstatement is present after enrich_project and appears in as_list
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        self.assertIn("visionstatement", project)
+        self.assertIn("vision statement", project["visionstatement"].lower())
+        # check that visionstatement appears in as_list
+        as_list_keys = [item["key"] for item in project["as_list"]]
+        self.assertIn("visionstatement", as_list_keys)
 
     def test_enrich_project(self):
         # test that enrich_project adds all expected computed fields

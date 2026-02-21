@@ -1,7 +1,8 @@
 import unittest
 import os
+import tempfile
 from roadmap_app.utils import (read_roadmap_definition, calculate_roadmap_version, get_key_value_list,
-                               get_filtered_key_value_list, create_output_folder)
+                               get_filtered_key_value_list, create_output_folder, convert_image_to_html_base64)
 
 
 class TestUtils(unittest.TestCase):
@@ -75,6 +76,26 @@ class TestUtils(unittest.TestCase):
         # we always get an empty key, value list
         self.assertIsNone(project_as_list[0]['key'])
         self.assertIsNone(project_as_list[0]['value'])
+
+    def test_convert_image_to_html_base64(self):
+        # test that a valid image file is converted to base64 HTML string
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+            # minimal valid PNG: 1x1 pixel
+            f.write(b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01'
+                    b'\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00'
+                    b'\x00\x00\x0cIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00'
+                    b'\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82')
+            tmp_path = f.name
+        try:
+            result = convert_image_to_html_base64(tmp_path)
+            self.assertTrue(result.startswith("data:image/png;base64,"))
+        finally:
+            os.unlink(tmp_path)
+
+    def test_convert_image_to_html_base64_file_not_found(self):
+        # test that a non-existent file returns empty string
+        result = convert_image_to_html_base64("/nonexistent/path/logo.png")
+        self.assertEqual(result, "")
 
     def test_get_filtered_key_value_list(self):
         # test if we filter a key-value list correctly

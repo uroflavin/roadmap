@@ -1,5 +1,5 @@
-{% set g = namespace( comma = ', ') -%}
-key, value
+{% set g = namespace( comma = ',') -%}
+"key","value"
 {% for item in project['as_list'] -%}
-{{- item.key -}}{{- g.comma -}}"{{- item.value | replace('\n', '\\n') if "value" in item else " " -}}"
+"{{- item.key | replace('"', '""') -}}"{{- g.comma -}}"{{- item.value | replace('"', '""') | replace('\n', '\\n') if "value" in item else " " -}}"
 {% endfor -%}
