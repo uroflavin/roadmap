@@ -82,8 +82,8 @@ This gives you the option of managing all data in one place, even if the data is
 To render roadmap.py roadmap as an example: 
  - clone this repository
  - change to cloned directory
- - install requirements
- ```pip install -r requirements.txt```
+ - install package
+ ```pip install -e .```
 - use roadmap.py to render the templates
 ```python3 roadmap.py```
 - the rendered roadmap-files are located under **roadmap/** directory

@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ref: split `find_templates()` into manifest-based and directory-walk functions, extract shared output path logic
 - ref: move `create_output_folder()` from `cli.py` to `utils.py` (I/O helper belongs with other I/O utilities)
 - ref: extract `setup_logging()` and `render_templates()` from `main()`, flatten nesting via early returns
+- ref: replace last string concatenation `output_folder + os.sep` with f-string in `cli.py`
+- ref: simplify `roadmap.py` root shim -- remove `sys.path` manipulation, rely on `pip install -e .`
+- ref: remove `requirements.txt`, use `pyproject.toml` as single source for dependencies
+- ref: add `[project.optional-dependencies] dev` for pytest, flake8, pre-commit, jsonschema2md
+- ref: relax strict version pins (`==`) to compatible ranges (`>=`) in `pyproject.toml`
+- ref: move `pre-commit` from runtime to dev dependencies
+- ref: simplify CI workflow to `pip install -e ".[dev]"`
 
 ### Fixed
 - fix: add validation for `templates.yml` manifest (must be list, entries require `input` and `output`)

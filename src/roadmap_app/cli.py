@@ -118,7 +118,7 @@ def main():
     logging.debug("config: %s", config)
 
     if output_folder[-1] != os.sep:
-        output_folder = output_folder + os.sep
+        output_folder = f"{output_folder}{os.sep}"
 
     if not create_output_folder(output_folder):
         logging.error(f"could not create '{output_folder}' - see logfile for details")
