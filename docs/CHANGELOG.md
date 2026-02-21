@@ -6,15 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Breaking Changes
+- fix(schema)!: correct typo "COMMITED" -> "COMMITTED" in ObjectiveState and MilestoneState
+  Existing projects must update `state: COMMITED` to `state: COMMITTED` (double t).
+  Affected: Objectives and Milestones. Schema validation will fail otherwise.
+
+### Changed
 - ref: split monolithic roadmap.py into src/roadmap_app/ package (cli, model, rendering, utils)
 - ref: rewrite remove_element() as recursive implementation
 - ref: deduplicate html-kanban CSS/JS via symlinks to html/
 - ref: reorganize project structure (tests/, docs/, config/, .github/)
+- ref: replace string concatenation with f-strings in model.py and cli.py
+
+### Fixed
 - fix: remove misleading unary plus operator in `calculate_weighted_shortest_job_first`
 - fix: replace bare `except Exception` with specific exception types (KeyError, TypeError, ValueError, TemplateError, OSError)
-- ref: replace string concatenation with f-strings in model.py and cli.py
 - fix: correct typo "shure" -> "sure" in utils.py
 - fix: use `with`-statement for file handle in `convert_image_to_html_base64`
+
+### Tests
 - test: fix `assertRaises` blocks -- each invalid call gets its own block
 - test: make graphviz test conditional with `@skipUnless`
 - test: add tests for `make_id_from()`, `get_items_grouped_by_date()`, `validate_yaml()`, `enrich_project()`

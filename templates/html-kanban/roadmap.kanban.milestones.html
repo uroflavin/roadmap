@@ -28,9 +28,9 @@
                             {% endfor -%}
                     </div>
                     <div class='list commited'>
-                        <h3>COMMITED</h3>
+                        <h3>COMMITTED</h3>
                             {% for milestone in project.milestones %}
-                                {% if milestone.state == "COMMITED" %}
+                                {% if milestone.state == "COMMITTED" %}
                                     {% include "roadmap.kanban.milestones.card.html" -%}
                                 {% endif -%}
                             {% endfor -%}

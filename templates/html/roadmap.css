@@ -368,12 +368,12 @@ span.PLANNED-inverted {
     background-color: var(--color_state__text);
     color: var(--color_state_planned);;
 }
-span.COMMITED {
+span.COMMITTED {
     border: 1px solid var(--color_state_commited);
     background-color: var(--color_state_commited);
     color: var(--color_state__text);
 }
-span.COMMITED-inverted {
+span.COMMITTED-inverted {
     border: 1px solid var(--color_state_commited);
     background-color: var(--color_state__text);
     color: var(--color_state_commited);
@@ -484,8 +484,8 @@ r-milestone.PLANNED > r-date,
 r-milestone.PLANNED-inverted > r-date {
     color: var(--color_state_planned);
 }
-r-milestone.COMMITED > r-date,
-r-milestone.COMMITED-inverted > r-date {
+r-milestone.COMMITTED > r-date,
+r-milestone.COMMITTED-inverted > r-date {
     color: var(--color_state_commited);
 }
 r-milestone.REACHED > r-date,
@@ -513,12 +513,12 @@ r-milestone.SKIP > r-deliverables > r-deliverable > r-date {
 }
 r-milestone.IDEA::before , 
 r-milestone.PLANNED::before,
-r-milestone.COMMITED::before,
+r-milestone.COMMITTED::before,
 r-milestone.REACHED::before,
 r-milestone.SKIP::before,
 r-milestone.IDEA-inverted::before , 
 r-milestone.PLANNED-inverted::before,
-r-milestone.COMMITED-inverted::before,
+r-milestone.COMMITTED-inverted::before,
 r-milestone.REACHED-inverted::before,
 r-milestone.SKIP-inverted::before {
     background-color: transparent;

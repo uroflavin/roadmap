@@ -514,7 +514,7 @@
             "enum": [
                 "IDEA",
                 "PLANNED",
-                "COMMITED",
+                "COMMITTED",
                 "ACHIEVED",
                 "SKIP"
             ],
@@ -526,7 +526,7 @@
             "enum": [
                 "IDEA",
                 "PLANNED",
-                "COMMITED",
+                "COMMITTED",
                 "REACHED",
                 "SKIP"
             ],

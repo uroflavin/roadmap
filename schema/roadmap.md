@@ -203,7 +203,7 @@ If you really need a Jobsize of 0, something went wrong.. Minimum: `1`. Default:
   - **`description`** *(string)*: a describtion in natural words,what should or must be part of this release.
   - **`reference`**: Refer to *[#/definitions/Reference](#definitions/Reference)*.
 - <a id="definitions/DeliverableState"></a>**`DeliverableState`** *(string)*: The state of an item on the roadmap. Must be one of: `["TODO", "DOING", "DONE", "SKIP"]`. Default: `"TODO"`.
-- <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
-- <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
+- <a id="definitions/ObjectiveState"></a>**`ObjectiveState`** *(string)*: The state of an objective-item. Must be one of: `["IDEA", "PLANNED", "COMMITTED", "ACHIEVED", "SKIP"]`. Default: `"IDEA"`.
+- <a id="definitions/MilestoneState"></a>**`MilestoneState`** *(string)*: The state of an milestone-item. Must be one of: `["IDEA", "PLANNED", "COMMITTED", "REACHED", "SKIP"]`. Default: `"IDEA"`.
 - <a id="definitions/Requirement"></a>**`Requirement`** *(string)*: An RFC2119 verb which describes how a specific requirement should be treated. Must be one of: `["MUST", "SHOULD", "MAY"]`. Default: `"SHOULD"`.
 - <a id="definitions/TodoState"></a>**`TodoState`** *(string)*: The state of an item on a todo-list. Must be one of: `["OPEN", "DOING", "CLOSED"]`. Default: `"OPEN"`.
