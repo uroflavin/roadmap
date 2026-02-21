@@ -7,7 +7,8 @@ from io import StringIO
 from roadmap_app.cli import create_output_folder
 from roadmap_app.utils import read_roadmap_definition, calculate_roadmap_version, get_key_value_list, get_filtered_key_value_list
 from roadmap_app.model import (calculate_ids_for_element_items, remove_element, calculate_cost_of_delay,
-                           calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items)
+                           calculate_weighted_shortest_job_first, calculate_wsjf_quantifiers_for_element_items,
+                           make_id_from, get_items_grouped_by_date, enrich_project)
 from roadmap_app.rendering import validate_yaml, find_templates, process_template, is_graphviz_installed
 import os
 
@@ -21,7 +22,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         # this is an existing roadmap
         self.test_existing_file = os.path.join(os.path.dirname(__file__), "roadmap.yml")
         # this is the version of the existing roadmap
-        # if you modify this file, make shure to modify his version.
+        # if you modify this file, make sure to modify his version.
         # version is calculated using md5 and take the first and last 4 characters
         self.version_existing_roadmap = "880a29cf"
 
@@ -52,6 +53,7 @@ class TestRoadmapFunctions(unittest.TestCase):
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
 
+    @unittest.skipUnless(shutil.which("dot"), "graphviz not installed")
     def test_is_graphviz_installed(self):
         # test if graphviz is installed
         self.assertTrue(is_graphviz_installed())
@@ -238,18 +240,25 @@ class TestRoadmapFunctions(unittest.TestCase):
         with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=11)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=None, time_criticality=1,
                                     opportunity_enablement_or_risk_reduction=1)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value="1", time_criticality="1",
                                     opportunity_enablement_or_risk_reduction="1")
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=1.0, time_criticality=1.0,
                                     opportunity_enablement_or_risk_reduction=1.0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=11, time_criticality=-1,
                                     opportunity_enablement_or_risk_reduction=100)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=11, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=11,
                                     opportunity_enablement_or_risk_reduction=0)
+        with self.assertRaises(ValueError):
             calculate_cost_of_delay(user_business_value=0, time_criticality=0,
                                     opportunity_enablement_or_risk_reduction=11)
 
@@ -268,10 +277,15 @@ class TestRoadmapFunctions(unittest.TestCase):
         # test for correct handling non-valid inputs during calculation of wsjf
         with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay="16", jobsize="3")
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=19)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=100, jobsize=100)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=None, jobsize=None)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=None, jobsize=1)
+        with self.assertRaises(ValueError):
             calculate_weighted_shortest_job_first(cost_of_delay=1, jobsize=None)
 
     def test_calculate_wsjf_quantifiers_if_weighted_shortest_job_is_set(self):
@@ -412,6 +426,91 @@ class TestRoadmapFunctions(unittest.TestCase):
         # check for error handling
         with self.assertRaises(ValueError):
             get_filtered_key_value_list()
+
+    def test_make_id_from_basic(self):
+        # test basic id generation
+        self.assertEqual(make_id_from("Hello World"), "hello_world")
+        self.assertEqual(make_id_from("test.value"), "test_value")
+        self.assertEqual(make_id_from("my-item"), "my_item")
+        self.assertEqual(make_id_from("item#1"), "item_1")
+        self.assertEqual(make_id_from("a+b*c"), "a_b_c")
+
+    def test_make_id_from_umlauts(self):
+        # test umlaut replacement
+        self.assertEqual(make_id_from("Ueberblick"), "ueberblick")
+        self.assertEqual(make_id_from("aerger"), "aerger")
+        self.assertEqual(make_id_from("Größe"), "groesse")
+        self.assertEqual(make_id_from("Übung"), "uebung")
+        self.assertEqual(make_id_from("Straße"), "strasse")
+        self.assertEqual(make_id_from("schön"), "schoen")
+
+    def test_make_id_from_empty(self):
+        # test empty input
+        self.assertEqual(make_id_from(""), "")
+        self.assertEqual(make_id_from(), "")
+
+    def test_get_items_grouped_by_date(self):
+        # test grouping items by date
+        items = [
+            {"title": "A", "date": "2024-01"},
+            {"title": "B", "date": "2024-01"},
+            {"title": "C", "date": "2024-02"},
+        ]
+        grouped = get_items_grouped_by_date(items)
+        self.assertIn("2024-01", grouped)
+        self.assertIn("2024-02", grouped)
+        self.assertEqual(len(grouped["2024-01"]), 2)
+        self.assertEqual(len(grouped["2024-02"]), 1)
+
+    def test_get_items_grouped_by_date_without_date(self):
+        # test items without date attribute are grouped under "None"
+        items = [{"title": "no date"}, {"title": "also no date"}]
+        grouped = get_items_grouped_by_date(items)
+        self.assertIn("None", grouped)
+        self.assertEqual(len(grouped["None"]), 2)
+
+    def test_get_items_grouped_by_date_empty(self):
+        # test empty and None input
+        self.assertEqual(get_items_grouped_by_date(None), {})
+        self.assertEqual(get_items_grouped_by_date([]), {})
+
+    def test_validate_yaml_valid(self):
+        # test validation with valid roadmap data
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        schema_path = os.path.join(os.path.dirname(__file__), "..", "schema", "roadmap.json")
+        error, is_valid = validate_yaml(roadmap_data=project, path_to_json_schema=schema_path)
+        self.assertIsNone(error)
+        self.assertTrue(is_valid)
+
+    def test_validate_yaml_invalid(self):
+        # test validation with invalid data (missing required fields)
+        invalid_data = {"not_a_valid_key": "value"}
+        schema_path = os.path.join(os.path.dirname(__file__), "..", "schema", "roadmap.json")
+        error, is_valid = validate_yaml(roadmap_data=invalid_data, path_to_json_schema=schema_path)
+        self.assertIsNotNone(error)
+        self.assertFalse(is_valid)
+
+    def test_enrich_project(self):
+        # test that enrich_project adds all expected computed fields
+        project = dict(read_roadmap_definition(self.test_existing_file))
+        enrich_project(project, skip_items=None, roadmap_definition_file=self.test_existing_file)
+        # meta should be added
+        self.assertIn("meta", project)
+        self.assertIn("version", project["meta"])
+        self.assertIn("rendertime", project["meta"])
+        self.assertEqual(project["meta"]["version"], self.version_existing_roadmap)
+        # IDs should be calculated for milestones
+        self.assertIn("_id", project["milestones"][0])
+        self.assertIn("id", project["milestones"][0])
+        self.assertIn("_parent_id", project["milestones"][0])
+        # IDs should be calculated for objectives
+        self.assertIn("_id", project["objectives"][0])
+        # group should be present
+        self.assertIn("group", project)
+        # as_list should be present
+        self.assertIn("as_list", project)
+        self.assertIsInstance(project["as_list"], list)
+        self.assertGreater(len(project["as_list"]), 0)
 
 
 if __name__ == '__main__':
